@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82e68db0-414f-4ee2-b921-f13d0b7cb6a6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/src.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="82e68db0-414f-4ee2-b921-f13d0b7cb6a6" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -74,11 +70,6 @@
             <path>
               <item name="LibrarySystem2" type="b2602c69:ProjectViewProjectNode" />
               <item name="LibrarySystem2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LibrarySystem2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LibrarySystem2" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LibrarySystem2" type="b2602c69:ProjectViewProjectNode" />
