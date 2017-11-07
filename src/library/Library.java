@@ -34,11 +34,11 @@ public class Library {
 		}
 	}
 	
-	public void createCustomer(Customer customer) { //change parameters? to the id
+	public void createCustomer(String name, String address, int phoneNumber) { //change parameters? to the id
 		
 	}
 	
-	public void removeCustomer(Customer customer) {
+	public void removeCustomer(String id) {
 		
 	}
 
