@@ -4,32 +4,44 @@ import java.util.*;
 
 public class Book {
 
-	private String id;
+	//private String id;
 	private String title;
 	private ArrayList<String>authors;
 	private String genre;
 	private String publisher;
 	private String shelf;
-	private int borrowed;
+	private int borrowed = 0;
+	
+	// serialized UID???
 	
 	// ===== Constructor(s) =====
-	public Book (String id, String title, String author, String genre, String publisher, String shelf) {
+	public Book (String title, String author, String genre, String publisher, String shelf) {
 		/* TODO
 		 * Handle errors (e.g. not the same id as another book)
 		 * */
-		this.id = id;
+		//this.id = id;
 		this.title = title;
 		this.genre = genre;
 		this.publisher = publisher;
 		this.shelf = shelf;
-		this.borrowed = 0;
 		authors = new ArrayList<String>();
-		authors.add(author);
+	}
+	
+	public Book (String title, ArrayList<String> authors, String genre, String publisher, String shelf) {
+		/* TODO
+		 * Handle errors (e.g. not the same id as another book)
+		 * */
+		//this.id = id;
+		this.title = title;
+		this.genre = genre;
+		this.publisher = publisher;
+		this.shelf = shelf;
+		this.authors = authors;
 	}
 
-	public String getId() {
+	/*public String getId() {
 		return id;
-	}
+	}*/
 
 	public String getTitle() {
 		return title;

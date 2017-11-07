@@ -9,12 +9,12 @@ public class Customer {
 	private String address;
 	private int phoneNumber;
 	private ArrayList<Book>currentBooks;
-	private static int secureId = 1;
+	private static int generator = 1;
 	
 	public Customer(String name, String address, int phoneNumber) throws Exception{
 		{
-			this.id = String.valueOf(secureId);
-			secureId++;
+			this.id = String.valueOf(generator);
+			generator++;
 		}
 		
 		if(name.equals("")) {
