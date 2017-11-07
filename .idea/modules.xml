@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/LibrarySystem2.iml" filepath="$PROJECT_DIR$/.idea/LibrarySystem2.iml" />
       <module fileurl="file://$PROJECT_DIR$/testy123/testy123.iml" filepath="$PROJECT_DIR$/testy123/testy123.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/LibrarySystem2.iml" filepath="$PROJECT_DIR$/LibrarySystem2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/src.iml" filepath="$PROJECT_DIR$/src/src.iml" />
+>>>>>>> 1b1939fdfe63f98e4680d720d7291005f2e2b838
     </modules>
   </component>
 </project>
