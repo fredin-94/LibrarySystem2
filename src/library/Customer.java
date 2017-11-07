@@ -60,8 +60,20 @@ public class Customer {
 		return phoneNumber;
 	}
 
-	public ArrayList<Book> getLoanedBooks() {
+	public ArrayList<Book> getCurrentBooks() {
 		return currentBooks;
+	}
+	
+	public void addBook(Book book) {
+		currentBooks.add(book);
+	}
+	
+	public void removeBook(Book book) {
+		currentBooks.remove(book);
+	}
+	
+	public int numberOfBooks() {
+		return currentBooks.size();
 	}
 
 	public void setName(String name) {
