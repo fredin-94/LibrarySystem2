@@ -34,7 +34,11 @@ public class Library {
 		}
 	}
 	
-	public void createCustomer(Customer customer) { //change parameters?
+	public void createCustomer(Customer customer) { //change parameters? to the id
+		
+	}
+	
+	public void removeCustomer(Customer customer) {
 		
 	}
 
