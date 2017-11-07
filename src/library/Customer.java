@@ -2,7 +2,7 @@ package library;
 
 import java.util.ArrayList;
 
-public class User {
+public class Customer {
 
 	private String id;
 	private String name;
@@ -11,7 +11,7 @@ public class User {
 	private ArrayList<Book>currentBooks;
 	private static int secureId = 1;
 	
-	public User(String name, String address, int phoneNumber) throws Exception{
+	public Customer(String name, String address, int phoneNumber) throws Exception{
 		{
 			this.id = String.valueOf(secureId);
 			secureId++;
