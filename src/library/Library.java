@@ -5,6 +5,8 @@ import java.util.*;
 public class Library {
 	
     private List<Book> books;
+    
+    private List<Customer> customers;
 
     // ===== Constructor(s) =====
     public Library() {
@@ -19,6 +21,22 @@ public class Library {
         for (Book book : books) s += book.toString();
         return s;
     }
+    
+    public void borrowBook(Book book, String id) {
+//		customer = someCustomer
+//		someCustomer.getLibraryId
+//		someCustomer.addbooktolentoutarraylist
+	}
+	
+	public void returnBook(Book book, String id) throws Exception{
+		if(id != null) {
+			
+		}
+	}
+	
+	public void createCustomer(Customer customer) { //change parameters?
+		
+	}
 
     // ----- Sorting Functions -----
     public void sortByTitle() {Collections.sort(books, Comparator.comparing(Book::getTitle));}
