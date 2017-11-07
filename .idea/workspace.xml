@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
+    <list default="true" id="82e68db0-414f-4ee2-b921-f13d0b7cb6a6" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/bin/" />
+=======
+=======
+>>>>>>> 5b2886ff035a2b1c91dffdbf9c8d667391df3e9e
     <list default="true" id="825b2389-8e15-4dc8-805d-2dc00454b1a5" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testy123/src/testClass.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testy123/testy123.iml" />
     </list>
+<<<<<<< HEAD
+>>>>>>> 34fd2d38652225fbe83ef68c4e66d343d05ca6e7
+=======
 =======
     <list default="true" id="82e68db0-414f-4ee2-b921-f13d0b7cb6a6" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/src.iml" />
@@ -15,6 +24,7 @@
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
 >>>>>>> 1b1939fdfe63f98e4680d720d7291005f2e2b838
+>>>>>>> 5b2886ff035a2b1c91dffdbf9c8d667391df3e9e
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -122,6 +132,10 @@
               <item name="LibrarySystem2" type="b2602c69:ProjectViewProjectNode" />
               <item name="LibrarySystem2" type="462c0819:PsiDirectoryNode" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 5b2886ff035a2b1c91dffdbf9c8d667391df3e9e
               <item name="testy123" type="462c0819:PsiDirectoryNode" />
 =======
               <item name=".idea" type="462c0819:PsiDirectoryNode" />
@@ -132,8 +146,12 @@
               <item name="LibrarySystem2" type="462c0819:PsiDirectoryNode" />
 <<<<<<< HEAD
               <item name="testy123" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+>>>>>>> 34fd2d38652225fbe83ef68c4e66d343d05ca6e7
+=======
 =======
 >>>>>>> 1b1939fdfe63f98e4680d720d7291005f2e2b838
+>>>>>>> 5b2886ff035a2b1c91dffdbf9c8d667391df3e9e
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
