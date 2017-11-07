@@ -9,12 +9,40 @@ public class User {
 	private String address;
 	private int phoneNumber;
 	private ArrayList<Book>currentBooks;
+	private static int secureId = 1;
 	
-	public User(String id, String name, String address, int phoneNumber) {
-		this.id = id;
-		this.name = name;
-		this.address = address;
-		this.phoneNumber = phoneNumber;
+	public User(String name, String address, int phoneNumber) throws Exception{
+		
+		{
+			this.id = String.valueOf(secureId);
+			secureId++;
+		}
+		
+		if(name.equals("")) {
+			throw new Exception ("Empty name.");
+		}else {
+			this.name = name;
+		}
+		
+		if(address.equals("")) {
+			throw new Exception ("Empty address.");
+		}else {
+			this.address = address;
+		}
+		
+		{
+			String temp = String.valueOf(phoneNumber);
+			int length = temp.length();
+			if(phoneNumber < 0 ) {
+				throw new Exception ("Number cannot be less than zero.");
+			}else if(length < 10) {
+				throw new Exception ("Phone number has less than 10 digits");
+			}else {
+				this.phoneNumber = phoneNumber;
+			}	
+		}
+		
+		
 		currentBooks = new ArrayList<Book>();
 	}
 
