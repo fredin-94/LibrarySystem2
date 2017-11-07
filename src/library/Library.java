@@ -3,10 +3,13 @@ package library;
 import java.util.*;
 
 public class Library {
+	
     private List<Book> books;
 
     // ===== Constructor(s) =====
-    public Library() {books = new ArrayList<Book>();}
+    public Library() {
+    	books = new ArrayList<Book>();
+    	}
 
     // ===== Public Functions =====
     public void add(Book book) {books.add(book);}
