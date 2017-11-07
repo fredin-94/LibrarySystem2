@@ -12,7 +12,6 @@ public class User {
 	private static int secureId = 1;
 	
 	public User(String name, String address, int phoneNumber) throws Exception{
-		
 		{
 			this.id = String.valueOf(secureId);
 			secureId++;
@@ -41,7 +40,6 @@ public class User {
 				this.phoneNumber = phoneNumber;
 			}	
 		}
-		
 		
 		currentBooks = new ArrayList<Book>();
 	}
