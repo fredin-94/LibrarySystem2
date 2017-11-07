@@ -48,7 +48,7 @@ public class Customer {
 		return id;
 	}
 	
-	public String getname() {
+	public String getName() {
 		return name;
 	}
 	
@@ -60,6 +60,19 @@ public class Customer {
 		return phoneNumber;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
+	//------ Book array -----------------------------
 	public ArrayList<Book> getCurrentBooks() {
 		return currentBooks;
 	}
@@ -75,18 +88,17 @@ public class Customer {
 	public int numberOfBooks() {
 		return currentBooks.size();
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	
+	public boolean getBookTitle(String randomTitle) {
+		for(int i = 0; i < currentBooks.size(); i++) {
+			if(currentBooks.get(i).getTitle().equals(randomTitle)) {
+				return true;
+			}
+		}
+		return false;
 	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public void setPhoneNumber(int phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+	
+	//------ end ----------------------------------------
 	
 	@Override
 	public String toString() {
