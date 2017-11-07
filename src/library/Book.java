@@ -64,6 +64,10 @@ public class Book {
         return this.authors.get(0);
     }
 
+	public String getShelf() {
+		return shelf;
+	}
+
 	@Override
     public String toString() {
         String authors = "";

@@ -22,24 +22,41 @@ public class Library {
         return s;
     }
     
-    public void borrowBook(Book book, String id) {
+    public void borrowBook(String title, String id) {
 //		customer = someCustomer
 //		someCustomer.getLibraryId
 //		someCustomer.addbooktolentoutarraylist
+    	
+    		for(int i = 0; i < books.size(); i++) {
+    			if(books.get(i).getTitle().equals(title)) {
+    				Book book = new Book(title, books.get(i).getAuthor(), books.get(i).getGenre(), books.get(i).getPublisher(), books.get(i).getShelf());
+    			
+    			}
+    		}
 	}
 	
 	public void returnBook(Book book, String id) throws Exception{
-		if(id != null) {
-			
+		for(int i = 0; i < customers.size(); i++) {
+			if(customers.get(i).getId().equals(id)) {
+				if(books.get(i).getTitle().equals(customers.get(i).getLoanedBooks().get(i).getTitle().equals(book))) {
+					
+				}
+			}
 		}
+		
 	}
 	
-	public void createCustomer(String name, String address, int phoneNumber) { //change parameters? to the id
-		
+	public void createCustomer(String name, String address, int phoneNumber) throws Exception { //change parameters? to the id
+		Customer customer = new Customer(name, address, phoneNumber);
+		customers.add(customer);
 	}
 	
 	public void removeCustomer(String id) {
-		
+		for(int i = 0; i<customers.size(); i++) {
+			if(customers.get(i).getId().equals(id)) {
+				customers.remove(i);
+			}
+		}
 	}
 
     // ----- Sorting Functions -----
