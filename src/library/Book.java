@@ -27,6 +27,7 @@ public class Book {
 		 * other parameters
 		 * */
 		//this.id = id;
+		//Note by Fabian: Use generic error message (ex: "Input parameter cannot be empty"). And use || in a single if-statement.
 		if(title.equals("")) {
 			throw new Exception("A book title can't be empty");
 		} else {
@@ -78,13 +79,17 @@ public class Book {
 		return timesBorrowed;
 	}
 	
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	// Note by Fabian: Sorts the author alphabetically then returns the author at index 0.
-=======
+//=======
 	
 	// we would have to have a way of returning multiple authors if the book has multiple and a single
 	// author if the book has a single author
->>>>>>> 76ff6bce83f7f884e66f32bedc0ae808a5ddf8a2
+//>>>>>>> 76ff6bce83f7f884e66f32bedc0ae808a5ddf8a2
+	
+	// Note by Fabian: Just make another getAuthors method that returns a List of authors...
+	public List<String> getAuthors() {return this.authors;}
+	
 	public String getAuthor() {
 		String res = "";
 		// In the case of multiple authors return this
