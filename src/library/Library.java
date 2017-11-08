@@ -43,7 +43,7 @@ public class Library {
 		for (int i = 0; i < customers.size(); i++) {
 			if (customers.get(i).getId().equals(id)) { // CHANGE STUFF HERE
 				if(customers.get(i).getBookTitle(title)) {
-					customers.get(i).
+					//return book
 				}
 				
 				//				if (books.get(i).getTitle().equals(customers.get(i).getLoanedBooks().get(i).getTitle().equals(book))) {
