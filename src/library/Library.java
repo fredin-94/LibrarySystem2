@@ -42,14 +42,7 @@ public class Library {
 	public void returnBook(String title, String id) throws Exception {
 		for (int i = 0; i < customers.size(); i++) {
 			if (customers.get(i).getId().equals(id)) { // CHANGE STUFF HERE
-				if(customers.get(i).getBookTitle(title)) {
-<<<<<<< HEAD
-//					customers.get(i).
-=======
-					//return book
->>>>>>> 7099164bd94e4d2a73621ff141f32ba719d9faf6
-				}
-				
+				if(customers.get(i).getBookTitle(title)) {		
 				//				if (books.get(i).getTitle().equals(customers.get(i).getLoanedBooks().get(i).getTitle().equals(book))) {
 //					customers.get(i).removeBook(book);
 //				}
