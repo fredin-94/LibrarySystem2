@@ -27,6 +27,7 @@ public class Book {
 		 * other parameters
 		 * */
 		//this.id = id;
+		//Note by Fabian: Use generic error message (ex: "Input parameter cannot be empty"). And use || in a single if-statement.
 		if(title.equals("")) {
 			throw new Exception("A book title can't be empty");
 		} else {
@@ -54,37 +55,25 @@ public class Book {
 		}
 	}
 
-	public UUID getId() {
-		return id;
-	}
+	// ===== Getters =====
+	public UUID getId() {return this.id;}
+	public String getTitle() {return this.title;}
+	public String getGenre() {return this.genre;}
+	public String getPublisher() {return this.publisher;}
+	public int getBorrowed() {return this.timesBorrowed;}
+	public String getShelf() {return this.shelf;}
 	
-	public void setShelf(String shelf) {
-		this.shelf = shelf;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public String getGenre() {
-		return genre;
-	}
-
-	public String getPublisher() {
-		return publisher;
-	}
-
-	public int getBorrowed() {
-		return timesBorrowed;
-	}
-	
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	// Note by Fabian: Sorts the author alphabetically then returns the author at index 0.
-=======
+//=======
 	
 	// we would have to have a way of returning multiple authors if the book has multiple and a single
 	// author if the book has a single author
->>>>>>> 76ff6bce83f7f884e66f32bedc0ae808a5ddf8a2
+//>>>>>>> 76ff6bce83f7f884e66f32bedc0ae808a5ddf8a2
+	
+	// Note by Fabian: Just make another getAuthors method that returns a List of authors...
+	public List<String> getAuthors() {return this.authors;}
+	
 	public String getAuthor() {
 		String res = "";
 		// In the case of multiple authors return this
@@ -97,10 +86,9 @@ public class Book {
 			return authors.get(0);
 		}
     }
-
-	public String getShelf() {
-		return shelf;
-	}
+	
+	// ===== Setters =====
+	public void setShelf(String shelf) {this.shelf = shelf;}
 
 	// Look over this one. Am I satisfied here?
 	@Override
@@ -125,6 +113,9 @@ public class Book {
 				"Shelf: " + this.shelf + "\n";
 
     }
+	
+	// ===== Sort Authors ===== (Fabian)
+	public void sortAuthors() {Collections.sort(authors);}
 	
 	
 }
