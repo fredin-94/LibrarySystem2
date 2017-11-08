@@ -126,5 +126,8 @@ public class Book {
 
     }
 	
+	// ===== Sort Authors ===== (Fabian)
+	public void sortAuthors() {Collections.sort(authors);}
+	
 	
 }
