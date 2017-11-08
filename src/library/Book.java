@@ -47,6 +47,7 @@ public class Book {
 		return borrowed;
 	}
 	
+	// Note by Fabian: Sorts the author alphabetically then returns the author at index 0.
 	public String getAuthor() {
         Collections.sort(authors);
         return this.authors.get(0);
