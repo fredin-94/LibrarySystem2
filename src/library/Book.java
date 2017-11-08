@@ -55,29 +55,13 @@ public class Book {
 		}
 	}
 
-	public UUID getId() {
-		return id;
-	}
-	
-	public void setShelf(String shelf) {
-		this.shelf = shelf;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public String getGenre() {
-		return genre;
-	}
-
-	public String getPublisher() {
-		return publisher;
-	}
-
-	public int getBorrowed() {
-		return timesBorrowed;
-	}
+	// ===== Getters =====
+	public UUID getId() {return this.id;}
+	public String getTitle() {return this.title;}
+	public String getGenre() {return this.genre;}
+	public String getPublisher() {return this.publisher;}
+	public int getBorrowed() {return this.timesBorrowed;}
+	public String getShelf() {return this.shelf;}
 	
 //<<<<<<< HEAD
 	// Note by Fabian: Sorts the author alphabetically then returns the author at index 0.
@@ -102,10 +86,9 @@ public class Book {
 			return authors.get(0);
 		}
     }
-
-	public String getShelf() {
-		return shelf;
-	}
+	
+	// ===== Setters =====
+	public void setShelf(String shelf) {this.shelf = shelf;}
 
 	// Look over this one. Am I satisfied here?
 	@Override
