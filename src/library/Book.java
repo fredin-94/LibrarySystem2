@@ -7,41 +7,60 @@ public class Book {
 	//private String id;
 	private String title;
 	private ArrayList<String>authors;
+	// Or does the group want only a single way to construct a new book e.g with an arraylist of authors both
+	// in the case of a single author and in the case of multiple?
+	//private String author;
 	private String genre;
 	private String publisher;
 	private String shelf;
-	private int borrowed = 0;
+	private int timesBorrowed = 0;
+	// is this method too old? Google further to determine most elegant method of unique id.
+	private UUID id = UUID.randomUUID();
 	
 	// serialized UID???
 	
 	// ===== Constructor(s) =====
-	public Book (String title, String author, String genre, String publisher, String shelf) {
+	public Book (String title, ArrayList<String> authors, String genre, String publisher, String shelf) throws Exception{
 		/* TODO
 		 * Handle errors (e.g. not the same id as another book)
+		 *  Handle other errors such as if the user attempts to enter empty strings for any of the 
+		 * other parameters
 		 * */
 		//this.id = id;
-		this.title = title;
-		this.genre = genre;
-		this.publisher = publisher;
-		this.shelf = shelf;
-		authors = new ArrayList<String>();
-	}
-	
-	public Book (String title, ArrayList<String> authors, String genre, String publisher, String shelf) {
-		/* TODO
-		 * Handle errors (e.g. not the same id as another book)
-		 * */
-		//this.id = id;
-		this.title = title;
-		this.genre = genre;
-		this.publisher = publisher;
-		this.shelf = shelf;
-		this.authors = authors;
+		if(title.equals("")) {
+			throw new Exception("A book title can't be empty");
+		} else {
+			this.title = title;
+		}
+		if(authors.isEmpty()) {
+			throw new Exception("You must give a book at least one author.");
+		} else {
+			this.authors = authors;
+		}
+		if(genre.equals("")) {
+			throw new Exception("A genre must be entered");
+		} else {
+			this.genre = genre;
+		}
+		if(publisher.equals("")) {
+			throw new Exception("A book must have a publisher");
+		} else {
+			this.publisher = publisher;
+		}
+		if(shelf.equals("")) {
+			throw new Exception("A book must be assigned a shelf.");
+		} else {
+			this.shelf = shelf;
+		}
 	}
 
-	/*public String getId() {
+	public UUID getId() {
 		return id;
-	}*/
+	}
+	
+	public void setShelf(String shelf) {
+		this.shelf = shelf;
+	}
 
 	public String getTitle() {
 		return title;
@@ -56,30 +75,51 @@ public class Book {
 	}
 
 	public int getBorrowed() {
-		return borrowed;
+		return timesBorrowed;
 	}
 	
+	
+	// we would have to have a way of returning multiple authors if the book has multiple and a single
+	// author if the book has a single author
 	public String getAuthor() {
-        Collections.sort(authors);
-        return this.authors.get(0);
+		String res = "";
+		// In the case of multiple authors return this
+		if(authors.size() > 1) {
+			for(String a : authors) {
+				res += a + ", ";
+			}
+			return res;
+		} else {
+			return authors.get(0);
+		}
     }
 
 	public String getShelf() {
 		return shelf;
 	}
 
+	// Look over this one. Am I satisfied here?
 	@Override
     public String toString() {
-        String authors = "";
-        for (int i = 0; i < this.authors.size(); i++) {
-            if (i > 0 || i == this.authors.size() - 1) authors += ", ";
-            if (this.authors.get(i) != null) authors += this.authors.get(i);
-        }
-        return "\n" + this.title
-                + " by " + authors
-                + ". Genre: " + this.genre
-                + ". Publisher: " + this.publisher
-                + ". Shelf: " + this.shelf;
+		String res = "";
+		if(authors.size() > 1) {
+			for(int i = 0; i < authors.size(); i++) {
+				if(i != authors.size() - 1) {
+					res += authors.get(i) + ", ";
+				} else {
+					res += authors.get(i);
+				}
+			}
+		} else {
+			res += authors.get(0);
+		}
+		
+		return "Title: " + this.title + "\n" + 
+				"Author: " + res + "\n" + 
+				"Genre: " + this.genre + "\n" + 
+				"Publisher: " + this.publisher + "\n" + 
+				"Shelf: " + this.shelf + "\n";
+
     }
 	
 	
