@@ -31,8 +31,7 @@ public class Library {
 		// someCustomer.addbooktolentoutarraylist
 		for (int i = 0; i < books.size(); i++) {
 			if (customers.get(i).getId().equals(id)) {
-				if (books.get(i).getTitle().equals(title)) { // MAKE A BOOK CONSTRUCTOR THAT TAKES ID AS PARAMETER I
-					// NEED IT COUGH, WE NEED IT
+				if (books.get(i).getTitle().equals(title)) { // MAKE A BOOK CONSTRUCTOR THAT TAKES ID AS PARAMETER I NEED IT COUGH, WE NEED IT
 					Book book = new Book(title, books.get(i).getAuthor(), books.get(i).getGenre(), books.get(i).getPublisher(), books.get(i).getShelf());
 					customers.get(i).addBook(book);
 				}
@@ -40,15 +39,18 @@ public class Library {
 		}
 	}
 
-	public void returnBook(Book book, String id) throws Exception {
+	public void returnBook(String title, String id) throws Exception {
 		for (int i = 0; i < customers.size(); i++) {
 			if (customers.get(i).getId().equals(id)) { // CHANGE STUFF HERE
-//				if (books.get(i).getTitle().equals(customers.get(i).getLoanedBooks().get(i).getTitle().equals(book))) {
+				if(customers.get(i).getBookTitle(title)) {
+					customers.get(i).
+				}
+				
+				//				if (books.get(i).getTitle().equals(customers.get(i).getLoanedBooks().get(i).getTitle().equals(book))) {
 //					customers.get(i).removeBook(book);
 //				}
 			}
 		}
-
 	}
 
 	public void createCustomer(String name, String address, int phoneNumber) throws Exception {																						// the id
