@@ -53,9 +53,13 @@ public class Library {
 		}
 	}
 
-	public void createCustomer(String name, String address, int phoneNumber) throws Exception {																						// the id
-		Customer customer = new Customer(name, address, phoneNumber);
-		customers.add(customer);
+	public void createCustomer(String name, String address, int phoneNumber) throws Exception {	// the id
+		if(!name.equals("") || !address.equals("") || Integer.toString(phoneNumber).length() < 9) {
+			throw new Exception("Don't enter empty strings or an incomplete phone number.");
+		} else {
+			Customer customer = new Customer(name, address, phoneNumber);
+			customers.add(customer);
+		}
 	}
 
 	public void removeCustomer(String id) {
