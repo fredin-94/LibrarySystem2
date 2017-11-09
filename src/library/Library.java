@@ -24,7 +24,7 @@ public class Library {
 		return s;
 	}
 
-	public void borrowBook(String title, String id) {
+	/*public void borrowBook(String title, String id) {
 		// someCustomer.getLibraryId
 		// someCustomer.addbooktolentoutarraylist
 		for (int i = 0; i < books.size(); i++) {
@@ -35,7 +35,7 @@ public class Library {
 				}
 			}
 		}
-	}
+	}*/
 
 	public void returnBook(String title, String id) throws Exception {
 		for (int i = 0; i < customers.size(); i++) {
