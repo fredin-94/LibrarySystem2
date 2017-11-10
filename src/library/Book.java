@@ -27,10 +27,17 @@ public class Book {
 		 *  Handle other errors such as if the user attempts to enter empty strings for any of the 
 		 * other parameters
 		 * */
+<<<<<<< HEAD
 		this.id = UUID.randomUUID();
 
 		if(title.equals("") || authors.isEmpty() || genre.isEmpty() || publisher.equals("") || shelf.equals("")) {
 			throw new Exception("Input can't be empty");
+=======
+		//this.id = id;
+		//Note by Fabian: Use generic error message (ex: "Input parameter cannot be empty"). And use || in a single if-statement.
+		if(title.equals("")) {
+			throw new Exception("A book title can't be empty");
+>>>>>>> e2aedb0aa89ca5a4fc84c94d27230a5cbdb9467c
 		} else {
 			this.title = title;
 			this.authors = authors;
@@ -39,6 +46,7 @@ public class Book {
 			this.shelf = shelf;
 		}
 	}
+<<<<<<< HEAD
 	
 	// GETTERS AND SETTERS
 	public UUID getId() {
@@ -74,6 +82,28 @@ public class Book {
 		return timesBorrowed;
 	}
 	
+=======
+
+	// ===== Getters =====
+	public UUID getId() {return this.id;}
+	public String getTitle() {return this.title;}
+	public String getGenre() {return this.genre;}
+	public String getPublisher() {return this.publisher;}
+	public int getBorrowed() {return this.timesBorrowed;}
+	public String getShelf() {return this.shelf;}
+	
+//<<<<<<< HEAD
+	// Note by Fabian: Sorts the author alphabetically then returns the author at index 0.
+//=======
+	
+	// we would have to have a way of returning multiple authors if the book has multiple and a single
+	// author if the book has a single author
+//>>>>>>> 76ff6bce83f7f884e66f32bedc0ae808a5ddf8a2
+	
+	// Note by Fabian: Just make another getAuthors method that returns a List of authors...
+	public List<String> getAuthors() {return this.authors;}
+	
+>>>>>>> e2aedb0aa89ca5a4fc84c94d27230a5cbdb9467c
 	public String getAuthor() {
 		String res = "";
 		// In the case of multiple authors return this
@@ -86,10 +116,9 @@ public class Book {
 			return authors.get(0);
 		}
     }
-
-	public String getShelf() {
-		return shelf;
-	}
+	
+	// ===== Setters =====
+	public void setShelf(String shelf) {this.shelf = shelf;}
 
 	// toString METHOD
 	@Override
