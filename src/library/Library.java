@@ -57,63 +57,15 @@ public class Library {
 	 * */
 	
 	//find a unique titled book
-	public Book findBookByTitle(String title) {
-		for(Book book: books) {
-			if(book.getTitle().equals(title)) {
-				return book;
-			}
-		}
-		return null;
-	}
 	
 	//find book by id
-	public Book findBookById(String id) {
-		for(Book book: books) {
-			if(book.getId().equals(id)) {
-				return book;
-			}
-		}
-		return null;
-	}
+	
 	
 	
 	/*TODO
 	 * Search for Customers in the library directory
 	 * */
 	
-	//I decided to ***return an array*** because there could be more than one person with the same name
-	public ArrayList<Customer> findCustomersByName(String name) {
-		ArrayList<Customer> foundCustomers = new ArrayList<Customer>();
-		for(Customer Customer: customers) {
-			if(Customer.getName().equals(name)) {
-				foundCustomers.add(Customer);
-			}
-		}
-		
-		if(foundCustomers.isEmpty()) {
-			return null;
-		}else {
-			return foundCustomers;
-		}
-	}
-	
-	public Customer findCustomerByName(String name) {
-		for(Customer Customer: customers) {
-			if(Customer.getName().equals(name)) {
-				return Customer;
-			}
-		}
-		return null;
-	}
-	
-	public Customer findCustomerById(String id) {
-		for(Customer Customer: customers) {
-			if(Customer.getId().equals(id)) {
-				return Customer;
-			}
-		}
-		return null;
-	}
 	
 	
 	/*-------------------REGISTRATION---------------------*/
@@ -251,6 +203,7 @@ public class Library {
 	 *IMPORTANT
 	 *check whether each book has passed it's loan period and switch delayed boolean
 	 * */
+	
 	public LocalDate getDate() {
 		return this.date;
 	}
