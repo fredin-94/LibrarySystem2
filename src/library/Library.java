@@ -1,97 +1,331 @@
 package library;
+/*TODO:
+ * - Search
+ * 	- books		done
+ * 	- customers		done
+ * 
+ * -Register
+ * 	- register books		done
+ * 	- register customer		done
+ * 
+ * -Loan and return
+ * 	- loan default	done
+ * 	- loan with period		done
+ * 	- return
+ * 
+ * - Simulate
+ * 	- days
+ * 	- months
+ * 	- years
+ * 
+ * - Show:
+ * 	- all borrowed books
+ * 	- all delayed books
+ * 	- most borrowed book
+ * 	- customer loan history
+ * 
+ * */
 
+/* note: [lendBook();] consider the date applications
+ * - how to use boolean in books to control delayed feature
+ * */
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Library {
 
-	private List<Book> books;
-	private List<Customer> customers;
-
-	// ===== Constructor(s) =====
+	private ArrayList<Book> books;
+	private ArrayList<Book> delayedBooks;
+	private ArrayList<Book> loanedBooks;
+	private ArrayList<Customer> customers;
+	private LocalDate date;
+	
 	public Library() {
 		books = new ArrayList<Book>();
 		customers = new ArrayList<Customer>();
+		loanedBooks = new ArrayList<Book>();
+		delayedBooks = new ArrayList<Book>();
+		date = LocalDate.now();
 	}
 
-	// ===== Public Functions =====
-	public void add(Book book) {
+	/*---------------------SEARCH------------------------------*/
+	
+	/*TODO
+	 * Search for books in the library directory
+	 * */
+	
+	//find a unique titled book
+	public Book findBookByTitle(String title) {
+		for(Book book: books) {
+			if(book.getTitle().equals(title)) {
+				return book;
+			}
+		}
+		return null;
+	}
+	
+	//find book by id
+	public Book findBookById(String id) {
+		for(Book book: books) {
+			if(book.getId().equals(id)) {
+				return book;
+			}
+		}
+		return null;
+	}
+	
+	
+	/*TODO
+	 * Search for Customers in the library directory
+	 * */
+	
+	//I decided to ***return an array*** because there could be more than one person with the same name
+	public ArrayList<Customer> findCustomersByName(String name) {
+		ArrayList<Customer> foundCustomers = new ArrayList<Customer>();
+		for(Customer Customer: customers) {
+			if(Customer.getName().equals(name)) {
+				foundCustomers.add(Customer);
+			}
+		}
+		
+		if(foundCustomers.isEmpty()) {
+			return null;
+		}else {
+			return foundCustomers;
+		}
+	}
+	
+	public Customer findCustomerByName(String name) {
+		for(Customer Customer: customers) {
+			if(Customer.getName().equals(name)) {
+				return Customer;
+			}
+		}
+		return null;
+	}
+	
+	public Customer findCustomerById(String id) {
+		for(Customer Customer: customers) {
+			if(Customer.getId().equals(id)) {
+				return Customer;
+			}
+		}
+		return null;
+	}
+	
+	
+	/*-------------------REGISTRATION---------------------*/
+	
+	/*TODO
+	 * register books*/
+	public void addBook(Book book) {
 		books.add(book);
 	}
-
-	public String toString() {
-		String s = "";
-		for (Book book : books) s += book.toString();
-		return s;
+	
+	public void removeBook(Book book) {
+		books.remove(book);
 	}
-
-	/*public void borrowBook(String title, String id) {
-		// someCustomer.getLibraryId
-		// someCustomer.addbooktolentoutarraylist
-		for (int i = 0; i < books.size(); i++) {
-			if (customers.get(i).getId().equals(id)) {
-				if (books.get(i).getTitle().equals(title)) { // MAKE A BOOK CONSTRUCTOR THAT TAKES ID AS PARAMETER I NEED IT COUGH, WE NEED IT
-					Book book = new Book(title, books.get(i).getAuthor(), books.get(i).getGenre(), books.get(i).getPublisher(), books.get(i).getShelf());
-					customers.get(i).addBook(book);
-				}
+	
+	/*TODO
+	 * register Customers*/
+	public void addCustomer(Customer Customer) {
+		customers.add(Customer);
+	}
+	
+	public void removeCustomer(Customer Customer) {
+		customers.remove(Customer);
+	}
+	
+	
+	/*---------------------loan and return-----------------*/
+	
+	/*TODO loan book
+	 * */
+	public void borrowBook(String bookId, String customerId) throws Exception{
+		Customer customer = findCustomerById(customerId);
+		Book book = findBookById(bookId);
+		//assumes default loanPeriod
+		
+		if(customer == null) {
+			throw new Exception ("Customer is not in System.");
+		}else if(book == null) {
+			throw new Exception ("Book is (currently) not in directory");
+		}
+		
+		book.setLoanPeriod(book.getLoanPeriod());
+		book.setStartDate(this.date);
+		book.setReturnDate(this.date);
+		book.incrementCounter();
+		loanedBooks.add(book);
+		customer.addToCurrent(book);
+		customer.addToHistory(book);
+		this.removeBook(book);
+		
+	}
+	
+	public void borrowBookDay(String bookId, String customerId, int loanPeriod) throws Exception{
+		Customer customer = findCustomerById(customerId);
+		Book book = findBookById(bookId);
+		//assumes default loanPeriod
+		
+		if(customer == null) {
+			throw new Exception ("Customer is not in System.");
+		}else if(book == null) {
+			throw new Exception ("Book is (currently) not in directory");
+		}else if(loanPeriod <= 0) {
+			throw new Exception ("Loan Period needs to be larger than zero");
+		}else {
+			book.setLoanPeriod(loanPeriod);
+		}
+		
+		book.setStartDate(this.date);
+		book.setReturnDate(this.date);
+		book.incrementCounter();
+		loanedBooks.add(book);
+		customer.addToCurrent(book);
+		customer.addToHistory(book);
+		this.removeBook(book);
+		
+	}
+	
+	
+	public void returnBook(String bookId, String customerId) throws Exception{
+		/*TODO:
+		 * -check date 		//done
+		 * -calculate debt  //done
+		 * -increment customer debt  // done
+		 * -restart book date 		//done
+		 * -return book loan period to TWO_WEEKS 		//done
+		 * -return book to library 		//done
+		 * -remove book out of loanedBooks library
+		 * -remove book from customer currentBooks 		//done
+		 * */
+		
+		//update: this doesn't seem to return books to their designated arrayLists
+		
+		Customer customer = findCustomerById(customerId);
+		Book book = findBookById(bookId);
+		final int TWO_WEEKS = 14;
+		final int LOAN_TIME = book.getLoanPeriod();
+		//assumes default loanPeriod
+		
+		if(book == null ||  customer == null) {
+			throw new Exception ("Book or Customer is currently not in the System");
+		}
+		
+		
+		int period = this.daysBetween(book);
+		int debt = 0;
+		
+		if(period <= LOAN_TIME) {
+		}else {
+			int surplus = period - TWO_WEEKS;
+			debt = surplus * 2;
+		}
+		customer.setDebt(debt);
+		book.restartDates();
+		book.restartLoanPeriod();
+		book.notDelayed();
+		this.addBook(book);
+		this.loanedBooks.remove(book);
+		customer.removeFromCurrent(book);
+		
+	}
+	
+	/*TODO: ---------------- SHOW -----------------------*/
+	/*- show all currently loaned books
+	 *- show all delayed books
+	 *
+	 * */
+	//public void 
+	
+	
+	/*TODO: ---------------- Simulate -----------------------*/
+	
+	/*
+	 *this simulation alters the library date and then alters the return date of all books in 
+	 *the loaned arrayList.
+	 *
+	 *IMPORTANT
+	 *check whether each book has passed it's loan period and switch delayed boolean
+	 * */
+	public LocalDate getDate() {
+		return this.date;
+	}
+	
+	public void addDays(int Days) {
+		this.date = this.date.plusDays(Days);
+		for(Book book: loanedBooks) {
+			book.setReturnDate(this.date);
+			if(this.daysBetween(book) > book.getLoanPeriod()) {
+				book.isDelayed();
+				this.delayedBooks.add(book);
 			}
 		}
-	}*/
-
-	public void returnBook(String title, String id) throws Exception {
-		for (int i = 0; i < customers.size(); i++) {
-			if (customers.get(i).getId().equals(id)) { // CHANGE STUFF HERE
-<<<<<<< HEAD
-				if(customers.get(i).getBookTitle(title)) {		
-=======
-				if(customers.get(i).getBookTitle(title)) {
-//<<<<<<< HEAD
-//					customers.get(i).
-//=======
-					//return book
-//>>>>>>> 7099164bd94e4d2a73621ff141f32ba719d9faf6
-				}
-				
->>>>>>> ea87461d75c49f61372f2d2fa808bddb59dd68cd
-				//				if (books.get(i).getTitle().equals(customers.get(i).getLoanedBooks().get(i).getTitle().equals(book))) {
-//					customers.get(i).removeBook(book);
-//				}
+	}
+	
+	public void addWeeks(int weeks) {
+		this.date = this.date.plusWeeks(weeks);
+		for(Book book: loanedBooks) {
+			book.setReturnDate(this.date);
+			if(this.daysBetween(book) > book.getLoanPeriod()) {
+				book.isDelayed();
+				this.delayedBooks.add(book);
 			}
 		}
 	}
-
-	public void createCustomer(String name, String address, int phoneNumber) throws Exception {	// the id
-		if(!name.equals("") || !address.equals("") || Integer.toString(phoneNumber).length() < 9) {
-			throw new Exception("Don't enter empty strings or an incomplete phone number.");
-		} else {
-			Customer customer = new Customer(name, address, phoneNumber);
-			customers.add(customer);
-		}
-	}
-
-	public void removeCustomer(String id) {
-		for (int i = 0; i < customers.size(); i++) {
-			if (customers.get(i).getId().equals(id)) {
-				customers.remove(i);
+	
+	public void addMonths(int months) {
+		this.date = this.date.plusMonths(months);
+		for(Book book: loanedBooks) {
+			book.setReturnDate(this.date);
+			if(this.daysBetween(book) > book.getLoanPeriod()) {
+				book.isDelayed();
+				this.delayedBooks.add(book);
 			}
 		}
 	}
-
-	// ----- Sorting Functions -----
-	public void sortByTitle() {Collections.sort(books, Comparator.comparing(Book::getTitle));}
-	public void sortByAuthor() {Collections.sort(books, Comparator.comparing(Book::getAuthor));}
-
-	// ----- Search Functions -----
-	public Book searchForTitle(String title) {
-		title.toLowerCase();
-		for (Book book : books) if (title.equals(book.getTitle().toLowerCase())) return book;
-		return null;
+	
+	public void addyears(int years) {
+		this.date = this.date.plusYears(years);
+		for(Book book: loanedBooks) {
+			book.setReturnDate(this.date);
+			if(this.daysBetween(book) > book.getLoanPeriod()) {
+				book.isDelayed();
+				this.delayedBooks.add(book);
+			}
+		}
+	}
+	
+	
+	/*------ OTHER METHODS ---------*/
+	
+	//CALCULATING DAYS BETWEEN
+	
+	public int daysBetween(Book book) {
+		long days = book.getStartDate().until(book.getReturnDate(), ChronoUnit.DAYS);
+		int period = (int) days;
+		return period;
 	}
 
-	public Book searchForAuthor(String author) {
-		author.toLowerCase();
-		for (Book book : books) if (author.equals(book.getAuthor().toLowerCase())) return book;
-		return null;
+	public ArrayList<Book> getBooks() {
+		return books;
 	}
-	//fuck 
 
+	public ArrayList<Book> getDelayedBooks() {
+		return delayedBooks;
+	}
+
+	public ArrayList<Book> getLoanedBooks() {
+		return loanedBooks;
+	}
+
+	public ArrayList<Customer> getCustomers() {
+		return customers;
+	}
+	
+	
 }
+
