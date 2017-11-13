@@ -27,17 +27,16 @@ public class Book {
 		 *  Handle other errors such as if the user attempts to enter empty strings for any of the 
 		 * other parameters
 		 * */
-<<<<<<< HEAD
+
 		this.id = UUID.randomUUID();
 
 		if(title.equals("") || authors.isEmpty() || genre.isEmpty() || publisher.equals("") || shelf.equals("")) {
 			throw new Exception("Input can't be empty");
-=======
+
 		//this.id = id;
 		//Note by Fabian: Use generic error message (ex: "Input parameter cannot be empty"). And use || in a single if-statement.
 		if(title.equals("")) {
 			throw new Exception("A book title can't be empty");
->>>>>>> e2aedb0aa89ca5a4fc84c94d27230a5cbdb9467c
 		} else {
 			this.title = title;
 			this.authors = authors;
@@ -46,7 +45,6 @@ public class Book {
 			this.shelf = shelf;
 		}
 	}
-<<<<<<< HEAD
 	
 	// GETTERS AND SETTERS
 	public UUID getId() {
