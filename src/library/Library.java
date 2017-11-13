@@ -31,6 +31,10 @@ package library;
  * - how to use boolean in books to control delayed feature
  * */
 
+//
+import java.security.*;
+import java.util.function.*;
+//--------------------
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -112,6 +116,23 @@ public class Library {
 		return null;
 	}
 	
+	/*---------------------SORTING------------------------------*/
+	
+	public enum bookKey {TITLE, AUTHOR, GENRE, PUBLISHER, SHELF}
+    public void sortBooksBy(bookKey keyToSort) {
+        try {Collections.sort(this.books, Comparator.comparing(getBookFunction(keyToSort)));}
+        catch (InvalidKeyException ike) {ike.printStackTrace();}
+    }
+    private Function<Book, ? extends Comparable> getBookFunction(bookKey key) throws InvalidKeyException {
+        switch (key) {
+            case TITLE: return Book::getTitle; // No need for break since return automatically breaks the switch.
+            case AUTHOR: return Book::getAuthor;
+            case GENRE: return Book::getGenre;
+            case PUBLISHER: return Book::getPublisher;
+            case SHELF: return Book::getShelf;
+            default: throw new InvalidKeyException("Invalid key in sort function");
+        }
+    }
 	
 	/*TODO -------------------REGISTRATION---------------------*/
 	
