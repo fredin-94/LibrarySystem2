@@ -124,6 +124,10 @@ public class Book {
 			this.shelf = shelf;
 		}
 	}
+	
+	public void incrementTimesBorrowed() {
+		this.timesBorrowed++;
+	}
 
 }
 
