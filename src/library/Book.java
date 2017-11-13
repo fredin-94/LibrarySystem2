@@ -124,10 +124,7 @@ public class Book {
 			this.shelf = shelf;
 		}
 	}
-
-}
-
-
+	
 	public int checkDelay() {
 		if(LocalDate.now().compareTo(returnDate) > 0) {
 			return (int)ChronoUnit.DAYS.between(returnDate, LocalDate.now());
@@ -135,4 +132,9 @@ public class Book {
 			return 0;
 		}
 	}
+
+}
+
+
+	
 	
