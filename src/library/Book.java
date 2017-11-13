@@ -1,4 +1,5 @@
 package library;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -25,9 +26,9 @@ public class Book {
 	// The LocalDate class implements the Comparable interface and a built in minus which allows you to calc difference
 	// between current date and the return date the customer should've returned it.
 	// returnDate can then be updated through setReturnDate in the case of a customer wanting to extend their loan.
-	//private int loanPeriod = 0;
-	private static LocalDate startDate = LocalDate.now();
-	private static LocalDate returnDate = startDate.plus(TWO_WEEKS, ChronoUnit.DAYS);
+	private int loanPeriod = 0;
+	private LocalDate startDate = LocalDate.now();
+	private LocalDate returnDate = startDate.plus(TWO_WEEKS, ChronoUnit.DAYS);
 
 	//*** CONSTRUCTOR ***//
 	public Book(String title, ArrayList<String> authors, String publisher, ArrayList<String> genre, String shelf) throws Exception{
@@ -101,7 +102,7 @@ public class Book {
 	// needed for when a customer borrows a book and startdate needs to be set.
 	public void setStartDate(LocalDate startDate) throws Exception{
 		if(startDate.equals(null)) {
-			throw new Exception("A start date must be entered.");
+			throw new Exception("Date can't be empty.");
 		} else {
 			this.startDate = startDate;
 		}
@@ -110,7 +111,7 @@ public class Book {
 	// needed for when you want to extend loans
 	public void setReturnDate(LocalDate returnDate) throws Exception{
 		if(returnDate.equals(null)) {
-			throw new Exception("A return date must be entered");
+			throw new Exception("Date can't be empty.");
 		} else {
 			this.returnDate = returnDate;
 		}
@@ -123,12 +124,11 @@ public class Book {
 			this.shelf = shelf;
 		}
 	}
-	
-	public void incrementTimesBorrowed() {
-		timesBorrowed++;
-	}
-	
-	public static int checkDelay() {
+
+}
+
+
+	public int checkDelay() {
 		if(LocalDate.now().compareTo(returnDate) > 0) {
 			return (int)ChronoUnit.DAYS.between(returnDate, LocalDate.now());
 		} else {
@@ -136,9 +136,3 @@ public class Book {
 		}
 	}
 	
-	public static void main(String args[]) {
-		System.out.println((int)ChronoUnit.DAYS.between(returnDate, LocalDate.now()));
-		System.out.println(LocalDate.now().compareTo(returnDate));
-	}
-
-}
