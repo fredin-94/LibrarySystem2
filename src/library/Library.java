@@ -73,7 +73,7 @@ public class Library {
 	
 	/*Search for Customers in the library directory*/
 	
-<<<<<<< HEAD
+	
 	// there could be more than one person with the same name
 	public ArrayList<Customer> findCustomersByName(String name) {
 		ArrayList<Customer> foundCustomers = new ArrayList<Customer>();
@@ -125,8 +125,7 @@ public class Library {
             default: throw new InvalidKeyException("Invalid key in sort function");
         }
     }
-=======
->>>>>>> 97df70f95e562e861ee5e4e21231e222b5066ca0
+    
 	
 	/*TODO -------------------REGISTRATION---------------------*/
 	
