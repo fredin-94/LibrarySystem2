@@ -26,7 +26,7 @@ public class Book {
 	// The LocalDate class implements the Comparable interface and a built in minus which allows you to calc difference
 	// between current date and the return date the customer should've returned it.
 	// returnDate can then be updated through setReturnDate in the case of a customer wanting to extend their loan.
-	private int loanPeriod = 0;
+	//private int loanPeriod = 0;
 	private LocalDate startDate = LocalDate.now();
 	private LocalDate returnDate = startDate.plus(TWO_WEEKS, ChronoUnit.DAYS);
 
@@ -125,6 +125,7 @@ public class Book {
 		}
 	}
 	
+
 	public void incrementTimesBorrowed() {
 		this.timesBorrowed++;
 	}
@@ -132,11 +133,6 @@ public class Book {
 }
 
 
-	public int checkDelay() {
-		if(LocalDate.now().compareTo(returnDate) > 0) {
-			return (int)ChronoUnit.DAYS.between(returnDate, LocalDate.now());
-		} else {
-			return 0;
-		}
-	}
+
+	
 	
