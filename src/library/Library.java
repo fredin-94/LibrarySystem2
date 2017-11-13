@@ -38,26 +38,23 @@ import java.util.*;
 public class Library {
 
 	private ArrayList<Book> books;
-	private ArrayList<Book> delayedBooks;
 	private ArrayList<Book> loanedBooks;
+	private ArrayList<Book> delayedBooks;
 	private ArrayList<Customer> customers;
 	private LocalDate date;
 	
 	public Library() {
-		books = new ArrayList<Book>();
-		customers = new ArrayList<Customer>();
+		books = new ArrayList<Book>();		
 		loanedBooks = new ArrayList<Book>();
 		delayedBooks = new ArrayList<Book>();
+		customers = new ArrayList<Customer>();
 		date = LocalDate.now();
 	}
 
-	/*---------------------SEARCH------------------------------*/
+	/*TODO ---------------------SEARCH------------------------------*/
 	
-	/*TODO
-	 * Search for books in the library directory
-	 * */
+	/*Search for books in the library directory*/
 	
-	//find a unique titled book
 	public Book findBookByTitle(String title) {
 		for(Book book: books) {
 			if(book.getTitle().equals(title)) {
@@ -67,27 +64,14 @@ public class Library {
 		return null;
 	}
 	
-	//find book by id
-	public Book findBookById(String id) {
-		for(Book book: books) {
-			if(book.getId().equals(id)) {
-				return book;
-			}
-		}
-		return null;
-	}
+	/*Search for Customers in the library directory*/
 	
-	
-	/*TODO
-	 * Search for Customers in the library directory
-	 * */
-	
-	//I decided to ***return an array*** because there could be more than one person with the same name
+	// there could be more than one person with the same name
 	public ArrayList<Customer> findCustomersByName(String name) {
 		ArrayList<Customer> foundCustomers = new ArrayList<Customer>();
-		for(Customer Customer: customers) {
-			if(Customer.getName().equals(name)) {
-				foundCustomers.add(Customer);
+		for(Customer customer: customers) {
+			if(customer.getName().equals(name)) {
+				foundCustomers.add(customer);
 			}
 		}
 		
@@ -99,28 +83,27 @@ public class Library {
 	}
 	
 	public Customer findCustomerByName(String name) {
-		for(Customer Customer: customers) {
-			if(Customer.getName().equals(name)) {
-				return Customer;
+		for(Customer customer: customers) {
+			if(customer.getName().equals(name)) {
+				return customer;
 			}
 		}
 		return null;
 	}
 	
-	public Customer findCustomerById(String id) {
-		for(Customer Customer: customers) {
-			if(Customer.getId().equals(id)) {
-				return Customer;
+	public Customer findCustomerById(UUID id) {
+		for(Customer customer: customers) {
+			if(customer.getID().equals(id)) {
+				return customer;
 			}
 		}
 		return null;
 	}
 	
 	
-	/*-------------------REGISTRATION---------------------*/
+	/*TODO -------------------REGISTRATION---------------------*/
 	
-	/*TODO
-	 * register books*/
+	/*register books*/
 	public void addBook(Book book) {
 		books.add(book);
 	}
@@ -131,12 +114,12 @@ public class Library {
 	
 	/*TODO
 	 * register Customers*/
-	public void addCustomer(Customer Customer) {
-		customers.add(Customer);
+	public void addCustomer(Customer customer) {
+		customers.add(customer);
 	}
 	
-	public void removeCustomer(Customer Customer) {
-		customers.remove(Customer);
+	public void removeCustomer(Customer customer) {
+		customers.remove(customer);
 	}
 	
 	
