@@ -15,13 +15,13 @@ package library;
  * 	- return		x
  * 
  * - Simulate	
- * 	- days		x
- * 	- months		x
- * 	- years		x
+ * 	- days		done
+ * 	- months		done
+ * 	- years		done
  * 
  * - Show:
- * 	- all borrowed books		x
- * 	- all delayed books		x
+ * 	- all borrowed books		done
+ * 	- all delayed books		done
  * 	- most borrowed book		x
  * 	- customer loan history		x
  * 
@@ -51,6 +51,18 @@ public class Library {
 		date = LocalDate.now();
 	}
 
+	
+	/*TODO ---------------------Basic------------------------------*/
+	
+	public ArrayList<Book> getBooks() {
+		return books;
+	}
+
+	public ArrayList<Customer> getCustomers() {
+		return customers;
+	}
+	
+	
 	/*TODO ---------------------SEARCH------------------------------*/
 	
 	/*Search for books in the library directory*/
@@ -138,14 +150,13 @@ public class Library {
 			throw new Exception ("Book is (currently) not in directory");
 		}
 		
-		//TODO book.setLoanPeriod(book.getLoanPeriod());
 		book.setStartDate(this.date);
-		book.setReturnDate(this.date);
+		book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks
 		book.incrementTimesBorrowed();;
 		loanedBooks.add(book);
 		customer.addToCurrentLoan(book);
 		customer.addToLoanHistory(book);
-		this.removeBook(book);
+		books.remove(book);
 		
 	}
 	
@@ -160,17 +171,15 @@ public class Library {
 			throw new Exception ("Book is (currently) not in directory");
 		}else if(loanPeriod <= 0) {
 			throw new Exception ("Loan Period needs to be larger than zero");
-		}else {
-			//TODO we should discuss this [book.setLoanPeriod(loanPeriod);]
 		}
 		
 		book.setStartDate(this.date);
-		book.setReturnDate(this.date);
+		book.setReturnDate(this.date.plusDays(loanPeriod));
 		book.incrementTimesBorrowed();
 		loanedBooks.add(book);
 		customer.addToCurrentLoan(book);
 		customer.addToLoanHistory(book);
-		this.removeBook(book);
+		books.remove(book);
 		
 	}
 	
@@ -181,7 +190,6 @@ public class Library {
 		 * -calculate debt  //done
 		 * -increment customer debt  // done
 		 * -restart book date 		//done
-		 * -return book loan period to TWO_WEEKS 		//done
 		 * -return book to library 		//done
 		 * -remove book out of loanedBooks library
 		 * -remove book from customer currentBooks 		//done
@@ -189,21 +197,9 @@ public class Library {
 		
 		Customer customer = findCustomerById(customerId);
 		Book book = findBookByTitle(bookTitle);
-		//final int TWO_WEEKS = 14;
-		//final int LOAN_TIME = book.getLoanPeriod();
-		//assumes default loanPeriod
 		
-		
-		/*TODO fix calculation 
-		int period = this.daysBetween(book);
-		int debt = 0;
-		
-		if(period <= LOAN_TIME) {
-		}else {
-			int surplus = period - TWO_WEEKS;
-			debt = surplus * 2;
-		}
-		customer.setDebt(debt);*/
+		int debt = this.checkDelay(book) * 2;
+		customer.setDebt(debt);
 		
 		/*TODO we need to "restart" the dates once the book is returned
 		book.restartDates();
@@ -212,8 +208,8 @@ public class Library {
 		//we should discuss whether the books should be set to a 
 		//certain day when they are not being loaned out
 		
-		this.addBook(book);
-		this.loanedBooks.remove(book);
+		books.add(book);
+		loanedBooks.remove(book);
 		customer.removeFromCurrentLoan(book);
 		
 	}
@@ -221,10 +217,30 @@ public class Library {
 	/*TODO: ---------------- SHOW -----------------------*/
 	/*- show all currently loaned books
 	 *- show all delayed books
-	 *
+	 *- most popular book
+	 *- customer loan history
 	 * */
-	//public void 
+	public ArrayList<Book> getDelayedBooks() {
+		return delayedBooks;
+	}
+
+	public ArrayList<Book> getLoanedBooks() {
+		return loanedBooks;
+	}
 	
+	public Book getMostPopularBook() {
+		Book mostPopular = books.get(0);
+		for(Book book: books) {
+			if(book != books.get(0) && book.getTimesBorrowed() > mostPopular.getTimesBorrowed()) {
+				mostPopular = book;
+			}
+		}
+		return mostPopular;
+	}
+	
+	public ArrayList<Book> getCustomerLoanHistory(Customer customer){
+		return customer.getloanHistory();
+	}
 	
 	/*TODO: ---------------- Simulate -----------------------*/
 	
@@ -241,22 +257,31 @@ public class Library {
 	
 	public void addDays(int Days) {
 		this.date = this.date.plusDays(Days);
+		for(Book book: loanedBooks) {
+			this.isDelayed(book);
+		}
 		
 	}
 	
 	public void addWeeks(int weeks) {
 		this.date = this.date.plusWeeks(weeks);
-		
+		for(Book book: loanedBooks) {
+			this.isDelayed(book);
+		}
 	}
 	
 	public void addMonths(int months) {
 		this.date = this.date.plusMonths(months);
-		
+		for(Book book: loanedBooks) {
+			this.isDelayed(book);
+		}
 	}
 	
 	public void addyears(int years) {
 		this.date = this.date.plusYears(years);
-		
+		for(Book book: loanedBooks) {
+			this.isDelayed(book); 
+		}
 	}
 	
 	
@@ -269,29 +294,19 @@ public class Library {
 		return days;
 	}
 	
-	//TODO mark a book as delayed or not delayed
-	//public boolean isDelayed(Book book) {
-	//	
-	//}
-
-	public ArrayList<Book> getBooks() {
-		return books;
-	}
-
-	public ArrayList<Book> getDelayedBooks() {
-		return delayedBooks;
-	}
-
-	public ArrayList<Book> getLoanedBooks() {
-		return loanedBooks;
-	}
-
-	public ArrayList<Customer> getCustomers() {
-		return customers;
+	//moves a book that is delayed to delayed arrayList. (is only used in simulation)
+	public void isDelayed(Book book) {
+		if(this.checkDelay(book) > 0) {
+			delayedBooks.add(book);
+		}
 	}
 	
+	public int checkDelay(Book book) {
+		if(LocalDate.now().compareTo(book.getReturnDate()) > 0) {
+			return (int)ChronoUnit.DAYS.between(book.getReturnDate(), LocalDate.now());
+		} else {
+			return 0;
+		}
+	}
 	
 }
-
-
-
