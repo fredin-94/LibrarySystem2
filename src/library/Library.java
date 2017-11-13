@@ -108,6 +108,12 @@ public class Library {
 		return null;
 	}
 	
+	public Book findBookByTitle(String whichTitle) {
+		whichTitle.toLowerCase();
+		for(Book book : books) if (whichTitle.equals(book.getTitle().toLowerCase())) return book;
+		return null;
+	}
+	
 	/*---------------------SORTING------------------------------*/
 	
 	public enum bookKey {TITLE, AUTHOR, GENRE, PUBLISHER, SHELF}
@@ -126,6 +132,22 @@ public class Library {
         }
     }
     
+    public enum customerKey {NAME, ADRESS, NUMBER, DEBT}
+    public void sortCustomersBy(customerKey keyToSort) {
+    	try {
+	    	switch (keyToSort) {
+	        	case NAME: Collections.sort(customers, Comparator.comparing(Customer::getName)); break;
+	        	case ADRESS: Collections.sort(customers, Comparator.comparing(Customer::getAdress)); break;
+	        	case NUMBER:
+	        		//TODO: NEEDS testing. Not sure if this works for primitive types.
+	        		Collections.sort(customers, Comparator.comparing(Customer::getNumber)); break;
+	        	case DEBT:
+	        		//TODO: Same as above.
+	        		Collections.sort(customers, Comparator.comparing(Customer::getDebt)); break;
+	        	default: throw new InvalidKeyException("Invalid key in sort function");
+	    	}
+    	} catch (InvalidKeyException ike) {ike.printStackTrace();}
+    }
 	
 	/*TODO -------------------REGISTRATION---------------------*/
 	
