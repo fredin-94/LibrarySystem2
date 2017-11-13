@@ -67,50 +67,7 @@ public class Library {
 	
 	/*Search for books in the library directory*/
 	
-	public Book findBookByTitle(String title) {
-		for(Book book: books) {
-			if(book.getTitle().equals(title)) {
-				return book;
-			}
-		}
-		return null;
-	}
-	
 	/*Search for Customers in the library directory*/
-	
-	// there could be more than one person with the same name
-	public ArrayList<Customer> findCustomersByName(String name) {
-		ArrayList<Customer> foundCustomers = new ArrayList<Customer>();
-		for(Customer customer: customers) {
-			if(customer.getName().equals(name)) {
-				foundCustomers.add(customer);
-			}
-		}
-		
-		if(foundCustomers.isEmpty()) {
-			return null;
-		}else {
-			return foundCustomers;
-		}
-	}
-	
-	public Customer findCustomerByName(String name) {
-		for(Customer customer: customers) {
-			if(customer.getName().equals(name)) {
-				return customer;
-			}
-		}
-		return null;
-	}
-	
-	public Customer findCustomerById(UUID id) {
-		for(Customer customer: customers) {
-			if(customer.getID().equals(id)) {
-				return customer;
-			}
-		}
-		return null;
-	}
 	
 	
 	/*TODO -------------------REGISTRATION---------------------*/
