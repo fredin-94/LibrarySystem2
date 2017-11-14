@@ -245,6 +245,7 @@ public class Test {
 		System.out.println("5. Search book using shelf");
 		
 		int userInput = scanner.nextInt();
+		String hopString = scanner.nextLine();
 		
 		try {
 			if(userInput == 1) { //did i use the right enums or not? cuz there were 2 options
@@ -282,7 +283,8 @@ public class Test {
 	}
 	
 	//Seems ok//
-	public void sortBooks() {
+	public void sortBooks() { //doesnt work if the book starts with an lowercase letter, 
+		//also would be good to skip the "The" at the beginning of a book
 
 		System.out.println("Show all books: Choose what to sort by");
 		System.out.println("1. Sort after title");
