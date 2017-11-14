@@ -10,20 +10,20 @@ package library;
  * 	- register customer		done
  * 
  * -Loan and return
- * 	- loan default	done
- * 	- loan with period		done
- * 	- return
+ * 	- loan default	x
+ * 	- loan with period	x	
+ * 	- return		x
  * 
- * - Simulate
- * 	- days
- * 	- months
- * 	- years
+ * - Simulate	
+ * 	- days		done
+ * 	- months		done
+ * 	- years		done
  * 
  * - Show:
- * 	- all borrowed books
- * 	- all delayed books
- * 	- most borrowed book
- * 	- customer loan history
+ * 	- all borrowed books		done
+ * 	- all delayed books		done
+ * 	- most borrowed book		x
+ * 	- customer loan history		x
  * 
  * */
 
@@ -31,6 +31,10 @@ package library;
  * - how to use boolean in books to control delayed feature
  * */
 
+//
+import java.security.*;
+import java.util.function.*;
+//--------------------
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -51,20 +55,24 @@ public class Library {
 		date = LocalDate.now();
 	}
 
+	
+	/*TODO ---------------------Basic------------------------------*/
+	
+	public ArrayList<Book> getBooks() {
+		return books;
+	}
+
+	public ArrayList<Customer> getCustomers() {
+		return customers;
+	}
+	
+	
 	/*TODO ---------------------SEARCH------------------------------*/
 	
 	/*Search for books in the library directory*/
 	
-	public Book findBookByTitle(String title) {
-		for(Book book: books) {
-			if(book.getTitle().equals(title)) {
-				return book;
-			}
-		}
-		return null;
-	}
-	
 	/*Search for Customers in the library directory*/
+	
 	
 	// there could be more than one person with the same name
 	public ArrayList<Customer> findCustomersByName(String name) {
@@ -100,6 +108,46 @@ public class Library {
 		return null;
 	}
 	
+	public Book findBookByTitle(String whichTitle) {
+		whichTitle.toLowerCase();
+		for(Book book : books) if (whichTitle.equals(book.getTitle().toLowerCase())) return book;
+		return null;
+	}
+	
+	/*---------------------SORTING------------------------------*/
+	
+	public enum bookKey {TITLE, AUTHOR, GENRE, PUBLISHER, SHELF}
+    public void sortBooksBy(bookKey keyToSort) {
+        try {Collections.sort(this.books, Comparator.comparing(getBookFunction(keyToSort)));}
+        catch (InvalidKeyException ike) {ike.printStackTrace();}
+    }
+    private Function<Book, ? extends Comparable> getBookFunction(bookKey key) throws InvalidKeyException {
+        switch (key) {
+            case TITLE: return Book::getTitle; // No need for break since return automatically breaks the switch.
+            case AUTHOR: return Book::getAuthor;
+            case GENRE: return Book::getGenre;
+            case PUBLISHER: return Book::getPublisher;
+            case SHELF: return Book::getShelf;
+            default: throw new InvalidKeyException("Invalid key in sort function");
+        }
+    }
+    
+    public enum customerKey {NAME, ADRESS, NUMBER, DEBT}
+    public void sortCustomersBy(customerKey keyToSort) {
+    	try {
+	    	switch (keyToSort) {
+	        	case NAME: Collections.sort(customers, Comparator.comparing(Customer::getName)); break;
+	        	case ADRESS: Collections.sort(customers, Comparator.comparing(Customer::getAdress)); break;
+	        	case NUMBER:
+	        		//TODO: NEEDS testing. Not sure if this works for primitive types.
+	        		Collections.sort(customers, Comparator.comparing(Customer::getNumber)); break;
+	        	case DEBT:
+	        		//TODO: Same as above.
+	        		Collections.sort(customers, Comparator.comparing(Customer::getDebt)); break;
+	        	default: throw new InvalidKeyException("Invalid key in sort function");
+	    	}
+    	} catch (InvalidKeyException ike) {ike.printStackTrace();}
+    }
 	
 	/*TODO -------------------REGISTRATION---------------------*/
 	
@@ -127,9 +175,9 @@ public class Library {
 	
 	/*TODO loan book
 	 * */
-	public void borrowBook(String bookId, String customerId) throws Exception{
+	public void borrowBook(String bookTitle, UUID customerId) throws Exception{
 		Customer customer = findCustomerById(customerId);
-		Book book = findBookById(bookId);
+		Book book = findBookByTitle(bookTitle);
 		//assumes default loanPeriod
 		
 		if(customer == null) {
@@ -138,20 +186,19 @@ public class Library {
 			throw new Exception ("Book is (currently) not in directory");
 		}
 		
-		book.setLoanPeriod(book.getLoanPeriod());
 		book.setStartDate(this.date);
-		book.setReturnDate(this.date);
-		book.incrementCounter();
+		book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks
+		book.incrementTimesBorrowed();;
 		loanedBooks.add(book);
-		customer.addToCurrent(book);
-		customer.addToHistory(book);
-		this.removeBook(book);
+		customer.addToCurrentLoan(book);
+		customer.addToLoanHistory(book);
+		books.remove(book);
 		
 	}
 	
-	public void borrowBookDay(String bookId, String customerId, int loanPeriod) throws Exception{
+	public void borrowBookDay(String bookTitle, UUID customerId, int loanPeriod) throws Exception{
 		Customer customer = findCustomerById(customerId);
-		Book book = findBookById(bookId);
+		Book book = findBookByTitle(bookTitle);
 		//assumes default loanPeriod
 		
 		if(customer == null) {
@@ -160,65 +207,76 @@ public class Library {
 			throw new Exception ("Book is (currently) not in directory");
 		}else if(loanPeriod <= 0) {
 			throw new Exception ("Loan Period needs to be larger than zero");
-		}else {
-			book.setLoanPeriod(loanPeriod);
 		}
 		
 		book.setStartDate(this.date);
-		book.setReturnDate(this.date);
-		book.incrementCounter();
+		book.setReturnDate(this.date.plusDays(loanPeriod));
+		book.incrementTimesBorrowed();
 		loanedBooks.add(book);
-		customer.addToCurrent(book);
-		customer.addToHistory(book);
-		this.removeBook(book);
+		customer.addToCurrentLoan(book);
+		customer.addToLoanHistory(book);
+		books.remove(book);
 		
 	}
 	
 	
-	public void returnBook(String bookId, String customerId) {
+	public void returnBook(String bookTitle, UUID customerId) {
 		/*TODO:
 		 * -check date 		//done
 		 * -calculate debt  //done
 		 * -increment customer debt  // done
 		 * -restart book date 		//done
-		 * -return book loan period to TWO_WEEKS 		//done
 		 * -return book to library 		//done
 		 * -remove book out of loanedBooks library
 		 * -remove book from customer currentBooks 		//done
 		 * */
 		
 		Customer customer = findCustomerById(customerId);
-		Book book = findBookById(bookId);
-		final int TWO_WEEKS = 14;
-		final int LOAN_TIME = 14;//book.getLoanPeriod();
-		//assumes default loanPeriod
+		Book book = findBookByTitle(bookTitle);
 		
-		
-		int period = this.daysBetween(book);
-		int debt = 0;
-		
-		if(period <= LOAN_TIME) {
-		}else {
-			int surplus = period - TWO_WEEKS;
-			debt = surplus * 2;
-		}
+		int debt = this.checkDelay(book) * 2;
 		customer.setDebt(debt);
+		
+		/*TODO we need to "restart" the dates once the book is returned
 		book.restartDates();
 		book.restartLoanPeriod();
-		book.notDelayed();
-		this.addBook(book);
-		this.loanedBooks.remove(book);
-		customer.removeFromCurrent(book);
+		book.notDelayed();*/
+		//we should discuss whether the books should be set to a 
+		//certain day when they are not being loaned out
+		
+		books.add(book);
+		loanedBooks.remove(book);
+		customer.removeFromCurrentLoan(book);
 		
 	}
 	
 	/*TODO: ---------------- SHOW -----------------------*/
 	/*- show all currently loaned books
 	 *- show all delayed books
-	 *
+	 *- most popular book
+	 *- customer loan history
 	 * */
-	//public void 
+	public ArrayList<Book> getDelayedBooks() {
+		return delayedBooks;
+	}
+
+	public ArrayList<Book> getLoanedBooks() {
+		return loanedBooks;
+	}
 	
+	public Book getMostPopularBook() {
+		Book mostPopular = books.get(0);
+		for(Book book: books) {
+			if(book != books.get(0) && book.getTimesBorrowed() > mostPopular.getTimesBorrowed()) {
+				mostPopular = book;
+			}
+		}
+		return mostPopular;
+	}
+	
+	public ArrayList<Book> getCustomerLoanHistory(Customer customer){
+		return customer.getloanHistory();
+	}
 	
 	/*TODO: ---------------- Simulate -----------------------*/
 	
@@ -236,44 +294,29 @@ public class Library {
 	public void addDays(int Days) {
 		this.date = this.date.plusDays(Days);
 		for(Book book: loanedBooks) {
-			book.setReturnDate(this.date);
-			if(this.daysBetween(book) > book.getLoanPeriod()) {
-				book.isDelayed();
-				this.delayedBooks.add(book);
-			}
+			this.isDelayed(book);
 		}
+		
 	}
 	
 	public void addWeeks(int weeks) {
 		this.date = this.date.plusWeeks(weeks);
 		for(Book book: loanedBooks) {
-			book.setReturnDate(this.date);
-			if(this.daysBetween(book) > book.getLoanPeriod()) {
-				book.isDelayed();
-				this.delayedBooks.add(book);
-			}
+			this.isDelayed(book);
 		}
 	}
 	
 	public void addMonths(int months) {
 		this.date = this.date.plusMonths(months);
 		for(Book book: loanedBooks) {
-			book.setReturnDate(this.date);
-			if(this.daysBetween(book) > book.getLoanPeriod()) {
-				book.isDelayed();
-				this.delayedBooks.add(book);
-			}
+			this.isDelayed(book);
 		}
 	}
 	
 	public void addyears(int years) {
 		this.date = this.date.plusYears(years);
 		for(Book book: loanedBooks) {
-			book.setReturnDate(this.date);
-			if(this.daysBetween(book) > book.getLoanPeriod()) {
-				book.isDelayed();
-				this.delayedBooks.add(book);
-			}
+			this.isDelayed(book); 
 		}
 	}
 	
@@ -282,30 +325,24 @@ public class Library {
 	
 	//CALCULATING DAYS BETWEEN
 	
-	public int daysBetween(Book book) {
+	public long daysBetween(Book book) {
 		long days = book.getStartDate().until(book.getReturnDate(), ChronoUnit.DAYS);
-		int period = (int) days;
-		return period;
-	}
-
-	public ArrayList<Book> getBooks() {
-		return books;
-	}
-
-	public ArrayList<Book> getDelayedBooks() {
-		return delayedBooks;
-	}
-
-	public ArrayList<Book> getLoanedBooks() {
-		return loanedBooks;
-	}
-
-	public ArrayList<Customer> getCustomers() {
-		return customers;
+		return days;
 	}
 	
+	//moves a book that is delayed to delayed arrayList. (is only used in simulation)
+	public void isDelayed(Book book) {
+		if(this.checkDelay(book) > 0) {
+			delayedBooks.add(book);
+		}
+	}
+	
+	public int checkDelay(Book book) {
+		if(LocalDate.now().compareTo(book.getReturnDate()) > 0) {
+			return (int)ChronoUnit.DAYS.between(book.getReturnDate(), LocalDate.now());
+		} else {
+			return 0;
+		}
+	}
 	
 }
-
-
-
