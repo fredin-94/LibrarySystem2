@@ -137,17 +137,23 @@ public class Customer {
 		currentLoans.remove(book);
 	}
 
-	public void addBookToCurrentLoann(Book book) {
+	public Book getFromCurrentLoan(String bookTitle) {
+		for(Book book: currentLoans) {
+			if(book.getTitle().equals(bookTitle)) {
+				return book;
+			}
+		}
+		return null;
+	}
+	
+	public void addBookToCurrentLoan(Book book) {
 		currentLoans.add(book);
 	}
 
 	public void addBookToLoanHistory(Book book) {
 		loanHistory.add(book);
 	}
-
-	public void removeBookFromLoanHistory(Book book) {
-		currentLoans.remove(book);
-	}
+	
 
 	public String toString() {// Need to check the form then it will be edited.
 		String printC = " " + END_OF_LINE; // PrintC is going to include everything to be printed.

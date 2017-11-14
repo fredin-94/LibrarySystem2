@@ -274,7 +274,7 @@ public class Library {
 		 */
 
 		Customer customer = findCustomerBy(customerKey.PERSONNUMMER, personnummer);
-		Book book = findBookBy(bookKey.TITLE, bookTitle);
+		Book book = customer.getFromCurrentLoan(bookTitle);
 		
 		int debt = this.checkDelay(book) * 2;
 		customer.setDebt(debt);
