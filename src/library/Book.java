@@ -11,8 +11,10 @@ public class Book {
 	// G stuff
 	private UUID id;
 	private String title;
-	private ArrayList<String> authors;
-	private ArrayList<String> genre;
+	//private ArrayList<String> authors;
+	//private ArrayList<String> genre;
+	private String authors;
+	private String genres;
 	private String publisher;
 	private String shelf;
 
@@ -23,16 +25,16 @@ public class Book {
 	private LocalDate returnDate = startDate.plus(TWO_WEEKS, ChronoUnit.DAYS);
 
 	//*** CONSTRUCTOR ***//
-	public Book(String title, ArrayList<String> authors, String publisher, ArrayList<String> genre, String shelf) throws Exception{
+	public Book(String title, String authors, String publisher, String genre, String shelf) throws Exception{
 
 		this.id = UUID.randomUUID();
 
-		if(title.equals("") || authors.isEmpty() || publisher.equals("") || genre.isEmpty() || shelf.equals("")){
+		if(title.equals("") || authors.equals("") || publisher.equals("") || genre.equals("") || shelf.equals("")){
 			throw new Exception("Input argument cannot be empty.");
 		} else {
 			this.title = title;
 			this.authors = authors;
-			this.genre = genre;
+			this.genres = genre;
 			this.publisher = publisher;
 			this.shelf = shelf;
 		}
@@ -48,7 +50,7 @@ public class Book {
 	}
 
 	public String getAuthor(){
-		String res = ": ";
+		/*String res = ": ";
 		if(authors.size() == 1){
 			return authors.get(0);
 		} else {
@@ -60,11 +62,12 @@ public class Book {
 				}
 			}
 			return res;
-		}
+		}*/
+		return authors;
 	}
 
 	public String getGenre(){
-		String res = ": ";
+		/*String res = ": ";
 		if(genre.size() == 1){
 			return genre.get(0);
 		} else {
@@ -76,7 +79,8 @@ public class Book {
 				}
 			}
 			return res;
-		}	
+		}*/
+		return genres;
 	}
 
 	public String getPublisher(){
