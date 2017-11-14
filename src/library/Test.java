@@ -18,6 +18,13 @@ public class Test {
 	public Test() {
 		// System.out.println("hello t");
 		library = new Library();
+		
+		try {
+			library.bookDirectory();
+			library.customerDirectory();
+		} catch (Exception e) {
+			System.out.println("Was not able to load text files");
+		}
 	}
 
 	public static void main(String[] args) {
@@ -247,10 +254,11 @@ public class Test {
 		
 		
 	}
-
+	
+	//Seems ok//
 	public void sortBooks() {
 
-		System.out.println("Choose what to sort by");
+		System.out.println("Show all books: Choose what to sort by");
 		System.out.println("1. Sort after title");
 		System.out.println("2. Sort after author");
 		System.out.println("3. Sort after publisher");
@@ -302,11 +310,11 @@ public class Test {
 		try {
 			if(!name.equals("") && !address.equals("") && !psn.equals("")) {
 				library.addCustomer(new Customer(name, address,psn, phoneNumber));
+				System.out.println("Added " + name + " to customer database");
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}	
-		// customer needs to be initialized with psn AND phonenumber
 	}
 
 	public void removeCustomer() { // is there an easier way to do this so we dont have to rember the whole
@@ -337,11 +345,38 @@ public class Test {
 	}
 
 	public void searchCustomer() {
-		// wait for them to implement it
+		System.out.println("Choose what to find customer by: ");
+		System.out.println("1. Find customer by name");
+		System.out.println("2. Find customer by address");
+		System.out.println("3. Find customer by phone number");
+		System.out.println("4. Find customer by personal security number");
+		int userInput = scanner.nextInt();
+		
+		try {
+			if(userInput == 1) {
+				System.out.println("Enter the customer name: ");
+				String name = scanner.next();
+				System.out.println(library.findCustomerBy(NAME, name));
+			}else if (userInput == 2) {
+				System.out.println("Enter the customer address: ");
+				String adress = scanner.next();
+				System.out.println(library.findCustomerBy(ADRESS, adress));
+			}else if (userInput == 3) {
+				System.out.println("Enter the customer phone number: ");
+				String phone = scanner.next();
+				System.out.println(library.findCustomerBy(NUMBER, phone));
+			}else if (userInput == 4) {
+				System.out.println("Enter the customer personal security number: ");
+				String psn = scanner.next();
+				System.out.println(library.findCustomerBy(PERSONNUMMER, psn));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}		
 	}
 
 	public void showCustomers() {
-		// wait for them to implement - tell them to implement?
+		
 	}
 
 	public void extendLoan() {
