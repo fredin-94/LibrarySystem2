@@ -374,7 +374,7 @@ public class Library {
 
 	//returns delay surplus
 	public int checkDelay(Book book) {
-		if (LocalDate.now().compareTo(book.getReturnDate()) > 0) {
+		if (this.date.compareTo(book.getReturnDate()) > 0) {
 			return (int) ChronoUnit.DAYS.between(book.getReturnDate(), LocalDate.now());
 		} else {
 			return 0;
