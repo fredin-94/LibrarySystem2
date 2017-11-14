@@ -63,7 +63,7 @@ public class Book {
 			}
 			return res;
 		}*/
-		return authors;
+		return this.authors;
 	}
 
 	public String getGenre(){

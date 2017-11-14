@@ -29,6 +29,7 @@ package library;
 
 import java.security.*;
 import java.util.function.*;
+import static library.Library.bookKey.*;
 //--------------------
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -61,7 +62,7 @@ public class Library {
 	}
 
 	/* TODO ---------------------SEARCH------------------------------ */
-
+	
 	/* Search for books in the library directory */
 
 	/* Search for Customers in the library directory */
@@ -99,73 +100,93 @@ public class Library {
 		}
 		return null;
 	}
-
-	public Book findBookByTitle(String whichTitle) {
-		whichTitle.toLowerCase();
-		for (Book book : books)
-			if (whichTitle.equals(book.getTitle().toLowerCase()))
-				return book;
+	
+	/*---------------------SEARCH------------------------------*/
+	// DON'T CHANGE FORMAT PLEASE.
+	
+	public enum bookKey {TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID}
+	public enum customerKey {NAME, ADRESS, NUMBER, DEBT, ID}
+	
+	public Book findBookBy(bookKey key, String searchValue) throws InvalidKeyException {
+		searchValue.toLowerCase();
+		Function<Book, ? extends Comparable> f = null;
+        switch (key) {
+            case TITLE: f = Book::getTitle; return findBookByString(f, searchValue); // No need for break since the return automatically breaks the switch.
+            case AUTHOR: f = Book::getAuthor; return findBookByString(f, searchValue);
+            case GENRE: f = Book::getGenre; return findBookByString(f, searchValue);
+            case PUBLISHER: f = Book::getPublisher; return findBookByString(f, searchValue);
+            case SHELF: f = Book::getShelf; return findBookByString(f, searchValue);
+            case ID:
+            	f = Book::getId;
+            	for (Book book : books) if (book.getId().toString().equals(searchValue)) return book;
+            default: throw new InvalidKeyException("Invalid key in search function.");
+        }
+    }
+	private Book findBookByString(Function<Book, ? extends Comparable> f, String searchValue) {
+		for (Book book : this.books) {
+            String s = (String)f.apply(book);
+            if (searchValue.equals(s.toLowerCase())) return book;
+		}
+		return null;
+	}
+	
+	public Customer findCustomerBy(customerKey key, String searchValue) throws InvalidKeyException, NullPointerException {
+		searchValue.toLowerCase();
+		Function<Customer, ? extends Comparable> f = null;
+		switch(key) {
+			case NAME: f = Customer::getName; return findCustomerByString(f, searchValue);
+			case ADRESS:  f = Customer::getAdress; return findCustomerByString(f, searchValue);
+			case NUMBER:  f = Customer::getNumber; return findCustomerByString(f, searchValue);
+			// No need to find customer by debt (lol).
+			case ID:
+				f = Customer::getID;
+            	for (Customer customer : customers) if (customer.getID().toString().equals(searchValue)) return customer;
+			default: throw new InvalidKeyException("Invalid keyexception in search function");
+		}
+	}
+	private Customer findCustomerByString(Function<Customer, ? extends Comparable> f, String searchValue) {
+		for (Customer customer : customers) {
+			String s = (String)f.apply(customer);
+			if (searchValue.equals(s.toLowerCase())) return customer;
+		}
 		return null;
 	}
 
 	/*---------------------SORTING------------------------------*/
-
-	public enum bookKey {
-		TITLE, AUTHOR, GENRE, PUBLISHER, SHELF
-	}
+	// Uses enums from search.
+	// DON'T CHANGE FORMAT PLEASE.
 
 	public void sortBooksBy(bookKey keyToSort) {
-		try {
-			Collections.sort(this.books, Comparator.comparing(getBookFunction(keyToSort)));
-		} catch (InvalidKeyException ike) {
-			ike.printStackTrace();
-		}
+		try {Collections.sort(this.books, Comparator.comparing(getBookFunction(keyToSort)));}
+		catch (InvalidKeyException ike) {ike.printStackTrace();}
 	}
-
 	private Function<Book, ? extends Comparable> getBookFunction(bookKey key) throws InvalidKeyException {
 		switch (key) {
-		case TITLE:
-			return Book::getTitle; // No need for break since return automatically breaks the switch.
-		case AUTHOR:
-			return Book::getAuthor;
-		case GENRE:
-			return Book::getGenre;
-		case PUBLISHER:
-			return Book::getPublisher;
-		case SHELF:
-			return Book::getShelf;
-		default:
-			throw new InvalidKeyException("Invalid key in sort function");
+			case TITLE: return Book::getTitle;
+			case AUTHOR: return Book::getAuthor;
+			case GENRE: return Book::getGenre;
+			case PUBLISHER: return Book::getPublisher;
+			case SHELF: return Book::getShelf;
+			// No need to sort by ID here.
+			default: throw new InvalidKeyException("Invalid key in sort function");
 		}
-	}
-
-	public enum customerKey {
-		NAME, ADRESS, NUMBER, DEBT
 	}
 
 	public void sortCustomersBy(customerKey keyToSort) {
 		try {
 			switch (keyToSort) {
-			case NAME:
-				Collections.sort(customers, Comparator.comparing(Customer::getName));
-				break;
-			case ADRESS:
-				Collections.sort(customers, Comparator.comparing(Customer::getAdress));
-				break;
-			case NUMBER:
-				// TODO: NEEDS testing. Not sure if this works for primitive types.
-				Collections.sort(customers, Comparator.comparing(Customer::getNumber));
-				break;
-			case DEBT:
-				// TODO: Same as above.
-				Collections.sort(customers, Comparator.comparing(Customer::getDebt));
-				break;
-			default:
-				throw new InvalidKeyException("Invalid key in sort function");
+				case NAME: Collections.sort(customers, Comparator.comparing(Customer::getName)); break;
+				case ADRESS: Collections.sort(customers, Comparator.comparing(Customer::getAdress)); break;
+				case NUMBER:
+					// TODO: NEEDS testing. Not sure if this works for primitive types.
+					Collections.sort(customers, Comparator.comparing(Customer::getNumber)); break;
+				case DEBT:
+					// TODO: Same as above.
+					Collections.sort(customers, Comparator.comparing(Customer::getDebt)); break;
+				// No need to sort by ID here.
+				default:throw new InvalidKeyException("Invalid key in sort function");
 			}
-		} catch (InvalidKeyException ike) {
-			ike.printStackTrace();
-		}
+		} catch (InvalidKeyException ike) {ike.printStackTrace();}
 	}
 
 	/* TODO -------------------REGISTRATION--------------------- */
@@ -197,8 +218,9 @@ public class Library {
 	 */
 	public void borrowBook(String bookTitle, UUID customerId) throws Exception {
 		Customer customer = findCustomerById(customerId);
-		Book book = findBookByTitle(bookTitle);
+		Book book = findBookBy(TITLE, bookTitle);
 		// assumes default loanPeriod
+		sortBooksBy(TITLE);
 
 		if (customer == null) {
 			throw new Exception("Customer is not in System.");
@@ -219,7 +241,8 @@ public class Library {
 
 	public void borrowBookDay(String bookTitle, UUID customerId, int loanPeriod) throws Exception {
 		Customer customer = findCustomerById(customerId);
-		Book book = findBookByTitle(bookTitle);
+		
+		Book book = findBookBy(TITLE, bookTitle);
 		// assumes default loanPeriod
 
 		if (customer == null) {
@@ -248,7 +271,13 @@ public class Library {
 		 */
 
 		Customer customer = findCustomerById(customerId);
-		Book book = findBookByTitle(bookTitle);
+		Book book = null;
+		try {
+			book = findBookBy(TITLE, bookTitle);
+		} catch (InvalidKeyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		int debt = this.checkDelay(book) * 2;
 		customer.setDebt(debt);
