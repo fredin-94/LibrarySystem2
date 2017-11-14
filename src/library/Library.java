@@ -216,8 +216,8 @@ public class Library {
 	/*
 	 * TODO loan book
 	 */
-	public void borrowBook(String bookTitle, UUID customerId) throws Exception {
-		Customer customer = findCustomerById(customerId);
+	public void borrowBook(String bookTitle, String personnummer) throws Exception {
+		Customer customer = this.findCustomerBy();
 		Book book = findBookBy(TITLE, bookTitle);
 		// assumes default loanPeriod
 		sortBooksBy(TITLE);
