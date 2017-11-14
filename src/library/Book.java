@@ -135,6 +135,14 @@ public class Book {
 		this.timesBorrowed++;
 	}
 
+	@Override
+	public String toString() {
+		return "Book Title: " + title + ", Authors: " + authors + ", Genre: " + genres + ", Publisher: " + publisher
+				+ ", Shelf: " + shelf + ", Times Borrowed: " + timesBorrowed;
+	}
+	
+	
+	
 }
 
 

@@ -122,18 +122,19 @@ public class Test {
 
 		System.out.println("Creating new book:");
 		System.out.println("Enter title: ");
-		String title = scanner.nextLine();
+		String title = scanner.next();
 		System.out.println("Enter author: ");
-		String author = scanner.nextLine();
+		String author = scanner.next();
 		System.out.println("Enter publisher: ");
-		String publisher = scanner.nextLine();
+		String publisher = scanner.next();
 		System.out.println("Enter genre: ");
-		String genre = scanner.nextLine();
+		String genre = scanner.next();
 		System.out.println("Enter shelf: ");
-		String shelf = scanner.nextLine();
+		String shelf = scanner.next();
 
 		try {
 			library.addBook(new Book(title, author, publisher, genre, shelf));
+			System.out.println("Added " + title + " to library");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -203,7 +204,48 @@ public class Test {
 	}
 
 	public void searchBook() {
-		// wait for them to implement
+		System.out.println("Choose what to sort by");
+		System.out.println("1. Search book using title");
+		System.out.println("2. Search book using author");
+		System.out.println("3. Search book using publisher");
+		System.out.println("4. Search book using genre");
+		System.out.println("5. Search book using shelf");
+		
+		int userInput = scanner.nextInt();
+		
+		try {
+			if(userInput == 1) { //did i use the right enums or not? cuz there were 2 options
+				System.out.println("Please enter the title");
+				String title = scanner.nextLine();
+				
+				System.out.println(library.findBookBy(TITLE, title));
+			}else if (userInput == 2) {
+				System.out.println("Please enter the author");
+				String author = scanner.nextLine();
+				
+				System.out.println(library.findBookBy(AUTHOR, author));
+			}else if (userInput == 3) {
+				System.out.println("Please enter the publisher");
+				String publisher = scanner.nextLine();
+				
+				System.out.println(library.findBookBy(PUBLISHER, publisher));
+			}else if (userInput == 4) {
+				System.out.println("Please enter the genre");
+				String genre = scanner.nextLine();
+				
+				System.out.println(library.findBookBy(GENRE, genre));
+			}else if (userInput == 5) {
+				System.out.println("Please enter the shelf");
+				String shelf = scanner.nextLine();
+				
+				System.out.println(library.findBookBy(SHELF, shelf));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		
 	}
 
 	public void sortBooks() {
@@ -218,14 +260,29 @@ public class Test {
 		int userInput = scanner.nextInt();
 		if (userInput == 1) {
 			library.sortBooksBy(bookKey.TITLE);
+			for(int i = 0; i < library.getBooks().size(); i++) {
+				System.out.println(library.getBooks().get(i));
+			}
 		} else if (userInput == 2) {
 			library.sortBooksBy(bookKey.AUTHOR);
+			for(int i = 0; i < library.getBooks().size(); i++) {
+				System.out.println(library.getBooks().get(i));
+			}
 		} else if (userInput == 3) {
 			library.sortBooksBy(bookKey.PUBLISHER);
+			for(int i = 0; i < library.getBooks().size(); i++) {
+				System.out.println(library.getBooks().get(i));
+			}
 		} else if (userInput == 4) {
 			library.sortBooksBy(bookKey.GENRE);
+			for(int i = 0; i < library.getBooks().size(); i++) {
+				System.out.println(library.getBooks().get(i));
+			}
 		} else if (userInput == 5) {
 			library.sortBooksBy(bookKey.SHELF);
+			for(int i = 0; i < library.getBooks().size(); i++) {
+				System.out.println(library.getBooks().get(i));
+			}
 		}
 
 	}
