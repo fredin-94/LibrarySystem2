@@ -34,6 +34,8 @@ import static library.Library.bookKey.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import static library.Library.bookKey.*; 
+import static library.Library.customerKey.*;
 
 public class Library {
 
