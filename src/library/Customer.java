@@ -7,25 +7,23 @@ public class Customer {
 
 	private String name;
 	private String adress;
-	private int number;
+	private String number = "";
 	private double debt;// Need to know how is it going to be used or changed.
 	private ArrayList<Book> currentLoans;
 	private ArrayList<Book> loanHistory;
 	private UUID ID;
-	public Exception nameE = new Exception("Name Can not Be Empty");// Exceptions to be thrown:
-	public Exception adressE = new Exception("Adress Can not Be Empty");
-	public Exception numberE = new Exception("number must be 10 digits");
+	private String personnummer;
 	final String END_OF_LINE = System.lineSeparator();// Skips A Line
 
-	public Customer(String name, String adress) throws Exception {
+	public Customer(String name, String adress, String personnummer) throws Exception {
 		if (name.equals("")) {
 
-			throw nameE;
+			throw new Exception("Name can not be empty");
 		} else {
 			this.name = name;
 		}
 		if (adress.equals("")) {
-			throw adressE;
+			throw new Exception("Adress can not be empty");
 		} else {
 			this.adress = adress;
 		}
@@ -33,16 +31,27 @@ public class Customer {
 		this.currentLoans = new ArrayList<Book>();
 		this.loanHistory = new ArrayList<Book>();
 		this.debt = 0;
+		if (personnummer.matches("[0-9]+") && personnummer.length() == 10 || personnummer.length() == 12) {// This
+																											// checks
+																											// the
+																											// number of
+																											// digits of
+																											// (number).
+			this.personnummer = personnummer;
+		} else {
+			throw new Exception("Personnummer MUST consist of 10 or 12 digits");
+
+		}
 
 	}
 
-	public Customer(String name, String adress, int number) throws Exception {
-		this(name, adress);// calling the first constructor.
+	public Customer(String name, String adress, String personnummer, String number) throws Exception {
+		this(name, adress, personnummer);// calling the first constructor.
 
-		if ((int) Math.log10(number) + 1 != 10) {// This checks the number of digits of (number).
-			throw numberE;
-		} else {
+		if (number.matches("[0-9]+") && number.length() == 10) {// This checks the number of digits of (number).
 			this.number = number;
+		} else {
+			throw new Exception("Phone number MUST consist of 10 digits");
 		}
 	}
 
@@ -58,7 +67,11 @@ public class Customer {
 		return this.adress;
 	}
 
-	public int getNumber() {
+	public String getPersonnummer() {
+		return this.personnummer;
+	}
+
+	public String getNumber() {
 		return this.number;
 	}
 
@@ -76,7 +89,7 @@ public class Customer {
 
 	public void setName(String newName) throws Exception {
 		if (newName.equals("")) {
-			throw nameE;
+			throw new Exception("Name can not be empty");
 		} else {
 			this.name = newName;
 		}
@@ -84,17 +97,26 @@ public class Customer {
 
 	public void setAdress(String newAdress) throws Exception {
 		if (newAdress.equals("")) {
-			throw adressE;
+			throw new Exception("Adress can not be empty");
 		} else {
 			this.adress = newAdress;
 		}
 	}
 
-	public void setNumber(int newNumber) throws Exception {
-		if ((int) Math.log10(newNumber) + 1 != 10) {
-			throw numberE;
+	public void setPersonnummer(String newPersonnummer) throws Exception {
+		if (newPersonnummer.matches("[0-9]+") && (newPersonnummer.length() == 10 || newPersonnummer.length() == 12)) {
+			this.personnummer = newPersonnummer;
 		} else {
+			throw new Exception("Personnummer MUST consist of 10 or 12 digits");
+
+		}
+	}
+
+	public void setNumber(String newNumber) throws Exception {
+		if (newNumber.matches("[0-9]+") && newNumber.length() == 10) {
 			this.number = newNumber;
+		} else {
+			throw new Exception("Phone number MUST consist of 10 digits");
 		}
 	}
 
@@ -131,12 +153,13 @@ public class Customer {
 		String printC = " " + END_OF_LINE; // PrintC is going to include everything to be printed.
 		printC += "Customer Name: " + this.name + END_OF_LINE;
 		printC += "Customer ID: " + this.ID + END_OF_LINE;
+		printC += "Customer Personnummer: " + this.personnummer + END_OF_LINE;
 		printC += "Customer Adress: " + this.adress + END_OF_LINE;
-		if (this.number == 0) {// Checking if the user chose the second constructor (the one with no number in
-								// it).
-			printC += "Customer Number: Not Available" + END_OF_LINE;
+		if (this.number.equals("")) {// Checking if the user chose the second constructor (the one with no number in
+			// it).
+			printC += "Customer Phone Number: Not Available" + END_OF_LINE;
 		} else {
-			printC += "Customer Number: " + this.number + END_OF_LINE;
+			printC += "Customer Phone Number: " + this.number + END_OF_LINE;
 		}
 
 		printC += "Customer Debt: " + this.debt + END_OF_LINE;
