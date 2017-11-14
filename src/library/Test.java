@@ -1,13 +1,12 @@
 package library;
 
-<<<<<<< HEAD
+
 import java.util.Scanner;
 
 import library.Library.bookKey;
-=======
 import static library.Library.bookKey.*; // Needed to take enum keys as parameters. //Fabian.
 import static library.Library.customerKey.*;
->>>>>>> bccc8bf7b9c09220ab3d8072f3df75b0ac872ce2
+
 
 public class Test {
 
@@ -320,7 +319,6 @@ public class Test {
 		System.out.println(library.getMostPopularBook()); //does this display anything??
 		
 	}
-<<<<<<< HEAD
 	public void showMostLentOutBooks() {
 		//wait for them to implement
 		//need a counter that goes up every time a book is lent out
@@ -382,6 +380,4 @@ public class Test {
  * on what books have been lent out the most To be able to view the borrower's
  * loan history
  */
-=======
-}
->>>>>>> bccc8bf7b9c09220ab3d8072f3df75b0ac872ce2
+
