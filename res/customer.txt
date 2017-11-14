@@ -1,9 +1,9 @@
-Oliver Manzi/Container Park 6/0706661122/1998-01-01-2121
-Oliver Manzi/Container Park 76/060889911/1987-11-00-0000
-Lucas Fredin/Gärdesvägen 71/0767778811/1994-12-06-1111
-Hanien Kobus/FarFarAway Alley 12/060112233/1980-12-06-2201
-Hanien Kobus/FarAway Street 68/0701992191/1910-12-06-1111
-Hanien Kobus/SuperFarAway complex 09B/1000110/2001-12-06-2021
-Fabian Froding/SomwhereThere Gatan 1/0739922111/1994-12-06-9891
-Majd Hatoum/Apartment complex 100B/0760002121/1994-12-06-1011
-linda green/gatan 3/0709873232/199632829911
+Oliver Manzi/Container Park 6/1998-01-01-2121/0706661122
+Oliver Manzi/Container Park 76/1987-11-00-0000/060889911
+Lucas Fredin/Gärdesvägen 71/1994-12-06-1111/0767778811
+Hanien Kobus/FarFarAway Alley 12/1980-12-06-2201/060112233
+Hanien Kobus/FarAway Street 68/1910-12-06-1111/0701992191
+Hanien Kobus/SuperFarAway complex 09B/2001-12-06-2021/1000110
+Fabian Froding/SomwhereThere Gatan 1/1994-12-06-9891/0739922111
+Majd Hatoum/Apartment complex 100B/1994-12-06-1011/0760002121
+linda green/gatan 3/199632829911/0709873232

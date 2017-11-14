@@ -1,6 +1,10 @@
 package library;
 
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 import library.Library.bookKey;
@@ -19,9 +23,13 @@ public class Test {
 		// System.out.println("hello t");
 		library = new Library();
 		
+		//faulty!: for some reason it prints catch text too- is it with the 
+		//customer perhaps??
 		try {
+			System.out.println("Text files loaded successfully");
 			library.bookDirectory();
 			library.customerDirectory();
+			
 		} catch (Exception e) {
 			System.out.println("Was not able to load text files");
 		}
@@ -126,25 +134,43 @@ public class Test {
 	public void addBook() {
 		
 		//ADD FUNCTION TO WRITE TO TXT FILE!
-
+		String hopString = scanner.nextLine();
 		System.out.println("Creating new book:");
 		System.out.println("Enter title: ");
-		String title = scanner.next();
+		String title = scanner.nextLine();
 		System.out.println("Enter author: ");
-		String author = scanner.next();
+		String author = scanner.nextLine();
 		System.out.println("Enter publisher: ");
-		String publisher = scanner.next();
+		String publisher = scanner.nextLine();
 		System.out.println("Enter genre: ");
-		String genre = scanner.next();
+		String genre = scanner.nextLine();
 		System.out.println("Enter shelf: ");
-		String shelf = scanner.next();
+		String shelf = scanner.nextLine();
 
-		try {
+		try { //do i have to add book here or no?? since i add it to the text file below..
 			library.addBook(new Book(title, author, publisher, genre, shelf));
-			System.out.println("Added " + title + " to library");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		//adding user input to text file://
+		//Make sure no necessary fields are empty//
+		if (!title.equals("") && !author.equals("")
+				&& !publisher.equals("") && !genre.equals("")
+				&& !shelf.equals("")) {
+			
+			try (PrintWriter out = new PrintWriter(
+					new BufferedWriter(new FileWriter("res/bookDirectory.txt", true)))) {
+				out.println(title + "-" + author + "-" + publisher
+						+ "-" + genre + "-" + shelf);
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
+			}
+			System.out.println("Added " + title + " to library");
+		}else if (title.equals("") && author.equals("")
+				&& publisher.equals("") && genre.equals("")
+				&& shelf.equals("")) {
+			System.out.println("No parameters allowed to be empty");
+		}			
 	}
 
 	public void removeBook() { //WILL THIS WORK OR NOT???
