@@ -212,13 +212,11 @@ public class Library {
 		customers.remove(customer);
 	}
 
-	/*---------------------loan and return-----------------*/
+	/*TODO: ---------------------loan and return-----------------*/
 
-	/*
-	 * TODO loan book
-	 */
 	public void borrowBook(String bookTitle, String personnummer) throws Exception {
-		Customer customer = this.findCustomerBy();
+		
+		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnummer);
 		Book book = findBookBy(TITLE, bookTitle);
 		// assumes default loanPeriod
 		sortBooksBy(TITLE);
@@ -240,22 +238,24 @@ public class Library {
 
 	}
 
-	public void borrowBookDay(String bookTitle, UUID customerId, int loanPeriod) throws Exception {
-		Customer customer = findCustomerById(customerId);
-		
+	public void borrowBookDay(String bookTitle, String personnummer, int loanPeriod) throws Exception {
+		Customer customer = findCustomerBy(customerKey.PERSONNUMMER, personnummer);
 		Book book = findBookBy(TITLE, bookTitle);
+		
 		// assumes default loanPeriod
-
 		if (customer == null) {
 			throw new Exception("Customer is not in System.");
-		} else if (book == null) {
-			throw new Exception("Book is (currently) not in directory");
-		} else if (loanPeriod <= 0) {
-			throw new Exception("Loan Period needs to be larger than zero");
 		}
-
+		if (book == null) {
+			throw new Exception("Book is (currently) not in directory");
+		} 
+		
+		if (loanPeriod <= 0) {
+			throw new Exception("Loan Period needs to be larger than zero");
+		}else {
+			book.setReturnDate(this.date.plusDays(loanPeriod));
+		}
 		book.setStartDate(this.date);
-		book.setReturnDate(this.date.plusDays(loanPeriod));
 		book.incrementTimesBorrowed();
 		loanedBooks.add(book);
 		customer.addToCurrentLoan(book);
@@ -264,25 +264,19 @@ public class Library {
 
 	}
 
-	public void returnBook(String bookTitle, UUID customerId) {
+	public void returnBook(String bookTitle, String personnummer) throws Exception{
 		/*
 		 * TODO: -check date //done -calculate debt //done -increment customer debt //
 		 * done -restart book date //done -return book to library //done -remove book
 		 * out of loanedBooks library -remove book from customer currentBooks //done
 		 */
 
-		Customer customer = findCustomerById(customerId);
-		Book book = null;
-		try {
-			book = findBookBy(TITLE, bookTitle);
-		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		Customer customer = findCustomerBy(customerKey.PERSONNUMMER, personnummer);
+		Book book = findBookBy(bookKey.TITLE, bookTitle);
+		
 		int debt = this.checkDelay(book) * 2;
 		customer.setDebt(debt);
-
+		
 		/*
 		 * TODO we need to "restart" the dates once the book is returned
 		 * book.restartDates(); book.restartLoanPeriod(); book.notDelayed();

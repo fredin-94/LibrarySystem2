@@ -63,9 +63,13 @@ public class Test {
 				userInput = scanner.nextInt();
 
 				if (userInput == 1) {
-					this.borrowBook();
+					try {
+						this.borrowBook();
+					} catch (Exception e) {e.getMessage();}
 				} else if (userInput == 2) {
-					this.returnBook();
+					try {
+						this.returnBook();
+					} catch (Exception e) {e.getMessage();}
 				} else if (userInput == 0) {
 
 				}
@@ -166,27 +170,36 @@ public class Test {
 		
 	}
 
-	public void borrowBook() {
+	public void borrowBook() throws Exception{
 		//ADD FUNCTION TO REMOVE FROM TXT FILE AND ADD TO OTHER TXT FILE
 		//must create txt file for customers borrowed books, create that when customer borrows their
 		//first book, or create one for every customer when they are first created
 		System.out.println("Enter title of book to borrow:");
 		String title = scanner.nextLine();
+		
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine();
 
 		// customer should borrow with psn instead??
-		library.borrowBook(title, psn);
+		if(title.equals("") || psn.equals("")) {
+			throw new Exception ("Empty title or social security number");
+		}else {
+			library.borrowBook(title, psn);
+		}
 	}
 
-	public void returnBook() {
+	public void returnBook() throws Exception{
 		//ADD FUNCTION TO REMOVE FROM TXT FILE AND ADD TO OTHER TXT FILE
 		System.out.println("Enter title of book to return:");
 		String title = scanner.nextLine();
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine();
 
-		library.returnBook(title, psn);
+		if(title.equals("") || psn.equals("")) {
+			throw new Exception ("Empty title or social security number");
+		}else {
+			library.returnBook(title, psn);
+		}
 	}
 
 	public void searchBook() {
