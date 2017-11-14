@@ -105,7 +105,7 @@ public class Library {
 	// DON'T CHANGE FORMAT PLEASE.
 	
 	public enum bookKey {TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID}
-	public enum customerKey {NAME, ADRESS, NUMBER, DEBT, ID}
+	public enum customerKey {NAME, ADRESS, NUMBER, DEBT, ID, PERSONNUMMER}
 	
 	public Book findBookBy(bookKey key, String searchValue) throws InvalidKeyException {
 		searchValue.toLowerCase();
@@ -141,6 +141,7 @@ public class Library {
 			case ID:
 				f = Customer::getID;
             	for (Customer customer : customers) if (customer.getID().toString().equals(searchValue)) return customer;
+			case PERSONNUMMER: f = Customer::getPersonnummer; return findCustomerByString(f, searchValue);
 			default: throw new InvalidKeyException("Invalid keyexception in search function");
 		}
 	}
