@@ -6,9 +6,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Book {
-
+	
 	//*** ATTRIBUTES ***//
-
 	// G stuff
 	private UUID id;
 	private String title;
@@ -137,8 +136,14 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book Title: " + title + ", Authors: " + authors + ", Genre: " + genres + ", Publisher: " + publisher
-				+ ", Shelf: " + shelf + ", Times Borrowed: " + timesBorrowed;
+		return "----------------------------------------------------------" + System.lineSeparator() +
+				"Book Title: " + this.title + System.lineSeparator() + 
+				", Authors: " + this.authors + System.lineSeparator() + 
+				", Genre: " + this.genres + System.lineSeparator() +  
+				", Publisher: " + this.publisher + System.lineSeparator() +
+				", Shelf: " + this.shelf + System.lineSeparator() + 
+				", Times Borrowed: " + this.timesBorrowed + System.lineSeparator() +
+				"----------------------------------------------------------";
 	}
 	
 	
