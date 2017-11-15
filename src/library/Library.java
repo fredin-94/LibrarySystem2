@@ -338,7 +338,7 @@ public class Library {
 	//returns delay surplus
 	public int checkDelay(Book book) {
 		if (this.date.compareTo(book.getReturnDate()) > 0) {
-			return (int) ChronoUnit.DAYS.between(book.getReturnDate(), LocalDate.now());
+			return (int) ChronoUnit.DAYS.between(book.getReturnDate(), this.date);
 		} else {
 			return 0;
 		}
@@ -367,6 +367,7 @@ public class Library {
 	        
 	    }
 	}
+	
 	//Reading a txt file into arraylist (Customers)// 
 	public void customerDirectory() throws Exception {
 		Scanner input = new Scanner(new File("res/customer.txt"));
