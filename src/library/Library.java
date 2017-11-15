@@ -72,49 +72,61 @@ public class Library {
 	public enum bookKey {TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID}
 	public enum customerKey {NAME, ADRESS, NUMBER, DEBT, ID, PERSONNUMMER}
 	
+	// ----- Search for book ----- //
+	// Use findBookBy for title, genre, publisher and ID. Returns Book.
+	// Use findBooksBy for author and shelf. Returns ArrayList<Book>.
+	
 	public Book findBookBy(bookKey key, String searchValue) throws InvalidKeyException {
 		searchValue.toLowerCase();
 		Function<Book, ? extends Comparable> f = null;
         switch (key) {
-            case TITLE: f = Book::getTitle; return findBookByString(f, searchValue); // No need for break since the return automatically breaks the switch.
-            case AUTHOR: f = Book::getAuthor; return findBookByString(f, searchValue);
-            case GENRE: f = Book::getGenre; return findBookByString(f, searchValue);
-            case PUBLISHER: f = Book::getPublisher; return findBookByString(f, searchValue);
-            case SHELF: f = Book::getShelf; return findBookByString(f, searchValue);
+            case TITLE: f = Book::getTitle; return findBookByString(searchValue, f); // No need for break since the return automatically breaks the switch.
+            case GENRE: f = Book::getGenre; return findBookByString(searchValue, f);
+            case PUBLISHER: f = Book::getPublisher; return findBookByString(searchValue, f);
             case ID:
             	f = Book::getId;
             	for (Book book : books) if (book.getId().toString().equals(searchValue)) return book;
             default: throw new InvalidKeyException("Invalid key in search function.");
         }
-    }
-	private Book findBookByString(Function<Book, ? extends Comparable> f, String searchValue) throws NullPointerException {
-		for (Book book : this.books) {
-            String s = (String)f.apply(book);
-            if (searchValue.equals(s.toLowerCase())) return book;
+	}
+	public ArrayList<Book> findBooksBy(bookKey key, String searchValue) throws InvalidKeyException {
+		searchValue.toLowerCase();
+		Function<Book, ? extends Comparable> f = null;
+		switch (key) {
+	        case AUTHOR: f = Book::getAuthor; return findBooksByString(searchValue);
+	        case SHELF: f = Book::getShelf; return findBooksByString(searchValue);
+	        default: throw new InvalidKeyException("Invalid key in search function.");
 		}
-		throw new NullPointerException("Book not found.");
+	}
+	private Book findBookByString(String s, Function<Book, ? extends Comparable> f) throws NullPointerException {
+		s.toLowerCase();
+		for (Book book : this.books) if (s.equals(((String)f.apply(book)).toLowerCase())) return book;
+		return null;
+	}
+	private ArrayList<Book> findBooksByString(String s) throws NullPointerException {
+		s.toLowerCase();
+		ArrayList<Book> books = new ArrayList<Book>();
+		for (Book book : this.books) {
+			for (int i = 0; i < book.getAuthors().size(); i++) if (s.equals(book.getAuthors().get(i).toLowerCase())) books.add(book);
+		}
+		return books;
 	}
 	
+	// ----- Search for customer ----- //
 	public Customer findCustomerBy(customerKey key, String searchValue) throws InvalidKeyException {
 		searchValue.toLowerCase();
 		Function<Customer, ? extends Comparable> f = null;
 		switch(key) {
-			case NAME: f = Customer::getName; return findCustomerByString(f, searchValue);
-			case ADRESS:  f = Customer::getAdress; return findCustomerByString(f, searchValue);
-			case NUMBER:  f = Customer::getNumber; return findCustomerByString(f, searchValue);
-			// No need to find customer by debt (lol).
-			case ID:
-				f = Customer::getID;
-            	for (Customer customer : customers) if (customer.getID().toString().equals(searchValue)) return customer;
-			case PERSONNUMMER: f = Customer::getPersonnummer; return findCustomerByString(f, searchValue);
-			default: throw new InvalidKeyException("Invalid keyexception in search function");
+			case NAME: f = Customer::getName; return findCustomerByString(searchValue, f);
+			case ADRESS:  f = Customer::getAdress; return findCustomerByString(searchValue, f);
+			case NUMBER:  f = Customer::getNumber; return findCustomerByString(searchValue, f);
+			case ID: for (Customer customer : customers) if (customer.getID().toString().equals(searchValue)) return customer;
+			case PERSONNUMMER: f = Customer::getPersonnummer; return findCustomerByString(searchValue, f);
+			default: throw new InvalidKeyException("Invalid enum key in search customer function");
 		}
 	}
-	private Customer findCustomerByString(Function<Customer, ? extends Comparable> f, String searchValue) throws NullPointerException {
-		for (Customer customer : customers) {
-			String s = (String)f.apply(customer);
-			if (searchValue.equals(s.toLowerCase())) return customer;
-		}
+	private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f) throws NullPointerException {
+		for (Customer customer : customers) if (searchValue.equals(((String)f.apply(customer)).toLowerCase())) return customer;
 		throw new NullPointerException("Customer not found.");
 	}
 
@@ -133,8 +145,7 @@ public class Library {
 			case GENRE: return Book::getGenre;
 			case PUBLISHER: return Book::getPublisher;
 			case SHELF: return Book::getShelf;
-			// No need to sort by ID here.
-			default: throw new InvalidKeyException("Invalid key in sort function");
+			default: throw new InvalidKeyException("Invalid key in sort book function");
 		}
 	}
 
@@ -147,8 +158,7 @@ public class Library {
 				case DEBT:
 					// TODO: Needs testing. Not sure if this works for primitive types.
 					Collections.sort(customers, Comparator.comparing(Customer::getDebt)); break;
-				// No need to sort by ID here.
-				default: throw new InvalidKeyException("Invalid key in sort function");
+				default: throw new InvalidKeyException("Invalid key in customer sort function");
 			}
 		} catch (InvalidKeyException ike) {ike.printStackTrace();}
 	}
