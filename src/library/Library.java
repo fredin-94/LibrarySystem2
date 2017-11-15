@@ -65,46 +65,6 @@ public class Library {
 	public ArrayList<Customer> getCustomers() {
 		return customers;
 	}
-
-	/* TODO ---------------------SEARCH------------------------------ */
-	
-	/* Search for books in the library directory */
-
-	/* Search for Customers in the library directory */
-
-	// there could be more than one person with the same name
-	public ArrayList<Customer> findCustomersByName(String name) {
-		ArrayList<Customer> foundCustomers = new ArrayList<Customer>();
-		for (Customer customer : customers) {
-			if (customer.getName().equals(name)) {
-				foundCustomers.add(customer);
-			}
-		}
-
-		if (foundCustomers.isEmpty()) {
-			return null;
-		} else {
-			return foundCustomers;
-		}
-	}
-
-	public Customer findCustomerByName(String name) {
-		for (Customer customer : customers) {
-			if (customer.getName().equals(name)) {
-				return customer;
-			}
-		}
-		return null;
-	}
-
-	public Customer findCustomerById(UUID id) {
-		for (Customer customer : customers) {
-			if (customer.getID().equals(id)) {
-				return customer;
-			}
-		}
-		return null;
-	}
 	
 	/*---------------------SEARCH------------------------------*/
 	// DON'T CHANGE FORMAT PLEASE.
