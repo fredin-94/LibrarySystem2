@@ -87,15 +87,15 @@ public class Library {
             default: throw new InvalidKeyException("Invalid key in search function.");
         }
     }
-	private Book findBookByString(Function<Book, ? extends Comparable> f, String searchValue) {
+	private Book findBookByString(Function<Book, ? extends Comparable> f, String searchValue) throws NullPointerException {
 		for (Book book : this.books) {
             String s = (String)f.apply(book);
             if (searchValue.equals(s.toLowerCase())) return book;
 		}
-		return null;
+		throw new NullPointerException("Book not found.");
 	}
 	
-	public Customer findCustomerBy(customerKey key, String searchValue) throws InvalidKeyException, NullPointerException {
+	public Customer findCustomerBy(customerKey key, String searchValue) throws InvalidKeyException {
 		searchValue.toLowerCase();
 		Function<Customer, ? extends Comparable> f = null;
 		switch(key) {
@@ -110,12 +110,12 @@ public class Library {
 			default: throw new InvalidKeyException("Invalid keyexception in search function");
 		}
 	}
-	private Customer findCustomerByString(Function<Customer, ? extends Comparable> f, String searchValue) {
+	private Customer findCustomerByString(Function<Customer, ? extends Comparable> f, String searchValue) throws NullPointerException {
 		for (Customer customer : customers) {
 			String s = (String)f.apply(customer);
 			if (searchValue.equals(s.toLowerCase())) return customer;
 		}
-		return null;
+		throw new NullPointerException("Customer not found.");
 	}
 
 	/*---------------------SORTING------------------------------*/
@@ -143,14 +143,12 @@ public class Library {
 			switch (keyToSort) {
 				case NAME: Collections.sort(customers, Comparator.comparing(Customer::getName)); break;
 				case ADRESS: Collections.sort(customers, Comparator.comparing(Customer::getAdress)); break;
-				case NUMBER:
-					// TODO: NEEDS testing. Not sure if this works for primitive types.
-					Collections.sort(customers, Comparator.comparing(Customer::getNumber)); break;
+				case NUMBER: Collections.sort(customers, Comparator.comparing(Customer::getNumber)); break;
 				case DEBT:
-					// TODO: Same as above.
+					// TODO: Needs testing. Not sure if this works for primitive types.
 					Collections.sort(customers, Comparator.comparing(Customer::getDebt)); break;
 				// No need to sort by ID here.
-				default:throw new InvalidKeyException("Invalid key in sort function");
+				default: throw new InvalidKeyException("Invalid key in sort function");
 			}
 		} catch (InvalidKeyException ike) {ike.printStackTrace();}
 	}
