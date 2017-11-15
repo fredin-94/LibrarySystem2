@@ -11,10 +11,8 @@ public class Book {
 	// G stuff
 	private UUID id;
 	private String title;
-	//private ArrayList<String> authors;
-	//private ArrayList<String> genre;
-	private String authors;
-	private String genres;
+	private ArrayList<String> authors;
+	private String genre;
 	private String publisher;
 	private String shelf;
 
@@ -33,8 +31,8 @@ public class Book {
 			throw new Exception("Input argument cannot be empty.");
 		} else {
 			this.title = title;
-			this.authors = authors;
-			this.genres = genre;
+			this.authors = new ArrayList<String>(Arrays.asList(authors.split(",")));
+			this.genre = genre;
 			this.publisher = publisher;
 			this.shelf = shelf;
 		}
@@ -49,7 +47,8 @@ public class Book {
 		return this.title;
 	}
 
-	public String getAuthor(){
+	public String getAuthor() {return this.authors.get(0);}
+	public ArrayList<String> getAuthors(){
 		/*String res = ": ";
 		if(authors.size() == 1){
 			return authors.get(0);
@@ -63,24 +62,11 @@ public class Book {
 			}
 			return res;
 		}*/
-		return authors;
+		return this.authors;
 	}
 
-	public String getGenre(){
-		/*String res = ": ";
-		if(genre.size() == 1){
-			return genre.get(0);
-		} else {
-			for(int i = 0; i < genre.size(); i++){
-				if(i == genre.size()-1) {
-					res += genre.get(i);
-				} else {
-					res += genre.get(i) + ", ";
-				}
-			}
-			return res;
-		}*/
-		return genres;
+	public String getGenre() {
+		return this.genre;
 	}
 
 	public String getPublisher(){
@@ -139,7 +125,7 @@ public class Book {
 		return "----------------------------------------------------------" + System.lineSeparator() +
 				"Book Title: " + this.title + System.lineSeparator() + 
 				", Authors: " + this.authors + System.lineSeparator() + 
-				", Genre: " + this.genres + System.lineSeparator() +  
+				", Genre: " + this.genre + System.lineSeparator() +  
 				", Publisher: " + this.publisher + System.lineSeparator() +
 				", Shelf: " + this.shelf + System.lineSeparator() + 
 				", Times Borrowed: " + this.timesBorrowed + System.lineSeparator() +
