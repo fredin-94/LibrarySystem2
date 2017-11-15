@@ -2,80 +2,79 @@ package library;
 
 public class Menu {
 
-	public void getMenu() {
-		System.out.println(
-		"\n =================================================== "
-		+ " ==             Library System                    == "
-		+ " =================================================== "
-		+ " ===                                             === "
-		+ " ===   Choose an option below:                   === "
-		+ " ===   1. Search library directory               === "
-		+ " ===   2. Borrow/Return books                    === "
-		+ " ===   3. Administartion                         === "
-		+ " ===   4. Time Simulator FX40000                 === "
-		+ " ===   Press Q to quit                           === "
-		+ " ===                                             === "
-		+ " =================================================== \n");
-	}
+    public void getMainMenu() {
+        System.out.println("\n =================================================== " + System.lineSeparator()
+                + " ==             Library System                    == " + System.lineSeparator()
+                + " =================================================== " + System.lineSeparator()
+                + " ===                                             === " + System.lineSeparator()
+                + " ===   Choose an option below:                   === " + System.lineSeparator()
+                + " ===   1. Search library directory               === " + System.lineSeparator()
+                + " ===   2. Borrow/Return books                    === " + System.lineSeparator()
+                + " ===   3. Administartion                         === " + System.lineSeparator()
+                + " ===   4. Time Simulator FX40000                 === " + System.lineSeparator()
+                + " ===   Press Q to quit                           === " + System.lineSeparator()
+                + " ===                                             === " + System.lineSeparator()
+                + " =================================================== \n");
+    }
 	
 	public void getSearch() {
 		System.out.println(
-		"\n =================================================== "
-		+ " ==             Search System                     == "
-		+ " =================================================== "
-		+ " ===                                             === "
-		+ " ===   Choose an option below:                   === "
-		+ " ===   1. Search for book                        === "
-		+ " ===   2. Show and sort books                    === "
-		+ " ===   3. Search for customers                   === "
-		+ " ===   4. Show all customers                     === "
-		+ " ===   0. Quit search                            === "
-		+ " ===                                             === "
+		"\n =================================================== "+ System.lineSeparator()
+		+ " ==             Search System                     == "+ System.lineSeparator()
+		+ " =================================================== "+ System.lineSeparator()
+		+ " ===                                             === "+ System.lineSeparator()
+		+ " ===   Choose an option below:                   === "+ System.lineSeparator()
+		+ " ===   1. Search for book                        === "+ System.lineSeparator()
+		+ " ===   2. Show and sort books                    === "+ System.lineSeparator()
+		+ " ===   3. Search for customers                   === "+ System.lineSeparator()
+		+ " ===   4. Show all customers                     === "+ System.lineSeparator()
+		+ " ===   0. Quit search                            === "+ System.lineSeparator()
+		+ " ===                                             === "+ System.lineSeparator()
 		+ " =================================================== \n");
 	}
 	
 	public void getBookOptions() {
 		System.out.println(
-		"\n =================================================== "
-		+ " ==             Borrow or return books            == "
-		+ " =================================================== "
-		+ " ===                                             === "
-		+ " ===   Choose an option below:                   === "
-		+ " ===   1. Borrow book                            === "
-		+ " ===   2. Return book                            === "
-		+ " ===   0. Quit search                            === "
-		+ " ===                                             === "
+		"\n =================================================== "+ System.lineSeparator()
+		+ " ==             Borrow or return books            == "+ System.lineSeparator()
+		+ " =================================================== "+ System.lineSeparator()
+		+ " ===                                             === "+ System.lineSeparator()
+		+ " ===   Choose an option below:                   === "+ System.lineSeparator()
+		+ " ===   1. Borrow book                            === "+ System.lineSeparator()
+		+ " ===   2. Return book                            === "+ System.lineSeparator()
+		+ " ===   0. Quit search                            === "+ System.lineSeparator()
+		+ " ===                                             === "+ System.lineSeparator()
 		+ " =================================================== \n");
 	}
 	
 	public void getAdministration() {
 		System.out.println(
-		"\n =================================================== "
-		+ " ==             Administration System             == "
-		+ " =================================================== "
-		+ " ===                                             === "
-		+ " ===   Choose an option below:                   === "
-		+ " ===   1. Add Book                               === "
-		+ " ===   2. Remove Book                            === "
-		+ " ===   3. Add Customer                           === "
-		+ " ===   4. Remove Customer                        === "
-		+ " ===   Press Q to quit                           === "
-		+ " ===                                             === "
+		"\n =================================================== "+ System.lineSeparator()
+		+ " ==             Administration System             == "+ System.lineSeparator()
+		+ " =================================================== "+ System.lineSeparator()
+		+ " ===                                             === "+ System.lineSeparator()
+		+ " ===   Choose an option below:                   === "+ System.lineSeparator()
+		+ " ===   1. Add Book                               === "+ System.lineSeparator()
+		+ " ===   2. Remove Book                            === "+ System.lineSeparator()
+		+ " ===   3. Add Customer                           === "+ System.lineSeparator()
+		+ " ===   4. Remove Customer                        === "+ System.lineSeparator()
+		+ " ===   Press Q to quit                           === "+ System.lineSeparator()
+		+ " ===                                             === "+ System.lineSeparator()
 		+ " =================================================== \n");
 	}
 	
 	public void getSimulator() {
 		System.out.println(
-		"\n =================================================== "
-		+ " ==             Simulator System                  == "
-		+ " =================================================== "
-		+ " ===                                             === "
-		+ " ===   Choose an option below:                   === "
-		+ " ===   1. Increment Days                         === "
-		+ " ===   2. Increment Months                       === "
-		+ " ===   3. Increment Years                        === "
-		+ " ===   Press Q to quit                           === "
-		+ " ===                                             === "
+		"\n =================================================== "+ System.lineSeparator()
+		+ " ==             Simulator System                  == "+ System.lineSeparator()
+		+ " =================================================== "+ System.lineSeparator()
+		+ " ===                                             === "+ System.lineSeparator()
+		+ " ===   Choose an option below:                   === "+ System.lineSeparator()
+		+ " ===   1. Increment Days                         === "+ System.lineSeparator()
+		+ " ===   2. Increment Months                       === "+ System.lineSeparator()
+		+ " ===   3. Increment Years                        === "+ System.lineSeparator()
+		+ " ===   Press Q to quit                           === "+ System.lineSeparator()
+		+ " ===                                             === "+ System.lineSeparator()
 		+ " =================================================== \n");
 	}
 }

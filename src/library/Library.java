@@ -365,14 +365,16 @@ public class Library {
 			String genre = input.next();
 			String shelf = input.next();
 	        
-	        Book book;
+	        Book book = null;
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
-				books.add(book);
+
 			} catch (Exception e) {
 				e.printStackTrace();
+			} finally {
+				books.add(book);
 			}
-	        
+
 	    }
 	}
 	

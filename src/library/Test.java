@@ -15,119 +15,153 @@ import static library.Library.customerKey.*;
 public class Test {
 
 	//Make attributes private?
-	Menu menu = new Menu();
-	Scanner scanner = new Scanner(System.in);
-	Library library;
+    private Menu menu = new Menu();
+	private Scanner scanner = new Scanner(System.in);
+	private Library library;
 
 	public Test() {
-		// System.out.println("hello t");
-		library = new Library();
+        library = new Library();
 		
 		//faulty!: for some reason it prints catch text too- is it with the 
 		//customer perhaps??
-		try {
+		/*try {
 			System.out.println("Text files loaded successfully");
 			library.bookDirectory();
 			library.customerDirectory();
 			
 		} catch (Exception e) {
 			System.out.println("Was not able to load text files");
-		}
+		}*/
 	}
 
-	public static void main(String[] args) {
-		// System.out.println("hello m");
-		Test test = new Test();
-		test.run();
-
-	}
 
 	public void run() {
-		// System.out.println("run method");
 		int userInput;
 		String quit; // use this?
 
 		do {
-			// Make option to return to main menu!!
-			// System.out.println("running");
-			menu.getMenu();
+			menu.getMainMenu();
 
 			userInput = scanner.nextInt();
-			quit = scanner.nextLine();
+			scanner.nextLine();
+			//quit = scanner.nextLine();
 
 			switch (userInput) {
-			case 1:
-				menu.getSearch();
-				userInput = scanner.nextInt();
-
-				if (userInput == 1) {
-					this.searchBook();
-				} else if (userInput == 2) {
-					this.sortBooks();
-				} else if (userInput == 3) {
-					this.searchCustomer();
-				} else if (userInput == 4) {
-					this.showCustomers();
-				} else if (userInput == 0) { // DOES THIS GO BACK TO MAIN MENU?
-					break;
-				}
-
-				break;
-			case 2:
-				menu.getBookOptions();
-				userInput = scanner.nextInt();
-
-				if (userInput == 1) {
-					try {
-						this.borrowBook();
-					} catch (Exception e) {e.getMessage();}
-				} else if (userInput == 2) {
-					try {
-						this.returnBook();
-					} catch (Exception e) {e.getMessage();}
-				} else if (userInput == 0) {
-
-				}
-				break;
-			case 3:
-				menu.getAdministration();
-				userInput = scanner.nextInt();
-
-				if (userInput == 1) {
-					this.addBook();
-				} else if (userInput == 2) {
-					this.removeBook();
-				} else if (userInput == 3) {
-					this.addCustomer();
-				} else if (userInput == 4) {
-					this.removeCustomer();
-				} else if (userInput == 0) {
-
-				}
-
-				break;
-			case 4:
-				menu.getSimulator();
-				userInput = scanner.nextInt();
-
-				if (userInput == 1) {
-					this.incrementDays();
-				} else if (userInput == 2) {
-					this.incrementMonths();
-				} else if (userInput == 3) {
-					this.incrementYears();
-				} else if (userInput == 0) {
-
-				}
-
-				break;
-
-			default:
-				break;
-			}
-
+                case 1:
+                    menu.getSearch();
+                    userInput = scanner.nextInt();
+                    handleSearchMenu(userInput);
+                    break;
+                case 2:
+                    menu.getBookOptions();
+                    userInput = scanner.nextInt();
+                    handleBookMenu(userInput);
+                    break;
+                case 3:
+                    menu.getAdministration();
+                    userInput = scanner.nextInt();
+                    handleAdmin(userInput);
+                    break;
+                case 4:
+                    menu.getSimulator();
+                    userInput = scanner.nextInt();
+                    handleTimeSimMenu(userInput);
+                    break;
+                case 0:
+                    System.exit(0);
+                default:
+                    System.out.println("Not a valid option");
+                    break;
+                }
 		} while (userInput != 0);
 	}
+
+	public void handleSearchMenu(int option){
+	    switch(option){
+            case 1:
+                this.searchBook();
+                break;
+            case 2:
+                this.sortBooks();
+                break;
+            case 3:
+                this.searchCustomer();
+                break;
+            case 4:
+                this.showCustomers();
+                break;
+            case 0:
+                menu.getMainMenu();
+                break;
+            default:
+                System.out.println("Not a valid option.");
+                break;
+        }
+    }
+
+    public void handleBookMenu(int option){
+	    switch (option){
+            case 1:
+                try {
+                    borrowBook();
+                } catch(Exception e){e.getMessage();}
+                break;
+            case 2:
+                try {
+                    returnBook();
+                } catch (Exception e) {e.getMessage();}
+                break;
+            case 0:
+                menu.getMainMenu();
+                break;
+            default:
+                System.out.println("Not a valid option");
+                break;
+        }
+    }
+
+    public void handleAdmin(int option){
+        switch (option){
+            case 1:
+                addBook();
+                break;
+            case 2:
+                removeBook();
+                break;
+            case 3:
+                addCustomer();
+                break;
+            case 4:
+                removeCustomer();
+                break;
+            case 0:
+                menu.getMainMenu();
+                break;
+            default:
+                System.out.println("Not a valid option");
+                break;
+        }
+    }
+
+    public void handleTimeSimMenu(int option){
+        switch (option){
+            case 1:
+                incrementDays();
+                break;
+            case 2:
+                incrementMonths();
+                break;
+            case 3:
+                incrementYears();
+                break;
+            case 0:
+                menu.getMainMenu();
+                break;
+            default:
+                System.out.println("Not a valid option");
+                break;
+        }
+    }
 
 	// Methods - everything is void now - change that if needed
 	// -- Book handling methods --//
@@ -484,6 +518,13 @@ public class Test {
 		}
 		//here we also should be able to get loan history from only entering the PSN!!
 	}
+
+    public static void main(String[] args) {
+        // System.out.println("hello m");
+        Test test = new Test();
+        test.run();
+
+    }
 }
 
 // TODO: things i wrote in my comments above, and add options for VG things !!,
