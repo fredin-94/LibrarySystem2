@@ -390,8 +390,14 @@ public class Library {
 			String phoneNumber = input.next();
 			String psn = input.next();
 	        
-			Customer customer = new Customer(name, address, phoneNumber, psn);
-	        customers.add(customer);
+			Customer customer = null;
+			try {
+				customer = new Customer(name, address, phoneNumber, psn);
+			} catch (Exception e){
+				e.printStackTrace();
+			} finally {
+				customers.add(customer);
+			}
 	    }
 	}
 

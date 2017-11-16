@@ -48,7 +48,7 @@ public class Customer {
 	public Customer(String name, String adress, String personnummer, String number) throws Exception {
 		this(name, adress, personnummer);// calling the first constructor.
 
-		if (number.matches("[0-9]+") && number.length() == 10) {// This checks the number of digits of (number).
+		if (number.trim().matches("[0-9]+") && number.trim().length() == 10) {// This checks the number of digits of (number).
 			this.number = number;
 		} else {
 			throw new Exception("Phone number MUST consist of 10 digits");
@@ -113,7 +113,7 @@ public class Customer {
 	}
 
 	public void setNumber(String newNumber) throws Exception {
-		if (newNumber.matches("[0-9]+") && newNumber.length() == 10) {
+		if (newNumber.trim().matches("[0-9]+") && newNumber.trim().length() == 10) {
 			this.number = newNumber;
 		} else {
 			throw new Exception("Phone number MUST consist of 10 digits");
