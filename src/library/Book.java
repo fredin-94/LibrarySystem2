@@ -47,7 +47,7 @@ public class Book {
 		return this.title;
 	}
 
-	public String getAuthor() {return this.authors.get(0);}
+	public String getAuthor() {return this.authors.get(0) +"," + this.authors.get(1);}
 	public ArrayList<String> getAuthors(){
 		/*String res = ": ";
 		if(authors.size() == 1){
@@ -122,14 +122,14 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "----------------------------------------------------------" + System.lineSeparator() +
+		return "\n" + "----------------------------------------------------------" + System.lineSeparator() +
 				"Book Title: " + this.title + System.lineSeparator() + 
 				", Authors: " + this.authors + System.lineSeparator() + 
 				", Genre: " + this.genre + System.lineSeparator() +  
 				", Publisher: " + this.publisher + System.lineSeparator() +
 				", Shelf: " + this.shelf + System.lineSeparator() + 
 				", Times Borrowed: " + this.timesBorrowed + System.lineSeparator() +
-				"----------------------------------------------------------";
+				"----------------------------------------------------------" + "\n";
 	}
 	
 	

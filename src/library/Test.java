@@ -1,10 +1,8 @@
 package library;
 
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import library.Library.bookKey;
@@ -90,8 +88,11 @@ public class Test {
             case 4:
                 this.showCustomers();
                 break;
+            case 5:
+                showAvailableBooks();
+                break;
             case 0:
-                menu.getMainMenu();
+                run();
                 break;
             default:
                 System.out.println("Not a valid option.");
@@ -112,7 +113,7 @@ public class Test {
                 } catch (Exception e) {e.getMessage();}
                 break;
             case 0:
-                menu.getMainMenu();
+                run();
                 break;
             default:
                 System.out.println("Not a valid option");
@@ -135,7 +136,7 @@ public class Test {
                 removeCustomer();
                 break;
             case 0:
-                menu.getMainMenu();
+				run();
                 break;
             default:
                 System.out.println("Not a valid option");
@@ -163,11 +164,20 @@ public class Test {
         }
     }
 
+    public ArrayList<Book> retrieveBookDirectory(){
+        try{
+            library.bookDirectory();
+        } catch(Exception e){
+            e.getMessage();
+        }
+        return library.getBooks();
+    }
+
 	// Methods - everything is void now - change that if needed
 	// -- Book handling methods --//
 	public void addBook() {
 		
-		//ADD FUNCTION TO WRITE TO TXT FILE!
+		//ADD FUNCTION TO WRITE TO TXT FILE! --DONE
 		String hopString = scanner.nextLine();
 		System.out.println("Creating new book:");
 		System.out.println("Enter title: ");
@@ -211,41 +221,67 @@ public class Test {
 		//ADD FUNCTION TO REMOVE FROM TXT FILE
 		//TODO: check if books arraylist contains ALL books in the library ever or only the ones currently in stock
 		System.out.println("Enter title of book to remove: ");
+		scanner.nextLine();
 		String title = scanner.nextLine();
-		String authors;
-		String publisher;
-		String genre;
-		String shelf;
-		for(int i = 0; i < library.getBooks().size(); i++) {
-			if(title.equals(library.getBooks().get(i).getTitle())) {
-				authors = library.getBooks().get(i).getAuthor();
-				publisher = library.getBooks().get(i).getPublisher();
-				genre = library.getBooks().get(i).getGenre();
-				shelf = library.getBooks().get(i).getShelf();
-				try {
-					library.removeBook(new Book(title, authors, publisher, genre, shelf));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}else {
-				System.out.println("No book by such title available for removal");
-			}
-		}
+
+            for (Book book : retrieveBookDirectory()) {
+                if (book.getTitle().equalsIgnoreCase(title)) {
+                    removeBookFromTxt(book.getTitle() + "-" + book.getAuthor() +
+                            "-" + book.getPublisher() + "-" + book.getGenre() + "-" + book.getShelf());
+                    library.removeBook(book);
+                    return;
+                } /*else {
+		        System.out.println("No book by that names");
+            }*/
+            }
+
 		// Need library method that goes through arraylist, finds the first book with
 		// this name
 		// and removes it ?? a method that only takes title string as a parameter!
-		
 	}
+
+	public void removeBookFromTxt(String lineToRemove){
+        try{
+            File dirFile = new File("res/bookDirectory.txt");
+            File tmpFile = new File(dirFile.getAbsolutePath() + ".tmp");
+            BufferedReader br = new BufferedReader(new FileReader("res/bookDirectory.txt"));
+            PrintWriter pw = new PrintWriter(new FileWriter(tmpFile));
+            String line;
+            while((line = br.readLine()) != null){
+                if(!line.equals(lineToRemove.trim())){
+                    pw.println(line);
+                    pw.flush();
+                }
+            }
+            System.gc();
+            pw.close();
+            br.close();
+            boolean success = dirFile.delete();
+            boolean renameSuccess = tmpFile.renameTo(dirFile);
+
+            if(success){
+                System.out.println("Old file deleted");
+            }
+            if(renameSuccess) {
+                System.out.println("file renamed");
+            }
+
+        } catch (Exception e){
+            e.getMessage();
+        }
+    }
 
 	public void borrowBook() throws Exception{
 		//ADD FUNCTION TO REMOVE FROM TXT FILE AND ADD TO OTHER TXT FILE
 		//must create txt file for customers borrowed books, create that when customer borrows their
 		//first book, or create one for every customer when they are first created
+        showAvailableBooks();
 		System.out.println("Enter title of book to borrow:");
+		scanner.nextLine();
 		String title = scanner.nextLine();
 		
 		System.out.println("Enter personal security number:");
+		scanner.nextLine();
 		String psn = scanner.nextLine();
 
 		// customer should borrow with psn instead??
@@ -356,6 +392,15 @@ public class Test {
 		}
 
 	}
+
+	public void showAvailableBooks(){
+        try {
+            library.bookDirectory();
+        }catch (Exception e) {
+            e.getMessage();
+        }
+        System.out.println(library.toString());
+    }
 
 	// -- Customer handling methods --//
 	public void addCustomer() {
@@ -518,6 +563,16 @@ public class Test {
 		}
 		//here we also should be able to get loan history from only entering the PSN!!
 	}
+
+	//** UTILS **//
+    private void initialReadDirectory(String path){
+        FileReader fr;
+        try {
+            new FileReader("res/bookDirectory.txt");
+        } catch(Exception e){
+            e.getMessage();
+        }
+    }
 
     public static void main(String[] args) {
         // System.out.println("hello m");

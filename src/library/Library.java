@@ -395,4 +395,14 @@ public class Library {
 	    }
 	}
 
+	@Override
+	public String toString(){
+	    String res = "";
+		for(Book book : books){
+		    res += book.toString() + System.lineSeparator();
+        }
+        System.out.println(res);
+        return res;
+	}
+
 }
