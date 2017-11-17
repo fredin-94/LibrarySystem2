@@ -19,8 +19,8 @@ public class Test {
 
 	public Test() {
         library = new Library();
-		
-		//faulty!: for some reason it prints catch text too- is it with the 
+
+		//faulty!: for some reason it prints catch text too- is it with the
 		//customer perhaps??
 		/*try {
 			System.out.println("Text files loaded successfully");
@@ -185,7 +185,7 @@ public class Test {
 	// Methods - everything is void now - change that if needed
 	// -- Book handling methods --//
 	public void addBook() {
-		
+
 		//ADD FUNCTION TO WRITE TO TXT FILE! --DONE
 		String hopString = scanner.nextLine();
 		System.out.println("Creating new book:");
@@ -356,7 +356,7 @@ public class Test {
 		System.out.println("3. Search book using publisher");
 		System.out.println("4. Search book using genre");
 		System.out.println("5. Search book using shelf");
-		
+
 		int userInput = scanner.nextInt();
 		scanner.nextLine();
 		try {
@@ -394,9 +394,9 @@ public class Test {
 		    e.getMessage();
         }
 	}
-	
+
 	//Seems ok//
-	public void sortBooks() { //doesnt work if the book starts with an lowercase letter, 
+	public void sortBooks() { //doesnt work if the book starts with an lowercase letter,
 		//also would be good to skip the "The" at the beginning of a book
 
 		System.out.println("Show all books: Choose what to sort by");
@@ -474,14 +474,14 @@ public class Test {
 		String phoneNumber = scanner.nextLine();
 		System.out.println("Enter customer personal security number: ");
 		String psn = scanner.nextLine();
-		
+
 		try {
             library.addCustomer(new Customer(name, address,psn, phoneNumber));
             writeCustomerToFile(name, address, phoneNumber, psn);
 		} catch (Exception e) {
 			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
 			addCustomer();
-		}	
+		}
 	}
 
 	public void removeCustomer() { // is there an easier way to do this so we dont have to rember the whole
@@ -502,7 +502,7 @@ public class Test {
         }
 		// have a method to remove customers by psn??
 		// pretty hard to remove customer by entering all parameters correctly..
-		
+
 	}
 
 	public void searchCustomer() {
@@ -512,12 +512,13 @@ public class Test {
 		System.out.println("3. Find customer by phone number");
 		System.out.println("4. Find customer by personal security number");
 		int userInput = scanner.nextInt();
-		
+		scanner.nextLine();
+
 		try {
 			if(userInput == 1) {
 				System.out.println("Enter the customer name: ");
-				String name = scanner.next();
-				System.out.println(library.findCustomerBy(NAME, name));
+				String name = scanner.nextLine();
+				System.out.println(library.findCustomerBy(NAME, name.trim()));
 			}else if (userInput == 2) {
 				System.out.println("Enter the customer address: ");
 				String adress = scanner.next();
@@ -533,7 +534,7 @@ public class Test {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-		}		
+		}
 	}
 
 	public void showCustomers() {
@@ -553,6 +554,7 @@ public class Test {
 
 	public void extendLoan() {
 		// wait for them to implement - tell them to implement?
+        // Loan extension should be in Library class, we should only call it from here.
 	}
 
 	// -- Time handling methods - do we need?? --//
@@ -575,14 +577,14 @@ public class Test {
 	}
 
 	// VG implementations //
-	//MAKE TOSTRING METHODS FOR BOOKS!!
+	//MAKE TOSTRING METHODS FOR BOOKS!! --DONE
 	public void showAllLoanedBooks() {
 		library.getLoanedBooks();
 		for(int i = 0; i < library.getLoanedBooks().size(); i++) {
 			System.out.println(library.getLoanedBooks().get(i).toString());
 		}
 	}
-	
+
 	//MAKE TOSTRING METHODS FOR BOOKS!! --DONE
 	public void showAllDelayedBooks() {
 		library.getDelayedBooks();
@@ -594,7 +596,7 @@ public class Test {
 		//this is the like method below but only for 1 single book.. need?
 		System.out.println("Most popular book right now is:");
 		System.out.println(library.getMostPopularBook()); //does this display anything??
-		
+
 	}
 	public void showMostLentOutBooks() {
 		//wait for them to implement
@@ -607,9 +609,9 @@ public class Test {
 		String customerPsn = scanner.nextLine();
 		String customerName = "";
 		String customerAddress = "";
-		String customerPhone = ""; 
-		Customer customer;
-		
+		String customerPhone = "";
+		Customer customer = retrieveCustomer(customerPsn);
+
 		for(int i = 0; i <library.getCustomers().size(); i++) {
 			if(customerPsn.equals(library.getCustomers().get(i).getPersonnummer())) {
 				customerName = library.getCustomers().get(i).getName();

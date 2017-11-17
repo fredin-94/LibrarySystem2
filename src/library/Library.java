@@ -48,6 +48,7 @@ public class Library {
 	private ArrayList<Customer> customers;
 	private LocalDate date;
 
+	// read txt files to the directories in constructor???
 	public Library() {
 		books = new ArrayList<Book>();
 		loanedBooks = new ArrayList<Book>();
@@ -126,7 +127,21 @@ public class Library {
 		}
 	}
 	private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f) throws NullPointerException {
-		for (Customer customer : customers) if (searchValue.equals(((String)f.apply(customer)).toLowerCase())) return customer;
+		try {
+		    // there wasnt an arraylist with objects until calling customerDirectory which
+            // is the function that reads from txt and adds to the customers arraylist
+		    customerDirectory();
+            for (Customer customer : customers) {
+                System.out.println("search value: " + searchValue);
+                System.out.println(f.apply(customer));
+                if (searchValue.equals(((String) f.apply(customer)).toLowerCase())) {
+                    System.out.println("found customer");
+                    return customer;
+                }
+            }
+        }catch (Exception e){
+		    e.getMessage();
+        }
 		throw new NullPointerException("Customer not found.");
 	}
 
