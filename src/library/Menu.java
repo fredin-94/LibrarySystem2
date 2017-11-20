@@ -2,7 +2,6 @@ package library;
 
 public class Menu {
 
-	//manUtdFTW
 	public void getWelcomeScreen() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -22,7 +21,7 @@ public class Menu {
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Choose an option below:                   === ");
 		System.out.println(" ===   1. Search library directory               === ");
-		System.out.println(" ===   2. Administartion                         === ");
+		System.out.println(" ===   2. Administration                         === ");
 		System.out.println(" ===   3. Time Simulator FX40000                 === ");
 		System.out.println(" ===   4. Extra                                  === ");
 		System.out.println(" ===   5. Quit program                           === ");
@@ -32,21 +31,17 @@ public class Menu {
 	}
 	
 	public void getSearch() {
-<<<<<<< HEAD
 		System.out.println("\n =================================================== "+ System.lineSeparator()
 				+ " ==             Search System                     == "+ System.lineSeparator()
 				+ " =================================================== "+ System.lineSeparator()
             	+ " ===                                             === "+ System.lineSeparator()
             	+ " ===   Choose an option below:                   === "+ System.lineSeparator()
             	+ " ===   1. Search for book                        === "+ System.lineSeparator()
-            	+ " ===   2. Show and sort books                    === "+ System.lineSeparator()
-            	+ " ===   3. Search for customers                   === "+ System.lineSeparator()
-            	+ " ===   4. Show all customers                     === "+ System.lineSeparator()
-				+ " ===   5. Show all books                         === "+ System.lineSeparator()
-				+ " ===   6. Show customer search history           === "+ System.lineSeparator()
-            	+ " ===   0. Quit search                            === "+ System.lineSeparator()
-            	+ " ===                                             === "+ System.lineSeparator()
-            	+ " =================================================== \n");
+            	+ " ===   2. Search for customer                    === "+ System.lineSeparator()
+            	+ " ===   3. Print all available books              === "+ System.lineSeparator()
+            	+ " ===   4. Print all customers                    === "+ System.lineSeparator()
+				+ " ===   5. Show customer loan history             === "+ System.lineSeparator()
+				+ " ===   0. Return to main menu                    === + \n"+ System.lineSeparator());
 	}
 	
 	public void getBookOptions() {
@@ -61,21 +56,6 @@ public class Menu {
 		+ " ===   0. Quit search                            === "+ System.lineSeparator()
 		+ " ===                                             === "+ System.lineSeparator()
 		+ " =================================================== \n");
-=======
-		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Search System                     == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Choose an option below:                   === ");
-		System.out.println(" ===   1. Search for book                        === ");
-		System.out.println(" ===   2. Search for user                        === ");
-		System.out.println(" ===   3. Print all books                        === ");
-		System.out.println(" ===   4. Print all users                        === ");
-		System.out.println(" ===   5. Quit search                            === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
-		System.out.println();
 	}
 	
 	public void bookOption() {
@@ -150,7 +130,6 @@ public class Menu {
 		System.out.println(" ===                                             === ");
 		System.out.println(" =================================================== ");
 		System.out.println();
->>>>>>> 37f1efc29b75fe97431c772ce327a8d357ac119e
 	}
 	
 	public void getAdministration() {
@@ -164,7 +143,7 @@ public class Menu {
 		System.out.println(" ===   2. Remove Book                            === ");
 		System.out.println(" ===   3. Add User                               === ");
 		System.out.println(" ===   4. Remove User                            === ");
-		System.out.println(" ===   5. Quit program                           === ");
+		System.out.println(" ===   0. Return to main manu                    === ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" =================================================== ");
 		System.out.println();

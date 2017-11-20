@@ -12,7 +12,6 @@ import static library.Library.customerKey.*;
 
 public class Test {
 
-	//Make attributes private? --YES
     private Menu menu = new Menu();
 	private Scanner scanner = new Scanner(System.in);
 	private Library library;
@@ -35,11 +34,10 @@ public class Test {
 
 	public void run() {
 		int userInput;
-		String quit; // use this?
 
 		do {
+		    menu.getWelcomeScreen();
 			menu.getMenu();
-
 			userInput = scanner.nextInt();
 			scanner.nextLine();
 
@@ -52,16 +50,17 @@ public class Test {
                 case 2:
                     //menu.getBookOptions();
                 		//resolve this
-                    userInput = scanner.nextInt();
-                    handleBookMenu(userInput);
-                    break;
-                case 3:
                     menu.getAdministration();
                     userInput = scanner.nextInt();
                     handleAdmin(userInput);
                     break;
-                case 4:
+                case 3:
                     menu.getSimulator();
+                    userInput = scanner.nextInt();
+                    handleTimeSimMenu(userInput);
+                    break;
+                case 4:
+                    menu.getExtra();
                     userInput = scanner.nextInt();
                     handleTimeSimMenu(userInput);
                     break;
@@ -77,21 +76,18 @@ public class Test {
 	public void handleSearchMenu(int option){
 	    switch(option){
             case 1:
-                this.searchBook();
+                searchBook();
                 break;
             case 2:
-                this.sortBooks();
+                searchCustomer();
                 break;
             case 3:
-                this.searchCustomer();
-                break;
-            case 4:
-                this.showCustomers();
-                break;
-            case 5:
                 showAvailableBooks();
                 break;
-            case 6:
+            case 4:
+                showCustomers();
+                break;
+            case 5:
                 showCustomerLoanHistory();
                 break;
             case 0:
@@ -653,30 +649,22 @@ public class Test {
 //etc! - look through comments and go through the code, make sure all methods in library are used
 
 
-/*      FOR G
- * For the grade (Pass), the following is expected:
- * 
- * There should be a directory of books. --DONE currently kept in list in Library and a txt in res/.txt
- * It should be possible to add new books to the directory (title, author, genre, publisher, shelf)--DONE for both list and txt
- * Sorting and searching of books, for example by Author. --DONE
- * To lend out a book to a customer and specify the date the book should be returned. --NOT SURE; NEEDS FURTHER TESTING
- * Register that the customer has returned the book. --RETURN OF BOOK REGISTERED, NOT SURE HOW IT INTERACTIS WITH CUSTOMER
- * Customers should be in a customer register. --DONE
- */
+ /* For the grade (Pass), the following is expected:
+         *
+         * There should be a directory of books. --DONE currently kept in list in Library and a txt in res/.txt
+         * It should be possible to add new books to the directory (title, author, genre, publisher, shelf)--DONE for both list and txt
+         * Sorting and searching of books, for example by Author. --DONE
+         * To lend out a book to a customer and specify the date the book should be returned. --NOT SURE; NEEDS FURTHER TESTING
+         * Register that the customer has returned the book. --RETURN OF BOOK REGISTERED, NOT SURE HOW IT INTERACTIS WITH CUSTOMER
+         * Customers should be in a customer register. --DONE
+         */
 /*       FOR VG
-
- * For the grade “Väl Godkänd” (Pass with distinction) the criteria for pass
+ * For the grade (Pass with distinction) the criteria for pass
  * must be met as well as:
  * Should be able to show all borrowed books
  * Should be able to view all delayed books
  * Should be able to show if the borrower returned the book is delayed and what the total delay fee will be.
  * Statistics on what books have been lent out the most
  * To be able to view the borrower's loan history --DONE
- * For the grade (Pass with distinction) the criteria for pass
- * must be met as well as: Should be able to show all borrowed books Should be
- * able to view all delayed books Should be able to show if the borrower
- * returned the book is delayed and what the total delay fee will be. Statistics
- * on what books have been lent out the most To be able to view the borrower's
- * loan history
  */
 
