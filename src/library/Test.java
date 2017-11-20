@@ -38,7 +38,7 @@ public class Test {
 		String quit; // use this?
 
 		do {
-			menu.getMainMenu();
+			menu.getMenu();
 
 			userInput = scanner.nextInt();
 			scanner.nextLine();
@@ -51,7 +51,8 @@ public class Test {
                     handleSearchMenu(userInput);
                     break;
                 case 2:
-                    menu.getBookOptions();
+                    //menu.getBookOptions();
+                		//resolve this
                     userInput = scanner.nextInt();
                     handleBookMenu(userInput);
                     break;
@@ -156,7 +157,7 @@ public class Test {
                 incrementYears();
                 break;
             case 0:
-                menu.getMainMenu();
+                menu.getMenu();
                 break;
             default:
                 System.out.println("Not a valid option");
