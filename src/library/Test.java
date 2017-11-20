@@ -12,7 +12,7 @@ import static library.Library.customerKey.*;
 
 public class Test {
 
-	//Make attributes private?
+	//Make attributes private? --YES
     private Menu menu = new Menu();
 	private Scanner scanner = new Scanner(System.in);
 	private Library library;
@@ -90,6 +90,9 @@ public class Test {
                 break;
             case 5:
                 showAvailableBooks();
+                break;
+            case 6:
+                showCustomerLoanHistory();
                 break;
             case 0:
                 run();
@@ -261,6 +264,7 @@ public class Test {
         return null;
     }
 
+    // changes objects into a format appropriate for the txt files
 	public String parseBookToString(Book book){
         return book.getTitle() + "-" + book.getAuthor() +
                 "-" + book.getPublisher() + "-" + book.getGenre() + "-" + book.getShelf();
@@ -328,7 +332,7 @@ public class Test {
 	}
 
 	public void returnBook() throws Exception{
-		//ADD FUNCTION TO REMOVE FROM TXT FILE AND ADD TO OTHER TXT FILE
+		//ADD FUNCTION TO REMOVE FROM TXT FILE AND ADD TO OTHER TXT FILE -- NOT NEEDED???
 		System.out.println("Enter title of book to return:");
 		scanner.nextLine();
 		String title = scanner.nextLine();
@@ -512,26 +516,34 @@ public class Test {
 		System.out.println("3. Find customer by phone number");
 		System.out.println("4. Find customer by personal security number");
 		int userInput = scanner.nextInt();
-		scanner.nextLine();
+		scanner.nextLine(); // skips a line
 
 		try {
-			if(userInput == 1) {
-				System.out.println("Enter the customer name: ");
-				String name = scanner.nextLine();
-				System.out.println(library.findCustomerBy(NAME, name.trim()));
-			}else if (userInput == 2) {
-				System.out.println("Enter the customer address: ");
-				String adress = scanner.next();
-				System.out.println(library.findCustomerBy(ADRESS, adress));
-			}else if (userInput == 3) {
-				System.out.println("Enter the customer phone number: ");
-				String phone = scanner.next();
-				System.out.println(library.findCustomerBy(NUMBER, phone));
-			}else if (userInput == 4) {
-				System.out.println("Enter the customer personal security number: ");
-				String psn = scanner.next();
-				System.out.println(library.findCustomerBy(PERSONNUMMER, psn));
-			}
+		    switch(userInput){
+                case 1:
+                    System.out.println("Enter the customer name: ");
+                    String name = scanner.nextLine();
+                    System.out.println(library.findCustomerBy(NAME, name.trim()));
+                    break;
+                case 2:
+                    System.out.println("Enter the customer address: ");
+                    String adress = scanner.next();
+                    System.out.println(library.findCustomerBy(ADRESS, adress));
+                    break;
+                case 3:
+                    System.out.println("Enter the customer phone number: ");
+                    String phone = scanner.next();
+                    System.out.println(library.findCustomerBy(NUMBER, phone));
+                    break;
+                case 4:
+                    System.out.println("Enter the customer personal security number: ");
+                    String psn = scanner.next();
+                    System.out.println(library.findCustomerBy(PERSONNUMMER, psn));
+                    break;
+                default:
+                    System.out.println("Invalid option");
+                    break;
+            }
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -585,7 +597,9 @@ public class Test {
 		}
 	}
 
-	//MAKE TOSTRING METHODS FOR BOOKS!! --DONE
+	//MAKE TOSTRING METHODS FOR BOOKS!! --DONE, that is not the issue with these methods though.
+    // most methods have the same issue, namely that bookDirectory() isnt called from the customer
+    // so the books arraylist doesnt fill with the books from txt
 	public void showAllDelayedBooks() {
 		library.getDelayedBooks();
 		for(int i = 0; i < library.getDelayedBooks().size(); i++) {
@@ -604,31 +618,25 @@ public class Test {
 		//need another arraylist that fills up with the maybe top 5 books that have highest counter
 		//search through the "all books" arraylist and add to that arraylist and display here
 	}
-	public void showCustomerLoanHistory() { //WILL THIS WORK??
-		System.out.println("Enter the personal secuiry number of the customer");
+	public void showCustomerLoanHistory() { //WILL THIS WORK?? ----- IT NOW WORKS
+        scanner.nextLine();
+		System.out.println("Enter the personal security number of the customer");
 		String customerPsn = scanner.nextLine();
-		String customerName = "";
-		String customerAddress = "";
-		String customerPhone = "";
-		Customer customer = retrieveCustomer(customerPsn);
+		System.out.println(customerPsn);
+		Customer customer = retrieveCustomer(customerPsn.trim());
 
-		for(int i = 0; i <library.getCustomers().size(); i++) {
-			if(customerPsn.equals(library.getCustomers().get(i).getPersonnummer())) {
-				customerName = library.getCustomers().get(i).getName();
-				customerAddress = library.getCustomers().get(i).getAdress();
-				customerPhone = library.getCustomers().get(i).getNumber();
-				System.out.println("Here is " + customerName + "'s loan history: ");
-				try {
-					library.getCustomerLoanHistory(new Customer(customerName, customerAddress, customerPsn, customerPhone));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}else{
-				System.out.println("No customer registered with that psn");
-			}
-		}
-		//here we also should be able to get loan history from only entering the PSN!!
+		try {
+            for (Customer c : retrieveCustomerDirectory()) {
+                if (c.equals(customer)) {
+                        System.out.println("Here is " + c.getName() + "'s loan history: ");
+                        library.getCustomerLoanHistory(c);
+                    }
+                }
+        } catch(Exception e){
+            System.out.println("No customer registered with that psn");
+            showCustomerLoanHistory();
+        }
+		//here we also should be able to get loan history from only entering the PSN!! --That's what we are doing??
 	}
 
     public static void main(String[] args) {
@@ -642,7 +650,7 @@ public class Test {
 // TODO: things i wrote in my comments above, and add options for VG things !!,
 // ADD error handling!!
 //Add all the new options in the menu in this class and menu class (all methods must be used somewhere)
-//make user able to exit by pressing "q" or "quit"
+//make user able to exit by pressing "q" or "quit" --CAN DO THAT, need to change switch conditional to a char
 //make sure everything is displayed - that they are in a sysout!
 //write sysouts that confirm users actions tex if adding a book was successful or not
 //see if i should use nextLine or if next is enough
@@ -652,18 +660,20 @@ public class Test {
 /*      FOR G
  * For the grade “Godkänd” (Pass), the following is expected:
  * 
- * There should be a directory of books. It should be possible to add new books
- * to the directory (title, author, genre, publisher, shelf) Sorting and
- * searching of books, for example by Author. To lend out a book to a customer
- * and specify the date the book should be returned. Register that the customer
- * has returned the book. Customers should be in a customer register.
+ * There should be a directory of books. --DONE currently kept in list in Library and a txt in res/.txt
+ * It should be possible to add new books to the directory (title, author, genre, publisher, shelf)--DONE for both list and txt
+ * Sorting and searching of books, for example by Author. --DONE
+ * To lend out a book to a customer and specify the date the book should be returned. --NOT SURE; NEEDS FURTHER TESTING
+ * Register that the customer has returned the book. --RETURN OF BOOK REGISTERED, NOT SURE HOW IT INTERACTIS WITH CUSTOMER
+ * Customers should be in a customer register. --DONE
  */
 /*       FOR VG
  * For the grade “Väl Godkänd” (Pass with distinction) the criteria for pass
- * must be met as well as: Should be able to show all borrowed books Should be
- * able to view all delayed books Should be able to show if the borrower
- * returned the book is delayed and what the total delay fee will be. Statistics
- * on what books have been lent out the most To be able to view the borrower's
- * loan history
+ * must be met as well as:
+ * Should be able to show all borrowed books
+ * Should be able to view all delayed books
+ * Should be able to show if the borrower returned the book is delayed and what the total delay fee will be.
+ * Statistics on what books have been lent out the most
+ * To be able to view the borrower's loan history --DONE
  */
 

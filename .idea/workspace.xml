@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82e68db0-414f-4ee2-b921-f13d0b7cb6a6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library$1.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library$bookKey.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library$bookKey.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library$customerKey.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library$customerKey.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Menu.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Menu.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Test.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Test.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/Library.java" afterPath="$PROJECT_DIR$/src/library/Library.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/bookDirectory.txt" afterPath="$PROJECT_DIR$/res/bookDirectory.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/Menu.java" afterPath="$PROJECT_DIR$/src/library/Menu.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/Test.java" afterPath="$PROJECT_DIR$/src/library/Test.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -23,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/library/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="520" column="75" lean-forward="false" selection-start-line="520" selection-start-column="75" selection-end-line="520" selection-end-column="75" />
+            <state relative-caret-position="561">
+              <caret line="212" column="0" lean-forward="true" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Test#0;class#Test#0" expanded="false" />
@@ -40,20 +45,25 @@
                 <element signature="method#retrieveCustomerDirectory#0;class#Test#0" expanded="false" />
                 <element signature="method#addBook#0;class#Test#0" expanded="false" />
                 <element signature="method#writeBookToFile#0;class#Test#0" expanded="false" />
-                <element signature="e#6505#6531#0" expanded="false" />
+                <element signature="method#removeBook#0;class#Test#0" expanded="false" />
+                <element signature="e#6597#6623#0" expanded="false" />
                 <element signature="method#retrieveBook#0;class#Test#0" expanded="false" />
                 <element signature="method#retrieveCustomer#0;class#Test#0" expanded="false" />
                 <element signature="method#removeLineFromFile#0;class#Test#0" expanded="false" />
                 <element signature="method#borrowBook#0;class#Test#0" expanded="false" />
+                <element signature="method#returnBook#0;class#Test#0" expanded="false" />
                 <element signature="method#searchBook#0;class#Test#0" expanded="false" />
                 <element signature="method#sortBooks#0;class#Test#0" expanded="false" />
+                <element signature="method#showAvailableBooks#0;class#Test#0" expanded="false" />
                 <element signature="method#writeCustomerToFile#0;class#Test#0" expanded="false" />
                 <element signature="method#addCustomer#0;class#Test#0" expanded="false" />
                 <element signature="method#removeCustomer#0;class#Test#0" expanded="false" />
+                <element signature="method#searchCustomer#0;class#Test#0" expanded="false" />
                 <element signature="method#showCustomers#0;class#Test#0" expanded="false" />
                 <element signature="method#incrementDays#0;class#Test#0" expanded="false" />
                 <element signature="method#incrementMonths#0;class#Test#0" expanded="false" />
                 <element signature="method#incrementYears#0;class#Test#0" expanded="false" />
+                <element signature="method#showCustomerLoanHistory#0;class#Test#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -72,7 +82,7 @@
       <file leaf-file-name="Customer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/library/Customer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1146">
+            <state relative-caret-position="833">
               <caret line="50" column="61" lean-forward="false" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
               <folding />
             </state>
@@ -82,7 +92,7 @@
       <file leaf-file-name="Book.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/library/Book.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
+            <state relative-caret-position="731">
               <caret line="49" column="61" lean-forward="false" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
               <folding />
             </state>
@@ -92,18 +102,18 @@
       <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/library/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="20" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+            <state relative-caret-position="510">
+              <caret line="30" column="65" lean-forward="false" selection-start-line="30" selection-start-column="65" selection-end-line="30" selection-end-column="65" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Library.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Library.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/library/Library.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="131" column="86" lean-forward="false" selection-start-line="131" selection-start-column="86" selection-end-line="131" selection-end-column="86" />
+            <state relative-caret-position="6018">
+              <caret line="412" column="22" lean-forward="false" selection-start-line="412" selection-start-column="22" selection-end-line="412" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -140,15 +150,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/testy123/src/testClass.java" />
-        <option value="$PROJECT_DIR$/src/library/Menu.java" />
         <option value="$PROJECT_DIR$/src/utils/Reader.java" />
         <option value="$PROJECT_DIR$/src/library/Book.java" />
         <option value="$PROJECT_DIR$/res/bookDirectory.txt.tmp" />
         <option value="$PROJECT_DIR$/res/bookDirectory.txt" />
         <option value="$PROJECT_DIR$/res/customer.txt" />
         <option value="$PROJECT_DIR$/src/library/Customer.java" />
-        <option value="$PROJECT_DIR$/src/library/Test.java" />
         <option value="$PROJECT_DIR$/src/library/Library.java" />
+        <option value="$PROJECT_DIR$/src/library/Menu.java" />
+        <option value="$PROJECT_DIR$/src/library/Test.java" />
       </list>
     </option>
   </component>
@@ -179,6 +189,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -213,10 +224,9 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -363,12 +373,13 @@
       <updated>1510054019975</updated>
       <workItem from="1510780817828" duration="2010000" />
       <workItem from="1510822841489" duration="12513000" />
-      <workItem from="1510835400437" duration="13289000" />
+      <workItem from="1510835400437" duration="17238000" />
+      <workItem from="1511198352756" duration="166000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27812000" />
+    <option name="totallyTimeSpent" value="31927000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -382,8 +393,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921347" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45185184" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45185184" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -393,8 +404,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -462,20 +473,104 @@
             <element signature="method#retrieveCustomerDirectory#0;class#Test#0" expanded="false" />
             <element signature="method#addBook#0;class#Test#0" expanded="false" />
             <element signature="method#writeBookToFile#0;class#Test#0" expanded="false" />
-            <element signature="e#6505#6531#0" expanded="false" />
+            <element signature="method#removeBook#0;class#Test#0" expanded="false" />
+            <element signature="e#6597#6623#0" expanded="false" />
             <element signature="method#retrieveBook#0;class#Test#0" expanded="false" />
             <element signature="method#retrieveCustomer#0;class#Test#0" expanded="false" />
             <element signature="method#removeLineFromFile#0;class#Test#0" expanded="false" />
             <element signature="method#borrowBook#0;class#Test#0" expanded="false" />
+            <element signature="method#returnBook#0;class#Test#0" expanded="false" />
             <element signature="method#searchBook#0;class#Test#0" expanded="false" />
             <element signature="method#sortBooks#0;class#Test#0" expanded="false" />
+            <element signature="method#showAvailableBooks#0;class#Test#0" expanded="false" />
             <element signature="method#writeCustomerToFile#0;class#Test#0" expanded="false" />
             <element signature="method#addCustomer#0;class#Test#0" expanded="false" />
             <element signature="method#removeCustomer#0;class#Test#0" expanded="false" />
+            <element signature="method#searchCustomer#0;class#Test#0" expanded="false" />
             <element signature="method#showCustomers#0;class#Test#0" expanded="false" />
             <element signature="method#incrementDays#0;class#Test#0" expanded="false" />
             <element signature="method#incrementMonths#0;class#Test#0" expanded="false" />
             <element signature="method#incrementYears#0;class#Test#0" expanded="false" />
+            <element signature="method#showCustomerLoanHistory#0;class#Test#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/customer.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/Customer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="50" column="61" lean-forward="false" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/Book.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="49" column="61" lean-forward="false" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="65" lean-forward="false" selection-start-line="30" selection-start-column="65" selection-end-line="30" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/Library.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6018">
+          <caret line="412" column="22" lean-forward="false" selection-start-line="412" selection-start-column="22" selection-end-line="412" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Test#0;class#Test#0" expanded="false" />
+            <element signature="method#run#0;class#Test#0" expanded="false" />
+            <element signature="method#handleSearchMenu#0;class#Test#0" expanded="false" />
+            <element signature="method#handleBookMenu#0;class#Test#0" expanded="false" />
+            <element signature="method#handleAdmin#0;class#Test#0" expanded="false" />
+            <element signature="method#handleTimeSimMenu#0;class#Test#0" expanded="false" />
+            <element signature="method#retrieveBookDirectory#0;class#Test#0" expanded="false" />
+            <element signature="method#retrieveCustomerDirectory#0;class#Test#0" expanded="false" />
+            <element signature="method#addBook#0;class#Test#0" expanded="false" />
+            <element signature="method#writeBookToFile#0;class#Test#0" expanded="false" />
+            <element signature="method#removeBook#0;class#Test#0" expanded="false" />
+            <element signature="e#6597#6623#0" expanded="false" />
+            <element signature="method#retrieveBook#0;class#Test#0" expanded="false" />
+            <element signature="method#retrieveCustomer#0;class#Test#0" expanded="false" />
+            <element signature="method#removeLineFromFile#0;class#Test#0" expanded="false" />
+            <element signature="method#borrowBook#0;class#Test#0" expanded="false" />
+            <element signature="method#returnBook#0;class#Test#0" expanded="false" />
+            <element signature="method#searchBook#0;class#Test#0" expanded="false" />
+            <element signature="method#sortBooks#0;class#Test#0" expanded="false" />
+            <element signature="method#showAvailableBooks#0;class#Test#0" expanded="false" />
+            <element signature="method#writeCustomerToFile#0;class#Test#0" expanded="false" />
+            <element signature="method#addCustomer#0;class#Test#0" expanded="false" />
+            <element signature="method#removeCustomer#0;class#Test#0" expanded="false" />
+            <element signature="method#searchCustomer#0;class#Test#0" expanded="false" />
+            <element signature="method#showCustomers#0;class#Test#0" expanded="false" />
+            <element signature="method#incrementDays#0;class#Test#0" expanded="false" />
+            <element signature="method#incrementMonths#0;class#Test#0" expanded="false" />
+            <element signature="method#incrementYears#0;class#Test#0" expanded="false" />
+            <element signature="method#showCustomerLoanHistory#0;class#Test#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -520,20 +615,25 @@
             <element signature="method#retrieveCustomerDirectory#0;class#Test#0" expanded="false" />
             <element signature="method#addBook#0;class#Test#0" expanded="false" />
             <element signature="method#writeBookToFile#0;class#Test#0" expanded="false" />
-            <element signature="e#6505#6531#0" expanded="false" />
+            <element signature="method#removeBook#0;class#Test#0" expanded="false" />
+            <element signature="e#6597#6623#0" expanded="false" />
             <element signature="method#retrieveBook#0;class#Test#0" expanded="false" />
             <element signature="method#retrieveCustomer#0;class#Test#0" expanded="false" />
             <element signature="method#removeLineFromFile#0;class#Test#0" expanded="false" />
             <element signature="method#borrowBook#0;class#Test#0" expanded="false" />
+            <element signature="method#returnBook#0;class#Test#0" expanded="false" />
             <element signature="method#searchBook#0;class#Test#0" expanded="false" />
             <element signature="method#sortBooks#0;class#Test#0" expanded="false" />
+            <element signature="method#showAvailableBooks#0;class#Test#0" expanded="false" />
             <element signature="method#writeCustomerToFile#0;class#Test#0" expanded="false" />
             <element signature="method#addCustomer#0;class#Test#0" expanded="false" />
             <element signature="method#removeCustomer#0;class#Test#0" expanded="false" />
+            <element signature="method#searchCustomer#0;class#Test#0" expanded="false" />
             <element signature="method#showCustomers#0;class#Test#0" expanded="false" />
             <element signature="method#incrementDays#0;class#Test#0" expanded="false" />
             <element signature="method#incrementMonths#0;class#Test#0" expanded="false" />
             <element signature="method#incrementYears#0;class#Test#0" expanded="false" />
+            <element signature="method#showCustomerLoanHistory#0;class#Test#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -542,7 +642,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -569,30 +668,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/bookDirectory.txt.tmp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/res/bookDirectory.txt.tmp" />
     <entry file="file://$PROJECT_DIR$/src/library/Book.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
+        <state relative-caret-position="731">
           <caret line="49" column="61" lean-forward="false" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/library/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="20" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -601,14 +684,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="439">
           <caret line="172" column="0" lean-forward="false" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/library/Customer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1146">
+        <state relative-caret-position="833">
           <caret line="50" column="61" lean-forward="false" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="65" lean-forward="false" selection-start-line="30" selection-start-column="65" selection-end-line="30" selection-end-column="65" />
           <folding />
         </state>
       </provider>
@@ -621,10 +711,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/Library.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6018">
+          <caret line="412" column="22" lean-forward="false" selection-start-line="412" selection-start-column="22" selection-end-line="412" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/library/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="520" column="75" lean-forward="false" selection-start-line="520" selection-start-column="75" selection-end-line="520" selection-end-column="75" />
+        <state relative-caret-position="561">
+          <caret line="212" column="0" lean-forward="true" selection-start-line="212" selection-start-column="0" selection-end-line="212" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Test#0;class#Test#0" expanded="false" />
@@ -637,29 +735,26 @@
             <element signature="method#retrieveCustomerDirectory#0;class#Test#0" expanded="false" />
             <element signature="method#addBook#0;class#Test#0" expanded="false" />
             <element signature="method#writeBookToFile#0;class#Test#0" expanded="false" />
-            <element signature="e#6505#6531#0" expanded="false" />
+            <element signature="method#removeBook#0;class#Test#0" expanded="false" />
+            <element signature="e#6597#6623#0" expanded="false" />
             <element signature="method#retrieveBook#0;class#Test#0" expanded="false" />
             <element signature="method#retrieveCustomer#0;class#Test#0" expanded="false" />
             <element signature="method#removeLineFromFile#0;class#Test#0" expanded="false" />
             <element signature="method#borrowBook#0;class#Test#0" expanded="false" />
+            <element signature="method#returnBook#0;class#Test#0" expanded="false" />
             <element signature="method#searchBook#0;class#Test#0" expanded="false" />
             <element signature="method#sortBooks#0;class#Test#0" expanded="false" />
+            <element signature="method#showAvailableBooks#0;class#Test#0" expanded="false" />
             <element signature="method#writeCustomerToFile#0;class#Test#0" expanded="false" />
             <element signature="method#addCustomer#0;class#Test#0" expanded="false" />
             <element signature="method#removeCustomer#0;class#Test#0" expanded="false" />
+            <element signature="method#searchCustomer#0;class#Test#0" expanded="false" />
             <element signature="method#showCustomers#0;class#Test#0" expanded="false" />
             <element signature="method#incrementDays#0;class#Test#0" expanded="false" />
             <element signature="method#incrementMonths#0;class#Test#0" expanded="false" />
             <element signature="method#incrementYears#0;class#Test#0" expanded="false" />
+            <element signature="method#showCustomerLoanHistory#0;class#Test#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/library/Library.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="131" column="86" lean-forward="false" selection-start-line="131" selection-start-column="86" selection-end-line="131" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>

@@ -18,20 +18,20 @@ public class Menu {
     }
 	
 	public void getSearch() {
-		System.out.println(
-            "\n =================================================== "+ System.lineSeparator()
-            + " ==             Search System                     == "+ System.lineSeparator()
-            + " =================================================== "+ System.lineSeparator()
-            + " ===                                             === "+ System.lineSeparator()
-            + " ===   Choose an option below:                   === "+ System.lineSeparator()
-            + " ===   1. Search for book                        === "+ System.lineSeparator()
-            + " ===   2. Show and sort books                    === "+ System.lineSeparator()
-            + " ===   3. Search for customers                   === "+ System.lineSeparator()
-                    + " ===   5. Show all books                   === "+ System.lineSeparator()
-            + " ===   4. Show all customers                     === "+ System.lineSeparator()
-            + " ===   0. Quit search                            === "+ System.lineSeparator()
-            + " ===                                             === "+ System.lineSeparator()
-            + " =================================================== \n");
+		System.out.println("\n =================================================== "+ System.lineSeparator()
+				+ " ==             Search System                     == "+ System.lineSeparator()
+				+ " =================================================== "+ System.lineSeparator()
+            	+ " ===                                             === "+ System.lineSeparator()
+            	+ " ===   Choose an option below:                   === "+ System.lineSeparator()
+            	+ " ===   1. Search for book                        === "+ System.lineSeparator()
+            	+ " ===   2. Show and sort books                    === "+ System.lineSeparator()
+            	+ " ===   3. Search for customers                   === "+ System.lineSeparator()
+            	+ " ===   4. Show all customers                     === "+ System.lineSeparator()
+				+ " ===   5. Show all books                         === "+ System.lineSeparator()
+				+ " ===   6. Show customer search history           === "+ System.lineSeparator()
+            	+ " ===   0. Quit search                            === "+ System.lineSeparator()
+            	+ " ===                                             === "+ System.lineSeparator()
+            	+ " =================================================== \n");
 	}
 	
 	public void getBookOptions() {
