@@ -142,7 +142,7 @@ public class Library {
 			case SHELF: return Book::getShelf;
 			case TIMESBORROWED:
 				// TODO: Needs testing. Not sure if this works for primitive types.
-				Collections.sort(this.books, Comparator.comparing(Book::getTimesBorrowed)); break;
+				return Book::getTimesBorrowed;
 			default: throw new InvalidKeyException("Invalid key in sort book function");
 		}
 	}
