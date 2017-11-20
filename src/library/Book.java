@@ -115,6 +115,10 @@ public class Book {
 		}
 	}
 	
+	public void authors2UpperCase() {
+		for (int i = 0; i < this.authors.size(); i++) {Character.toUpperCase(this.authors.get(i).charAt(0));}
+	}
+	
 
 	public void incrementTimesBorrowed() {
 		this.timesBorrowed++;
