@@ -42,7 +42,6 @@ public class Test {
 
 			userInput = scanner.nextInt();
 			scanner.nextLine();
-			//quit = scanner.nextLine();
 
 			switch (userInput) {
                 case 1:
@@ -201,7 +200,7 @@ public class Test {
 		System.out.println("Enter shelf: ");
 		String shelf = scanner.nextLine();
 
-		try { //do i have to add book here or no?? since i add it to the text file below..
+		try { 
 			library.addBook(new Book(title, author, publisher, genre, shelf));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -239,9 +238,6 @@ public class Test {
         Book book = retrieveBook(title);
         removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
         library.removeBook(book);
-		// Need library method that goes through arraylist, finds the first book with
-		// this name
-		// and removes it ?? a method that only takes title string as a parameter!
 	}
 
 	public Book retrieveBook(String title){
@@ -283,6 +279,7 @@ public class Test {
                 // I think it's saving a new line character at the end from when the user presses enter, therefore
                 // a .trim() is required.
                 if(!line.equals(lineToRemove.trim())){
+                	// GONNA DELETE ALL BOOKS, FIX PLS
                     pw.println(line);
                     pw.flush();
                 }
@@ -315,7 +312,6 @@ public class Test {
 
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine();
-		// customer should borrow with psn instead??
 		if(title.equals("") || psn.equals("")) {
 			throw new Exception ("Empty title or social security number");
 		}else {
@@ -501,8 +497,6 @@ public class Test {
         } else {
             System.out.println("There's no customer with that personnummer");
         }
-		// have a method to remove customers by psn??
-		// pretty hard to remove customer by entering all parameters correctly..
 
 	}
 
@@ -651,7 +645,7 @@ public class Test {
 
 
 /*      FOR G
- * For the grade “Godkänd” (Pass), the following is expected:
+ * For the grade â€œGodkÃ¤ndâ€� (Pass), the following is expected:
  * 
  * There should be a directory of books. It should be possible to add new books
  * to the directory (title, author, genre, publisher, shelf) Sorting and
@@ -660,7 +654,7 @@ public class Test {
  * has returned the book. Customers should be in a customer register.
  */
 /*       FOR VG
- * For the grade “Väl Godkänd” (Pass with distinction) the criteria for pass
+ * For the grade â€œVÃ¤l GodkÃ¤ndâ€� (Pass with distinction) the criteria for pass
  * must be met as well as: Should be able to show all borrowed books Should be
  * able to view all delayed books Should be able to show if the borrower
  * returned the book is delayed and what the total delay fee will be. Statistics
