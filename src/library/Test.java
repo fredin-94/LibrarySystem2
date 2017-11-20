@@ -38,11 +38,10 @@ public class Test {
 		String quit; // use this?
 
 		do {
-			menu.getMainMenu();
+			menu.getMenu();
 
 			userInput = scanner.nextInt();
 			scanner.nextLine();
-			//quit = scanner.nextLine();
 
 			switch (userInput) {
                 case 1:
@@ -51,7 +50,8 @@ public class Test {
                     handleSearchMenu(userInput);
                     break;
                 case 2:
-                    menu.getBookOptions();
+                    //menu.getBookOptions();
+                		//resolve this
                     userInput = scanner.nextInt();
                     handleBookMenu(userInput);
                     break;
@@ -159,7 +159,7 @@ public class Test {
                 incrementYears();
                 break;
             case 0:
-                menu.getMainMenu();
+                menu.getMenu();
                 break;
             default:
                 System.out.println("Not a valid option");
@@ -203,7 +203,7 @@ public class Test {
 		System.out.println("Enter shelf: ");
 		String shelf = scanner.nextLine();
 
-		try { //do i have to add book here or no?? since i add it to the text file below..
+		try { 
 			library.addBook(new Book(title, author, publisher, genre, shelf));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -241,9 +241,6 @@ public class Test {
         Book book = retrieveBook(title);
         removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
         library.removeBook(book);
-		// Need library method that goes through arraylist, finds the first book with
-		// this name
-		// and removes it ?? a method that only takes title string as a parameter!
 	}
 
 	public Book retrieveBook(String title){
@@ -286,6 +283,7 @@ public class Test {
                 // I think it's saving a new line character at the end from when the user presses enter, therefore
                 // a .trim() is required.
                 if(!line.equals(lineToRemove.trim())){
+                	// GONNA DELETE ALL BOOKS, FIX PLS
                     pw.println(line);
                     pw.flush();
                 }
@@ -318,7 +316,6 @@ public class Test {
 
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine();
-		// customer should borrow with psn instead??
 		if(title.equals("") || psn.equals("")) {
 			throw new Exception ("Empty title or social security number");
 		}else {
@@ -502,10 +499,9 @@ public class Test {
             removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
             library.removeCustomer(customer);
         } else {
-            System.out.println("There's no customer with that personnummer");
+            System.out.println("There's no customer with that personnummer \n Please enter a valid one.");
+            removeCustomer();
         }
-		// have a method to remove customers by psn??
-		// pretty hard to remove customer by entering all parameters correctly..
 
 	}
 
@@ -658,7 +654,7 @@ public class Test {
 
 
 /*      FOR G
- * For the grade “Godkänd” (Pass), the following is expected:
+ * For the grade (Pass), the following is expected:
  * 
  * There should be a directory of books. --DONE currently kept in list in Library and a txt in res/.txt
  * It should be possible to add new books to the directory (title, author, genre, publisher, shelf)--DONE for both list and txt
@@ -668,6 +664,7 @@ public class Test {
  * Customers should be in a customer register. --DONE
  */
 /*       FOR VG
+
  * For the grade “Väl Godkänd” (Pass with distinction) the criteria for pass
  * must be met as well as:
  * Should be able to show all borrowed books
@@ -675,5 +672,11 @@ public class Test {
  * Should be able to show if the borrower returned the book is delayed and what the total delay fee will be.
  * Statistics on what books have been lent out the most
  * To be able to view the borrower's loan history --DONE
+ * For the grade (Pass with distinction) the criteria for pass
+ * must be met as well as: Should be able to show all borrowed books Should be
+ * able to view all delayed books Should be able to show if the borrower
+ * returned the book is delayed and what the total delay fee will be. Statistics
+ * on what books have been lent out the most To be able to view the borrower's
+ * loan history
  */
 
