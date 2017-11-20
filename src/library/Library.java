@@ -69,7 +69,7 @@ public class Library {
 	/*---------------------SEARCH------------------------------*/
 	// DON'T CHANGE FORMAT PLEASE.
 	
-	public enum bookKey {TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID}
+	public enum bookKey {TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID, TIMESBORROWED}
 	public enum customerKey {NAME, ADRESS, NUMBER, DEBT, ID, PERSONNUMMER}
 	
 	// ----- Search for book ----- //
@@ -140,6 +140,9 @@ public class Library {
 			case GENRE: return Book::getGenre;
 			case PUBLISHER: return Book::getPublisher;
 			case SHELF: return Book::getShelf;
+			case TIMESBORROWED:
+				// TODO: Needs testing. Not sure if this works for primitive types.
+				Collections.sort(this.books, Comparator.comparing(Book::getTimesBorrowed)); break;
 			default: throw new InvalidKeyException("Invalid key in sort book function");
 		}
 	}
@@ -152,7 +155,7 @@ public class Library {
 				case NUMBER: Collections.sort(customers, Comparator.comparing(Customer::getNumber)); break;
 				case DEBT:
 					// TODO: Needs testing. Not sure if this works for primitive types.
-					Collections.sort(customers, Comparator.comparing(Customer::getDebt)); break;
+					Collections.sort(this.customers, Comparator.comparing(Customer::getDebt)); break;
 				default: throw new InvalidKeyException("Invalid key in customer sort function");
 			}
 		} catch (InvalidKeyException ike) {ike.printStackTrace();}
