@@ -342,18 +342,14 @@ public class Test {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-		}try(FileWriter fileW = new FileWriter("bookDirectory.txt", true);
-			    BufferedWriter bufferedW = new BufferedWriter(fileW);
-			    PrintWriter out = new PrintWriter(bufferedW))
-			{
-			    out.println(name+"/"+adress+"/"+psn+"/"+phoneNumber);
-			    linda green/gatan 3/199632829911/0709873232
-			    //more code
-			    out.println("more text");
-			    //more code
-			} catch (IOException e) {
-			    //exception handling left as an exercise for the reader
-			}	
+		}try (PrintWriter out = new PrintWriter(
+				new BufferedWriter(new FileWriter("res/customer.txt", true)))) {
+			out.println(name + "/" + address + "/" + psn
+					+ "/"+ phoneNumber);
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+		System.out.println("Added " + name + " to library");
 	}
 
 	public void removeCustomer() { // is there an easier way to do this so we dont have to rember the whole
