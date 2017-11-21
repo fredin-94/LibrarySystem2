@@ -336,7 +336,7 @@ public class Test {
 		String psn = scanner.nextLine();
 		
 		try {
-			if(!name.equals("") && !address.equals("") && !psn.equals("")) {
+			if(!name.equals("") && !address.equals("") && !psn.equals("") && !library.getCustomers().contains(psn)) {
 				library.addCustomer(new Customer(name, address,psn, phoneNumber));
 				System.out.println("Added " + name + " to customer database");
 			}
