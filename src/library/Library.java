@@ -391,6 +391,7 @@ public class Library {
 			/*I'm fucked*/
 		}//end of block c
 		
+		return topTen;
 	}
 
 	public ArrayList<Book> getCustomerLoanHistory(Customer customer) {
