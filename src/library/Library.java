@@ -42,6 +42,7 @@ import static library.Library.customerKey.*;
 
 public class Library {
 
+	private ArrayList<Book> allBooks;
 	private ArrayList<Book> books;
 	private ArrayList<Book> loanedBooks;
 	private ArrayList<Book> delayedBooks;
@@ -49,6 +50,7 @@ public class Library {
 	private LocalDate date;
 
 	public Library() {
+		allBooks = new ArrayList<Book>();
 		books = new ArrayList<Book>();
 		loanedBooks = new ArrayList<Book>();
 		delayedBooks = new ArrayList<Book>();
@@ -58,6 +60,10 @@ public class Library {
 
 	/* TODO ---------------------Basic------------------------------- */
 
+	public ArrayList<Book> getAllBooks(){
+		return allBooks;
+	}
+	
 	public ArrayList<Book> getBooks() {
 		return books;
 	}
@@ -130,6 +136,14 @@ public class Library {
 	// Uses enums from search.
 	// DON'T CHANGE FORMAT PLEASE.
 
+	public void sortAllBooksBy(bookKey keyToSort) {
+		try {
+			for (Book book : this.allBooks) book.authors2UpperCase();
+			Collections.sort(this.allBooks, Comparator.comparing(getBookFunction(keyToSort)));
+		}
+		catch (InvalidKeyException ike) {ike.printStackTrace();}
+	}
+	
 	public void sortBooksBy(bookKey keyToSort) {
 		try {
 			for (Book book : this.books) book.authors2UpperCase();
@@ -137,6 +151,7 @@ public class Library {
 		}
 		catch (InvalidKeyException ike) {ike.printStackTrace();}
 	}
+	
 	private Function<Book, ? extends Comparable> getBookFunction(bookKey key) throws InvalidKeyException {
 		switch (key) {
 			case TITLE: return Book::getTitle;
@@ -177,11 +192,22 @@ public class Library {
 
 	/* register books */
 	public void addBook(Book book) {
+		for(Book aBook: allBooks) {
+			if(book == aBook) {
+				break;
+			}else {
+				allBooks.add(book);
+			}
+		}
 		books.add(book);
 	}
 
 	public void removeBook(Book book) {
 		books.remove(book);
+	}
+	
+	public void deleteBook(Book book) {
+		allBooks.remove(book);
 	}
 
 	/*
@@ -287,14 +313,13 @@ public class Library {
 		return loanedBooks;
 	}
 
-	public Book getMostPopularBook() {
-		Book mostPopular = books.get(0);
-		for (Book book : books) {
-			if (book != books.get(0) && book.getTimesBorrowed() > mostPopular.getTimesBorrowed()) {
-				mostPopular = book;
-			}
+	public ArrayList<Book> getTopTen() {
+		ArrayList <Book> topTen = new ArrayList<Book>();
+		this.sortAllBooksBy(TITLE);
+		for(int i = 0; i < this.allBooks.size(); i++) {
+			
 		}
-		return mostPopular;
+		
 	}
 
 	public ArrayList<Book> getCustomerLoanHistory(Customer customer) {
