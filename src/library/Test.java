@@ -48,8 +48,6 @@ public class Test {
                     handleSearchMenu(userInput);
                     break;
                 case 2:
-                    //menu.getBookOptions();
-                		//resolve this
                     menu.getAdministration();
                     userInput = scanner.nextInt();
                     handleAdmin(userInput);
