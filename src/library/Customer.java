@@ -3,7 +3,7 @@ package library;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.io.Serializable;
-public class Customer impements Serializable {
+public class Customer implements Serializable {
 
 	private String name;
 	private String adress;
