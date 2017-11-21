@@ -479,15 +479,12 @@ public class Test {
 		}
 	}
 
-	public void removeCustomer() { // is there an easier way to do this so we dont have to rember the whole
-									// number??
-		//ADD FUNCTION TO REMOVE FROM TXT FILE
+	public void removeCustomer() {
 		System.out.println("Enter personal security number of customer to remove: ");
 		String psn = scanner.next();
 		String name;
 		String address;
 		String phoneNumber;
-		//WILL THIS WORK??
         Customer customer = retrieveCustomer(psn);
         if(customer != null){
             removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
