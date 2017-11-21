@@ -49,6 +49,7 @@ public class Library {
 	private ArrayList<Customer> customers;
 	private LocalDate date;
 
+	// read txt files to the directories in constructor???
 	public Library() {
 		allBooks = new ArrayList<Book>();
 		books = new ArrayList<Book>();
@@ -128,7 +129,21 @@ public class Library {
 		}
 	}
 	private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f) throws NullPointerException {
-		for (Customer customer : customers) if (searchValue.equals(((String)f.apply(customer)).toLowerCase())) return customer;
+		try {
+		    // there wasnt an arraylist with objects until calling customerDirectory which
+            // is the function that reads from txt and adds to the customers arraylist
+		    customerDirectory();
+            for (Customer customer : customers) {
+                System.out.println("search value: " + searchValue);
+                System.out.println(f.apply(customer));
+                if (searchValue.equals(((String) f.apply(customer)).toLowerCase())) {
+                    System.out.println("found customer");
+                    return customer;
+                }
+            }
+        }catch (Exception e){
+		    e.getMessage();
+        }
 		throw new NullPointerException("Customer not found.");
 	}
 
@@ -281,18 +296,38 @@ public class Library {
 		 */
 
 		Customer customer = findCustomerBy(customerKey.PERSONNUMMER, personnummer);
+		if(customer == null) {
+			throw new Exception ("Customer doesn't exist in directory");
+		}
+		
 		Book book = customer.getFromCurrentLoan(bookTitle);
+		if(book == null) {
+			throw new Exception ("Book doesn't exist in directory");
+		}
 		
 		int debt = this.checkDelay(book) * 2;
 		customer.setDebt(debt);
+		
+		//statistics
+		book.incrementTimesBorrowed();
+		for(Book books: allBooks) {
+			if(book.getTitle().equalsIgnoreCase(books.getTitle())) {
+				books.incrementTimesBorrowed();
+			}
+		}
+		
 		
 		/*
 		 * TODO we need to "restart" the dates once the book is returned
 		 * book.restartDates(); book.restartLoanPeriod(); book.notDelayed();
 		 */
+		LocalDate date = LocalDate.of(1998, 1, 1);
+		book.setReturnDate(date);
+		book.setStartDate(date);
 		// we should discuss whether the books should be set to a
 		// certain day when they are not being loaned out
-
+		
+		
 		books.add(book);
 		loanedBooks.remove(book);
 		customer.removeFromCurrentLoan(book);
@@ -313,12 +348,48 @@ public class Library {
 		return loanedBooks;
 	}
 
-	public ArrayList<Book> getTopTen() {
-		ArrayList <Book> topTen = new ArrayList<Book>();
+	public Book [] getTopTen() {
+		ArrayList<Book> oneCopy = new ArrayList<Book>();
+		Book [] topTen = new Book [10];
 		this.sortAllBooksBy(TITLE);
-		for(int i = 0; i < this.allBooks.size(); i++) {
-			
-		}
+		int numOfCopies = 0;
+		
+		{
+			for(int i = 0; i < this.allBooks.size(); i++) {
+				Book book = allBooks.get(i);
+				oneCopy.add(book);
+				
+				for(int j = i; j < this.allBooks.size(); j++) {
+					if(book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle()) ) {
+						numOfCopies++;
+					}
+				}
+				
+				i+=numOfCopies;
+				numOfCopies = 0;
+			}
+		}//end of block a
+		
+		{
+			for(int i = 0; i < oneCopy.size(); i++) {
+				if(i < 10) {
+					topTen [i] = oneCopy.get(i);
+				}else {
+					for(int j = i; j < oneCopy.size(); i++) {
+						Book book = oneCopy.get(j);
+						for(int x = 0; x < topTen.length; x++) {
+							if(book.getTimesBorrowed() > topTen[x].getTimesBorrowed()) {
+								topTen[x] = book; 
+							}
+						}
+					}
+				}
+			}
+		}//end of block b
+		
+		{
+			/*I'm fucked*/
+		}//end of block c
 		
 	}
 
@@ -401,14 +472,16 @@ public class Library {
 			String genre = input.next();
 			String shelf = input.next();
 	        
-	        Book book;
+	        Book book = null;
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
-				books.add(book);
+
 			} catch (Exception e) {
 				e.printStackTrace();
+			} finally {
+				books.add(book);
 			}
-	        
+
 	    }
 	}
 	
@@ -424,10 +497,26 @@ public class Library {
 			String phoneNumber = input.next();
 			String psn = input.next();
 	        
-			Customer customer = new Customer(name, address, phoneNumber, psn);
-	        customers.add(customer);
+			Customer customer = null;
+			try {
+				customer = new Customer(name, address, phoneNumber, psn);
+			} catch (Exception e){
+				e.printStackTrace();
+			} finally {
+				customers.add(customer);
+			}
 	    }
 	}
 	
+
+	@Override
+	public String toString(){
+	    String res = "";
+		for(Book book : books){
+		    res += book.toString() + System.lineSeparator();
+        }
+        System.out.println(res);
+        return res;
+	}
 
 }
