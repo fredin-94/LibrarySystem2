@@ -46,6 +46,7 @@ public class Library {
 	private ArrayList<Book> books;
 	private ArrayList<Book> loanedBooks;
 	private ArrayList<Book> delayedBooks;
+	private ArrayList<Book> topTen;
 	private ArrayList<Customer> customers;
 	private LocalDate date;
 
@@ -55,6 +56,7 @@ public class Library {
 		books = new ArrayList<Book>();
 		loanedBooks = new ArrayList<Book>();
 		delayedBooks = new ArrayList<Book>();
+		topTen = new ArrayList<Book>();
 		customers = new ArrayList<Customer>();
 		date = LocalDate.now();
 	}
@@ -348,9 +350,8 @@ public class Library {
 		return loanedBooks;
 	}
 
-	public Book [] getTopTen() {
+	public ArrayList<Book> getTopTen() {
 		ArrayList<Book> oneCopy = new ArrayList<Book>();
-		Book [] topTen = new Book [10];
 		this.sortAllBooksBy(TITLE);
 		int numOfCopies = 0;
 		
@@ -368,24 +369,18 @@ public class Library {
 				i+=numOfCopies;
 				numOfCopies = 0;
 			}
-		}//end of block a
+		}//end of block a: adds one copy of each book to the onCopy arrayList 
 		
 		{
 			for(int i = 0; i < oneCopy.size(); i++) {
 				if(i < 10) {
-					topTen [i] = oneCopy.get(i);
+					 topTen.add(oneCopy.get(i));
+					 
 				}else {
-					for(int j = i; j < oneCopy.size(); i++) {
-						Book book = oneCopy.get(j);
-						for(int x = 0; x < topTen.length; x++) {
-							if(book.getTimesBorrowed() > topTen[x].getTimesBorrowed()) {
-								topTen[x] = book; 
-							}
-						}
-					}
+					
 				}
 			}
-		}//end of block b
+		}//end of block b: adds 10 books to the topTen array, and the compares the remaining books to that 10 books already inside
 		
 		{
 			/*I'm fucked*/
