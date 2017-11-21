@@ -75,7 +75,8 @@ public class Library {
 	// ----- Search for book ----- //
 	// Use findBookBy for title, genre, publisher and ID. Returns Book.
 	// Use findBooksBy for author and shelf. Returns ArrayList<Book>.
-	
+
+
 	public Book findBookBy(bookKey key, String searchValue) throws InvalidKeyException {
 		searchValue.toLowerCase();
         switch (key) {
@@ -130,7 +131,10 @@ public class Library {
 	// DON'T CHANGE FORMAT PLEASE.
 
 	public void sortBooksBy(bookKey keyToSort) {
-		try {Collections.sort(this.books, Comparator.comparing(getBookFunction(keyToSort)));}
+		try {
+			for (Book book : this.books) book.authors2UpperCase();
+			Collections.sort(this.books, Comparator.comparing(getBookFunction(keyToSort)));
+		}
 		catch (InvalidKeyException ike) {ike.printStackTrace();}
 	}
 	private Function<Book, ? extends Comparable> getBookFunction(bookKey key) throws InvalidKeyException {
@@ -159,6 +163,14 @@ public class Library {
 				default: throw new InvalidKeyException("Invalid key in customer sort function");
 			}
 		} catch (InvalidKeyException ike) {ike.printStackTrace();}
+	}
+	
+	// ----- Show 10 most popular books ----- //
+	public String showTopBooks() {
+		sortBooksBy(TIMESBORROWED);
+		String s = "";
+		for (int i = 0; i < 10; i++) s += (i) + "." + this.books.get(i).toString() + "\n";
+		return s;
 	}
 
 	/* TODO -------------------REGISTRATION--------------------- */
