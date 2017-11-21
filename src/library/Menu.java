@@ -6,7 +6,7 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==               Welcome to                      == ");
-		System.out.println(" ==             The Royal Oxford Library          == ");
+		System.out.println(" ==         The Royal Oxford Library              == ");
 		System.out.println(" ==                                               == ");
 		System.out.println(" ==            Established 1817                   == ");
 		System.out.println(" =================================================== ");
