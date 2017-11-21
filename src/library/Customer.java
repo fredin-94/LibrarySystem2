@@ -15,7 +15,7 @@ public class Customer impements Serializable {
 	private String personnummer;
 	final String END_OF_LINE = System.lineSeparator();// Skips A Line
 
-	public Customer(String name, String adress, String personnummer) throws Exception {
+	public Customer(String name, String adress, String personnummer) throws Exception implements Serializable {
 		if (name.equals("")) {
 
 			throw new Exception("Name can not be empty");
