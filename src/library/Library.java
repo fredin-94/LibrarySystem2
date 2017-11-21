@@ -354,6 +354,7 @@ public class Library {
 	public void bookDirectory() throws FileNotFoundException {
 		Scanner input = new Scanner(new File("res/bookDirectory.txt"));
 	    input.useDelimiter("-|\n");
+	    
 		
 		while(input.hasNext()) {
 	       
@@ -390,5 +391,6 @@ public class Library {
 	        customers.add(customer);
 	    }
 	}
+	
 
 }
