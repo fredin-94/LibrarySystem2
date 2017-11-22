@@ -18,17 +18,6 @@ public class Test {
 
 	public Test() {
         library = new Library();
-
-		//faulty!: for some reason it prints catch text too- is it with the
-		//customer perhaps??
-		/*try {
-			System.out.println("Text files loaded successfully");
-			library.bookDirectory();
-			library.customerDirectory();
-			
-		} catch (Exception e) {
-			System.out.println("Was not able to load text files");
-		}*/
 	}
 
 
@@ -48,8 +37,6 @@ public class Test {
                     handleSearchMenu(userInput);
                     break;
                 case 2:
-                    //menu.getBookOptions();
-                		//resolve this
                     menu.getAdministration();
                     userInput = scanner.nextInt();
                     handleAdmin(userInput);
@@ -121,6 +108,7 @@ public class Test {
     }
 
     public void handleAdmin(int option){
+    	scanner.nextLine();
         switch (option){
             case 1:
                 addBook();
@@ -164,20 +152,20 @@ public class Test {
     }
 
     public ArrayList<Book> retrieveBookDirectory(){
-        try{
+        /*try{
             library.bookDirectory();
         } catch(Exception e){
             e.getMessage();
-        }
+        }*/
         return library.getBooks();
     }
 
     public ArrayList<Customer> retrieveCustomerDirectory(){
-        try{
+        /*try{
             library.customerDirectory();
         } catch(Exception e){
             e.getMessage();
-        }
+        }*/
         return library.getCustomers();
     }
 
@@ -186,7 +174,6 @@ public class Test {
 	public void addBook() {
 
 		//ADD FUNCTION TO WRITE TO TXT FILE! --DONE
-		String hopString = scanner.nextLine();
 		System.out.println("Creating new book:");
 		System.out.println("Enter title: ");
 		String title = scanner.nextLine();
@@ -231,7 +218,6 @@ public class Test {
 		//ADD FUNCTION TO REMOVE FROM TXT FILE
 		//TODO: check if books arraylist contains ALL books in the library ever or only the ones currently in stock
 		System.out.println("Enter title of book to remove: ");
-		scanner.nextLine();
 		String title = scanner.nextLine();
 
         Book book = retrieveBook(title);
@@ -302,12 +288,10 @@ public class Test {
     }
 
 	public void borrowBook() throws Exception{
-		//ADD FUNCTION TO REMOVE FROM TXT FILE AND ADD TO OTHER TXT FILE
 		//must create txt file for customers borrowed books, create that when customer borrows their
 		//first book, or create one for every customer when they are first created
         showAvailableBooks();
 		System.out.println("Enter title of book to borrow:");
-		scanner.nextLine();
 		String title = scanner.nextLine();
 
 		System.out.println("Enter personal security number:");
@@ -327,7 +311,6 @@ public class Test {
 	public void returnBook() throws Exception{
 		//ADD FUNCTION TO REMOVE FROM TXT FILE AND ADD TO OTHER TXT FILE -- NOT NEEDED???
 		System.out.println("Enter title of book to return:");
-		scanner.nextLine();
 		String title = scanner.nextLine();
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine();
@@ -434,15 +417,16 @@ public class Test {
 	}
 
 	public void showAvailableBooks(){
-        try {
+        /*try {
             library.bookDirectory();
         }catch (Exception e) {
             e.getMessage();
-        }
+        }*/
         System.out.println(library.toString());
     }
 
     public void writeCustomerToFile(String name, String address, String phoneNumber, String psn){
+    	// should allow a customer to be added to txt without entering phonenumber
         if (!name.equals("") && !address.equals("")
                 && !phoneNumber.equals("") && !psn.equals("")) {
 
@@ -462,7 +446,6 @@ public class Test {
 	// -- Customer handling methods --//
 	public void addCustomer() {
 		//ADD FUNCTION TO ADD TO TXT FILE --done
-        scanner.nextLine();
 		System.out.println("Enter customer name: ");
 		String name = scanner.nextLine();
 		System.out.println("Enter customer adress: ");
@@ -484,9 +467,6 @@ public class Test {
 	public void removeCustomer() {
 		System.out.println("Enter personal security number of customer to remove: ");
 		String psn = scanner.next();
-		String name;
-		String address;
-		String phoneNumber;
         Customer customer = retrieveCustomer(psn);
         if(customer != null){
             removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
@@ -540,7 +520,6 @@ public class Test {
 
 	public void showCustomers() {
         String res = "";
-        System.out.println("In showCustomers");
         try {
             for(Customer c : retrieveCustomerDirectory()){
                 if(c != null) {
@@ -608,7 +587,6 @@ public class Test {
 		//search through the "all books" arraylist and add to that arraylist and display here
 	}
 	public void showCustomerLoanHistory() { //WILL THIS WORK?? ----- IT NOW WORKS
-        scanner.nextLine();
 		System.out.println("Enter the personal security number of the customer");
 		String customerPsn = scanner.nextLine();
 		System.out.println(customerPsn);

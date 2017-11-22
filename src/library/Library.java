@@ -55,6 +55,14 @@ public class Library {
 		delayedBooks = new ArrayList<Book>();
 		customers = new ArrayList<Customer>();
 		date = LocalDate.now();
+		
+		// Parse directories into arraylists
+		try {
+			bookDirectory();
+			customerDirectory();
+		}catch(Exception e) {
+			System.out.println("Files not available.");
+		}
 	}
 
 	/* TODO ---------------------Basic------------------------------- */

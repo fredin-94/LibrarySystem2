@@ -26,7 +26,7 @@ Fifty Shades Darker-James, E. L.-Random House-Romance-5r
 Twilight-Meyer, Stephenie-Little, Brown Book-Young Adult Fiction-4ya
 The Girl with the Dragon Tattoo-Larsson, Stieg-Quercus-Crime, Thriller & Adventure-1a
 Fifty Shades Freed-James, E. L.-Random House-Romance-5r
-The Lost Symbol-	Brown, Dan-Transworld-Crime, Thriller & Adventure-1a
+The Lost Symbol-Brown, Dan-Transworld-Crime, Thriller & Adventure-1a
 New Moon-Meyer, Stephenie-Little, Brown Book-Young Adult Fiction-4ya
 Deception Point-Brown, Dan-Transworld-Crime, Thriller & Adventure-1a
 Eclipse-Meyer, Stephenie-Little, Brown Book-Young Adult Fiction-4ya
@@ -104,7 +104,6 @@ The God Delusion-Dawkins, Richard-Transworld-Popular Science-7ps
 When Java Screws You Over-Sadface, Iam-Akuin Akka-Autobiography-1au
 White Teeth-Smith, Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton, Kate-Pan Macmillan-Literary Fiction-6LF
-The Book Thief-Zusak, Markus-Transworld-Literary Fiction-6LF
 Nights of Rain and Stars-Binchy, Maeve-Orion-Literary Fiction-6LF
 Happy Days with the Naked Chef-Oliver, Jamie-Penguin-Food & Drink-9fd
 The Lost Boy:A Foster Child's Search for the Love of a Family-Pelzer, Dave-Orion-Biography-2bi
@@ -129,7 +128,7 @@ The Return of the Naked Chef-Oliver, Jamie-Penguin-Food & Drink-9fd
 Bridget Jones: The Edge of Reason-Fielding, Helen-Pan Macmillan-Literary Fiction-6LF
 Jamie's Italy-Oliver, Jamie-Penguin-Food & Drink-9fd
 I Can Make You Thin-McKenna, Paul-Transworld-Fitness & Diet-1FD
-Down Under-Bryson, Bill-	Transworld-Travel Writing-01TW
+Down Under-Bryson, Bill-Transworld-Travel Writing-01TW
 The Summons-Grisham, John-Random House-Crime, Thriller & Adventure-1a
 Small Island-Levy, Andrea-Headline-General & Literary Fiction-6LF
 Nigella Express-Lawson, Nigella-Random House-Food & Drink-9fd
@@ -142,7 +141,6 @@ The God Delusion-Dawkins, Richard-Transworld-Popular Science-7ps
 When Java Screws You Over-Sadface, Iam-Akuin Akka-Autobiography-1au
 White Teeth-Smith, Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton, Kate-Pan Macmillan-Literary Fiction-6LF
-The Book Thief-Zusak, Markus-Transworld-Literary Fiction-6LF
 Nights of Rain and Stars-Binchy, Maeve-Orion-Literary Fiction-6LF
 Happy Days with the Naked Chef-Oliver, Jamie-Penguin-Food & Drink-9fd
 The Lost Boy:A Foster Child's Search for the Love of a Family-Pelzer, Dave-Orion-Biography-2bi
@@ -159,10 +157,8 @@ The God Delusion-Dawkins, Richard-Transworld-Popular Science-7ps
 When Java Screws You Over-Sadface, Iam-Akuin Akka-Autobiography-1au
 White Teeth-Smith, Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton, Kate-Pan Macmillan-Literary Fiction-6LF
-The Book Thief-Zusak, Markus-Transworld-Literary Fiction-6LF
 Nights of Rain and Stars-Binchy, Maeve-Orion-Literary Fiction-6LF
 Happy Days with the Naked Chef-Oliver, Jamie-Penguin-Food & Drink-9fd
 The Lost Boy:A Foster Child's Search for the Love of a Family-Pelzer, Dave-Orion-Biography-2bi
 Jamie's Ministry of Food:Anyone Can Learn to Cook in 24 Hours-Oliver, Jamie-Penguin-Food & Drink-9fd
 banana-kiwi-Colin Hawaii-fantasy-301a
-chicken-bacon-and eggs-food-304b
