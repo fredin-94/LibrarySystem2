@@ -21,14 +21,14 @@ public class Test {
 
 		//faulty!: for some reason it prints catch text too- is it with the
 		//customer perhaps??
-		/*try {
+		try {
 			System.out.println("Text files loaded successfully");
 			library.bookDirectory();
 			library.customerDirectory();
 			
 		} catch (Exception e) {
 			System.out.println("Was not able to load text files");
-		}*/
+		}
 	}
 
 
@@ -46,18 +46,23 @@ public class Test {
                     menu.getSearch();
                     userInput = scanner.nextInt();
                     handleSearchMenu(userInput);
-                    break;
+                    break;    
                 case 2:
+                		menu.getBookOptions();
+                		userInput = scanner.nextInt();
+                		handleBookMenu(userInput);
+                		break;
+                case 3:
                     menu.getAdministration();
                     userInput = scanner.nextInt();
                     handleAdmin(userInput);
                     break;
-                case 3:
+                case 4:
                     menu.getSimulator();
                     userInput = scanner.nextInt();
                     handleTimeSimMenu(userInput);
                     break;
-                case 4:
+                case 5:
                     menu.getExtra();
                     userInput = scanner.nextInt();
                     handleTimeSimMenu(userInput);
@@ -139,6 +144,30 @@ public class Test {
                 System.out.println("Not a valid option");
                 break;
         }
+    }
+    
+    public void handleExtra(int option) {
+    			switch (option) {
+				case 1:
+					library.getLoanedBooks();
+					break;
+				case 2:
+					library.getDelayedBooks();
+					break;
+				case 3:
+					showCustomerLoanHistory();
+					break;
+				case 4:
+					showMostLentOutBooks();
+					break;
+				case 0:
+					run();
+					break;
+
+				default:
+					break;
+				}
+    	
     }
 
     public void handleTimeSimMenu(int option){

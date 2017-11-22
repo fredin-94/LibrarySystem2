@@ -21,27 +21,30 @@ public class Menu {
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Choose an option below:                   === ");
 		System.out.println(" ===   1. Search library directory               === ");
-		System.out.println(" ===   2. Administration                         === ");
-		System.out.println(" ===   3. Time Simulator FX40000                 === ");
-		System.out.println(" ===   4. Extra                                  === ");
-		System.out.println(" ===   5. Quit program                           === ");
+		System.out.println(" ===   2. Borrow or return books                 === ");
+		System.out.println(" ===   3. Administration                         === ");
+		System.out.println(" ===   4. Time Simulator FX40000                 === ");
+		System.out.println(" ===   5. Extra                                  === ");
+		System.out.println(" ===   0. Quit program                           === ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
 	
 	public void getSearch() {
-		System.out.println("\n =================================================== "+ System.lineSeparator()
+		System.out.println(
+				"\n =================================================== "+ System.lineSeparator()
 				+ " ==             Search System                     == "+ System.lineSeparator()
 				+ " =================================================== "+ System.lineSeparator()
-            	+ " ===                                             === "+ System.lineSeparator()
-            	+ " ===   Choose an option below:                   === "+ System.lineSeparator()
-            	+ " ===   1. Search for book                        === "+ System.lineSeparator()
-            	+ " ===   2. Search for customer                    === "+ System.lineSeparator()
-            	+ " ===   3. Print all available books              === "+ System.lineSeparator()
-            	+ " ===   4. Print all customers                    === "+ System.lineSeparator()
+              	+ " ===                                             === "+ System.lineSeparator()
+             	+ " ===   Choose an option below:                   === "+ System.lineSeparator()
+              	+ " ===   1. Search for book                        === "+ System.lineSeparator()
+              	+ " ===   2. Search for customer                    === "+ System.lineSeparator()
+             	+ " ===   3. Print all available books              === "+ System.lineSeparator()
+             	+ " ===   4. Print all customers                    === "+ System.lineSeparator()
 				+ " ===   5. Show customer loan history             === "+ System.lineSeparator()
-				+ " ===   0. Return to main menu                    === + \n"+ System.lineSeparator());
+				+ " ===   0. Return to main menu                    === "+ System.lineSeparator()
+				+ " =================================================== \n");
 	}
 	
 	public void getBookOptions() {
@@ -53,7 +56,7 @@ public class Menu {
 		+ " ===   Choose an option below:                   === "+ System.lineSeparator()
 		+ " ===   1. Borrow book                            === "+ System.lineSeparator()
 		+ " ===   2. Return book                            === "+ System.lineSeparator()
-		+ " ===   0. Quit search                            === "+ System.lineSeparator()
+		+ " ===   0. Return to main menu                    === "+ System.lineSeparator()
 		+ " ===                                             === "+ System.lineSeparator()
 		+ " =================================================== \n");
 	}
@@ -248,7 +251,7 @@ public class Menu {
 		System.out.println(" ===   2. Increment Weeks                        === ");
 		System.out.println(" ===   3. Increment Months                       === ");
 		System.out.println(" ===   4. Increment Years                        === ");
-		System.out.println(" ===   5. Quit program                           === ");
+		System.out.println(" ===   0. Return to main menu                    === ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" =================================================== ");
 		System.out.println();
@@ -261,10 +264,11 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Choose an option below:                   === ");
-		System.out.println(" ===   1. Show all borrowed books                === ");
+		System.out.println(" ===   1. Show all lent out books                === ");
 		System.out.println(" ===   2. Show all delayed books                 === ");
 		System.out.println(" ===   3. Show users loan history                === ");
-		System.out.println(" ===   4. Quit program                           === ");
+		System.out.println(" ===   4. Show top 10 most popular books         === ");
+		System.out.println(" ===   0. Return to main menu                    === ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" =================================================== ");
 		System.out.println();
