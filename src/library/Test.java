@@ -205,7 +205,7 @@ public class Test {
 		writeBookToFile(title, author, publisher, genre, shelf);
 	}
 
-	public void writeBookToFile(String title, String author, String publisher, String genre, String shelf){
+	public void writeBookToBookDirectory(String title, String author, String publisher, String genre, String shelf){
         //adding user input to text file://
         //Make sure no necessary fields are empty//
         if (!title.equals("") && !author.equals("")
@@ -224,6 +224,45 @@ public class Test {
             System.out.println("No parameters allowed to be empty");
         }
     }
+	public void writeBookToDelayedBooks(String title, String author, String publisher, String genre, String shelf){
+        //adding user input to text file://
+        //Make sure no necessary fields are empty//
+        if (!title.equals("") && !author.equals("")
+                && !publisher.equals("") && !genre.equals("")
+                && !shelf.equals("")) {
+
+            try (PrintWriter out = new PrintWriter(
+                    new BufferedWriter(new FileWriter("res/delayedBooks.txt", true)))) {
+                out.println(title + "-" + author + "-" + publisher
+                        + "-" + genre + "-" + shelf);
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+            System.out.println("Added " + title + " to library");
+        }else {
+            System.out.println("No parameters allowed to be empty");
+        }
+    }
+	public void writeBookToLoanedBooks(String title, String author, String publisher, String genre, String shelf){
+        //adding user input to text file://
+        //Make sure no necessary fields are empty//
+        if (!title.equals("") && !author.equals("")
+                && !publisher.equals("") && !genre.equals("")
+                && !shelf.equals("")) {
+
+            try (PrintWriter out = new PrintWriter(
+                    new BufferedWriter(new FileWriter("res/LoanedBooks.txt", true)))) {
+                out.println(title + "-" + author + "-" + publisher
+                        + "-" + genre + "-" + shelf);
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+            System.out.println("Added " + title + " to library");
+        }else {
+            System.out.println("No parameters allowed to be empty");
+        }
+    }
+	
 
 	public void removeBook() { //WILL THIS WORK OR NOT???
 		//ADD FUNCTION TO REMOVE FROM TXT FILE
@@ -318,6 +357,8 @@ public class Test {
 		    // borrowBook in library checks whether the book is available in the library and moves it
             // to the appropriate arraylists.
 			library.borrowBook(title, psn);
+			writeBookToLoanedBooks(title, retrieveBook(title).getAuthor(), retrieveBook(title).getPublisher(), retrieveBook(title).getGenre(), retrieveBook(title).getShelf());
+			
 
 		}
 	}
@@ -339,7 +380,8 @@ public class Test {
                     book = c.getFromCurrentLoan(title);
                 }
             }
-            writeBookToFile(book.getTitle(), book.getAuthor(), book.getPublisher(), book.getGenre(), book.getShelf());
+            writeBookToBookDirectory(book.getTitle(), book.getAuthor(), book.getPublisher(), book.getGenre(), book.getShelf());
+            removeLineFromFile("res/LoanedBooks.txt", parseBookToString(retrieveBook(title)));
 			library.returnBook(title, psn);
 		}
 	}
