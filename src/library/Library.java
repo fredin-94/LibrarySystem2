@@ -59,6 +59,14 @@ public class Library {
 		topTen = new ArrayList<Book>();
 		customers = new ArrayList<Customer>();
 		date = LocalDate.now();
+
+		try {
+            bookDirectory();
+            customerDirectory();
+        } catch(Exception e){
+		    System.out.println("banana");
+        }
+
 	}
 
 	/* TODO ---------------------Basic------------------------------- */
@@ -490,12 +498,13 @@ public class Library {
 	       
 	        String name = input.next();
 			String address = input.next();
-			String phoneNumber = input.next();
 			String psn = input.next();
+			String phoneNumber = input.next().trim();
 	        
 			Customer customer = null;
 			try {
-				customer = new Customer(name, address, phoneNumber, psn);
+				customer = new Customer(name, address, psn, phoneNumber);
+				System.out.println("Sup, " + psn);
 			} catch (Exception e){
 				e.printStackTrace();
 			} finally {

@@ -203,7 +203,7 @@ public class Test {
 
             try (PrintWriter out = new PrintWriter(
                     new BufferedWriter(new FileWriter("res/bookDirectory.txt", true)))) {
-                out.println(title + "-" + author + "-" + publisher
+                out.println("\n" + title + "-" + author + "-" + publisher
                         + "-" + genre + "-" + shelf);
             } catch (IOException ioe) {
                 ioe.printStackTrace();
@@ -251,7 +251,7 @@ public class Test {
 
     public String parseCustomerToString(Customer customer){
 	    return customer.getName() + "/" + customer.getAdress()
-                + "/" + customer.getNumber() + "/" + customer.getPersonnummer();
+                + "/" + customer.getPersonnummer() + "/" + customer.getNumber();
     }
 
 	public void removeLineFromFile(String path, String lineToRemove){
@@ -472,16 +472,15 @@ public class Test {
 
 	public void removeCustomer() {
 		System.out.println("Enter personal security number of customer to remove: ");
-		String psn = scanner.next();
+		String psn = scanner.nextLine();
         Customer customer = retrieveCustomer(psn);
         if(customer != null){
             removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
             library.removeCustomer(customer);
         } else {
-            System.out.println("There's no customer with that personnummer \n Please enter a valid one.");
+            System.out.println("There's no customer with that personnummer \nPlease enter a valid one.");
             removeCustomer();
         }
-
 	}
 
 	public void searchCustomer() {
