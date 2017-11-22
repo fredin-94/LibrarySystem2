@@ -277,7 +277,7 @@ public class Test {
                 // I think it's saving a new line character at the end from when the user presses enter, therefore
                 // a .trim() is required.
                 if(!line.equals(lineToRemove.trim())){
-                	// GONNA DELETE ALL BOOKS, FIX PLS
+                	// GONNA DELETE ALL BOOKS WITH THAT TITLE, FIX PLS
                     pw.println(line);
                     pw.flush();
                 }
@@ -487,9 +487,6 @@ public class Test {
 	public void removeCustomer() {
 		System.out.println("Enter personal security number of customer to remove: ");
 		String psn = scanner.next();
-		String name;
-		String address;
-		String phoneNumber;
         Customer customer = retrieveCustomer(psn);
         if(customer != null){
             removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
