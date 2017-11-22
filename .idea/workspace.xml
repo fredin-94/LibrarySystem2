@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82e68db0-414f-4ee2-b921-f13d0b7cb6a6" name="Default" comment="added a comment to implement trim() method to title strings.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library$1.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library$bookKey.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library$bookKey.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library$customerKey.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library$customerKey.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Test.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Test.class" />
+    <list default="true" id="82e68db0-414f-4ee2-b921-f13d0b7cb6a6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/bookDirectory.txt" afterPath="$PROJECT_DIR$/res/bookDirectory.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/customer.txt" afterPath="$PROJECT_DIR$/res/customer.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/Library.java" afterPath="$PROJECT_DIR$/src/library/Library.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/Test.java" afterPath="$PROJECT_DIR$/src/library/Test.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -378,10 +369,18 @@
       <workItem from="1510835400437" duration="17238000" />
       <workItem from="1511198352756" duration="5082000" />
     </task>
+    <task id="LOCAL-00001" summary="Test.java, Library.java: fixed add/remove customer/book in Test and in customerDir/bookDir methods in Library">
+      <created>1511372079868</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1511372079868</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46179000" />
+    <option name="totallyTimeSpent" value="46480000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
@@ -444,7 +443,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added a comment to implement trim() method to title strings." />
-    <option name="LAST_COMMIT_MESSAGE" value="added a comment to implement trim() method to title strings." />
+    <MESSAGE value="Test.java, Library.java: fixed add/remove customer/book in Test and in customerDir/bookDir methods in Library" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test.java, Library.java: fixed add/remove customer/book in Test and in customerDir/bookDir methods in Library" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
