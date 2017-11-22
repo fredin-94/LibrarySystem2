@@ -3,7 +3,8 @@ package library;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.io.Serializable;
-public class Customer impements Serializable {
+
+public class Customer implements Serializable {
 
 	private String name;
 	private String adress;
@@ -15,7 +16,7 @@ public class Customer impements Serializable {
 	private String personnummer;
 	final String END_OF_LINE = System.lineSeparator();// Skips A Line
 
-	public Customer(String name, String adress, String personnummer) throws Exception implements Serializable {
+	public Customer(String name, String adress, String personnummer) throws Exception {
 		if (name.equals("")) {
 
 			throw new Exception("Name can not be empty");
@@ -138,14 +139,14 @@ public class Customer impements Serializable {
 	}
 
 	public Book getFromCurrentLoan(String bookTitle) {
-		for(Book book: currentLoans) {
-			if(book.getTitle().equals(bookTitle)) {
+		for (Book book : currentLoans) {
+			if (book.getTitle().equals(bookTitle)) {
 				return book;
 			}
 		}
 		return null;
 	}
-	
+
 	public void addBookToCurrentLoan(Book book) {
 		currentLoans.add(book);
 	}
@@ -153,7 +154,6 @@ public class Customer impements Serializable {
 	public void addBookToLoanHistory(Book book) {
 		loanHistory.add(book);
 	}
-	
 
 	public String toString() {// Need to check the form then it will be edited.
 		String printC = " " + END_OF_LINE; // PrintC is going to include everything to be printed.
