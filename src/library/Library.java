@@ -242,62 +242,7 @@ public class Library {
 		customer.addToCurrentLoan(book);
 		customer.addToLoanHistory(book);
 		books.remove(book);
-		try (PrintWriter out = new PrintWriter(
-				new BufferedWriter(new FileWriter("res/LoanedBooks.txt", true)))) {
-			out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher()
-					+ "-" + book.getPublisher() + "-" + book.getShelf());
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-		System.out.println("Added " + book.getTitle() + " to loaned books");
-		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/LoanedBooks.txt", true)))) {
-			out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getPublisher()
-					+ "-" + book.getShelf());
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-		System.out.println("Added " + book.getTitle() + " to library");
-
-		File file = new File("res/bookDirectory.txt");
-		// Create a temporary file (otherwise you've to read everything into Java's
-		// memory first).
-
-		File temp = File.createTempFile("file", "temp.txt", file.getParentFile());
-		// Determine the charset.
-
-		String charset = "UTF-8";
-		// Determine the string you'd like to delete.
-
-		String delete = book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getPublisher()
-				+ "-" + book.getShelf();
-		// Open the file for reading.
-
-		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charset));
-		// Open the temp file for writing.
-
-		PrintWriter writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(temp), charset));
-		// Read the file line by line.
-
-		for (String line; (line = reader.readLine()) != null;) {
-			line = line.replace(delete, "");
-			line = line.replace(delete, "");
-			writer.println(line);
-		}
-		// Delete the string from the line.
-
-		// Write it to temp file.
-
-		// Close the reader and writer (preferably in the finally block).
-
-		reader.close();
-		writer.close();
-		// Delete the file.
-
-		file.delete();
-		// Rename the temp file.
-
-		temp.renameTo(file);
-
+		
 	}
 
 
