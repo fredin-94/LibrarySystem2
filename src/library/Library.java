@@ -380,8 +380,7 @@ public class Library {
 	//Reading a text file into arraylist: (Books)// - change the exception handling for them(?)
 	public void bookDirectory() throws FileNotFoundException {
 		Scanner input = new Scanner(new File("res/bookDirectory.txt"));
-	    input.useDelimiter("-|\n");
-	    
+	    input.useDelimiter("-|\n");   
 		
 		while(input.hasNext()) {
 	       

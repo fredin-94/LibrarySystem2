@@ -58,14 +58,14 @@ public class Test {
                     handleAdmin(userInput);
                     break;
                 case 4:
-                    menu.getSimulator();
-                    userInput = scanner.nextInt();
-                    handleTimeSimMenu(userInput);
+                	 	menu.getExtra();
+                     userInput = scanner.nextInt();
+                     handleExtra(userInput);
                     break;
                 case 5:
-                    menu.getExtra();
-                    userInput = scanner.nextInt();
-                    handleTimeSimMenu(userInput);
+                	 	menu.getSimulator();
+                     userInput = scanner.nextInt();
+                     handleTimeSimMenu(userInput);
                     break;
                 case 0:
                     System.exit(0);
@@ -149,10 +149,14 @@ public class Test {
     public void handleExtra(int option) {
     			switch (option) {
 				case 1:
-					library.getLoanedBooks();
+					for (int i = 0; i < library.getLoanedBooks().size(); i++) {
+						System.out.println(library.getLoanedBooks().get(i).toString());
+					}
 					break;
 				case 2:
-					library.getDelayedBooks();
+					for (int i = 0; i < library.getDelayedBooks().size(); i++) {
+						System.out.println(library.getDelayedBooks().get(i).toString());
+					}
 					break;
 				case 3:
 					showCustomerLoanHistory();
@@ -165,6 +169,7 @@ public class Test {
 					break;
 
 				default:
+					System.out.println("Not a valid option");
 					break;
 				}
     	
@@ -384,7 +389,7 @@ public class Test {
 		int userInput = scanner.nextInt();
 		scanner.nextLine();
 		try {
-            switch (userInput) {
+            switch (userInput) { //Should display a message if user tries searching for nonexistant book
                 case 1:
                     System.out.println("Please enter the title");
                     String title = scanner.nextLine();

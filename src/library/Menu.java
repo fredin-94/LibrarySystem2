@@ -23,8 +23,8 @@ public class Menu {
 		System.out.println(" ===   1. Search library directory               === ");
 		System.out.println(" ===   2. Borrow or return books                 === ");
 		System.out.println(" ===   3. Administration                         === ");
-		System.out.println(" ===   4. Time Simulator FX40000                 === ");
-		System.out.println(" ===   5. Extra                                  === ");
+		System.out.println(" ===   4. Extra                                  === ");
+		System.out.println(" ===   5. Time Simulator FX40000                 === ");
 		System.out.println(" ===   0. Quit program                           === ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" =================================================== ");
