@@ -6,9 +6,9 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==               Welcome to                      == ");
-		System.out.println(" ==             FooBar Library                    == ");
+		System.out.println(" ==         The Royal Oxford Library              == ");
 		System.out.println(" ==                                               == ");
-		System.out.println(" ==      established [2017]                       == ");
+		System.out.println(" ==            Established 1817                   == ");
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
