@@ -286,7 +286,7 @@ public class Library {
 	}
 
 
-	}
+	
 
 	public void borrowBookDay(String bookTitle, String personnummer, int loanPeriod) throws Exception {
 		Customer customer = findCustomerBy(customerKey.PERSONNUMMER, personnummer);
