@@ -42,31 +42,31 @@ import static library.Library.customerKey.*;
 
 public class Library {
 
+	private ArrayList<Book> allBooks;
 	private ArrayList<Book> books;
 	private ArrayList<Book> loanedBooks;
 	private ArrayList<Book> delayedBooks;
+	private ArrayList<Book> topTen;
 	private ArrayList<Customer> customers;
 	private LocalDate date;
 
 	// read txt files to the directories in constructor???
 	public Library() {
+		allBooks = new ArrayList<Book>();
 		books = new ArrayList<Book>();
 		loanedBooks = new ArrayList<Book>();
 		delayedBooks = new ArrayList<Book>();
+		topTen = new ArrayList<Book>();
 		customers = new ArrayList<Customer>();
 		date = LocalDate.now();
-		
-		// Parse directories into arraylists
-		try {
-			bookDirectory();
-			customerDirectory();
-		}catch(Exception e) {
-			System.out.println("Files not available.");
-		}
 	}
 
 	/* TODO ---------------------Basic------------------------------- */
 
+	public ArrayList<Book> getAllBooks(){
+		return allBooks;
+	}
+	
 	public ArrayList<Book> getBooks() {
 		return books;
 	}
@@ -153,6 +153,14 @@ public class Library {
 	// Uses enums from search.
 	// DON'T CHANGE FORMAT PLEASE.
 
+	public void sortAllBooksBy(bookKey keyToSort) {
+		try {
+			for (Book book : this.allBooks) book.authors2UpperCase();
+			Collections.sort(this.allBooks, Comparator.comparing(getBookFunction(keyToSort)));
+		}
+		catch (InvalidKeyException ike) {ike.printStackTrace();}
+	}
+	
 	public void sortBooksBy(bookKey keyToSort) {
 		try {
 			for (Book book : this.books) book.authors2UpperCase();
@@ -160,6 +168,7 @@ public class Library {
 		}
 		catch (InvalidKeyException ike) {ike.printStackTrace();}
 	}
+	
 	private Function<Book, ? extends Comparable> getBookFunction(bookKey key) throws InvalidKeyException {
 		switch (key) {
 			case TITLE: return Book::getTitle;
@@ -200,11 +209,22 @@ public class Library {
 
 	/* register books */
 	public void addBook(Book book) {
+		for(Book aBook: allBooks) {
+			if(book == aBook) {
+				break;
+			}else {
+				allBooks.add(book);
+			}
+		}
 		books.add(book);
 	}
 
 	public void removeBook(Book book) {
 		books.remove(book);
+	}
+	
+	public void deleteBook(Book book) {
+		allBooks.remove(book);
 	}
 
 	/*
@@ -278,18 +298,38 @@ public class Library {
 		 */
 
 		Customer customer = findCustomerBy(customerKey.PERSONNUMMER, personnummer);
+		if(customer == null) {
+			throw new Exception ("Customer doesn't exist in directory");
+		}
+		
 		Book book = customer.getFromCurrentLoan(bookTitle);
+		if(book == null) {
+			throw new Exception ("Book doesn't exist in directory");
+		}
 		
 		int debt = this.checkDelay(book) * 2;
 		customer.setDebt(debt);
+		
+		//statistics
+		book.incrementTimesBorrowed();
+		for(Book books: allBooks) {
+			if(book.getTitle().equalsIgnoreCase(books.getTitle())) {
+				books.incrementTimesBorrowed();
+			}
+		}
+		
 		
 		/*
 		 * TODO we need to "restart" the dates once the book is returned
 		 * book.restartDates(); book.restartLoanPeriod(); book.notDelayed();
 		 */
+		LocalDate date = LocalDate.of(1998, 1, 1);
+		book.setReturnDate(date);
+		book.setStartDate(date);
 		// we should discuss whether the books should be set to a
 		// certain day when they are not being loaned out
-
+		
+		
 		books.add(book);
 		loanedBooks.remove(book);
 		customer.removeFromCurrentLoan(book);
@@ -310,14 +350,43 @@ public class Library {
 		return loanedBooks;
 	}
 
-	public Book getMostPopularBook() {
-		Book mostPopular = books.get(0);
-		for (Book book : books) {
-			if (book != books.get(0) && book.getTimesBorrowed() > mostPopular.getTimesBorrowed()) {
-				mostPopular = book;
+	public ArrayList<Book> getTopTen() {
+		ArrayList<Book> oneCopy = new ArrayList<Book>();
+		this.sortAllBooksBy(TITLE);
+		int numOfCopies = 0;
+		
+		{
+			for(int i = 0; i < this.allBooks.size(); i++) {
+				Book book = allBooks.get(i);
+				oneCopy.add(book);
+				
+				for(int j = i; j < this.allBooks.size(); j++) {
+					if(book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle()) ) {//trims
+						numOfCopies++;
+					}
+				}
+				
+				i+=numOfCopies;
+				numOfCopies = 0;
 			}
-		}
-		return mostPopular;
+		}//end of block a: adds one copy of each book to the onCopy arrayList 
+		
+		{
+			for(int i = 0; i < oneCopy.size(); i++) {
+				if(i < 10) {
+					 topTen.add(oneCopy.get(i));
+					 
+				}else {
+					
+				}
+			}
+		}//end of block b: adds 10 books to the topTen array, and the compares the remaining books to that 10 books already inside
+		
+		{
+			/*I'm fucked*/
+		}//end of block c
+		
+		return topTen;
 	}
 
 	public ArrayList<Book> getCustomerLoanHistory(Customer customer) {

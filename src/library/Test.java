@@ -583,7 +583,7 @@ public class Test {
 	public void showMostPopularBook() {
 		//this is the like method below but only for 1 single book.. need?
 		System.out.println("Most popular book right now is:");
-		System.out.println(library.getMostPopularBook()); //does this display anything??
+		//System.out.println(library.getMostPopularBook()); //does this display anything??
 
 	}
 	public void showMostLentOutBooks() {
