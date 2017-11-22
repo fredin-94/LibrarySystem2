@@ -265,7 +265,7 @@ public class Test {
                 // I think it's saving a new line character at the end from when the user presses enter, therefore
                 // a .trim() is required.
                 if(!line.equals(lineToRemove.trim())){
-                	// GONNA DELETE ALL BOOKS, FIX PLS
+                	// GONNA DELETE ALL BOOKS WITH THAT TITLE, FIX PLS
                     pw.println(line);
                     pw.flush();
                 }
@@ -456,8 +456,14 @@ public class Test {
 		String psn = scanner.nextLine();
 
 		try {
-            library.addCustomer(new Customer(name, address,psn, phoneNumber));
+		    // This is not how .contains works...
+			if(!name.equals("") && !address.equals("") && !psn.equals("") && !library.getCustomers().contains(psn)) {
+				library.addCustomer(new Customer(name, address, psn, phoneNumber));
+				System.out.println("Added " + name + " to customer database");
+			}
+            //library.addCustomer(new Customer(name, address,psn, phoneNumber));
             writeCustomerToFile(name, address, phoneNumber, psn);
+
 		} catch (Exception e) {
 			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
 			addCustomer();

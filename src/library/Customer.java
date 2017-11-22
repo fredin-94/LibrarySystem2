@@ -2,8 +2,8 @@ package library;
 
 import java.util.ArrayList;
 import java.util.UUID;
-
-public class Customer {
+import java.io.Serializable;
+public class Customer implements Serializable {
 
 	private String name;
 	private String adress;

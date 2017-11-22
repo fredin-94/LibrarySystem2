@@ -133,21 +133,21 @@ public class Menu {
 	}
 	
 	public void getAdministration() {
-		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Administration System             == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Choose an option below:                   === ");
-		System.out.println(" ===   1. Add Book                               === ");
-		System.out.println(" ===   2. Remove Book                            === ");
-		System.out.println(" ===   3. Add User                               === ");
-		System.out.println(" ===   4. Remove User                            === ");
-		System.out.println(" ===   0. Return to main manu                    === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
-		System.out.println();
+		System.out.println(
+		  " =================================================== \n"
+		+ " ==             Administration System             == \n"
+		+ " =================================================== \n"
+		+ " ===                                             === \n"
+		+ " ===   Choose an option below:                   === \n"
+		+ " ===   1. Add Book                               === \n"
+		+ " ===   2. Remove Book                            === \n"
+		+ " ===   3. Add Customer                           === \n"
+		+ " ===   4. Remove Customer                        === \n"
+		+ " ===   0. Return to main menu                    === \n"
+		+ " ===                                             === \n"
+		+ " =================================================== \n");
 	}
+
 	
 	public void addAuthor() {
 		System.out.println();
