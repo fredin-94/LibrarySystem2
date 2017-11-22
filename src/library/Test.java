@@ -471,11 +471,12 @@ public class Test {
 		String psn = scanner.nextLine();
 
 		try {
+		    // This is not how .contains works...
 			if(!name.equals("") && !address.equals("") && !psn.equals("") && !library.getCustomers().contains(psn)) {
-				library.addCustomer(new Customer(name, address,psn, phoneNumber));
+				library.addCustomer(new Customer(name, address, psn, phoneNumber));
 				System.out.println("Added " + name + " to customer database");
 			}
-            library.addCustomer(new Customer(name, address,psn, phoneNumber));
+            //library.addCustomer(new Customer(name, address,psn, phoneNumber));
             writeCustomerToFile(name, address, phoneNumber, psn);
 
 		} catch (Exception e) {
