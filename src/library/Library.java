@@ -57,6 +57,7 @@ public class Library {
 	private ArrayList<Customer> customers;
 	private LocalDate date;
 
+	// read txt files to the directories in constructor???
 	public Library() {
 		books = new ArrayList<Book>();
 		loanedBooks = new ArrayList<Book>();
@@ -131,7 +132,21 @@ public class Library {
 		}
 	}
 	private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f) throws NullPointerException {
-		for (Customer customer : customers) if (searchValue.equals(((String)f.apply(customer)).toLowerCase())) return customer;
+		try {
+		    // there wasnt an arraylist with objects until calling customerDirectory which
+            // is the function that reads from txt and adds to the customers arraylist
+		    customerDirectory();
+            for (Customer customer : customers) {
+                System.out.println("search value: " + searchValue);
+                System.out.println(f.apply(customer));
+                if (searchValue.equals(((String) f.apply(customer)).toLowerCase())) {
+                    System.out.println("found customer");
+                    return customer;
+                }
+            }
+        }catch (Exception e){
+		    e.getMessage();
+        }
 		throw new NullPointerException("Customer not found.");
 	}
 
@@ -443,14 +458,16 @@ public class Library {
 			String genre = input.next();
 			String shelf = input.next();
 	        
-	        Book book;
+	        Book book = null;
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
-				books.add(book);
+
 			} catch (Exception e) {
 				e.printStackTrace();
+			} finally {
+				books.add(book);
 			}
-	        
+
 	    }
 	}
 	
@@ -466,10 +483,26 @@ public class Library {
 			String phoneNumber = input.next();
 			String psn = input.next();
 	        
-			Customer customer = new Customer(name, address, phoneNumber, psn);
-	        customers.add(customer);
+			Customer customer = null;
+			try {
+				customer = new Customer(name, address, phoneNumber, psn);
+			} catch (Exception e){
+				e.printStackTrace();
+			} finally {
+				customers.add(customer);
+			}
 	    }
 	}
 	
+
+	@Override
+	public String toString(){
+	    String res = "";
+		for(Book book : books){
+		    res += book.toString() + System.lineSeparator();
+        }
+        System.out.println(res);
+        return res;
+	}
 
 }
