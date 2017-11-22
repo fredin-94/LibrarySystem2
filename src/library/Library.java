@@ -46,7 +46,6 @@ public class Library {
 	private ArrayList<Book> books;
 	private ArrayList<Book> loanedBooks;
 	private ArrayList<Book> delayedBooks;
-	private ArrayList<Book> topTen;
 	private ArrayList<Customer> customers;
 	private LocalDate date;
 
@@ -56,7 +55,6 @@ public class Library {
 		books = new ArrayList<Book>();
 		loanedBooks = new ArrayList<Book>();
 		delayedBooks = new ArrayList<Book>();
-		topTen = new ArrayList<Book>();
 		customers = new ArrayList<Customer>();
 		date = LocalDate.now();
 	}
@@ -195,14 +193,6 @@ public class Library {
 				default: throw new InvalidKeyException("Invalid key in customer sort function");
 			}
 		} catch (InvalidKeyException ike) {ike.printStackTrace();}
-	}
-	
-	// ----- Show 10 most popular books ----- //
-	public String showTopBooks() {
-		sortBooksBy(TIMESBORROWED);
-		String s = "";
-		for (int i = 0; i < 10; i++) s += (i) + "." + this.books.get(i).toString() + "\n";
-		return s;
 	}
 
 	/* TODO -------------------REGISTRATION--------------------- */
@@ -351,6 +341,7 @@ public class Library {
 	}
 
 	public ArrayList<Book> getTopTen() {
+		ArrayList<Book> topTen = new ArrayList<Book>();
 		ArrayList<Book> oneCopy = new ArrayList<Book>();
 		this.sortAllBooksBy(TITLE);
 		int numOfCopies = 0;
@@ -369,22 +360,21 @@ public class Library {
 				i+=numOfCopies;
 				numOfCopies = 0;
 			}
-		}//end of block a: adds one copy of each book to the onCopy arrayList 
+		}//end of block a: adds one copy of each book to the onCopy arrayList and jumps the loop
 		
 		{
-			for(int i = 0; i < oneCopy.size(); i++) {
-				if(i < 10) {
-					 topTen.add(oneCopy.get(i));
-					 
-				}else {
-					
+				try {
+					for (Book book : oneCopy) book.authors2UpperCase();
+					Collections.sort(this.allBooks, Comparator.comparing(getBookFunction(TIMESBORROWED)));
 				}
-			}
+				catch (InvalidKeyException ike) {ike.printStackTrace();}
+				
+				for(int i = 0; i < topTen.size(); i++) {
+					topTen.remove(topTen.get(i));
+					topTen.add(oneCopy.get(i));
+				}
+			
 		}//end of block b: adds 10 books to the topTen array, and the compares the remaining books to that 10 books already inside
-		
-		{
-			/*I'm fucked*/
-		}//end of block c
 		
 		return topTen;
 	}
