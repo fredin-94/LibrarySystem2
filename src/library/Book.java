@@ -47,7 +47,14 @@ public class Book {
 		return this.title;
 	}
 
-	public String getAuthor() {return this.authors.get(0) +"," + this.authors.get(1);}
+	public String getAuthor() {
+        if (this.authors.size() > 1) {
+            return this.authors.get(0) + "," + this.authors.get(1);
+        } else {
+            return this.authors.get(0);
+        }
+    }
+
 	public ArrayList<String> getAuthors(){
 		/*String res = ": ";
 		if(authors.size() == 1){

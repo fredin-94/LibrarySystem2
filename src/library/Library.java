@@ -140,9 +140,6 @@ public class Library {
 	}
 	private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f) throws NullPointerException {
 		try {
-		    // there wasnt an arraylist with objects until calling customerDirectory which
-            // is the function that reads from txt and adds to the customers arraylist
-		    customerDirectory();
             for (Customer customer : customers) {
                 System.out.println("search value: " + searchValue);
                 System.out.println(f.apply(customer));

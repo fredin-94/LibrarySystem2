@@ -1,6 +1,5 @@
 package library;
 
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,7 +7,6 @@ import java.util.Scanner;
 import library.Library.bookKey;
 import static library.Library.bookKey.*; // Needed to take enum keys as parameters. //Fabian.
 import static library.Library.customerKey.*;
-
 
 public class Test {
 
@@ -20,10 +18,8 @@ public class Test {
         library = new Library();
 	}
 
-
 	public void run() {
 		int userInput;
-
 		do {
 		    menu.getWelcomeScreen();
 			menu.getMenu();
@@ -152,20 +148,10 @@ public class Test {
     }
 
     public ArrayList<Book> retrieveBookDirectory(){
-        /*try{
-            library.bookDirectory();
-        } catch(Exception e){
-            e.getMessage();
-        }*/
         return library.getBooks();
     }
 
     public ArrayList<Customer> retrieveCustomerDirectory(){
-        /*try{
-            library.customerDirectory();
-        } catch(Exception e){
-            e.getMessage();
-        }*/
         return library.getCustomers();
     }
 
