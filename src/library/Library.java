@@ -47,6 +47,7 @@ public class Library {
 	private ArrayList<Book> delayedBooks;
 	private ArrayList<Customer> customers;
 	private LocalDate date;
+	private ArrayList<Book> topBooks;
 
 	// read txt files to the directories in constructor???
 	public Library() {
@@ -55,6 +56,7 @@ public class Library {
 		delayedBooks = new ArrayList<Book>();
 		customers = new ArrayList<Customer>();
 		date = LocalDate.now();
+		topBooks = new ArrayList<Book>();
 	}
 
 	/* TODO ---------------------Basic------------------------------- */
@@ -398,6 +400,56 @@ public class Library {
 				e.printStackTrace();
 			} finally {
 				books.add(book);
+			}
+
+	    }
+	}
+	
+	public void loanedBooksDirectory() throws FileNotFoundException {
+		Scanner input = new Scanner(new File("res/loanedBooks.txt"));
+	    input.useDelimiter("-|\n");   
+		
+		while(input.hasNext()) {
+	       
+	        String title = input.next();
+			String author = input.next();
+			String publisher = input.next();
+			String genre = input.next();
+			String shelf = input.next();
+	        
+	        Book book = null;
+			try {
+				book = new Book(title, author, publisher, genre, shelf);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				loanedBooks.add(book);
+			}
+
+	    }
+	}
+	
+	public void delayedBooksDirectory() throws FileNotFoundException {
+		Scanner input = new Scanner(new File("res/delayedBooks.txt"));
+	    input.useDelimiter("-|\n");   
+		
+		while(input.hasNext()) {
+	       
+	        String title = input.next();
+			String author = input.next();
+			String publisher = input.next();
+			String genre = input.next();
+			String shelf = input.next();
+	        
+	        Book book = null;
+			try {
+				book = new Book(title, author, publisher, genre, shelf);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				delayedBooks.add(book);
 			}
 
 	    }
