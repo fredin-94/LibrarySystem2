@@ -1,8 +1,12 @@
 package library;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import library.Library.bookKey;
 import static library.Library.bookKey.*; // Needed to take enum keys as parameters. //Fabian.
@@ -13,6 +17,7 @@ public class Test {
 	private Menu menu = new Menu();
 	private Scanner scanner = new Scanner(System.in);
 	private Library library;
+	
 
 	public Test() {
 		library = new Library();
@@ -30,6 +35,8 @@ public class Test {
 
 	public void run() {
 		int userInput;
+		 
+
 
 		do {
 			menu.getWelcomeScreen();
@@ -329,6 +336,15 @@ public class Test {
 			writeBookToFile("res/LoanedBooks.txt", title, retrieveBook(title).getAuthor(),
 					retrieveBook(title).getPublisher(), retrieveBook(title).getGenre(), retrieveBook(title).getShelf());
 			library.borrowBook(title, psn);
+			ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+			ses.scheduleAtFixedRate(new Runnable() {
+			    @Override
+			    public void run() {
+			         library.isDelayed(retrieveBook(title));
+			    }
+			}, 0, 1, TimeUnit.HOURS);
+
+			
 
 		}
 	}
@@ -353,8 +369,11 @@ public class Test {
 			}
 			writeBookToFile("res/bookDirectory.txt", book.getTitle(), book.getAuthor(), book.getPublisher(),
 					book.getGenre(), book.getShelf());
-			removeLineFromFile("res/LoanedBooks.txt", parseBookToString(retrieveBook(title)));
+			removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
 			library.returnBook(title, psn);
+			if(library.checkDelay(book) != 0) {
+				removeLineFromFile("res/delayedBooks.txt", parseBookToString(book));
+			}
 		}
 	}
 
@@ -636,6 +655,18 @@ public class Test {
 		// here we also should be able to get loan history from only entering the PSN!!
 		// --That's what we are doing??
 	}
+	public void manipulateTimeByHours(long hours) {
+		library.setDateByHours(hours);
+	}
+	public void manipulateTimeByDays(long days) {
+		library.setDateByDays(days);
+	}
+	public void manipulateTimeByMonths(long months) {
+		library.setDateByMonths(months);
+	}
+	public void manipulateTimeByYears(long years) {
+		library.setDateByYears(years);
+	}
 
 	public static void main(String[] args) {
 		// System.out.println("hello m");
@@ -643,6 +674,8 @@ public class Test {
 		test.run();
 
 	}
+	
+	
 }
 
 // TODO: things i wrote in my comments above, and add options for VG things !!,

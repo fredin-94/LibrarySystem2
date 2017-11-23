@@ -44,8 +44,13 @@ import java.util.function.*;
 import static library.Library.bookKey.*;
 //--------------------
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import static library.Library.bookKey.*;
 import static library.Library.customerKey.*;
 
@@ -56,7 +61,9 @@ public class Library {
 	private ArrayList<Book> delayedBooks;
 	private ArrayList<Customer> customers;
 	private ArrayList<Book> allBooks;
-	private LocalDate date;
+	private LocalDateTime date;
+	private Timer timer;
+	private TimerTask hourlyTask;
 
 	// read txt files to the directories in constructor???
 	public Library() {
@@ -65,7 +72,8 @@ public class Library {
 		delayedBooks = new ArrayList<Book>();
 		allBooks = new ArrayList<Book>();
 		customers = new ArrayList<Customer>();
-		date = LocalDate.now();
+		date = LocalDateTime.now();
+		timer = new Timer();
 		try {
 			bookDirectory();
 
@@ -97,6 +105,7 @@ public class Library {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	/* TODO ---------------------Basic------------------------------- */
@@ -428,7 +437,7 @@ public class Library {
 	 * IMPORTANT check whether each book has passed it's loan period and switch
 	 * delayed boolean
 	 */
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return this.date;
 	}
 
@@ -468,13 +477,21 @@ public class Library {
 	public void isDelayed(Book book) {
 		if (this.checkDelay(book) > 0) {
 			delayedBooks.add(book);
+			
+				try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/delayedBooks.txt", true)))) {
+					out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getGenre() + "-" + book.getShelf());
+				} catch (IOException ioe) {
+					ioe.printStackTrace();
+				}
+				System.out.println("Added " + book.getTitle() + " to library");
 		}
+			
 	}
 
 	// returns delay surplus
 	public int checkDelay(Book book) {
 		if (this.date.compareTo(book.getReturnDate()) > 0) {
-			return (int) ChronoUnit.DAYS.between(book.getReturnDate(), this.date);
+			return (int) ChronoUnit.HOURS.between(book.getReturnDate(), this.date);
 		} else {
 			return 0;
 		}
@@ -606,6 +623,18 @@ public class Library {
 				customers.add(customer);
 			}
 		}
+	}
+	public void setDateByHours(long hours) {
+		this.date = date.plusHours(hours);
+	}
+	public void setDateByDays(long days) {
+		this.date = date.plusDays(days);
+	}
+	public void setDateByMonths(long months) {
+		this.date = date.plusMonths(months);
+	}
+	public void setDateByYears(long years) {
+		this.date = date.plusYears(years);
 	}
 
 	@Override
