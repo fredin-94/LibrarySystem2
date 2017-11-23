@@ -42,7 +42,6 @@ public class Menu {
               	+ " ===   2. Search for customer                    === "+ System.lineSeparator()
              	+ " ===   3. Print all available books              === "+ System.lineSeparator()
              	+ " ===   4. Print all customers                    === "+ System.lineSeparator()
-				+ " ===   5. Show customer loan history             === "+ System.lineSeparator()
 				+ " ===   0. Return to main menu                    === "+ System.lineSeparator()
 				+ " =================================================== \n");
 	}
@@ -266,7 +265,7 @@ public class Menu {
 		System.out.println(" ===   Choose an option below:                   === ");
 		System.out.println(" ===   1. Show all lent out books                === ");
 		System.out.println(" ===   2. Show all delayed books                 === ");
-		System.out.println(" ===   3. Show users loan history                === ");
+		System.out.println(" ===   3. Show customers loan history            === ");
 		System.out.println(" ===   4. Show top 10 most popular books         === ");
 		System.out.println(" ===   0. Return to main menu                    === ");
 		System.out.println(" ===                                             === ");

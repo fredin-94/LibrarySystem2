@@ -117,6 +117,7 @@ public class Customer implements Serializable {
 			this.number = newNumber;
 		} else {
 			throw new Exception("Phone number MUST consist of 10 digits");
+			//why is this here? its called in many places that dont have to do with phone number
 		}
 	}
 

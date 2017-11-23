@@ -485,9 +485,11 @@ public class Test {
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             }
-            System.out.println("Added " + name + " to customer database");
+            //already have a print saying this elsewhere
+            //System.out.println("Added " + name + " to customer database");
         }else {
-            System.out.println("No parameters allowed to be empty");
+            System.out.println("Couldn't write customer to file.");
+            System.out.println("Check if any parameters were empty or numbers too short/too long");
         }
     }
 
@@ -511,10 +513,11 @@ public class Test {
 			}
             library.addCustomer(new Customer(name, address,psn, phoneNumber));
             writeCustomerToFile(name, address, phoneNumber, psn);
-
+            
+            //the catch doesnt seem to work. 
 		} catch (Exception e) {
 			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
-			addCustomer();
+			addCustomer(); 
 		}
 	}
 
