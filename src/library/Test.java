@@ -23,7 +23,7 @@ public class Test {
 		//customer perhaps??
 		try {
 			System.out.println("Text files loaded successfully");
-			library.bookDirectory();
+			library.bookDirectory("bookDirectory");
 			library.customerDirectory();
 			
 		} catch (Exception e) {
@@ -197,7 +197,7 @@ public class Test {
 
     public ArrayList<Book> retrieveBookDirectory(){
         try{
-            library.bookDirectory();
+            library.bookDirectory("bookDirectory");
         } catch(Exception e){
             e.getMessage();
         }
@@ -467,7 +467,7 @@ public class Test {
 
 	public void showAvailableBooks(){
         try {
-            library.bookDirectory();
+            library.bookDirectory("bookDirectory");
         }catch (Exception e) {
             e.getMessage();
         }
@@ -643,6 +643,8 @@ public class Test {
 		//need a counter that goes up every time a book is lent out
 		//need another arraylist that fills up with the maybe top 5 books that have highest counter
 		//search through the "all books" arraylist and add to that arraylist and display here
+		//library.showTopBooks();
+		System.out.println(library.showTopBooks());
 	}
 	public void showCustomerLoanHistory() { //WILL THIS WORK?? ----- IT NOW WORKS
         scanner.nextLine();
@@ -662,7 +664,6 @@ public class Test {
             System.out.println("No customer registered with that psn");
             showCustomerLoanHistory();
         }
-		//here we also should be able to get loan history from only entering the PSN!! --That's what we are doing??
 	}
 
     public static void main(String[] args) {

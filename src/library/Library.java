@@ -380,8 +380,9 @@ public class Library {
 	}
 	
 	//Reading a text file into arraylist: (Books)// - change the exception handling for them(?)
-	public void bookDirectory() throws FileNotFoundException {
-		Scanner input = new Scanner(new File("res/bookDirectory.txt"));
+	public void bookDirectory(String path) throws FileNotFoundException {
+		File allBooks = new File("res/bookDirectory.txt");
+		Scanner input = new Scanner(allBooks);
 	    input.useDelimiter("-|\n");   
 		
 		while(input.hasNext()) {
@@ -393,65 +394,21 @@ public class Library {
 			String shelf = input.next();
 	        
 	        Book book = null;
+
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				books.add(book);
+				if(path.equals("bookDirectory") || path.equals("bookDirectory.txt")) {
+					books.add(book);
+				}else if(path.equalsIgnoreCase("delayedBooks") || path.equalsIgnoreCase("delayedBooks.txt")) {
+					loanedBooks.add(book);
+				}else if(path.equalsIgnoreCase("loanedBooks") || path.equalsIgnoreCase("loanedBooks.txt")) {
+					delayedBooks.add(book);
+				}
+				
 			}
-
-	    }
-	}
-	
-	public void loanedBooksDirectory() throws FileNotFoundException {
-		Scanner input = new Scanner(new File("res/loanedBooks.txt"));
-	    input.useDelimiter("-|\n");   
-		
-		while(input.hasNext()) {
-	       
-	        String title = input.next();
-			String author = input.next();
-			String publisher = input.next();
-			String genre = input.next();
-			String shelf = input.next();
-	        
-	        Book book = null;
-			try {
-				book = new Book(title, author, publisher, genre, shelf);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				loanedBooks.add(book);
-			}
-
-	    }
-	}
-	
-	public void delayedBooksDirectory() throws FileNotFoundException {
-		Scanner input = new Scanner(new File("res/delayedBooks.txt"));
-	    input.useDelimiter("-|\n");   
-		
-		while(input.hasNext()) {
-	       
-	        String title = input.next();
-			String author = input.next();
-			String publisher = input.next();
-			String genre = input.next();
-			String shelf = input.next();
-	        
-	        Book book = null;
-			try {
-				book = new Book(title, author, publisher, genre, shelf);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				delayedBooks.add(book);
-			}
-
 	    }
 	}
 	
