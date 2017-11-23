@@ -56,7 +56,6 @@ public class Library {
 		delayedBooks = new ArrayList<Book>();
 		customers = new ArrayList<Customer>();
 		date = LocalDate.now();
-		topBooks = new ArrayList<Book>();
 	}
 
 	/* TODO ---------------------Basic------------------------------- */
