@@ -3,6 +3,7 @@ package library;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.io.Serializable;
+
 public class Customer implements Serializable {
 
 	private String name;
@@ -34,10 +35,17 @@ public class Customer implements Serializable {
 		if (personnummer.matches("[0-9]+") && personnummer.length() == 10 || personnummer.length() == 12) {// This
 																											// checks
 																											// the
-																											// number of
-																											// digits of
-																											// (number).
-			this.personnummer = personnummer;
+																											// digits
+			for (int i = 0; i < Library.getCustomers().size(); i++) {
+				if (Library.getCustomers().get(i).getPersonnummer().equals(personnummer)) {// This checks if the
+																							// personnummer already
+																							// exists
+					throw new Exception("Personnummer already exists");
+				} else {
+
+					this.personnummer = personnummer;
+				}
+			}
 		} else {
 			throw new Exception("Personnummer MUST consist of 10 or 12 digits");
 
@@ -48,7 +56,8 @@ public class Customer implements Serializable {
 	public Customer(String name, String adress, String personnummer, String number) throws Exception {
 		this(name, adress, personnummer);// calling the first constructor.
 
-		if (number.trim().matches("[0-9]+") && number.trim().length() == 10) {// This checks the number of digits of (number).
+		if (number.trim().matches("[0-9]+") && number.trim().length() == 10) {// This checks the number of digits of
+																				// (number).
 			this.number = number;
 		} else {
 			throw new Exception("Phone number MUST consist of 10 digits");

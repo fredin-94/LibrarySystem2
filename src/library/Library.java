@@ -59,7 +59,7 @@ public class Library {
 	private ArrayList<Book> books;
 	private ArrayList<Book> loanedBooks;
 	private ArrayList<Book> delayedBooks;
-	private ArrayList<Customer> customers;
+	private static ArrayList<Customer> customers;
 	private ArrayList<Book> allBooks;
 	private LocalDateTime date;
 	private Timer timer;
@@ -114,7 +114,7 @@ public class Library {
 		return books;
 	}
 
-	public ArrayList<Customer> getCustomers() {
+	public static ArrayList<Customer> getCustomers() {
 		return customers;
 	}
 
