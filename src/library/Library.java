@@ -1,7 +1,16 @@
 package library;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 
 /*TODO:
  * - Search
@@ -35,20 +44,26 @@ import java.util.function.*;
 import static library.Library.bookKey.*;
 //--------------------
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import static library.Library.bookKey.*;
 import static library.Library.customerKey.*;
 
 public class Library {
 
-	private ArrayList<Book> allBooks;
 	private ArrayList<Book> books;
 	private ArrayList<Book> loanedBooks;
 	private ArrayList<Book> delayedBooks;
-	private ArrayList<Customer> customers;
-	private LocalDate date;
 	private ArrayList<Book> topBooks;
+	private static ArrayList<Customer> customers;
+	private ArrayList<Book> allBooks;
+	private LocalDateTime date;
+	private Timer timer;
+	private TimerTask hourlyTask;
 
 	// read txt files to the directories in constructor???
 	public Library() {
@@ -56,8 +71,42 @@ public class Library {
 		books = new ArrayList<Book>();
 		loanedBooks = new ArrayList<Book>();
 		delayedBooks = new ArrayList<Book>();
+		allBooks = new ArrayList<Book>();
 		customers = new ArrayList<Customer>();
-		date = LocalDate.now();
+		date = LocalDateTime.now();
+		timer = new Timer();
+		try {
+			bookDirectory();
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			customerDirectory();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			LoanedBooks();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			delayedBooks();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			AllBooks();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/* TODO ---------------------Basic------------------------------- */
@@ -75,7 +124,7 @@ public class Library {
 		return books;
 	}
 
-	public ArrayList<Customer> getCustomers() {
+	public static ArrayList<Customer> getCustomers() {
 		return customers;
 	}
 
@@ -253,6 +302,15 @@ public class Library {
 		}
 	}
 
+	// ----- Show 10 most popular books ----- //
+	public String showTopBooks() {
+		sortBooksBy(TIMESBORROWED);
+		String s = "";
+		for (int i = 0; i < 10; i++)
+			s += (i) + "." + this.books.get(i).toString() + "\n";
+		return s;
+	}
+
 	/* TODO -------------------REGISTRATION--------------------- */
 
 	/* register books */
@@ -265,13 +323,13 @@ public class Library {
 			}
 		}
 		books.add(book);
+		allBooks.add(book);
 	}
 
 	public void removeBook(Book book) {
 		books.remove(book);
 	}
-
-	public void deleteBook(Book book) {
+	public void removeBookFromAllBooks(Book book) {
 		allBooks.remove(book);
 	}
 
@@ -326,6 +384,11 @@ public class Library {
 	}
 
 	public void returnBook(String bookTitle, String personnummer) throws Exception {
+		/*
+		 * TODO: -check date //done -calculate debt //done -increment customer debt //
+		 * done -restart book date //done -return book to library //done -remove book
+		 * out of loanedBooks library -remove book from customer currentBooks //done
+		 */
 
 		Customer customer = findCustomerBy(customerKey.PERSONNUMMER, personnummer);
 		if (customer == null) {
@@ -369,7 +432,6 @@ public class Library {
 	public ArrayList<Book> getLoanedBooks() {
 		return loanedBooks;
 	}
-
 	public ArrayList<Book> getTopTen() {
 		ArrayList<Book> topTen = new ArrayList<Book>();
 		ArrayList<Book> oneCopy = new ArrayList<Book>();
@@ -389,6 +451,15 @@ public class Library {
 
 				i += numOfCopies;
 				numOfCopies = 0;
+	public ArrayList<Book> getAllBooks() {
+		return allBooks;
+	}
+
+	public Book getMostPopularBook() {
+		Book mostPopular = books.get(0);
+		for (Book book : books) {
+			if (book != books.get(0) && book.getTimesBorrowed() > mostPopular.getTimesBorrowed()) {
+				mostPopular = book;
 			}
 		} // end of block a: adds one copy of each book to the onCopy arrayList and jumps
 			// the loop
@@ -426,7 +497,7 @@ public class Library {
 	 * IMPORTANT check whether each book has passed it's loan period and switch
 	 * delayed boolean
 	 */
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return this.date;
 	}
 
@@ -466,17 +537,26 @@ public class Library {
 	public void isDelayed(Book book) {
 		if (this.checkDelay(book) > 0) {
 			delayedBooks.add(book);
+			
+				try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/delayedBooks.txt", true)))) {
+					out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getGenre() + "-" + book.getShelf());
+				} catch (IOException ioe) {
+					ioe.printStackTrace();
+				}
+				System.out.println("Added " + book.getTitle() + " to library");
 		}
+			
 	}
 
 	// returns delay surplus
 	public int checkDelay(Book book) {
 		if (this.date.compareTo(book.getReturnDate()) > 0) {
-			return (int) ChronoUnit.DAYS.between(book.getReturnDate(), this.date);
+			return (int) ChronoUnit.HOURS.between(book.getReturnDate(), this.date);
 		} else {
 			return 0;
 		}
 	}
+<<<<<<< HEAD
 	
 	//Reading a text file into arraylist: (Books)// - change the exception handling for them(?)
 	public void bookDirectory(String path) throws FileNotFoundException {
@@ -491,9 +571,7 @@ public class Library {
 			String publisher = input.next();
 			String genre = input.next();
 			String shelf = input.next();
-	      
 			Book book = null;
-			
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
 			} catch (Exception e) {
@@ -508,9 +586,9 @@ public class Library {
 				}
 				
 			}
-	    }
 
 		}
+	}
 	
 
 	// Reading a txt file into arraylist (Customers)//
@@ -534,6 +612,18 @@ public class Library {
 				customers.add(customer);
 			}
 		}
+	}
+	public void setDateByHours(long hours) {
+		this.date = date.plusHours(hours);
+	}
+	public void setDateByDays(long days) {
+		this.date = date.plusDays(days);
+	}
+	public void setDateByMonths(long months) {
+		this.date = date.plusMonths(months);
+	}
+	public void setDateByYears(long years) {
+		this.date = date.plusYears(years);
 	}
 
 	@Override

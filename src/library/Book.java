@@ -1,7 +1,8 @@
 package library;
 
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
@@ -18,9 +19,9 @@ public class Book {
 
 	// VG stuff
 	private int timesBorrowed = 0;
-	final static int TWO_WEEKS = 14;
-	private LocalDate startDate = LocalDate.now();
-	private LocalDate returnDate = startDate.plus(TWO_WEEKS, ChronoUnit.DAYS);
+	final static int TWO_WEEKS = 336;
+	private LocalDateTime startDate = LocalDateTime.now();
+	private LocalDateTime returnDate = startDate.plus(TWO_WEEKS, ChronoUnit.HOURS);
 
 	//*** CONSTRUCTOR ***//
 	public Book(String title, String authors, String publisher, String genre, String shelf) throws Exception{
@@ -81,16 +82,16 @@ public class Book {
 		return this.timesBorrowed;
 	}
 
-	public LocalDate getStartDate(){
+	public LocalDateTime getStartDate(){
 		return this.startDate;
 	}
 
-	public LocalDate getReturnDate(){
+	public LocalDateTime getReturnDate(){
 		return this.returnDate;
 	}
 
 	// needed for when a customer borrows a book and startdate needs to be set.
-	public void setStartDate(LocalDate startDate) throws Exception{
+	public void setStartDate(LocalDateTime startDate) throws Exception{
 		if(startDate.equals(null)) {
 			throw new Exception("Date can't be empty.");
 		} else {
@@ -99,7 +100,7 @@ public class Book {
 	}
 
 	// needed for when you want to extend loans
-	public void setReturnDate(LocalDate returnDate) throws Exception{
+	public void setReturnDate(LocalDateTime returnDate) throws Exception{
 		if(returnDate.equals(null)) {
 			throw new Exception("Date can't be empty.");
 		} else {
