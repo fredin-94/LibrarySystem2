@@ -512,7 +512,7 @@ public class Test {
         String phoneNumber = scanner.nextLine();
 
 		try {
-            if(retrieveCustomer(psn) != null){
+            if(retrieveCustomer(psn) != null){//<< here maybe has to be = null (bcz we are checking if there is no object with this psn)?
                 if(!name.equals("") && !address.equals("") && !psn.equals("") && !phoneNumber.equals("")) {
                     library.addCustomer(new Customer(name, address, psn, phoneNumber));
                     System.out.println("Added " + name + " to customer database");
