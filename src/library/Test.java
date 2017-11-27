@@ -20,25 +20,11 @@ public class Test {
 	
 
 	public Test() {
-
 		library = new Library();
-
-		// faulty!: for some reason it prints catch text too- is it with the
-		// customer perhaps??
-		/*
-		 * try { System.out.println("Text files loaded successfully");
-		 * library.bookDirectory(); library.customerDirectory();
-		 * 
-		 * } catch (Exception e) {
-		 * System.out.println("Was not able to load text files"); }
-		 */
 	}
 
 	public void run() {
 		int userInput;
-		 
-
-
 		do {
 			menu.getWelcomeScreen();
 			menu.getMenu();
@@ -128,6 +114,7 @@ public class Test {
     }
 
     public void handleAdmin(int option){
+    	scanner.nextLine();
         switch (option){
             case 1:
                 addBook();
@@ -166,7 +153,7 @@ public class Test {
 					showCustomerLoanHistory();
 					break;
 				case 4:
-					showMostLentOutBooks();
+					//showMostLentOutBooks();
 					break;
 				case 0:
 					run();
@@ -199,30 +186,13 @@ public class Test {
         }
     }
 
-    public ArrayList<Book> retrieveBookDirectory(){
-        try{
-            library.bookDirectory("bookDirectory");
-        } catch(Exception e){
-            e.getMessage();
-        }
-        return library.getBooks();
-    }
-
     public ArrayList<Customer> retrieveCustomerDirectory(){
-        try{
-            library.customerDirectory();
-        } catch(Exception e){
-            e.getMessage();
-        }
         return library.getCustomers();
     }
 
 	// Methods - everything is void now - change that if needed
 	// -- Book handling methods --//
 	public void addBook() {
-
-		// ADD FUNCTION TO WRITE TO TXT FILE! --DONE
-		String hopString = scanner.nextLine();
 		System.out.println("Creating new book:");
 		System.out.println("Enter title: ");
 		String title = scanner.nextLine();
@@ -243,6 +213,26 @@ public class Test {
 		writeBookToFile("res/bookDirectory.txt", title, author, publisher, genre, shelf);
 		writeBookToFile("res/AllBooks.txt", title, author, publisher, genre, shelf);
 	}
+
+	public void writeBookToFile(String title, String author, String publisher, String genre, String shelf){
+        //adding user input to text file://
+        //Make sure no necessary fields are empty//
+        if (!title.equals("") && !author.equals("")
+                && !publisher.equals("") && !genre.equals("")
+                && !shelf.equals("")) {
+
+            try (PrintWriter out = new PrintWriter(
+                    new BufferedWriter(new FileWriter("res/bookDirectory.txt", true)))) {
+                out.println("\n" + title + "-" + author + "-" + publisher
+                        + "-" + genre + "-" + shelf);
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+            }
+            System.out.println("Added " + title + " to library");
+        }else {
+            System.out.println("No parameters allowed to be empty");
+        }
+    }
 
 	public void writeBookToFile(String path, String title, String author, String publisher, String genre,
 			String shelf) {
@@ -267,7 +257,6 @@ public class Test {
 		// TODO: check if books arraylist contains ALL books in the library ever or only
 		// the ones currently in stock
 		System.out.println("Enter title of book to remove: ");
-		scanner.nextLine();
 		String title = scanner.nextLine();
 		Book book = retrieveBook(title);
 		removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
@@ -276,11 +265,11 @@ public class Test {
 
 	public void reomveBookFromAllBooks(Book book) {
 		removeLineFromFile("res/AllBooks.txt", parseBookToString(book));
-		library.removeBookFromAllBooks(book);
+		//library.removeBookFromAllBooks(book);
 	}
 
 	public Book retrieveBook(String title) {
-		for (Book book : retrieveBookDirectory()) {
+		for (Book book : library.getBooks()) {
 			if (book.getTitle().equalsIgnoreCase(title)) {
 				return book;
 			}
@@ -303,10 +292,10 @@ public class Test {
 				+ book.getShelf();
 	}
 
-	public String parseCustomerToString(Customer customer) {
-		return customer.getName() + "/" + customer.getAdress() + "/" + customer.getNumber() + "/"
-				+ customer.getPersonnummer();
-	}
+    public String parseCustomerToString(Customer customer){
+	    return customer.getName() + "/" + customer.getAdress()
+                + "/" + customer.getPersonnummer() + "/" + customer.getNumber();
+    }
 
 	public void removeLineFromFile(String path, String lineToRemove) {
 		try {
@@ -349,7 +338,6 @@ public class Test {
 		// first book, or create one for every customer when they are first created
 		showAvailableBooks();
 		System.out.println("Enter title of book to borrow:");
-		scanner.nextLine();
 		String title = scanner.nextLine();
 
 		System.out.println("Enter personal security number:");
@@ -383,7 +371,6 @@ public class Test {
 		// ADD FUNCTION TO REMOVE FROM TXT FILE AND ADD TO OTHER TXT FILE -- NOT
 		// NEEDED???
 		System.out.println("Enter title of book to return:");
-		scanner.nextLine();
 		String title = scanner.nextLine();
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine();
@@ -496,13 +483,11 @@ public class Test {
 
 	}
 	public void showAvailableBooks() {
-
 		System.out.println(library.toString());
 	}
 
 	public void writeCustomerToFile(String name, String address, String phoneNumber, String psn) {
 		if (!name.equals("") && !address.equals("") && !phoneNumber.equals("") && !psn.equals("")) {
-
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/customer.txt", true)))) {
 				out.println(name + "/" + address + "/" + phoneNumber + "/" + psn);
 			} catch (IOException ioe) {
@@ -516,26 +501,29 @@ public class Test {
 
 	// -- Customer handling methods --//
 	public void addCustomer() {
-		// ADD FUNCTION TO ADD TO TXT FILE --done
 		scanner.nextLine();
 		System.out.println("Enter customer name: ");
 		String name = scanner.nextLine();
 		System.out.println("Enter customer adress: ");
 		String address = scanner.nextLine();
-		System.out.println("Enter customer phone number: ");
-		String phoneNumber = scanner.nextLine();
 		System.out.println("Enter customer personal security number: ");
 		String psn = scanner.nextLine();
+        System.out.println("Enter customer phone number: ");
+        String phoneNumber = scanner.nextLine();
 
 		try {
-			if (!name.equals("") && !address.equals("") && !psn.equals("") && !library.getCustomers().contains(psn)) {
-				library.addCustomer(new Customer(name, address, psn, phoneNumber));
-				System.out.println("Added " + name + " to customer database");
-			}
-            library.addCustomer(new Customer(name, address,psn, phoneNumber));
-            writeCustomerToFile(name, address, phoneNumber, psn);
-            
-            //the catch doesnt seem to work. 
+            if(retrieveCustomer(psn) != null){
+                if(!name.equals("") && !address.equals("") && !psn.equals("") && !phoneNumber.equals("")) {
+                    library.addCustomer(new Customer(name, address, psn, phoneNumber));
+                    System.out.println("Added " + name + " to customer database");
+                } else if (!name.equals("") && !address.equals("") && !psn.equals("") && !library.getCustomers().contains(psn)){
+                    library.addCustomer(new Customer(name, address, psn));
+                }
+                writeCustomerToFile(name, address, psn, phoneNumber);
+            } else {
+                System.out.println("A customer with that social security number already exists.");
+                addCustomer();
+            }
 		} catch (Exception e) {
 			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
 			addCustomer(); 
@@ -544,16 +532,15 @@ public class Test {
 
 	public void removeCustomer() {
 		System.out.println("Enter personal security number of customer to remove: ");
-		String psn = scanner.next();
+		String psn = scanner.nextLine();
         Customer customer = retrieveCustomer(psn);
         if(customer != null){
             removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
             library.removeCustomer(customer);
         } else {
-            System.out.println("There's no customer with that personnummer \n Please enter a valid one.");
+            System.out.println("There's no customer with that personnummer \nPlease enter a valid one.");
             removeCustomer();
         }
-
 	}
 
 	public void searchCustomer() {
@@ -597,11 +584,17 @@ public class Test {
 	}
 
 	public void showCustomers() {
-		String res = "";
-		for (int i = 0; i < library.getCustomers().size(); i++) {
-			res = res + library.getCustomers().get(i).toString() + System.lineSeparator();
-		}
-		System.out.println("All registered customers: " + System.lineSeparator() + res);
+        String res = "";
+        try {
+            for(Customer c : retrieveCustomerDirectory()){
+                if(c != null) {
+                    res += c.toString();
+                }
+            }
+        }catch (Exception e) {
+            e.getMessage();
+        }
+		System.out.println(res);
 	}
 
 	public void extendLoan() {
@@ -653,16 +646,6 @@ public class Test {
 		// this is the like method below but only for 1 single book.. need?
 		System.out.println(" Top 10 most popular book right now is:");
 		System.out.println(library.getTopTen()); //does this display anything??
-	}
-
-	public void showMostLentOutBooks() {
-		//wait for them to implement
-		//need a counter that goes up every time a book is lent out
-		//need another arraylist that fills up with the maybe top 5 books that have highest counter
-		//search through the "all books" arraylist and add to that arraylist and display here
-		//library.showTopBooks();
-		System.out.println(library.getTopTen());
-
 	}
 
 	public void showCustomerLoanHistory() { // WILL THIS WORK?? ----- IT NOW WORKS

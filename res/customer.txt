@@ -1,6 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 banana/kiwi street 8/1234567890/1234567890
 kiwi/banana street 1/1234567890/1234567890
 Lisa green2/Nygatan/0709992233/199302021111
 =======
 >>>>>>> olivers-branch
+=======
+banana/kiwi street/1234567890/0987654321
+kiwi/banana street /0987654321/1234567890
+Orange/banana kiwi/1234567890/0987654321
+>>>>>>> hanien

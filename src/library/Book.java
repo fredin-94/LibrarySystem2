@@ -48,24 +48,6 @@ public class Book {
 		return this.title;
 	}
 
-	public String getAuthor() {return this.authors.get(0) +"," + this.authors.get(1);}
-	public ArrayList<String> getAuthors(){
-		/*String res = ": ";
-		if(authors.size() == 1){
-			return authors.get(0);
-		} else {
-			for(int i = 0; i < authors.size(); i++){
-				if(i == authors.size() - 1) {
-					res += authors.get(i);
-				} else {
-					res += authors.get(i) + ", ";
-				}
-			}
-			return res;
-		}*/
-		return this.authors;
-	}
-
 	public String getGenre() {
 		return this.genre;
 	}
