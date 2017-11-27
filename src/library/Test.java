@@ -436,20 +436,24 @@ public class Test {
 		String name = scanner.nextLine();
 		System.out.println("Enter customer adress: ");
 		String address = scanner.nextLine();
-		System.out.println("Enter customer phone number: ");
-		String phoneNumber = scanner.nextLine();
 		System.out.println("Enter customer personal security number: ");
 		String psn = scanner.nextLine();
+        System.out.println("Enter customer phone number: ");
+        String phoneNumber = scanner.nextLine();
 
 		try {
-		    // This is not how .contains works...
-			if(!name.equals("") && !address.equals("") && !psn.equals("") && !library.getCustomers().contains(psn)) {
-				library.addCustomer(new Customer(name, address, psn, phoneNumber));
-				System.out.println("Added " + name + " to customer database");
-			}
-            //library.addCustomer(new Customer(name, address,psn, phoneNumber));
-            writeCustomerToFile(name, address, phoneNumber, psn);
-
+            if(retrieveCustomer(psn) != null){
+                if(!name.equals("") && !address.equals("") && !psn.equals("") && !phoneNumber.equals("")) {
+                    library.addCustomer(new Customer(name, address, psn, phoneNumber));
+                    System.out.println("Added " + name + " to customer database");
+                } else if (!name.equals("") && !address.equals("") && !psn.equals("") && !library.getCustomers().contains(psn)){
+                    library.addCustomer(new Customer(name, address, psn));
+                }
+                writeCustomerToFile(name, address, psn, phoneNumber);
+            } else {
+                System.out.println("A customer with that social security number already exists.");
+                addCustomer();
+            }
 		} catch (Exception e) {
 			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
 			addCustomer();
