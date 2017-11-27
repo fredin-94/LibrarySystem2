@@ -311,7 +311,7 @@ public class Test {
                 // I think it's saving a new line character at the end from when the user presses enter, therefore
                 // a .trim() is required.
                 if(!line.equals(lineToRemove.trim())){
-                	// GONNA DELETE ALL BOOKS, FIX PLS
+                	// GONNA DELETE ALL BOOKS WITH THAT TITLE, FIX PLS
                     pw.println(line);
                     pw.flush();
                 }
@@ -524,9 +524,6 @@ public class Test {
 	public void removeCustomer() {
 		System.out.println("Enter personal security number of customer to remove: ");
 		String psn = scanner.next();
-		String name;
-		String address;
-		String phoneNumber;
         Customer customer = retrieveCustomer(psn);
         if(customer != null){
             removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
@@ -638,7 +635,7 @@ public class Test {
 	public void showMostPopularBook() {
 		//this is the like method below but only for 1 single book.. need?
 		System.out.println("Most popular book right now is:");
-		System.out.println(library.getMostPopularBook()); //does this display anything??
+		System.out.println(library.getTopTen()); //does this display anything??
 
 	}
 	public void showMostLentOutBooks() {
@@ -647,7 +644,7 @@ public class Test {
 		//need another arraylist that fills up with the maybe top 5 books that have highest counter
 		//search through the "all books" arraylist and add to that arraylist and display here
 		//library.showTopBooks();
-		System.out.println(library.showTopBooks());
+		System.out.println(library.getTopTen());
 	}
 	public void showCustomerLoanHistory() { //WILL THIS WORK?? ----- IT NOW WORKS
         scanner.nextLine();

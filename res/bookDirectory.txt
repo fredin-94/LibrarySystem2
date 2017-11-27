@@ -171,6 +171,7 @@ The Hunger Games-Collins Suzanne-Scholastic Ltd.-Young Adult Fiction-4ya
 The Lost Boy:A Foster Child's Search for the Love of a Family-Pelzer Dave-Orion-Biography-2bi
 Jamie's Ministry of Food:Anyone Can Learn to Cook in 24 Hours-Oliver Jamie-Penguin-Food & Drink-9fd
 Fantastic Beasts and Where to Find Them-Rowling J.K.-Bloomsbury-Fiction-2f
+<<<<<<< HEAD
 Zebras in their natural habitat-Manzi Oliver-University of Gothenburg-Animals & Nature-4an
 =======
 The Da Vinci Code-Brown, Dan-Transworld-Crime, Thriller & Adventure-1a
@@ -342,3 +343,6 @@ Jamie's Ministry of Food:Anyone Can Learn to Cook in 24 Hours-Oliver, Jamie-Peng
 banana-kiwi-Colin Hawaii-fantasy-301a
 chicken-bacon-and eggs-food-304b
 Henry Motter-Lisa Blonde-Bue-Horrror-hor1
+=======
+Zebras in their natural habitat-Manzi Oliver-University of Gothenburg-Animals & Nature-4an
+>>>>>>> olivers-branch

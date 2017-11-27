@@ -12,7 +12,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void getMenu() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -30,36 +30,34 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void getSearch() {
-		System.out.println(
-				"\n =================================================== "+ System.lineSeparator()
-				+ " ==             Search System                     == "+ System.lineSeparator()
-				+ " =================================================== "+ System.lineSeparator()
-              	+ " ===                                             === "+ System.lineSeparator()
-             	+ " ===   Choose an option below:                   === "+ System.lineSeparator()
-              	+ " ===   1. Search for book                        === "+ System.lineSeparator()
-              	+ " ===   2. Search for customer                    === "+ System.lineSeparator()
-             	+ " ===   3. Print all available books              === "+ System.lineSeparator()
-             	+ " ===   4. Print all customers                    === "+ System.lineSeparator()
-				+ " ===   0. Return to main menu                    === "+ System.lineSeparator()
+		System.out.println("\n =================================================== " + System.lineSeparator()
+				+ " ==             Search System                     == " + System.lineSeparator()
+				+ " =================================================== " + System.lineSeparator()
+				+ " ===                                             === " + System.lineSeparator()
+				+ " ===   Choose an option below:                   === " + System.lineSeparator()
+				+ " ===   1. Search for book                        === " + System.lineSeparator()
+				+ " ===   2. Search for customer                    === " + System.lineSeparator()
+				+ " ===   3. Print all available books              === " + System.lineSeparator()
+				+ " ===   4. Print all customers                    === " + System.lineSeparator()
+				+ " ===   0. Return to main menu                    === " + System.lineSeparator()
 				+ " =================================================== \n");
 	}
-	
+
 	public void getBookOptions() {
-		System.out.println(
-		"\n =================================================== "+ System.lineSeparator()
-		+ " ==             Borrow or return books            == "+ System.lineSeparator()
-		+ " =================================================== "+ System.lineSeparator()
-		+ " ===                                             === "+ System.lineSeparator()
-		+ " ===   Choose an option below:                   === "+ System.lineSeparator()
-		+ " ===   1. Borrow book                            === "+ System.lineSeparator()
-		+ " ===   2. Return book                            === "+ System.lineSeparator()
-		+ " ===   0. Return to main menu                    === "+ System.lineSeparator()
-		+ " ===                                             === "+ System.lineSeparator()
-		+ " =================================================== \n");
+		System.out.println("\n =================================================== " + System.lineSeparator()
+				+ " ==             Borrow or return books            == " + System.lineSeparator()
+				+ " =================================================== " + System.lineSeparator()
+				+ " ===                                             === " + System.lineSeparator()
+				+ " ===   Choose an option below:                   === " + System.lineSeparator()
+				+ " ===   1. Borrow book                            === " + System.lineSeparator()
+				+ " ===   2. Return book                            === " + System.lineSeparator()
+				+ " ===   0. Return to main menu                    === " + System.lineSeparator()
+				+ " ===                                             === " + System.lineSeparator()
+				+ " =================================================== \n");
 	}
-	
+
 	public void bookOption() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -72,7 +70,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void customerOption() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -85,7 +83,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void searchBookByTitle() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -97,7 +95,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void searchBookById() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -109,7 +107,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void searchCustomerByName() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -121,7 +119,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void searchCustomerById() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -133,24 +131,22 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void getAdministration() {
-		System.out.println(
-		  " =================================================== \n"
-		+ " ==             Administration System             == \n"
-		+ " =================================================== \n"
-		+ " ===                                             === \n"
-		+ " ===   Choose an option below:                   === \n"
-		+ " ===   1. Add Book                               === \n"
-		+ " ===   2. Remove Book                            === \n"
-		+ " ===   3. Add Customer                           === \n"
-		+ " ===   4. Remove Customer                        === \n"
-		+ " ===   0. Return to main menu                    === \n"
-		+ " ===                                             === \n"
-		+ " =================================================== \n");
+		System.out.println(" =================================================== \n"
+				+ " ==             Administration System             == \n"
+				+ " =================================================== \n"
+				+ " ===                                             === \n"
+				+ " ===   Choose an option below:                   === \n"
+				+ " ===   1. Add Book                               === \n"
+				+ " ===   2. Remove Book                            === \n"
+				+ " ===   3. Add Customer                           === \n"
+				+ " ===   4. Remove Customer                        === \n"
+				+ " ===   0. Return to main menu                    === \n"
+				+ " ===                                             === \n"
+				+ " =================================================== \n");
 	}
 
-	
 	public void addAuthor() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -164,7 +160,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void removeBookOption() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -177,7 +173,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void removeCustomerOption() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -190,7 +186,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void removeBookByTitle() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -202,7 +198,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void removeBookById() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -214,7 +210,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void removeCustomerByName() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -226,7 +222,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void removeCustomerById() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -238,7 +234,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void getSimulator() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -255,7 +251,7 @@ public class Menu {
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
-	
+
 	public void getExtra() {
 		System.out.println();
 		System.out.println(" =================================================== ");
