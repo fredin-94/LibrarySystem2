@@ -410,6 +410,7 @@ public class Test {
 	public void searchBook() {
 		System.out.println("Choose what to search by");
 		System.out.println("1. Search book using title");
+
 		System.out.println("2. Search book using author");
 		System.out.println("3. Search book using publisher");
 		System.out.println("4. Search book using genre");

@@ -24,8 +24,10 @@ public class Customer implements Serializable {
 			this.name = name;
 		}
 		if (adress.equals("")) {
+
 			throw new Exception("Adress can not be empty");
 		} else {
+
 			this.adress = adress;
 		}
 		this.ID = UUID.randomUUID();
