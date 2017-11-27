@@ -59,7 +59,7 @@ public class Library {
     private ArrayList<Book> books;
     private ArrayList<Book> loanedBooks;
     private ArrayList<Book> delayedBooks;
-    private static ArrayList<Customer> customers;
+    private ArrayList<Customer> customers;
     private LocalDateTime date;
     private Timer timer;
     private TimerTask hourlyTask;
@@ -74,13 +74,7 @@ public class Library {
         customers = new ArrayList<Customer>();
         date = LocalDateTime.now();
         timer = new Timer();
-        /*try {
-            bookDirectory();
-
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        
         try {
             customerDirectory();
         } catch (Exception e) {
@@ -88,23 +82,23 @@ public class Library {
             e.printStackTrace();
         }
         try {
-            LoanedBooks();
+            bookDirectory("res/LoanedBooks.txt");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         try {
-            delayedBooks();
+            bookDirectory("res/delayedBooks.txt");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         try {
-            AllBooks();
+            bookDirectory("res/AllBooks.txt");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }*/
+        }
 		try {
             bookDirectory("res/bookDirectory.txt");
             customerDirectory();
@@ -123,7 +117,7 @@ public class Library {
         return books;
     }
 
-    public static ArrayList<Customer> getCustomers() {
+    public ArrayList<Customer> getCustomers() {
         return customers;
     }
 

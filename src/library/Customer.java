@@ -38,17 +38,7 @@ public class Customer implements Serializable {
 																											// checks
 																											// the
 																											// digits
-			for (int i = 0; i < Library.getCustomers().size(); i++) {
-				if (Library.getCustomers().get(i).getPersonnummer().equals(personnummer)) {// This checks if the
-																							// personnummer already
-																							// exists
-					throw new Exception("Personnummer already exists");
-				} else {
 
-					this.personnummer = personnummer;
-				}
-			}
-		} else {
 			throw new Exception("Personnummer MUST consist of 10 or 12 digits");
 
 		}
