@@ -30,8 +30,16 @@ public class Library {
 		for (int i = 0; i < books.size(); i++) {
 			if (customers.get(i).getId().equals(id)) {
 				if (books.get(i).getTitle().equals(title)) { // MAKE A BOOK CONSTRUCTOR THAT TAKES ID AS PARAMETER I NEED IT COUGH, WE NEED IT
-					Book book = new Book(title, books.get(i).getAuthor(), books.get(i).getGenre(), books.get(i).getPublisher(), books.get(i).getShelf());
-					customers.get(i).addBook(book);
+					Book book;
+					try {
+						
+						book = new Book(title, books.get(i).getAuthors(), books.get(i).getGenre(), books.get(i).getPublisher(), books.get(i).getShelf());
+						customers.get(i).addBook(book);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 				}
 			}
 		}
@@ -40,9 +48,9 @@ public class Library {
 	public void returnBook(String title, String id) throws Exception {
 		for (int i = 0; i < customers.size(); i++) {
 			if (customers.get(i).getId().equals(id)) { // CHANGE STUFF HERE
-<<<<<<< HEAD
+
 				if(customers.get(i).getBookTitle(title)) {		
-=======
+
 				if(customers.get(i).getBookTitle(title)) {
 //<<<<<<< HEAD
 //					customers.get(i).
@@ -51,10 +59,10 @@ public class Library {
 //>>>>>>> 7099164bd94e4d2a73621ff141f32ba719d9faf6
 				}
 				
->>>>>>> ea87461d75c49f61372f2d2fa808bddb59dd68cd
+
 				//				if (books.get(i).getTitle().equals(customers.get(i).getLoanedBooks().get(i).getTitle().equals(book))) {
 //					customers.get(i).removeBook(book);
-//				}
+				}
 			}
 		}
 	}
@@ -92,6 +100,6 @@ public class Library {
 		for (Book book : books) if (author.equals(book.getAuthor().toLowerCase())) return book;
 		return null;
 	}
-	//fuck 
+	 
 
 }

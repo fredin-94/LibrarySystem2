@@ -72,7 +72,7 @@ public class Book {
 //>>>>>>> 76ff6bce83f7f884e66f32bedc0ae808a5ddf8a2
 	
 	// Note by Fabian: Just make another getAuthors method that returns a List of authors...
-	public List<String> getAuthors() {return this.authors;}
+	public ArrayList<String> getAuthors() {return this.authors;}
 	
 	public String getAuthor() {
 		String res = "";
