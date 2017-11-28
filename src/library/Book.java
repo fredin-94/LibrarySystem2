@@ -1,8 +1,7 @@
 package library;
 
 
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
@@ -19,9 +18,9 @@ public class Book {
 
 	// VG stuff
 	private int timesBorrowed = 0;
-	final static int TWO_WEEKS = 336;
-	private LocalDateTime startDate = LocalDateTime.now();
-	private LocalDateTime returnDate = startDate.plus(TWO_WEEKS, ChronoUnit.HOURS);
+	final static int TWO_WEEKS = 14;
+	private LocalDate startDate = LocalDate.now();
+	private LocalDate returnDate = startDate.plus(TWO_WEEKS, ChronoUnit.DAYS);
 
 	//*** CONSTRUCTOR ***//
 	public Book(String title, String authors, String publisher, String genre, String shelf) throws Exception{
@@ -48,6 +47,31 @@ public class Book {
 		return this.title;
 	}
 
+	public String getAuthor() {
+        if (this.authors.size() > 1) {
+            return this.authors.get(0) + "," + this.authors.get(1);
+        } else {
+            return this.authors.get(0);
+        }
+    }
+
+	public ArrayList<String> getAuthors(){
+		/*String res = ": ";
+		if(authors.size() == 1){
+			return authors.get(0);
+		} else {
+			for(int i = 0; i < authors.size(); i++){
+				if(i == authors.size() - 1) {
+					res += authors.get(i);
+				} else {
+					res += authors.get(i) + ", ";
+				}
+			}
+			return res;
+		}*/
+		return this.authors;
+	}
+
 	public String getGenre() {
 		return this.genre;
 	}
@@ -64,16 +88,16 @@ public class Book {
 		return this.timesBorrowed;
 	}
 
-	public LocalDateTime getStartDate(){
+	public LocalDate getStartDate(){
 		return this.startDate;
 	}
 
-	public LocalDateTime getReturnDate(){
+	public LocalDate getReturnDate(){
 		return this.returnDate;
 	}
 
 	// needed for when a customer borrows a book and startdate needs to be set.
-	public void setStartDate(LocalDateTime startDate) throws Exception{
+	public void setStartDate(LocalDate startDate) throws Exception{
 		if(startDate.equals(null)) {
 			throw new Exception("Date can't be empty.");
 		} else {
@@ -82,7 +106,7 @@ public class Book {
 	}
 
 	// needed for when you want to extend loans
-	public void setReturnDate(LocalDateTime returnDate) throws Exception{
+	public void setReturnDate(LocalDate returnDate) throws Exception{
 		if(returnDate.equals(null)) {
 			throw new Exception("Date can't be empty.");
 		} else {
@@ -98,21 +122,6 @@ public class Book {
 		}
 	}
 	
-	// Note by Fabian: Just make another getAuthors method that returns a List of authors...
-	public ArrayList<String> getAuthors() {return this.authors;}
-	
-	public String getAuthor() {
-		String res = "";
-		// In the case of multiple authors return this
-		if(authors.size() > 1) {
-			for(String a : authors) {
-				res += a + ", ";
-			}
-			return res;
-		} else {
-			return authors.get(0);
-		}
-    }
 	public void authors2UpperCase() {
 		for (int i = 0; i < this.authors.size(); i++) {Character.toUpperCase(this.authors.get(i).charAt(0));}
 	}
