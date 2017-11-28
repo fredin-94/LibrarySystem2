@@ -38,8 +38,32 @@ public class Customer implements Serializable {
 																											// checks
 																											// the
 																											// digits
+			if (name.equals("")) {
 
-			throw new Exception("Personnummer MUST consist of 10 or 12 digits");
+				throw new Exception("Name can not be empty");
+			} else {
+				this.name = name;
+			}
+			if (adress.equals("")) {
+				throw new Exception("Adress can not be empty");
+			} else {
+				this.adress = adress;
+			}
+			this.ID = UUID.randomUUID();
+			this.currentLoans = new ArrayList<Book>();
+			this.loanHistory = new ArrayList<Book>();
+			this.debt = 0;
+			if (personnummer.matches("[0-9]+") && personnummer.length() == 10 || personnummer.length() == 12) {// This
+				// checks
+				// the
+				// number of
+				// digits of
+				// (number).
+				this.personnummer = personnummer;
+			} else {
+				throw new Exception("Personnummer MUST consist of 10 or 12 digits");
+
+			}
 
 		}
 
