@@ -73,6 +73,26 @@ public class Test {
 			searchCustomer();
 			break;
 		case 3:
+			System.out.println("Sort books after: ");
+			System.out.println("1. Title");
+			System.out.println("2. Author");
+			System.out.println("3. Publisher");
+			System.out.println("4. Genre");
+			System.out.println("5. Shelf");
+			option = scanner.nextInt(); //need another one and not reuse "option"?
+			if(option == 1) {
+				library.sortBooksBy(TITLE);
+			}else if (option == 2) {
+				library.sortBooksBy(AUTHOR);
+			}else if (option == 3) {
+				library.sortBooksBy(PUBLISHER);
+			}else if (option == 4) {
+				library.sortBooksBy(GENRE);
+			}else if (option == 5) {
+				library.sortBooksBy(SHELF);
+			}else {
+				System.out.println("Not a valid option, displaying randomly");//??
+			}
 			showAvailableBooks();
 			break;
 		case 4:
