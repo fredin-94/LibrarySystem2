@@ -269,6 +269,7 @@ public class Test {
 		Book book = retrieveBook(title);
 		if(book != null) {
 			removeLineFromFile("res/AllBooks.txt", parseBookToString(book));
+			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
 			library.removeBook(book);
 		} else {
 			System.out.println("There's no book with that title");
@@ -295,6 +296,7 @@ public class Test {
 
 	// changes objects into a format appropriate for the txt files
 	public String parseBookToString(Book book) {
+		System.out.println("Auhtor: " + book.getAuthor());
 		return book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getGenre() + "-"
 				+ book.getShelf();
 	}
