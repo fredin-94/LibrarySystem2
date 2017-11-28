@@ -344,3 +344,7 @@ banana-kiwi-Colin Hawaii-fantasy-301a
 chicken-bacon-and eggs-food-304b
 Henry Motter-Lisa Blonde-Bue-Horrror-hor1
 Zebras in their natural habitat-Manzi Oliver-University of Gothenburg-Animals & Nature-4an
+<<<<<<< HEAD
+=======
+fuck-this-shit-dude-a1
+>>>>>>> f122f3ff2dc0186e23905e27bd0017eca412cbf4

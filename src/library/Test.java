@@ -1,7 +1,6 @@
 package library;
 
 import java.io.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.Executors;
@@ -17,7 +16,6 @@ public class Test {
 	private Menu menu = new Menu();
 	private Scanner scanner = new Scanner(System.in);
 	private Library library;
-	
 
 	public Test() {
 		library = new Library();
@@ -32,167 +30,178 @@ public class Test {
 			scanner.nextLine();
 
 			switch (userInput) {
-                case 1:
-                    menu.getSearch();
-                    userInput = scanner.nextInt();
-                    handleSearchMenu(userInput);
-                    break;    
-                case 2:
-                		menu.getBookOptions();
-                		userInput = scanner.nextInt();
-                		handleBookMenu(userInput);
-                		break;
-                case 3:
-                    menu.getAdministration();
-                    userInput = scanner.nextInt();
-                    handleAdmin(userInput);
-                    break;
-                case 4:
-                	 	menu.getExtra();
-                     userInput = scanner.nextInt();
-                     handleExtra(userInput);
-                    break;
-                case 5:
-                	 	menu.getSimulator();
-                     userInput = scanner.nextInt();
-                     handleTimeSimMenu(userInput);
-                    break;
-                case 0:
-                    System.exit(0);
-                default:
-                    System.out.println("Not a valid option");
-                    break;
-                }
+			case 1:
+				menu.getSearch();
+				userInput = scanner.nextInt();
+				handleSearchMenu(userInput);
+				break;
+			case 2:
+				menu.getBookOptions();
+				userInput = scanner.nextInt();
+				handleBookMenu(userInput);
+				break;
+			case 3:
+				menu.getAdministration();
+				userInput = scanner.nextInt();
+				handleAdmin(userInput);
+				break;
+			case 4:
+				menu.getExtra();
+				userInput = scanner.nextInt();
+				handleExtra(userInput);
+				break;
+			case 5:
+				menu.getSimulator();
+				userInput = scanner.nextInt();
+				handleTimeSimMenu(userInput);
+				break;
+			case 0:
+				System.exit(0);
+			default:
+				System.out.println("Not a valid option");
+				break;
+			}
 		} while (userInput != 0);
 	}
 
-	public void handleSearchMenu(int option){
-	    switch(option){
-            case 1:
-                searchBook();
-                break;
-            case 2:
-                searchCustomer();
-                break;
-            case 3:
-                showAvailableBooks();
-                break;
-            case 4:
-                showCustomers();
-                break;
-            case 5:
-                showCustomerLoanHistory();
-                break;
-            case 0:
-                run();
-                break;
-            default:
-                System.out.println("Not a valid option.");
-                break;
-        }
-    }
+	public void handleSearchMenu(int option) {
+		switch (option) {
+		case 1:
+			searchBook();
+			break;
+		case 2:
+			searchCustomer();
+			break;
+		case 3:
+			showAvailableBooks();
+			break;
+		case 4:
+			showCustomers();
+			break;
+		case 5:
+			showCustomerLoanHistory();
+			break;
+		case 0:
+			run();
+			break;
+		default:
+			System.out.println("Not a valid option.");
+			break;
+		}
+	}
 
-    public void handleBookMenu(int option){
-	    switch (option){
-            case 1:
-                try {
-                    borrowBook();
-                } catch(Exception e){e.getMessage();}
-                break;
-            case 2:
-                try {
-                    returnBook();
-                } catch (Exception e) {e.getMessage();}
-                break;
-            case 0:
-                run();
-                break;
-            default:
-                System.out.println("Not a valid option");
-                break;
-        }
-    }
+	public void handleBookMenu(int option) {
+		switch (option) {
+		case 1:
+			try {
+				borrowBook();
+			} catch (Exception e) {
+				e.getMessage();
+			}
+			break;
+		case 2:
+			try {
+				returnBook();
+			} catch (Exception e) {
+				e.getMessage();
+			}
+			break;
+		case 0:
+			run();
+			break;
+		default:
+			System.out.println("Not a valid option");
+			break;
+		}
+	}
 
-    public void handleAdmin(int option){
-    	scanner.nextLine();
-        switch (option){
-            case 1:
-                addBook();
-                break;
-            case 2:
-                removeBook();
-                break;
-            case 3:
-                addCustomer();
-                break;
-            case 4:
-                removeCustomer();
-                break;
-            case 0:
-				run();
-                break;
-            default:
-                System.out.println("Not a valid option");
-                break;
-        }
-    }
-    
-    public void handleExtra(int option) {
-    			switch (option) {
-				case 1:
-					for (int i = 0; i < library.getLoanedBooks().size(); i++) {
-						System.out.println(library.getLoanedBooks().get(i).toString());
-					}
-					break;
-				case 2:
-					for (int i = 0; i < library.getDelayedBooks().size(); i++) {
-						System.out.println(library.getDelayedBooks().get(i).toString());
-					}
-					break;
-				case 3:
-					showCustomerLoanHistory();
-					break;
-				case 4:
-					//showMostLentOutBooks();
-					break;
-				case 0:
-					run();
-					break;
+	public void handleAdmin(int option) {
+		scanner.nextLine();
+		switch (option) {
+		case 1:
+			addBook();
+			break;
+		case 2:
+			removeBook();
+			break;
+		case 3:
+			addCustomer();
+			break;
+		case 4:
+			removeCustomer();
+			break;
+		case 0:
+			run();
+			break;
+		default:
+			System.out.println("Not a valid option");
+			break;
+		}
+	}
 
-				default:
-					System.out.println("Not a valid option");
-					break;
-				}
-    	
-    }
+	public void handleExtra(int option) {
+		switch (option) {
+		case 1:
+			for (int i = 0; i < library.getLoanedBooks().size(); i++) {
+				System.out.println(library.getLoanedBooks().get(i).toString());
+			}
+			break;
+		case 2:
+			for (int i = 0; i < library.getDelayedBooks().size(); i++) {
+				System.out.println(library.getDelayedBooks().get(i).toString());
+			}
+			break;
+		case 3:
+			showCustomerLoanHistory();
+			break;
+		case 4:
+			// showMostLentOutBooks();
+			break;
+		case 0:
+			run();
+			break;
 
-    public void handleTimeSimMenu(int option){
-        switch (option){
-            case 1:
-                incrementDays();
-                break;
-            case 2:
-                incrementMonths();
-                break;
-            case 3:
-                incrementYears();
-                break;
-            case 0:
-                menu.getMenu();
-                break;
-            default:
-                System.out.println("Not a valid option");
-                break;
-        }
-    }
+		default:
+			System.out.println("Not a valid option");
+			break;
+		}
 
-    public ArrayList<Customer> retrieveCustomerDirectory(){
-        return library.getCustomers();
-    }
+	}
+
+	public void handleTimeSimMenu(int option) {
+		switch (option) {
+		case 1:
+			incrementDays();
+			break;
+		case 2:
+			incrementMonths();
+			break;
+		case 3:
+			incrementYears();
+			break;
+		case 0:
+			menu.getMenu();
+			break;
+		default:
+			System.out.println("Not a valid option");
+			break;
+		}
+	}
+
+	public ArrayList<Book> retrieveBookDirectory() {
+		return library.getBooks();
+	}
+
+	public ArrayList<Customer> retrieveCustomerDirectory() {
+		return library.getCustomers();
+	}
 
 	// Methods - everything is void now - change that if needed
 	// -- Book handling methods --//
 	public void addBook() {
+
+		/* TODO: add to all books directory */
+		// ADD FUNCTION TO WRITE TO TXT FILE! --DONE
 		System.out.println("Creating new book:");
 		System.out.println("Enter title: ");
 		String title = scanner.nextLine();
@@ -210,39 +219,18 @@ public class Test {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		writeBookToFile("res/bookDirectory.txt", title, author, publisher, genre, shelf);
-		writeBookToFile("res/AllBooks.txt", title, author, publisher, genre, shelf);
+		writeBookToFile(title, author, publisher, genre, shelf);
 	}
 
-	public void writeBookToFile(String title, String author, String publisher, String genre, String shelf){
-        //adding user input to text file://
-        //Make sure no necessary fields are empty//
-        if (!title.equals("") && !author.equals("")
-                && !publisher.equals("") && !genre.equals("")
-                && !shelf.equals("")) {
-
-            try (PrintWriter out = new PrintWriter(
-                    new BufferedWriter(new FileWriter("res/bookDirectory.txt", true)))) {
-                out.println("\n" + title + "-" + author + "-" + publisher
-                        + "-" + genre + "-" + shelf);
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
-            }
-            System.out.println("Added " + title + " to library");
-        }else {
-            System.out.println("No parameters allowed to be empty");
-        }
-    }
-
-	public void writeBookToFile(String path, String title, String author, String publisher, String genre,
-			String shelf) {
+	public void writeBookToFile(String title, String author, String publisher, String genre, String shelf) {
+		/* TODO: add extra parameter for??? */
 		// adding user input to text file://
 		// Make sure no necessary fields are empty//
 		if (!title.equals("") && !author.equals("") && !publisher.equals("") && !genre.equals("")
 				&& !shelf.equals("")) {
 
-			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
-				out.println(title + "-" + author + "-" + publisher + "-" + genre + "-" + shelf);
+			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/bookDirectory.txt", true)))) {
+				out.println("\n" + title + "-" + author + "-" + publisher + "-" + genre + "-" + shelf);
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
@@ -258,18 +246,14 @@ public class Test {
 		// the ones currently in stock
 		System.out.println("Enter title of book to remove: ");
 		String title = scanner.nextLine();
+
 		Book book = retrieveBook(title);
 		removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
 		library.removeBook(book);
 	}
 
-	public void reomveBookFromAllBooks(Book book) {
-		removeLineFromFile("res/AllBooks.txt", parseBookToString(book));
-		//library.removeBookFromAllBooks(book);
-	}
-
 	public Book retrieveBook(String title) {
-		for (Book book : library.getBooks()) {
+		for (Book book : retrieveBookDirectory()) {
 			if (book.getTitle().equalsIgnoreCase(title)) {
 				return book;
 			}
@@ -292,10 +276,10 @@ public class Test {
 				+ book.getShelf();
 	}
 
-    public String parseCustomerToString(Customer customer){
-	    return customer.getName() + "/" + customer.getAdress()
-                + "/" + customer.getPersonnummer() + "/" + customer.getNumber();
-    }
+	public String parseCustomerToString(Customer customer) {
+		return customer.getName() + "/" + customer.getAdress() + "/" + customer.getPersonnummer() + "/"
+				+ customer.getNumber();
+	}
 
 	public void removeLineFromFile(String path, String lineToRemove) {
 		try {
@@ -309,7 +293,7 @@ public class Test {
 				// presses enter, therefore
 				// a .trim() is required.
 				if (!line.equals(lineToRemove.trim())) {
-					// GONNA DELETE ALL BOOKS, FIX PLS
+					// GONNA DELETE ALL BOOKS WITH THAT TITLE, FIX PLS
 					pw.println(line);
 					pw.flush();
 				}
@@ -332,7 +316,6 @@ public class Test {
 	}
 
 	public void borrowBook() throws Exception {
-		// ADD FUNCTION TO REMOVE FROM TXT FILE AND ADD TO OTHER TXT FILE
 		// must create txt file for customers borrowed books, create that when customer
 		// borrows their
 		// first book, or create one for every customer when they are first created
@@ -350,20 +333,14 @@ public class Test {
 			// borrowBook in library checks whether the book is available in the library and
 			// moves it
 			// to the appropriate arraylists.
-
-			writeBookToFile("res/LoanedBooks.txt", title, retrieveBook(title).getAuthor(),
-					retrieveBook(title).getPublisher(), retrieveBook(title).getGenre(), retrieveBook(title).getShelf());
 			library.borrowBook(title, psn);
 			ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
 			ses.scheduleAtFixedRate(new Runnable() {
-			    @Override
-			    public void run() {
-			         library.isDelayed(retrieveBook(title));
-			    }
+				@Override
+				public void run() {
+					library.isDelayed(retrieveBook(title));
+				}
 			}, 0, 1, TimeUnit.HOURS);
-
-			
-
 		}
 	}
 
@@ -384,20 +361,14 @@ public class Test {
 					book = c.getFromCurrentLoan(title);
 				}
 			}
-			writeBookToFile("res/bookDirectory.txt", book.getTitle(), book.getAuthor(), book.getPublisher(),
-					book.getGenre(), book.getShelf());
-			removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
+			writeBookToFile(book.getTitle(), book.getAuthor(), book.getPublisher(), book.getGenre(), book.getShelf());
 			library.returnBook(title, psn);
-			if(library.checkDelay(book) != 0) {
-				removeLineFromFile("res/delayedBooks.txt", parseBookToString(book));
-			}
 		}
 	}
 
 	public void searchBook() {
 		System.out.println("Choose what to search by");
 		System.out.println("1. Search book using title");
-
 		System.out.println("2. Search book using author");
 		System.out.println("3. Search book using publisher");
 		System.out.println("4. Search book using genre");
@@ -406,45 +377,44 @@ public class Test {
 		int userInput = scanner.nextInt();
 		scanner.nextLine();
 		try {
-            switch (userInput) { //Should display a message if user tries searching for nonexistant book
-                case 1:
-                    System.out.println("Please enter the title");
-                    String title = scanner.nextLine();
-                    System.out.println(library.findBookBy(TITLE, title));
-                    break;
-                case 2:
-                    System.out.println("Please enter the author");
-                    String author = scanner.nextLine();
-                    System.out.println(library.findBookBy(AUTHOR, author));
-                    break;
-                case 3:
-                    System.out.println("Please enter the publisher");
-                    String publisher = scanner.nextLine();
-                    System.out.println(library.findBookBy(PUBLISHER, publisher));
-                    break;
-                case 4:
-                    System.out.println("Please enter the genre");
-                    String genre = scanner.nextLine();
-                    System.out.println(library.findBookBy(GENRE, genre));
-                    break;
-                case 5:
-                    System.out.println("Please enter the shelf");
-                    String shelf = scanner.nextLine();
-                    System.out.println(library.findBookBy(SHELF, shelf));
-                    break;
-                default:
-                    System.out.println("Invalid option");
-                    break;
-            }
-        } catch (Exception e){
-		    e.getMessage();
-        }
+			switch (userInput) {
+			case 1:
+				System.out.println("Please enter the title");
+				String title = scanner.nextLine();
+				System.out.println(library.findBookBy(TITLE, title));
+				break;
+			case 2:
+				System.out.println("Please enter the author");
+				String author = scanner.nextLine();
+				System.out.println(library.findBookBy(AUTHOR, author));
+				break;
+			case 3:
+				System.out.println("Please enter the publisher");
+				String publisher = scanner.nextLine();
+				System.out.println(library.findBookBy(PUBLISHER, publisher));
+				break;
+			case 4:
+				System.out.println("Please enter the genre");
+				String genre = scanner.nextLine();
+				System.out.println(library.findBookBy(GENRE, genre));
+				break;
+			case 5:
+				System.out.println("Please enter the shelf");
+				String shelf = scanner.nextLine();
+				System.out.println(library.findBookBy(SHELF, shelf));
+				break;
+			default:
+				System.out.println("Invalid option");
+				break;
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	}
 
-	//Seems ok//
-	public void sortBooks() { //doesnt work if the book starts with an lowercase letter,
-		//also would be good to skip the "The" at the beginning of a book
-
+	// Seems ok//
+	public void sortBooks() { // doesnt work if the book starts with an lowercase letter,
+		// also would be good to skip the "The" at the beginning of a book
 
 		System.out.println("Show all books: Choose what to sort by");
 		System.out.println("1. Sort after title");
@@ -482,12 +452,18 @@ public class Test {
 		}
 
 	}
+
 	public void showAvailableBooks() {
+		/*
+		 * try { library.bookDirectory(); }catch (Exception e) { e.getMessage(); }
+		 */
 		System.out.println(library.toString());
 	}
 
 	public void writeCustomerToFile(String name, String address, String phoneNumber, String psn) {
+		// should allow a customer to be added to txt without entering phonenumber
 		if (!name.equals("") && !address.equals("") && !phoneNumber.equals("") && !psn.equals("")) {
+
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/customer.txt", true)))) {
 				out.println(name + "/" + address + "/" + phoneNumber + "/" + psn);
 			} catch (IOException ioe) {
@@ -501,46 +477,42 @@ public class Test {
 
 	// -- Customer handling methods --//
 	public void addCustomer() {
-		scanner.nextLine();
+		// ADD FUNCTION TO ADD TO TXT FILE --done
 		System.out.println("Enter customer name: ");
 		String name = scanner.nextLine();
 		System.out.println("Enter customer adress: ");
 		String address = scanner.nextLine();
+		System.out.println("Enter customer phone number: ");
+		String phoneNumber = scanner.nextLine();
 		System.out.println("Enter customer personal security number: ");
 		String psn = scanner.nextLine();
-        System.out.println("Enter customer phone number: ");
-        String phoneNumber = scanner.nextLine();
 
 		try {
-            if(retrieveCustomer(psn) != null){//<< here maybe has to be = null (bcz we are checking if there is no object with this psn)?
-                if(!name.equals("") && !address.equals("") && !psn.equals("") && !phoneNumber.equals("")) {
-                    library.addCustomer(new Customer(name, address, psn, phoneNumber));
-                    System.out.println("Added " + name + " to customer database");
-                } else if (!name.equals("") && !address.equals("") && !psn.equals("") && !library.getCustomers().contains(psn)){
-                    library.addCustomer(new Customer(name, address, psn));
-                }
-                writeCustomerToFile(name, address, psn, phoneNumber);
-            } else {
-                System.out.println("A customer with that social security number already exists.");
-                addCustomer();
-            }
+			// This is not how .contains works...
+			if (!name.equals("") && !address.equals("") && !psn.equals("") && !library.getCustomers().contains(psn)) {
+				library.addCustomer(new Customer(name, address, psn, phoneNumber));
+				System.out.println("Added " + name + " to customer database");
+			}
+			// library.addCustomer(new Customer(name, address,psn, phoneNumber));
+			writeCustomerToFile(name, address, phoneNumber, psn);
+
 		} catch (Exception e) {
 			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
-			addCustomer(); 
+			addCustomer();
 		}
 	}
 
 	public void removeCustomer() {
 		System.out.println("Enter personal security number of customer to remove: ");
 		String psn = scanner.nextLine();
-        Customer customer = retrieveCustomer(psn);
-        if(customer != null){
-            removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
-            library.removeCustomer(customer);
-        } else {
-            System.out.println("There's no customer with that personnummer \nPlease enter a valid one.");
-            removeCustomer();
-        }
+		Customer customer = retrieveCustomer(psn);
+		if (customer != null) {
+			removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
+			library.removeCustomer(customer);
+		} else {
+			System.out.println("There's no customer with that personnummer \nPlease enter a valid one.");
+			removeCustomer();
+		}
 	}
 
 	public void searchCustomer() {
@@ -584,16 +556,16 @@ public class Test {
 	}
 
 	public void showCustomers() {
-        String res = "";
-        try {
-            for(Customer c : retrieveCustomerDirectory()){
-                if(c != null) {
-                    res += c.toString();
-                }
-            }
-        }catch (Exception e) {
-            e.getMessage();
-        }
+		String res = "";
+		try {
+			for (Customer c : retrieveCustomerDirectory()) {
+				if (c != null) {
+					res += c.toString();
+				}
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
 		System.out.println(res);
 	}
 
@@ -644,40 +616,29 @@ public class Test {
 
 	public void showMostPopularBook() {
 		// this is the like method below but only for 1 single book.. need?
-		System.out.println(" Top 10 most popular book right now is:");
-		System.out.println(library.getTopTen()); //does this display anything??
+		System.out.println("Most popular book right now is:");
+		System.out.println(library.getTopTen());
 	}
 
 	public void showCustomerLoanHistory() { // WILL THIS WORK?? ----- IT NOW WORKS
-		scanner.nextLine();
 		System.out.println("Enter the personal security number of the customer");
 		String customerPsn = scanner.nextLine();
 		System.out.println(customerPsn);
 		Customer customer = retrieveCustomer(customerPsn.trim());
 
 		try {
-            for (Customer c : retrieveCustomerDirectory()) {
-                if (c.equals(customer)) {
-                        System.out.println("Here is " + c.getName() + "'s loan history: ");
-                        library.getCustomerLoanHistory(c);
-                    }
-                }
-        } catch(Exception e){
-            System.out.println("No customer registered with that psn");
-            showCustomerLoanHistory();
-        }
-	}
-	public void manipulateTimeByHours(long hours) {
-		library.setDateByHours(hours);
-	}
-	public void manipulateTimeByDays(long days) {
-		library.setDateByDays(days);
-	}
-	public void manipulateTimeByMonths(long months) {
-		library.setDateByMonths(months);
-	}
-	public void manipulateTimeByYears(long years) {
-		library.setDateByYears(years);
+			for (Customer c : retrieveCustomerDirectory()) {
+				if (c.equals(customer)) {
+					System.out.println("Here is " + c.getName() + "'s loan history: ");
+					library.getCustomerLoanHistory(c);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("No customer registered with that psn");
+			showCustomerLoanHistory();
+		}
+		// here we also should be able to get loan history from only entering the PSN!!
+		// --That's what we are doing??
 	}
 
 	public static void main(String[] args) {
@@ -686,7 +647,6 @@ public class Test {
 		test.run();
 
 	}
-
 }
 
 // TODO: things i wrote in my comments above, and add options for VG things !!,

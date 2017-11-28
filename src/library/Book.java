@@ -1,7 +1,5 @@
 package library;
 
-
-
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -19,14 +17,12 @@ public class Book {
 
 	// VG stuff
 	private int timesBorrowed = 0;
-	final static int TWO_WEEKS = 336;
-	private LocalDateTime startDate = LocalDateTime.now();
-	private LocalDateTime returnDate = startDate.plus(TWO_WEEKS, ChronoUnit.HOURS);
+	final static int TWO_WEEKS = 2;
+	private LocalDateTime startDate;
+	private LocalDateTime returnDate;
 
 	//*** CONSTRUCTOR ***//
 	public Book(String title, String authors, String publisher, String genre, String shelf) throws Exception{
-
-		this.id = UUID.randomUUID();
 
 		if(title.equals("") || authors.equals("") || publisher.equals("") || genre.equals("") || shelf.equals("")){
 			throw new Exception("Input argument cannot be empty.");
@@ -37,6 +33,9 @@ public class Book {
 			this.publisher = publisher;
 			this.shelf = shelf;
 		}
+		
+		startDate = LocalDateTime.now();
+		returnDate = LocalDateTime.now();
 	}
 
 	//*** GETTERS AND SETTERS ***//
@@ -46,6 +45,31 @@ public class Book {
 
 	public String getTitle() {
 		return this.title;
+	}
+
+	public String getAuthor() {
+        if (this.authors.size() > 1) {
+            return this.authors.get(0) + "," + this.authors.get(1);
+        } else {
+            return this.authors.get(0);
+        }
+    }
+
+	public ArrayList<String> getAuthors(){
+		/*String res = ": ";
+		if(authors.size() == 1){
+			return authors.get(0);
+		} else {
+			for(int i = 0; i < authors.size(); i++){
+				if(i == authors.size() - 1) {
+					res += authors.get(i);
+				} else {
+					res += authors.get(i) + ", ";
+				}
+			}
+			return res;
+		}*/
+		return this.authors;
 	}
 
 	public String getGenre() {
@@ -98,21 +122,6 @@ public class Book {
 		}
 	}
 	
-	// Note by Fabian: Just make another getAuthors method that returns a List of authors...
-	public ArrayList<String> getAuthors() {return this.authors;}
-	
-	public String getAuthor() {
-		String res = "";
-		// In the case of multiple authors return this
-		if(authors.size() > 1) {
-			for(String a : authors) {
-				res += a + ", ";
-			}
-			return res;
-		} else {
-			return authors.get(0);
-		}
-    }
 	public void authors2UpperCase() {
 		for (int i = 0; i < this.authors.size(); i++) {Character.toUpperCase(this.authors.get(i).charAt(0));}
 	}
