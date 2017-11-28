@@ -245,7 +245,9 @@ public class Test {
 	}
 
 	public void writeBookToFile(String path, Book book) {
-		if (book.getTitle().equals("") && !book.getAuthor().equals("") && !book.getPublisher().equals("")
+		System.out.println("Title: " + book.getTitle() + "\nAuthor: " + book.getAuthor() + "\nPublisher: " + book.getPublisher()
+				+ "\nGenre: " + book.getGenre()+ "\nShelf: " + book.getShelf());
+		if (!book.getTitle().equals("") && !book.getAuthor().equals("") && !book.getPublisher().equals("")
 				&& !book.getGenre().equals("") && !book.getShelf().equals("")) {
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
 				out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-"
@@ -337,10 +339,8 @@ public class Test {
 	}
 
 	public void borrowBook() throws Exception {
-		// must create txt file for customers borrowed books, create that when customer
-		// borrows their
-		// first book, or create one for every customer when they are first created
 		showAvailableBooks();
+		scanner.nextLine();
 		System.out.println("Enter title of book to borrow:");
 		String title = scanner.nextLine();
 		Book book = retrieveBook(title);
@@ -353,9 +353,7 @@ public class Test {
 			System.out.println("about to borrow book yay");
 			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
 			writeBookToFile("res/LoanedBooks.txt", book);
-			// borrowBook in library checks whether the book is available in the library and
-			// moves it
-			// to the appropriate arraylists.
+			writeBookToFile("res/"+psn+"CurrentLoans.txt", book);
 			library.borrowBook(title, psn);
 			ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
 			ses.scheduleAtFixedRate(new Runnable() {
@@ -368,21 +366,23 @@ public class Test {
 	}
 
 	public void returnBook() throws Exception {
+		scanner.nextLine();
 		System.out.println("Enter title of book to return:");
 		String title = scanner.nextLine();
 		System.out.println("Enter personal security number:");
-		String psn = scanner.nextLine();
+		String psn = scanner.nextLine().trim();
+		Customer customer = retrieveCustomer(psn);
+		System.out.println("Title: " + title + "\nPSN: " + psn + "\nCustomer: " + customer);
 
-		if (title.equals("") || psn.equals("")) {
+		if (title.equals("") || customer.equals(null)) {
 			throw new Exception("Empty title or social security number");
 		} else {
-			Book book = null;
-			for (Customer c : retrieveCustomerDirectory()) {
-				if (c.getPersonnummer() == psn) {
-					book = c.getFromCurrentLoan(title);
-				}
-			}
+			System.out.println("Returning a book");
+			Book book = customer.getFromCurrentLoan(title);
+
 			// returns a book into library's available books directory
+			removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
+			removeLineFromFile("res/"+psn+"CurrentLoans.txt", parseBookToString(book));
 			writeBookToFile("res/bookDirectory", book);
 			library.returnBook(title, psn);
 		}
@@ -479,7 +479,7 @@ public class Test {
 		System.out.println(library.toString());
 	}
 
-	public void writeCustomerToFile(String name, String address, String phoneNumber, String psn) {
+	public void writeCustomerToFile(String name, String address, String psn, String phoneNumber) {
 		if (!name.equals("") && !address.equals("") && !psn.equals("")) {
 
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/customer.txt", true)))) {
