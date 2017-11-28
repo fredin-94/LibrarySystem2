@@ -354,21 +354,6 @@ public class Library {
         book.setStartDate(this.date);
         book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks
 
-        //avoids incrementing timesBorrowed
-        {
-            ArrayList<Book> temp = customer.getloanHistory();
-            if (temp.get(temp.size()) != book) {
-
-                // statistics
-                book.incrementTimesBorrowed();
-                for (Book books : allBooks) {
-                    if (book.getTitle().equalsIgnoreCase(books.getTitle())) {
-                        books.incrementTimesBorrowed();
-                    }
-                }
-            }
-        }
-
         loanedBooks.add(book);
         customer.addToCurrentLoan(book);
         customer.addToLoanHistory(book);
@@ -396,13 +381,6 @@ public class Library {
         int debt = this.checkDelay(book) * 2;
         customer.setDebt(debt);
 
-        //statistics
-        book.incrementTimesBorrowed();
-        for (Book books : allBooks) {
-            if (book.getTitle().equalsIgnoreCase(books.getTitle())) {
-                books.incrementTimesBorrowed();
-            }
-        }
 		/*
 		 * TODO we need to "restart" the dates once the book is returned
 		 * book.restartDates(); book.restartLoanPeriod(); book.notDelayed();
