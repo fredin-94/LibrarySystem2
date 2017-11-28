@@ -239,6 +239,35 @@ public class Library {
 		books.remove(book);
 
 	}
+	
+	public void extendLoanPeriod(String personnumer, String bookTitle) throws Exception {
+		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnumer);
+		if (customer == null) {
+			throw new Exception("Customer is not in System.");
+		}
+		
+		ArrayList<Book> temp = customer.getCurrentLoans();
+		Book book = null;
+		for(Book theBook: temp) {
+			if(theBook.getTitle().equals(bookTitle)) {
+				book = theBook;
+				break;
+			}
+		}
+		
+		if (book == null) {
+			throw new Exception("Book is (currently) not in directory");
+		}
+		
+		long loanPeriod = ChronoUnit.DAYS.between(book.getReturnDate(), book.getStartDate());
+		
+		if(loanPeriod >= 14 || this.checkDelay(book) > 0) {
+			//return a message to console
+		}else {
+			book.setReturnDate(book.getReturnDate().plusWeeks(2));
+		}
+		
+	}
 
 	public void returnBook(String bookTitle, String personnummer) throws Exception{
 
