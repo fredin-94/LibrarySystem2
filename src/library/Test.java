@@ -219,10 +219,6 @@ public class Test {
 	// Methods - everything is void now - change that if needed
 	// -- Book handling methods --//
 	public void addBook() {
-
-		/* TODO: add to all books directory */
-		// ADD FUNCTION TO WRITE TO TXT FILE! --DONE
-		System.out.println("Creating new book:");
 		System.out.println("Enter title: ");
 		String title = scanner.nextLine();
 		System.out.println("Enter author: ");
@@ -233,43 +229,48 @@ public class Test {
 		String genre = scanner.nextLine();
 		System.out.println("Enter shelf: ");
 		String shelf = scanner.nextLine();
-
+		Book book = null;
 		try {
-			library.addBook(new Book(title, author, publisher, genre, shelf));
-		} catch (Exception e) {
-			e.printStackTrace();
+			book = new Book(title, author, publisher, genre, shelf);
+		} catch (Exception e){
+			System.out.println("No parameters allowed to be empty. Please fill in every field.");
+			addBook();
+		} finally {
+			library.addBook(book);
+			// add book to books currently available at the library
+			writeBookToFile("res/bookDirectory.txt", book);
+			// add book to library inventory
+			writeBookToFile("res/AllBooks.txt", book);
 		}
-		writeBookToFile(title, author, publisher, genre, shelf);
 	}
 
-	public void writeBookToFile(String title, String author, String publisher, String genre, String shelf) {
-		/* TODO: add extra parameter for??? */
-		// adding user input to text file://
-		// Make sure no necessary fields are empty//
-		if (!title.equals("") && !author.equals("") && !publisher.equals("") && !genre.equals("")
-				&& !shelf.equals("")) {
-
-			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/bookDirectory.txt", true)))) {
-				out.println("\n" + title + "-" + author + "-" + publisher + "-" + genre + "-" + shelf);
+	public void writeBookToFile(String path, Book book) {
+		if (book.getTitle().equals("") && !book.getAuthor().equals("") && !book.getPublisher().equals("")
+				&& !book.getGenre().equals("") && !book.getShelf().equals("")) {
+			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
+				out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-"
+						+ book.getGenre() + "-" + book.getShelf());
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
-			System.out.println("Added " + title + " to library");
+			System.out.println("Added " + book.getTitle() + " to library");
 		} else {
 			System.out.println("No parameters allowed to be empty");
 		}
 	}
 
-	public void removeBook() { // WILL THIS WORK OR NOT???
-		// ADD FUNCTION TO REMOVE FROM TXT FILE
-		// TODO: check if books arraylist contains ALL books in the library ever or only
-		// the ones currently in stock
+	// I'm assuming this is used when the library wants to get rid of a book completely
+	public void removeBook() {
 		System.out.println("Enter title of book to remove: ");
 		String title = scanner.nextLine();
 
 		Book book = retrieveBook(title);
-		removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
-		library.removeBook(book);
+		if(book != null) {
+			removeLineFromFile("res/AllBooks.txt", parseBookToString(book));
+			library.removeBook(book);
+		} else {
+			System.out.println("There's no book with that title");
+		}
 	}
 
 	public Book retrieveBook(String title) {
@@ -342,14 +343,16 @@ public class Test {
 		showAvailableBooks();
 		System.out.println("Enter title of book to borrow:");
 		String title = scanner.nextLine();
+		Book book = retrieveBook(title);
 
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine();
-		if (title.equals("") || psn.equals("")) {
+		if (book.equals(null) || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
 			System.out.println("about to borrow book yay");
-			removeLineFromFile("res/bookDirectory.txt", parseBookToString(retrieveBook(title)));
+			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
+			writeBookToFile("res/LoanedBooks.txt", book);
 			// borrowBook in library checks whether the book is available in the library and
 			// moves it
 			// to the appropriate arraylists.
@@ -365,8 +368,6 @@ public class Test {
 	}
 
 	public void returnBook() throws Exception {
-		// ADD FUNCTION TO REMOVE FROM TXT FILE AND ADD TO OTHER TXT FILE -- NOT
-		// NEEDED???
 		System.out.println("Enter title of book to return:");
 		String title = scanner.nextLine();
 		System.out.println("Enter personal security number:");
@@ -381,7 +382,8 @@ public class Test {
 					book = c.getFromCurrentLoan(title);
 				}
 			}
-			writeBookToFile(book.getTitle(), book.getAuthor(), book.getPublisher(), book.getGenre(), book.getShelf());
+			// returns a book into library's available books directory
+			writeBookToFile("res/bookDirectory", book);
 			library.returnBook(title, psn);
 		}
 	}
@@ -474,22 +476,17 @@ public class Test {
 	}
 
 	public void showAvailableBooks() {
-		/*
-		 * try { library.bookDirectory(); }catch (Exception e) { e.getMessage(); }
-		 */
 		System.out.println(library.toString());
 	}
 
 	public void writeCustomerToFile(String name, String address, String phoneNumber, String psn) {
-		// should allow a customer to be added to txt without entering phonenumber
-		if (!name.equals("") && !address.equals("") && !phoneNumber.equals("") && !psn.equals("")) {
+		if (!name.equals("") && !address.equals("") && !psn.equals("")) {
 
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/customer.txt", true)))) {
-				out.println(name + "/" + address + "/" + phoneNumber + "/" + psn);
+				out.println(name + "/" + address + "/" + psn + "/" + phoneNumber);
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
-			System.out.println("Added " + name + " to customer database");
 		} else {
 			System.out.println("No parameters allowed to be empty");
 		}
@@ -497,28 +494,43 @@ public class Test {
 
 	// -- Customer handling methods --//
 	public void addCustomer() {
-		// ADD FUNCTION TO ADD TO TXT FILE --done
 		System.out.println("Enter customer name: ");
 		String name = scanner.nextLine();
 		System.out.println("Enter customer adress: ");
 		String address = scanner.nextLine();
-		System.out.println("Enter customer phone number: ");
-		String phoneNumber = scanner.nextLine();
 		System.out.println("Enter customer personal security number: ");
 		String psn = scanner.nextLine();
+		System.out.println("Enter customer phone number: ");
+		String phoneNumber = scanner.nextLine();
 
 		try {
-			// This is not how .contains works...
-			if (!name.equals("") && !address.equals("") && !psn.equals("") && !library.getCustomers().contains(psn)) {
-				library.addCustomer(new Customer(name, address, psn, phoneNumber));
+			if (!name.equals("") && !address.equals("") && !psn.equals("") && !phoneNumber.equals("")) {
+				if(phoneNumber.equals("")) {
+					library.addCustomer(new Customer(name, address, psn, phoneNumber));
+				} else {
+					library.addCustomer(new Customer(name, address, psn));
+				}
 				System.out.println("Added " + name + " to customer database");
+				writeCustomerToFile(name, address, psn, phoneNumber);
+				createFile(psn + "LoanHistory");
+				createFile(psn+"CurrentLoans");
 			}
-			// library.addCustomer(new Customer(name, address,psn, phoneNumber));
-			writeCustomerToFile(name, address, phoneNumber, psn);
-
 		} catch (Exception e) {
 			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
 			addCustomer();
+		}
+	}
+
+	public void createFile(String fileName){
+		try {
+			File file = new File("res/"+fileName+".txt");
+			if (file.createNewFile()){
+				System.out.println("File is created!");
+			}else{
+				System.out.println("File already exists.");
+			}
+		}catch(Exception e){
+			e.getMessage();
 		}
 	}
 
@@ -528,10 +540,23 @@ public class Test {
 		Customer customer = retrieveCustomer(psn);
 		if (customer != null) {
 			removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
+			deleteFile(psn);
 			library.removeCustomer(customer);
 		} else {
 			System.out.println("There's no customer with that personnummer \nPlease enter a valid one.");
 			removeCustomer();
+		}
+	}
+
+	public void deleteFile(String fileName){
+		try {
+			File file1 = new File("res/"+fileName+"LoanHistory.txt");
+			File file2 = new File("res/"+fileName+"CurrentLoans.txt");
+			if (file1.delete() && file2.delete()){
+				System.out.println("File deleted");
+			}
+		}catch(Exception e){
+			e.getMessage();
 		}
 	}
 
@@ -643,7 +668,6 @@ public class Test {
 	public void showCustomerLoanHistory() { // WILL THIS WORK?? ----- IT NOW WORKS
 		System.out.println("Enter the personal security number of the customer");
 		String customerPsn = scanner.nextLine();
-		System.out.println(customerPsn);
 		Customer customer = retrieveCustomer(customerPsn.trim());
 
 		try {

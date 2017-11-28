@@ -35,10 +35,10 @@ public class Library {
 
 		try {
             customerDirectory();
+			bookDirectory("res/bookDirectory.txt");
             bookDirectory("res/LoanedBooks.txt");
             bookDirectory("res/delayedBooks.txt");
             bookDirectory("res/AllBooks.txt");
-            bookDirectory("res/bookDirectory.txt");
         } catch (Exception e) {
             e.getMessage();
         }
@@ -431,10 +431,10 @@ public class Library {
 	
 	//Reading a text file into arraylist: (Books)// - change the exception handling for them(?)
 		public void bookDirectory(String path) throws FileNotFoundException {
-			File allBooks = new File("res/bookDirectory.txt");
-			Scanner input = new Scanner(allBooks);
-		    input.useDelimiter("-|\n");   
-			
+			File file = new File(path);
+			Scanner input = new Scanner(file);
+		    input.useDelimiter("-|\n");
+
 			while(input.hasNext()) {
 		       
 		        String title = input.next();
@@ -448,11 +448,11 @@ public class Library {
 				} catch (Exception e) {
 					e.printStackTrace();
 				} finally {
-					if(path.equals("bookDirectory") || path.equals("bookDirectory.txt")) {
+					if(path.contains("bookDirectory")) {
 						books.add(book);
-					}else if(path.equalsIgnoreCase("delayedBooks") || path.equalsIgnoreCase("delayedBooks.txt")) {
+					}else if(path.contains("delayedBooks")) {
 						loanedBooks.add(book);
-					}else if(path.equalsIgnoreCase("loanedBooks") || path.equalsIgnoreCase("loanedBooks.txt")) {
+					}else if(path.contains("loanedBooks")) {
 						delayedBooks.add(book);
 					}
 					
