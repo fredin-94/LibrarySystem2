@@ -7,6 +7,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import library.Library.bookKey;
 import static library.Library.bookKey.*; // Needed to take enum keys as parameters. //Fabian.
 import static library.Library.customerKey.*;
@@ -16,6 +18,7 @@ public class Test {
 	private Menu menu = new Menu();
 	private Scanner scanner = new Scanner(System.in);
 	private Library library;
+	private Customer customer;
 
 	public Test() {
 		library = new Library();
@@ -162,11 +165,13 @@ public class Test {
 	public void handleExtra(int option) {
 		switch (option) {
 		case 1:
+			System.out.println("All lent out books: ");
 			for (int i = 0; i < library.getLoanedBooks().size(); i++) {
 				System.out.println(library.getLoanedBooks().get(i).toString());
 			}
 			break;
 		case 2:
+			System.out.println("All delayed books: ");
 			for (int i = 0; i < library.getDelayedBooks().size(); i++) {
 				System.out.println(library.getDelayedBooks().get(i).toString());
 			}
@@ -175,7 +180,11 @@ public class Test {
 			showCustomerLoanHistory();
 			break;
 		case 4:
-			// showMostLentOutBooks();
+			showCustomerLCurrentLoans();
+			break;
+		case 5:
+			System.out.println("Top 10 books: ");
+			library.showTopBooks();
 			break;
 		case 0:
 			run();
@@ -233,7 +242,7 @@ public class Test {
 		try {
 			book = new Book(title, author, publisher, genre, shelf);
 		} catch (Exception e){
-			System.out.println("No parameters allowed to be empty. Please fill in every field.");
+			System.out.println("In test add book: No parameters allowed to be empty. Please fill in every field.");
 			addBook();
 		} finally {
 			library.addBook(book);
@@ -241,6 +250,7 @@ public class Test {
 			writeBookToFile("res/bookDirectory.txt", book);
 			// add book to library inventory
 			writeBookToFile("res/AllBooks.txt", book);
+			System.out.println("In add book: " + title + "  added to library!");
 		}
 	}
 
@@ -255,9 +265,9 @@ public class Test {
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
-			System.out.println("Added " + book.getTitle() + " to library");
+			//System.out.println("In Write book to file: Added " + book.getTitle() + " to library");
 		} else {
-			System.out.println("No parameters allowed to be empty");
+			System.out.println("In write book to file: No parameters allowed to be empty");
 		}
 	}
 
@@ -330,13 +340,14 @@ public class Test {
 			boolean renameSuccess = tmpFile.renameTo(dirFile);
 
 			if (success) {
-				System.out.println("Old file deleted");
+			//	System.out.println("In test, remove from file: Old file deleted");
 			}
 			if (renameSuccess) {
-				System.out.println("file renamed");
+			//	System.out.println("In test, remove from file: File renamed");
 			}
 		} catch (Exception e) {
-			e.getMessage();
+			//e.getMessage();
+			System.out.println("In remove line from file: Not able to complete method");
 		}
 	}
 
@@ -345,17 +356,19 @@ public class Test {
 		scanner.nextLine();
 		System.out.println("Enter title of book to borrow:");
 		String title = scanner.nextLine();
-		Book book = retrieveBook(title);
-
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine();
+		
+		Book book = retrieveBook(title);
 		if (book.equals(null) || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
-			System.out.println("about to borrow book yay");
+			//System.out.println("In test, borrow book: Processing borrowing a book");
 			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
-			writeBookToFile("res/LoanedBooks.txt", book);
+			writeBookToFile("res/LoanedBooks.txt", book); 
 			writeBookToFile("res/"+psn+"CurrentLoans.txt", book);
+			writeBookToFile("res/"+psn+"LoanHistory.txt", book);
+			System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
 			library.borrowBook(title, psn);
 			ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
 			ses.scheduleAtFixedRate(new Runnable() {
@@ -364,7 +377,10 @@ public class Test {
 					library.isDelayed(retrieveBook(title));
 				}
 			}, 0, 1, TimeUnit.HOURS);
-		}
+		}	
+		// borrowBook in library checks whether the book is available in the library and
+		// moves it
+		// to the appropriate arraylists.
 	}
 
 	public void returnBook() throws Exception {
@@ -387,6 +403,9 @@ public class Test {
 			removeLineFromFile("res/"+psn+"CurrentLoans.txt", parseBookToString(book));
 			writeBookToFile("res/bookDirectory", book);
 			library.returnBook(title, psn);
+			//System.out.println("In return book: removed book from loaned books arraylist, added to books arraylist, removed from customer current loans arraylist");
+			
+			System.out.println("Book returned successfully");
 		}
 	}
 
@@ -490,7 +509,7 @@ public class Test {
 				ioe.printStackTrace();
 			}
 		} else {
-			System.out.println("No parameters allowed to be empty");
+			System.out.println("In test, write customer to file: No parameters allowed to be empty");
 		}
 	}
 
@@ -506,16 +525,20 @@ public class Test {
 		String phoneNumber = scanner.nextLine();
 
 		try {
-			if (!name.equals("") && !address.equals("") && !psn.equals("") && !phoneNumber.equals("")) {
-				if(phoneNumber.equals("")) {
+			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
+				
+				if(!phoneNumber.equals("")) {
+					createFile(psn + "LoanHistory");
+					createFile(psn+"CurrentLoans");
 					library.addCustomer(new Customer(name, address, psn, phoneNumber));
 				} else {
+					createFile(psn + "LoanHistory");
+					createFile(psn+"CurrentLoans");
 					library.addCustomer(new Customer(name, address, psn));
 				}
 				System.out.println("Added " + name + " to customer database");
 				writeCustomerToFile(name, address, psn, phoneNumber);
-				createFile(psn + "LoanHistory");
-				createFile(psn+"CurrentLoans");
+				
 			}
 		} catch (Exception e) {
 			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
@@ -524,12 +547,13 @@ public class Test {
 	}
 
 	public void createFile(String fileName){
+		//System.out.println("in createFIle");
 		try {
 			File file = new File("res/"+fileName+".txt");
 			if (file.createNewFile()){
-				System.out.println("File is created!");
+				//System.out.println("Text file is created!");
 			}else{
-				System.out.println("File already exists.");
+				System.out.println("Text file for " + fileName + " already exists.");
 			}
 		}catch(Exception e){
 			e.getMessage();
@@ -668,7 +692,8 @@ public class Test {
 	}
 
 	public void showCustomerLoanHistory() { // WILL THIS WORK?? ----- IT NOW WORKS
-		System.out.println("Enter the personal security number of the customer");
+		System.out.println("Enter the personal security number of the customer:");
+		String skipString = scanner.nextLine();
 		String customerPsn = scanner.nextLine();
 		Customer customer = retrieveCustomer(customerPsn.trim());
 
@@ -677,14 +702,38 @@ public class Test {
 				if (c.equals(customer)) {
 					System.out.println("Here is " + c.getName() + "'s loan history: ");
 					library.getCustomerLoanHistory(c);
+					
+					for (int i = 0; i < customer.getLoanHistory().size(); i++) {
+						System.out.println(customer.getLoanHistory().get(i).toString());
+					}
 				}
 			}
 		} catch (Exception e) {
 			System.out.println("No customer registered with that psn");
 			showCustomerLoanHistory();
 		}
-		// here we also should be able to get loan history from only entering the PSN!!
-		// --That's what we are doing??
+	}
+	public void showCustomerLCurrentLoans() { // WILL THIS WORK?? ----- IT NOW WORKS
+		System.out.println("Enter the personal security number of the customer:");
+		String skipString = scanner.nextLine();
+		String customerPsn = scanner.nextLine();
+		Customer customer = retrieveCustomer(customerPsn.trim());
+
+		try {
+			for (Customer c : retrieveCustomerDirectory()) {
+				if (c.equals(customer)) {
+					System.out.println("Here is " + c.getName() + "'s current loans: ");
+					customer.getCurrentLoans();
+					
+					for (int i = 0; i < customer.getCurrentLoans().size(); i++) {
+						System.out.println(customer.getCurrentLoans().get(i).toString());
+					}
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("No customer registered with that psn");
+			showCustomerLoanHistory();
+		}
 	}
 
 	public static void main(String[] args) {
