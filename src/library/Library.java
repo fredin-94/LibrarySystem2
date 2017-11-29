@@ -369,7 +369,7 @@ public class Library {
                 oneCopy.add(book);
 
                 for (int j = i; j < this.allBooks.size(); j++) {
-                    if (book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle())) {// trims
+                    if (book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle().trim())) {// trims
                         numOfCopies++;
                     }
                 }
@@ -392,6 +392,8 @@ public class Library {
 
         } // end of block b: adds 10 books to the topTen array, and the compares the
         // remaining books to that 10 books already inside
+
+
 
         {
             for (int i = 0; i < 10; i++) {
