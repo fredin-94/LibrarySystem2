@@ -32,10 +32,10 @@ public class Library {
 
 		try {
 			customerDirectory();
+			bookDirectory("res/bookDirectory.txt");
 			bookDirectory("res/LoanedBooks.txt");
 			bookDirectory("res/delayedBooks.txt");
 			bookDirectory("res/AllBooks.txt");
-			bookDirectory("res/bookDirectory.txt");
 		} catch (Exception e) {
 			e.getMessage();
 		}
@@ -145,10 +145,10 @@ public class Library {
 			throws NullPointerException {
 		try {
 			for (Customer customer : customers) {
-				System.out.println("search value: " + searchValue);
-				System.out.println(f.apply(customer));
+				// System.out.println("search value: " + searchValue);
+				// System.out.println(f.apply(customer));
 				if (searchValue.equals(((String) f.apply(customer)).toLowerCase())) {
-					System.out.println("found customer");
+					// System.out.println("found customer");
 					return customer;
 				}
 			}
@@ -283,9 +283,10 @@ public class Library {
 		book.setStartDate(this.date);
 		book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks
 		book.incrementTimesBorrowed();
-		loanedBooks.add(book);
+
 		customer.addToCurrentLoan(book);
 		customer.addToLoanHistory(book);
+		loanedBooks.add(book);
 		books.remove(book);
 
 	}
@@ -472,38 +473,39 @@ public class Library {
 		}
 	}
 
-	// Reading a text file into arraylist: (Books)// - change the exception handling
-	// for them(?)
-	public void bookDirectory() throws FileNotFoundException {
-		Scanner input = new Scanner(new File("res/bookDirectory.txt"));
-		input.useDelimiter("-|\n");
-
-		while (input.hasNext()) {
-
-			String title = input.next();
-			String author = input.next();
-			String publisher = input.next();
-			String genre = input.next();
-			String shelf = input.next();
-
-			Book book = null;
-			try {
-				book = new Book(title, author, publisher, genre, shelf);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				books.add(book);
-			}
-
-		}
-	}
+	// //Reading a text file into arraylist: (Books)// - change the exception
+	// handling for them(?)
+	// public void bookDirectory() throws FileNotFoundException {
+	// Scanner input = new Scanner(new File("res/bookDirectory.txt"));
+	// input.useDelimiter("-|\n");
+	//
+	//
+	// while(input.hasNext()) {
+	//
+	// String title = input.next();
+	// String author = input.next();
+	// String publisher = input.next();
+	// String genre = input.next();
+	// String shelf = input.next();
+	//
+	// Book book = null;
+	// try {
+	// book = new Book(title, author, publisher, genre, shelf);
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// } finally {
+	// books.add(book);
+	// }
+	//
+	// }
+	// }
 
 	// Reading a text file into arraylist: (Books)// - change the exception handling
 	// for them(?)
 	public void bookDirectory(String path) throws FileNotFoundException {
-		File allBooks = new File("res/bookDirectory.txt");
-		Scanner input = new Scanner(allBooks);
+		File file = new File(path);
+		Scanner input = new Scanner(file);
 		input.useDelimiter("-|\n");
 
 		while (input.hasNext()) {
@@ -519,17 +521,23 @@ public class Library {
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				if (path.equals("bookDirectory") || path.equals("bookDirectory.txt")) {
+				if (path.contains("bookDirectory")) {
 					books.add(book);
-				} else if (path.equalsIgnoreCase("delayedBooks") || path.equalsIgnoreCase("delayedBooks.txt")) {
+				} else if (path.contains("delayedBooks")) {
 					loanedBooks.add(book);
-				} else if (path.equalsIgnoreCase("loanedBooks") || path.equalsIgnoreCase("loanedBooks.txt")) {
+				} else if (path.contains("loanedBooks")) {
 					delayedBooks.add(book);
 				}
+				// else if(path.contains("CurrentLoans")) {
+				// customer.getLoanHistory().add(book);
+				// }else if(path.contains("LoanHistory")) {
+				// customer.getCurrentLoans().add(book);
+				// }
 
 			}
 
 		}
+
 	}
 
 	// Reading a txt file into arraylist (Customers)//
@@ -547,7 +555,7 @@ public class Library {
 			Customer customer = null;
 			try {
 				customer = new Customer(name, address, psn, phoneNumber);
-				System.out.println("Sup, " + psn);
+				// System.out.println("Sup, " + psn);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
