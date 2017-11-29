@@ -452,18 +452,11 @@ public class Library {
 					if(path.contains("bookDirectory")) {
 						books.add(book);
 					}else if(path.contains("delayedBooks")) {
-						loanedBooks.add(book);
-					}else if(path.contains("loanedBooks")) {
 						delayedBooks.add(book);
-					}
-//					else if(path.contains("CurrentLoans")) {
-//						customer.getLoanHistory().add(book);
-//					}else if(path.contains("LoanHistory")) {
-//						customer.getCurrentLoans().add(book);
-//					}
-					
+					}else if(path.contains("LoanedBooks")) {
+						loanedBooks.add(book);
+					}		
 				}
-
 			}
 		}
 		

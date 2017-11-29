@@ -7,6 +7,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import library.Library.bookKey;
 import static library.Library.bookKey.*; // Needed to take enum keys as parameters. //Fabian.
 import static library.Library.customerKey.*;
@@ -178,6 +180,9 @@ public class Test {
 			showCustomerLoanHistory();
 			break;
 		case 4:
+			showCustomerLCurrentLoans();
+			break;
+		case 5:
 			System.out.println("Top 10 books: ");
 			library.showTopBooks();
 			break;
@@ -695,7 +700,8 @@ public class Test {
 	}
 
 	public void showCustomerLoanHistory() { // WILL THIS WORK?? ----- IT NOW WORKS
-		System.out.println("Enter the personal security number of the customer");
+		System.out.println("Enter the personal security number of the customer:");
+		String skipString = scanner.nextLine();
 		String customerPsn = scanner.nextLine();
 		Customer customer = retrieveCustomer(customerPsn.trim());
 
@@ -704,14 +710,38 @@ public class Test {
 				if (c.equals(customer)) {
 					System.out.println("Here is " + c.getName() + "'s loan history: ");
 					library.getCustomerLoanHistory(c);
+					
+					for (int i = 0; i < customer.getLoanHistory().size(); i++) {
+						System.out.println(customer.getLoanHistory().get(i).toString());
+					}
 				}
 			}
 		} catch (Exception e) {
 			System.out.println("No customer registered with that psn");
 			showCustomerLoanHistory();
 		}
-		// here we also should be able to get loan history from only entering the PSN!!
-		// --That's what we are doing??
+	}
+	public void showCustomerLCurrentLoans() { // WILL THIS WORK?? ----- IT NOW WORKS
+		System.out.println("Enter the personal security number of the customer:");
+		String skipString = scanner.nextLine();
+		String customerPsn = scanner.nextLine();
+		Customer customer = retrieveCustomer(customerPsn.trim());
+
+		try {
+			for (Customer c : retrieveCustomerDirectory()) {
+				if (c.equals(customer)) {
+					System.out.println("Here is " + c.getName() + "'s current loans: ");
+					customer.getCurrentLoans();
+					
+					for (int i = 0; i < customer.getCurrentLoans().size(); i++) {
+						System.out.println(customer.getCurrentLoans().get(i).toString());
+					}
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("No customer registered with that psn");
+			showCustomerLoanHistory();
+		}
 	}
 
 	public static void main(String[] args) {
