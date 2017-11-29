@@ -119,7 +119,7 @@ public class Library {
              //   System.out.println("search value: " + searchValue);
               //  System.out.println(f.apply(customer));
                 if (searchValue.equals(((String) f.apply(customer)).toLowerCase())) {
-                    System.out.println("found customer");
+                   // System.out.println("found customer");
                     return customer;
                 }
             }
@@ -403,32 +403,32 @@ public class Library {
 		}
 	}
 	
-	//Reading a text file into arraylist: (Books)// - change the exception handling for them(?)
-	public void bookDirectory() throws FileNotFoundException {
-		Scanner input = new Scanner(new File("res/bookDirectory.txt"));
-	    input.useDelimiter("-|\n");
-	    
-		
-		while(input.hasNext()) {
-	       
-	        String title = input.next();
-			String author = input.next();
-			String publisher = input.next();
-			String genre = input.next();
-			String shelf = input.next();
-	        
-	        Book book = null;
-			try {
-				book = new Book(title, author, publisher, genre, shelf);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				books.add(book);
-			}
-
-	    }
-	}
+//	//Reading a text file into arraylist: (Books)// - change the exception handling for them(?)
+//	public void bookDirectory() throws FileNotFoundException {
+//		Scanner input = new Scanner(new File("res/bookDirectory.txt"));
+//	    input.useDelimiter("-|\n");
+//	    
+//		
+//		while(input.hasNext()) {
+//	       
+//	        String title = input.next();
+//			String author = input.next();
+//			String publisher = input.next();
+//			String genre = input.next();
+//			String shelf = input.next();
+//	        
+//	        Book book = null;
+//			try {
+//				book = new Book(title, author, publisher, genre, shelf);
+//
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			} finally {
+//				books.add(book);
+//			}
+//
+//	    }
+//	}
 	
 	//Reading a text file into arraylist: (Books)// - change the exception handling for them(?)
 		public void bookDirectory(String path) throws FileNotFoundException {

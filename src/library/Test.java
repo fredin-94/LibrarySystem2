@@ -337,7 +337,8 @@ public class Test {
 			//	System.out.println("In test, remove from file: File renamed");
 			}
 		} catch (Exception e) {
-			e.getMessage();
+			//e.getMessage();
+			System.out.println("In remove line from file: Not able to complete method");
 		}
 	}
 
@@ -356,13 +357,9 @@ public class Test {
 		} else {
 			//System.out.println("In test, borrow book: Processing borrowing a book");
 			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
-			writeBookToFile("res/LoanedBooks.txt", book); //these 2 already done in library class?
+			writeBookToFile("res/LoanedBooks.txt", book); 
 			writeBookToFile("res/"+psn+"CurrentLoans.txt", book);
 			writeBookToFile("res/"+psn+"LoanHistory.txt", book);
-			
-			//these 2 dont work for some reason :(
-//			library.bookDirectory("res/"+psn+"CurrentLoans.txt");
-//			library.bookDirectory("res/"+psn+"LoanHistory.txt");
 			
 			System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
 			library.borrowBook(title, psn);
@@ -381,32 +378,38 @@ public class Test {
 
 	public void returnBook() throws Exception {
 		String skipString = scanner.nextLine();
-		System.out.println("Enter title of book to return:");
-		String title = scanner.nextLine();
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine();
-
+		
+		for (Customer customer : retrieveCustomerDirectory()) {//going into the customer arraylist
+			if (customer.getPersonnummer().equals(psn)) {
+				System.out.println("Your current books are:");
+				for(int i = 0; i<customer.getCurrentLoans().size(); i++) {
+					System.out.println(customer.getCurrentLoans().get(i).toString());
+				}	
+			}
+		}
+		System.out.println("Enter title of book to return:");
+		String title = scanner.nextLine();
+		
 		if (title.equals("") || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
-			
 			Book book = null;
-			
-			for (Customer customer : retrieveCustomerDirectory()) {
-				if (customer.getPersonnummer() == psn) {
-					System.out.println("Test returnbook: Getting book");
+			for (Customer customer : retrieveCustomerDirectory()) {//going into the customer arraylist
+				if (customer.getPersonnummer().equals(psn)) {
 					book = customer.getFromCurrentLoan(title);
 				}
 			}
 			// returns a book into library's available books directory
-			writeBookToFile("res/bookDirectory", book);
-			removeLineFromFile("res/"+psn+"CurrentLoans.txt", parseBookToString(book));
-			removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
+			writeBookToFile("res/bookDirectory.txt", book);
+			removeLineFromFile("res/"+psn+"CurrentLoans.txt", parseBookToString(book));		
+			removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));	
 			library.returnBook(title, psn);
+			//System.out.println("In return book: removed book from loaned books arraylist, added to books arraylist, removed from customer current loans arraylist");
 			
-			System.out.println("In test, returnBook: Book returned successfully (I hope)");
+			System.out.println("Book returned successfully");
 		}
-		System.out.println("returnbook end of method" );
 	}
 
 	public void searchBook() {
@@ -528,7 +531,6 @@ public class Test {
 			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
 				
 				if(!phoneNumber.equals("")) {
-					System.out.println("kiwi");
 					createFile(psn + "LoanHistory");
 					createFile(psn+"CurrentLoans");
 					library.addCustomer(new Customer(name, address, psn, phoneNumber));
@@ -548,11 +550,11 @@ public class Test {
 	}
 
 	public void createFile(String fileName){
-		System.out.println("in createFIle");
+		//System.out.println("in createFIle");
 		try {
 			File file = new File("res/"+fileName+".txt");
 			if (file.createNewFile()){
-				System.out.println("Text file is created!");
+				//System.out.println("Text file is created!");
 			}else{
 				System.out.println("Text file for " + fileName + " already exists.");
 			}
