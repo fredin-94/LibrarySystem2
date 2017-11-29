@@ -360,42 +360,32 @@ public class Library {
 		ArrayList<Book> oneCopy = new ArrayList<Book>();
 		this.sortAllBooksBy(TITLE);
 		int numOfCopies = 0;
+		
+		for (int i = 0; i < this.allBooks.size(); i++) {
+			Book book = allBooks.get(i);
+			oneCopy.add(book);
 
-		{
-			for (int i = 0; i < this.allBooks.size(); i++) {
-				Book book = allBooks.get(i);
-				oneCopy.add(book);
-
-				for (int j = i; j < this.allBooks.size(); j++) {
-					if (book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle())) {// trims
-						numOfCopies++;
-					}
+			for (int j = i; j < this.allBooks.size(); j++) {
+				if (book.getTitle().trim().equalsIgnoreCase(this.allBooks.get(j).getTitle().trim())) {// trims
+					numOfCopies++;
 				}
-
-				i += numOfCopies;
-				numOfCopies = 0;
-			}
-		} // end of block a: adds one copy of each book to the onCopy arrayList and jumps
-			// the loop
-
-		{
-			try {
-				for (Book book : oneCopy)
-					book.authors2UpperCase();
-				Collections.sort(oneCopy, Comparator.comparing(getBookFunction(TIMESBORROWED)));
-			} catch (InvalidKeyException ike) {
-				ike.printStackTrace();
 			}
 
-		} // end of block b: adds 10 books to the topTen array, and the compares the
-			// remaining books to that 10 books already inside
+			i += numOfCopies;
+			numOfCopies = 0;
+		}
 
-		{
-			for (int i = 0; i < 10; i++) {
-				topTen.add(oneCopy.get(i));
-			}
-		} // end of block b: adds 10 books to the topTen array, and the compares the
-			// remaining books to that 10 books already inside
+		try {
+			for (Book book : oneCopy)
+				book.authors2UpperCase();
+			Collections.sort(oneCopy, Comparator.comparing(getBookFunction(TIMESBORROWED)));
+		} catch (InvalidKeyException ike) {
+			ike.printStackTrace();
+		}
+
+		for (int i = 0; i < 10; i++) {
+			topTen.add(oneCopy.get(i));
+		}
 
 		return topTen;
 	}
