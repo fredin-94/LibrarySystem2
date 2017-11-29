@@ -175,7 +175,7 @@ public class Test {
 			showCustomerLoanHistory();
 			break;
 		case 4:
-			// showMostLentOutBooks();
+			showMostPopularBook();
 			break;
 		case 0:
 			run();
@@ -206,10 +206,6 @@ public class Test {
 			System.out.println("Not a valid option");
 			break;
 		}
-	}
-
-	public ArrayList<Book> retrieveBookDirectory() {
-		return library.getBooks();
 	}
 
 	public ArrayList<Customer> retrieveCustomerDirectory() {
@@ -255,7 +251,7 @@ public class Test {
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
-			System.out.println("Added " + book.getTitle() + " to library");
+			System.out.println("Added " + book.getTitle() + " to file " + path);
 		} else {
 			System.out.println("No parameters allowed to be empty");
 		}
@@ -266,24 +262,40 @@ public class Test {
 		System.out.println("Enter title of book to remove: ");
 		String title = scanner.nextLine();
 
-		Book book = retrieveBook(title);
-		if(book != null) {
-			removeLineFromFile("res/AllBooks.txt", parseBookToString(book));
-			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
+		Book book = retrieveBook(library.getAllBooks(), title);
+		// ---- Most of this will prob be deleted if Oliver implements the functionality in Library.java.-----
+		if(!book.equals(null)) {
+		    if(isInList(library.getBooks(), book)) {
+                removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
+            }else if(isInList(library.getLoanedBooks(), book)){
+                removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
+            } else if(isInList(library.getDelayedBooks(), book)){
+                removeLineFromFile("res/delayedBooks.txt", parseBookToString(book));
+            }
 			library.removeBook(book);
+            removeLineFromFile("res/AllBooks.txt", parseBookToString(book));
 		} else {
 			System.out.println("There's no book with that title");
 		}
 	}
 
-	public Book retrieveBook(String title) {
-		for (Book book : retrieveBookDirectory()) {
+	public Book retrieveBook(ArrayList<Book> listOfBooks, String title) {
+		for (Book book : listOfBooks) {
 			if (book.getTitle().equalsIgnoreCase(title)) {
 				return book;
 			}
 		}
 		return null;
 	}
+
+	public boolean isInList(ArrayList<Book> listOfBooks, Book book){
+        for(Book b : listOfBooks){
+            if(b.equals(book)){
+                return true;
+            }
+        }
+        return false;
+    }
 
 	public Customer retrieveCustomer(String psn) {
 		for (Customer customer : retrieveCustomerDirectory()) {
@@ -345,7 +357,7 @@ public class Test {
 		scanner.nextLine();
 		System.out.println("Enter title of book to borrow:");
 		String title = scanner.nextLine();
-		Book book = retrieveBook(title);
+		Book book = retrieveBook(library.getBooks(), title);
 
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine();
@@ -361,7 +373,7 @@ public class Test {
 			ses.scheduleAtFixedRate(new Runnable() {
 				@Override
 				public void run() {
-					library.isDelayed(retrieveBook(title));
+					library.isDelayed(retrieveBook(library.getLoanedBooks(), title));
 				}
 			}, 0, 1, TimeUnit.HOURS);
 		}
@@ -507,6 +519,8 @@ public class Test {
 
 		try {
 			if (!name.equals("") && !address.equals("") && !psn.equals("") && !phoneNumber.equals("")) {
+                createFile(psn + "LoanHistory");
+                createFile(psn+"CurrentLoans");
 				if(phoneNumber.equals("")) {
 					library.addCustomer(new Customer(name, address, psn, phoneNumber));
 				} else {
@@ -514,8 +528,6 @@ public class Test {
 				}
 				System.out.println("Added " + name + " to customer database");
 				writeCustomerToFile(name, address, psn, phoneNumber);
-				createFile(psn + "LoanHistory");
-				createFile(psn+"CurrentLoans");
 			}
 		} catch (Exception e) {
 			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
@@ -664,7 +676,11 @@ public class Test {
 	public void showMostPopularBook() {
 		// this is the like method below but only for 1 single book.. need?
 		System.out.println("Most popular book right now is:");
-		System.out.println(library.getTopTen());
+		String res = "";
+		for(Book b : library.getTopTen()){
+		    res += b.toString();
+        }
+		System.out.println(res);
 	}
 
 	public void showCustomerLoanHistory() { // WILL THIS WORK?? ----- IT NOW WORKS

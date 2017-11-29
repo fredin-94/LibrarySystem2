@@ -23,7 +23,7 @@ public class Library {
 	private LocalDateTime date;
 	private Timer timer;
     private TimerTask hourlyTask;
-
+    private Customer customer;
 
 	public Library() {
 		allBooks = new ArrayList<Book>();
@@ -116,8 +116,8 @@ public class Library {
 	private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f) throws NullPointerException {
 		try {
             for (Customer customer : customers) {
-                System.out.println("search value: " + searchValue);
-                System.out.println(f.apply(customer));
+             //   System.out.println("search value: " + searchValue);
+              //  System.out.println(f.apply(customer));
                 if (searchValue.equals(((String) f.apply(customer)).toLowerCase())) {
                     System.out.println("found customer");
                     return customer;
@@ -232,10 +232,11 @@ public class Library {
 
 		book.setStartDate(this.date);
 		book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks
-		book.incrementTimesBorrowed();
-		loanedBooks.add(book);
+		book.incrementTimesBorrowed();	
+		
 		customer.addToCurrentLoan(book);
 		customer.addToLoanHistory(book);
+		loanedBooks.add(book);
 		books.remove(book);
 
 	}
@@ -287,7 +288,7 @@ public class Library {
                 oneCopy.add(book);
 
                 for (int j = i; j < this.allBooks.size(); j++) {
-                    if (book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle())) {//trims
+                    if (book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle().trim())) {//trims
                         numOfCopies++;
                     }
                 }
@@ -307,10 +308,12 @@ public class Library {
             } catch (InvalidKeyException ike) {
                 ike.printStackTrace();
             }
+            System.out.println("first book in topten array: " + topTen.get(0).toString());
 
             for (int i = 0; i < topTen.size(); i++) {
                 topTen.remove(topTen.get(i));
                 topTen.add(oneCopy.get(i));
+                System.out.println("Times borrowed " + topTen.get(i).getTimesBorrowed() + " " + topTen.get(i).getTitle());
             }
 
         } // end of block b: adds 10 books to the topTen array, and the compares the
@@ -452,9 +455,16 @@ public class Library {
 						books.add(book);
 					}else if(path.contains("delayedBooks")) {
 						loanedBooks.add(book);
-					}else if(path.contains("loanedBooks")) {
+					}else if(path.contains("LoanedBooks")) {
 						delayedBooks.add(book);
+					} else if(path.contains("AllBooks")){
+						allBooks.add(book);
 					}
+//					else if(path.contains("CurrentLoans")) {
+//						customer.getLoanHistory().add(book);
+//					}else if(path.contains("LoanHistory")) {
+//						customer.getCurrentLoans().add(book);
+//					}
 					
 				}
 
@@ -477,7 +487,7 @@ public class Library {
 				Customer customer = null;
 				try {
 					customer = new Customer(name, address, psn, phoneNumber);
-					System.out.println("Sup, " + psn);
+					//System.out.println("Sup, " + psn);
 				} catch (Exception e){
 					e.printStackTrace();
 				} finally {
