@@ -16,6 +16,7 @@ public class Test {
 	private Menu menu = new Menu();
 	private Scanner scanner = new Scanner(System.in);
 	private Library library;
+	private Customer customer;
 
 	public Test() {
 		library = new Library();
@@ -162,11 +163,13 @@ public class Test {
 	public void handleExtra(int option) {
 		switch (option) {
 		case 1:
+			System.out.println("All lent out books: ");
 			for (int i = 0; i < library.getLoanedBooks().size(); i++) {
 				System.out.println(library.getLoanedBooks().get(i).toString());
 			}
 			break;
 		case 2:
+			System.out.println("All delayed books: ");
 			for (int i = 0; i < library.getDelayedBooks().size(); i++) {
 				System.out.println(library.getDelayedBooks().get(i).toString());
 			}
@@ -175,7 +178,8 @@ public class Test {
 			showCustomerLoanHistory();
 			break;
 		case 4:
-			// showMostLentOutBooks();
+			System.out.println("Top 10 books: ");
+			library.showTopBooks();
 			break;
 		case 0:
 			run();
@@ -233,7 +237,7 @@ public class Test {
 		try {
 			book = new Book(title, author, publisher, genre, shelf);
 		} catch (Exception e){
-			System.out.println("No parameters allowed to be empty. Please fill in every field.");
+			System.out.println("In test add book: No parameters allowed to be empty. Please fill in every field.");
 			addBook();
 		} finally {
 			library.addBook(book);
@@ -241,11 +245,12 @@ public class Test {
 			writeBookToFile("res/bookDirectory.txt", book);
 			// add book to library inventory
 			writeBookToFile("res/AllBooks.txt", book);
+			System.out.println("In add book: " + title + "  added to library!");
 		}
 	}
 
 	public void writeBookToFile(String path, Book book) {
-		if (book.getTitle().equals("") && !book.getAuthor().equals("") && !book.getPublisher().equals("")
+		if (!book.getTitle().equals("") && !book.getAuthor().equals("") && !book.getPublisher().equals("")
 				&& !book.getGenre().equals("") && !book.getShelf().equals("")) {
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
 				out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-"
@@ -253,9 +258,9 @@ public class Test {
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
-			System.out.println("Added " + book.getTitle() + " to library");
+			//System.out.println("In Write book to file: Added " + book.getTitle() + " to library");
 		} else {
-			System.out.println("No parameters allowed to be empty");
+			System.out.println("In write book to file: No parameters allowed to be empty");
 		}
 	}
 
@@ -326,36 +331,40 @@ public class Test {
 			boolean renameSuccess = tmpFile.renameTo(dirFile);
 
 			if (success) {
-				System.out.println("Old file deleted");
+			//	System.out.println("In test, remove from file: Old file deleted");
 			}
 			if (renameSuccess) {
-				System.out.println("file renamed");
+			//	System.out.println("In test, remove from file: File renamed");
 			}
 		} catch (Exception e) {
 			e.getMessage();
 		}
 	}
 
-	public void borrowBook() throws Exception {
-		// must create txt file for customers borrowed books, create that when customer
-		// borrows their
-		// first book, or create one for every customer when they are first created
-		showAvailableBooks();
+	public void borrowBook() throws Exception {		
+		showAvailableBooks();	
+		String skipString = scanner.nextLine();
+		
 		System.out.println("Enter title of book to borrow:");
 		String title = scanner.nextLine();
-		Book book = retrieveBook(title);
-
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine();
+		
+		Book book = retrieveBook(title);
 		if (book.equals(null) || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
-			System.out.println("about to borrow book yay");
+			//System.out.println("In test, borrow book: Processing borrowing a book");
 			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
-			writeBookToFile("res/LoanedBooks.txt", book);
-			// borrowBook in library checks whether the book is available in the library and
-			// moves it
-			// to the appropriate arraylists.
+			writeBookToFile("res/LoanedBooks.txt", book); //these 2 already done in library class?
+			writeBookToFile("res/"+psn+"CurrentLoans.txt", book);
+			writeBookToFile("res/"+psn+"LoanHistory.txt", book);
+			
+			//these 2 dont work for some reason :(
+//			library.bookDirectory("res/"+psn+"CurrentLoans.txt");
+//			library.bookDirectory("res/"+psn+"LoanHistory.txt");
+			
+			System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
 			library.borrowBook(title, psn);
 			ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
 			ses.scheduleAtFixedRate(new Runnable() {
@@ -364,10 +373,14 @@ public class Test {
 					library.isDelayed(retrieveBook(title));
 				}
 			}, 0, 1, TimeUnit.HOURS);
-		}
+		}	
+		// borrowBook in library checks whether the book is available in the library and
+		// moves it
+		// to the appropriate arraylists.
 	}
 
 	public void returnBook() throws Exception {
+		String skipString = scanner.nextLine();
 		System.out.println("Enter title of book to return:");
 		String title = scanner.nextLine();
 		System.out.println("Enter personal security number:");
@@ -376,16 +389,24 @@ public class Test {
 		if (title.equals("") || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
+			
 			Book book = null;
-			for (Customer c : retrieveCustomerDirectory()) {
-				if (c.getPersonnummer() == psn) {
-					book = c.getFromCurrentLoan(title);
+			
+			for (Customer customer : retrieveCustomerDirectory()) {
+				if (customer.getPersonnummer() == psn) {
+					System.out.println("Test returnbook: Getting book");
+					book = customer.getFromCurrentLoan(title);
 				}
 			}
 			// returns a book into library's available books directory
 			writeBookToFile("res/bookDirectory", book);
+			removeLineFromFile("res/"+psn+"CurrentLoans.txt", parseBookToString(book));
+			removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
 			library.returnBook(title, psn);
+			
+			System.out.println("In test, returnBook: Book returned successfully (I hope)");
 		}
+		System.out.println("returnbook end of method" );
 	}
 
 	public void searchBook() {
@@ -479,7 +500,7 @@ public class Test {
 		System.out.println(library.toString());
 	}
 
-	public void writeCustomerToFile(String name, String address, String phoneNumber, String psn) {
+	public void writeCustomerToFile(String name, String address, String psn, String phoneNumber) {
 		if (!name.equals("") && !address.equals("") && !psn.equals("")) {
 
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/customer.txt", true)))) {
@@ -488,7 +509,7 @@ public class Test {
 				ioe.printStackTrace();
 			}
 		} else {
-			System.out.println("No parameters allowed to be empty");
+			System.out.println("In test, write customer to file: No parameters allowed to be empty");
 		}
 	}
 
@@ -504,16 +525,21 @@ public class Test {
 		String phoneNumber = scanner.nextLine();
 
 		try {
-			if (!name.equals("") && !address.equals("") && !psn.equals("") && !phoneNumber.equals("")) {
-				if(phoneNumber.equals("")) {
+			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
+				
+				if(!phoneNumber.equals("")) {
+					System.out.println("kiwi");
+					createFile(psn + "LoanHistory");
+					createFile(psn+"CurrentLoans");
 					library.addCustomer(new Customer(name, address, psn, phoneNumber));
 				} else {
+					createFile(psn + "LoanHistory");
+					createFile(psn+"CurrentLoans");
 					library.addCustomer(new Customer(name, address, psn));
 				}
 				System.out.println("Added " + name + " to customer database");
 				writeCustomerToFile(name, address, psn, phoneNumber);
-				createFile(psn + "LoanHistory");
-				createFile(psn+"CurrentLoans");
+				
 			}
 		} catch (Exception e) {
 			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
@@ -522,12 +548,13 @@ public class Test {
 	}
 
 	public void createFile(String fileName){
+		System.out.println("in createFIle");
 		try {
 			File file = new File("res/"+fileName+".txt");
 			if (file.createNewFile()){
-				System.out.println("File is created!");
+				System.out.println("Text file is created!");
 			}else{
-				System.out.println("File already exists.");
+				System.out.println("Text file for " + fileName + " already exists.");
 			}
 		}catch(Exception e){
 			e.getMessage();

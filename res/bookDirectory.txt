@@ -1,19 +1,16 @@
 The Da Vinci Code-Brown Dan-Transworld-Crime Thriller & Adventure-1a
-Harry Potter and the Deathly Hallows-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Philosopher's Stone-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Order of the Phoenix-Rowling J.K.-Bloomsbury-Fiction-2f
 Fifty Shades of Grey-James E. L.-Random House-Romance-5r
 Harry Potter and the Goblet of Fire-Rowling J.K.-Bloomsbury-Fiction -2f
 Harry Potter and the Chamber of Secrets-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Prisoner of Azkaban-Rowling J.K.-Bloomsbury-Fiction-2f
-Harry Potter and the Deathly Hallows-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Philosopher's Stone-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Order of the Phoenix-Rowling J.K.-Bloomsbury-Fiction-2f
 Fifty Shades of Grey-James E. L.-Random House-Romance-5r
 Harry Potter and the Goblet of Fire-Rowling J.K.-Bloomsbury-Fiction -2f
 Harry Potter and the Chamber of Secrets-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Prisoner of Azkaban-Rowling J.K.-Bloomsbury-Fiction-2f
-Harry Potter and the Deathly Hallows-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Philosopher's Stone-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Order of the Phoenix-Rowling J.K.-Bloomsbury-Fiction-2f
 Fifty Shades of Grey-James E. L.-Random House-Romance-5r
@@ -21,7 +18,6 @@ Harry Potter and the Goblet of Fire-Rowling J.K.-Bloomsbury-Fiction -2f
 Harry Potter and the Chamber of Secrets-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Prisoner of Azkaban-Rowling J.K.-Bloomsbury-Fiction-2f
 Angels and Demons-Brown Dan-Transworld-Crime Thriller & Adventure-1a
-Harry Potter and the Halfblood Prince-Rowling J.K.-Bloomsbury-Fiction-2f
 Fifty Shades Darker-James E. L.-Random House-Romance-5r
 Twilight-Meyer Stephenie-Little Brown Book-Young Adult Fiction-4ya
 The Girl with the Dragon Tattoo-Larsson Stieg-Quercus-Crime Thriller & Adventure-1a
@@ -340,4 +336,3 @@ Nights of Rain and Stars-Binchy, Maeve-Orion-Literary Fiction-6LF
 Happy Days with the Naked Chef-Oliver, Jamie-Penguin-Food & Drink-9fd
 The Lost Boy:A Foster Child's Search for the Love of a Family-Pelzer, Dave-Orion-Biography-2bi
 Jamie's Ministry of Food:Anyone Can Learn to Cook in 24 Hours-Oliver, Jamie-Penguin-Food & Drink-9fd
-Henry Motter-Lisa Blonde-Bue-Horrror-hor1
