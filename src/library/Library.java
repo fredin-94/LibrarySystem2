@@ -337,11 +337,6 @@ public class Library {
                 ike.printStackTrace();
             }
 
-            for (int i = 0; i < topTen.size(); i++) {
-                topTen.remove(topTen.get(i));
-                topTen.add(oneCopy.get(i));
-            }
-
         } // end of block b: adds 10 books to the topTen array, and the compares the
         // remaining books to that 10 books already inside
     //end of block a: adds one copy of each book to the onCopy arrayList
