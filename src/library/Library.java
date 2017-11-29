@@ -393,8 +393,6 @@ public class Library {
         } // end of block b: adds 10 books to the topTen array, and the compares the
         // remaining books to that 10 books already inside
 
-
-
         {
             for (int i = 0; i < 10; i++) {
                 topTen.add(oneCopy.get(i));

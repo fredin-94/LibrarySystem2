@@ -175,7 +175,11 @@ public class Test {
 			showCustomerLoanHistory();
 			break;
 		case 4:
-			showMostPopularBook();
+			showCustomerLCurrentLoans();
+			break;
+		case 5:
+			System.out.println("Top 10 books: ");
+			library.showTopBooks();
 			break;
 		case 0:
 			run();
@@ -367,16 +371,13 @@ public class Test {
 		} else {
 			System.out.println("about to borrow book yay");
 			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
-<<<<<<< HEAD
 			writeBookToFile("res/LoanedBooks.txt", book);
 			writeBookToFile("res/"+psn+"CurrentLoans.txt", book);
-=======
 			writeBookToFile("res/LoanedBooks.txt", book); 
 			writeBookToFile("res/"+psn+"CurrentLoans.txt", book);
 			writeBookToFile("res/"+psn+"LoanHistory.txt", book);
-			
 			System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
->>>>>>> 3dfdfc5e9416821f6ccf1fbedd5561b66bbfce12
+
 			library.borrowBook(title, psn);
 			ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
 			ses.scheduleAtFixedRate(new Runnable() {
@@ -389,7 +390,6 @@ public class Test {
 	}
 
 	public void returnBook() throws Exception {
-<<<<<<< HEAD
 		scanner.nextLine();
 		System.out.println("Enter title of book to return:");
 		String title = scanner.nextLine();
@@ -409,40 +409,9 @@ public class Test {
 			removeLineFromFile("res/"+psn+"CurrentLoans.txt", parseBookToString(book));
 			writeBookToFile("res/bookDirectory", book);
 			library.returnBook(title, psn);
-=======
-		String skipString = scanner.nextLine();
-		System.out.println("Enter personal security number:");
-		String psn = scanner.nextLine();
-		
-		for (Customer customer : retrieveCustomerDirectory()) {//going into the customer arraylist
-			if (customer.getPersonnummer().equals(psn)) {
-				System.out.println("Your current books are:");
-				for(int i = 0; i<customer.getCurrentLoans().size(); i++) {
-					System.out.println(customer.getCurrentLoans().get(i).toString());
-				}	
-			}
-		}
-		System.out.println("Enter title of book to return:");
-		String title = scanner.nextLine();
-		
-		if (title.equals("") || psn.equals("")) {
-			throw new Exception("Empty title or social security number");
-		} else {
-			Book book = null;
-			for (Customer customer : retrieveCustomerDirectory()) {//going into the customer arraylist
-				if (customer.getPersonnummer().equals(psn)) {
-					book = customer.getFromCurrentLoan(title);
-				}
-			}
-			// returns a book into library's available books directory
-			writeBookToFile("res/bookDirectory.txt", book);
-			removeLineFromFile("res/"+psn+"CurrentLoans.txt", parseBookToString(book));		
-			removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));	
-			library.returnBook(title, psn);
 			//System.out.println("In return book: removed book from loaned books arraylist, added to books arraylist, removed from customer current loans arraylist");
 			
 			System.out.println("Book returned successfully");
->>>>>>> 3dfdfc5e9416821f6ccf1fbedd5561b66bbfce12
 		}
 	}
 
@@ -562,18 +531,11 @@ public class Test {
 		String phoneNumber = scanner.nextLine();
 
 		try {
-<<<<<<< HEAD
-			if (!name.equals("") && !address.equals("") && !psn.equals("") && !phoneNumber.equals("")) {
-                createFile(psn + "LoanHistory");
-                createFile(psn+"CurrentLoans");
-				if(phoneNumber.equals("")) {
-=======
 			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
 				
 				if(!phoneNumber.equals("")) {
 					createFile(psn + "LoanHistory");
 					createFile(psn+"CurrentLoans");
->>>>>>> 3dfdfc5e9416821f6ccf1fbedd5561b66bbfce12
 					library.addCustomer(new Customer(name, address, psn, phoneNumber));
 				} else {
 					library.addCustomer(new Customer(name, address, psn));
@@ -588,18 +550,11 @@ public class Test {
 	}
 
 	public void createFile(String fileName){
-<<<<<<< HEAD
-		try {
-			File file = new File("res/"+fileName+".txt");
-			if (file.createNewFile()){
-				System.out.println("File is created!");
-=======
 		//System.out.println("in createFIle");
 		try {
 			File file = new File("res/"+fileName+".txt");
 			if (file.createNewFile()){
-				//System.out.println("Text file is created!");
->>>>>>> 3dfdfc5e9416821f6ccf1fbedd5561b66bbfce12
+				System.out.println("Text file is created!");
 			}else{
 				System.out.println("File already exists.");
 			}
@@ -744,7 +699,8 @@ public class Test {
 	}
 
 	public void showCustomerLoanHistory() { // WILL THIS WORK?? ----- IT NOW WORKS
-		System.out.println("Enter the personal security number of the customer");
+		System.out.println("Enter the personal security number of the customer:");
+		String skipString = scanner.nextLine();
 		String customerPsn = scanner.nextLine();
 		Customer customer = retrieveCustomer(customerPsn.trim());
 
@@ -753,14 +709,38 @@ public class Test {
 				if (c.equals(customer)) {
 					System.out.println("Here is " + c.getName() + "'s loan history: ");
 					library.getCustomerLoanHistory(c);
+					
+					for (int i = 0; i < customer.getLoanHistory().size(); i++) {
+						System.out.println(customer.getLoanHistory().get(i).toString());
+					}
 				}
 			}
 		} catch (Exception e) {
 			System.out.println("No customer registered with that psn");
 			showCustomerLoanHistory();
 		}
-		// here we also should be able to get loan history from only entering the PSN!!
-		// --That's what we are doing??
+	}
+	public void showCustomerLCurrentLoans() { // WILL THIS WORK?? ----- IT NOW WORKS
+		System.out.println("Enter the personal security number of the customer:");
+		String skipString = scanner.nextLine();
+		String customerPsn = scanner.nextLine();
+		Customer customer = retrieveCustomer(customerPsn.trim());
+
+		try {
+			for (Customer c : retrieveCustomerDirectory()) {
+				if (c.equals(customer)) {
+					System.out.println("Here is " + c.getName() + "'s current loans: ");
+					customer.getCurrentLoans();
+					
+					for (int i = 0; i < customer.getCurrentLoans().size(); i++) {
+						System.out.println(customer.getCurrentLoans().get(i).toString());
+					}
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("No customer registered with that psn");
+			showCustomerLoanHistory();
+		}
 	}
 
 	public static void main(String[] args) {

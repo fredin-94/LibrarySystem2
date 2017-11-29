@@ -262,7 +262,8 @@ public class Menu {
 		System.out.println(" ===   1. Show all lent out books                === ");
 		System.out.println(" ===   2. Show all delayed books                 === ");
 		System.out.println(" ===   3. Show customers loan history            === ");
-		System.out.println(" ===   4. Show top 10 most popular books         === ");
+		System.out.println(" ===   4. Show customers current books           === ");
+		System.out.println(" ===   5. Show top 10 most popular books         === ");
 		System.out.println(" ===   0. Return to main menu                    === ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" =================================================== ");
