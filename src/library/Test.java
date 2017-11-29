@@ -348,7 +348,8 @@ public class Test {
 				System.out.println("file renamed");
 			}
 		} catch (Exception e) {
-			e.getMessage();
+			//e.getMessage();
+			System.out.println("In remove line from file: Not able to complete method");
 		}
 	}
 
@@ -366,8 +367,16 @@ public class Test {
 		} else {
 			System.out.println("about to borrow book yay");
 			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
+<<<<<<< HEAD
 			writeBookToFile("res/LoanedBooks.txt", book);
 			writeBookToFile("res/"+psn+"CurrentLoans.txt", book);
+=======
+			writeBookToFile("res/LoanedBooks.txt", book); 
+			writeBookToFile("res/"+psn+"CurrentLoans.txt", book);
+			writeBookToFile("res/"+psn+"LoanHistory.txt", book);
+			
+			System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
+>>>>>>> 3dfdfc5e9416821f6ccf1fbedd5561b66bbfce12
 			library.borrowBook(title, psn);
 			ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
 			ses.scheduleAtFixedRate(new Runnable() {
@@ -380,6 +389,7 @@ public class Test {
 	}
 
 	public void returnBook() throws Exception {
+<<<<<<< HEAD
 		scanner.nextLine();
 		System.out.println("Enter title of book to return:");
 		String title = scanner.nextLine();
@@ -399,6 +409,40 @@ public class Test {
 			removeLineFromFile("res/"+psn+"CurrentLoans.txt", parseBookToString(book));
 			writeBookToFile("res/bookDirectory", book);
 			library.returnBook(title, psn);
+=======
+		String skipString = scanner.nextLine();
+		System.out.println("Enter personal security number:");
+		String psn = scanner.nextLine();
+		
+		for (Customer customer : retrieveCustomerDirectory()) {//going into the customer arraylist
+			if (customer.getPersonnummer().equals(psn)) {
+				System.out.println("Your current books are:");
+				for(int i = 0; i<customer.getCurrentLoans().size(); i++) {
+					System.out.println(customer.getCurrentLoans().get(i).toString());
+				}	
+			}
+		}
+		System.out.println("Enter title of book to return:");
+		String title = scanner.nextLine();
+		
+		if (title.equals("") || psn.equals("")) {
+			throw new Exception("Empty title or social security number");
+		} else {
+			Book book = null;
+			for (Customer customer : retrieveCustomerDirectory()) {//going into the customer arraylist
+				if (customer.getPersonnummer().equals(psn)) {
+					book = customer.getFromCurrentLoan(title);
+				}
+			}
+			// returns a book into library's available books directory
+			writeBookToFile("res/bookDirectory.txt", book);
+			removeLineFromFile("res/"+psn+"CurrentLoans.txt", parseBookToString(book));		
+			removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));	
+			library.returnBook(title, psn);
+			//System.out.println("In return book: removed book from loaned books arraylist, added to books arraylist, removed from customer current loans arraylist");
+			
+			System.out.println("Book returned successfully");
+>>>>>>> 3dfdfc5e9416821f6ccf1fbedd5561b66bbfce12
 		}
 	}
 
@@ -518,10 +562,18 @@ public class Test {
 		String phoneNumber = scanner.nextLine();
 
 		try {
+<<<<<<< HEAD
 			if (!name.equals("") && !address.equals("") && !psn.equals("") && !phoneNumber.equals("")) {
                 createFile(psn + "LoanHistory");
                 createFile(psn+"CurrentLoans");
 				if(phoneNumber.equals("")) {
+=======
+			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
+				
+				if(!phoneNumber.equals("")) {
+					createFile(psn + "LoanHistory");
+					createFile(psn+"CurrentLoans");
+>>>>>>> 3dfdfc5e9416821f6ccf1fbedd5561b66bbfce12
 					library.addCustomer(new Customer(name, address, psn, phoneNumber));
 				} else {
 					library.addCustomer(new Customer(name, address, psn));
@@ -536,10 +588,18 @@ public class Test {
 	}
 
 	public void createFile(String fileName){
+<<<<<<< HEAD
 		try {
 			File file = new File("res/"+fileName+".txt");
 			if (file.createNewFile()){
 				System.out.println("File is created!");
+=======
+		//System.out.println("in createFIle");
+		try {
+			File file = new File("res/"+fileName+".txt");
+			if (file.createNewFile()){
+				//System.out.println("Text file is created!");
+>>>>>>> 3dfdfc5e9416821f6ccf1fbedd5561b66bbfce12
 			}else{
 				System.out.println("File already exists.");
 			}
