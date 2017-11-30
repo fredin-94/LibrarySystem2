@@ -552,7 +552,11 @@ public class Library {
 
             Customer customer = null;
             try {
-                customer = new Customer(name, address, psn, phoneNumber);
+                if(phoneNumber.equals("")) {
+                    customer = new Customer(name, address, psn);
+                } else {
+                    customer = new Customer(name, address, psn, phoneNumber);
+                }
                 //System.out.println("Sup, " + psn);
             } catch (Exception e) {
                 e.printStackTrace();

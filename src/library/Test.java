@@ -271,12 +271,16 @@ public class Test {
 		if(!book.equals(null)) {
 		    if(isInList(library.getBooks(), book)) {
                 removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
+				library.removeBook(book);
             }else if(isInList(library.getLoanedBooks(), book)){
                 removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
+                //library.removeBookFromLoanedBooks
             } else if(isInList(library.getDelayedBooks(), book)){
                 removeLineFromFile("res/delayedBooks.txt", parseBookToString(book));
+                //library.removeBookFromDelayed
             }
-			library.removeBook(book);
+
+
             removeLineFromFile("res/AllBooks.txt", parseBookToString(book));
 		} else {
 			System.out.println("There's no book with that title");
@@ -396,7 +400,6 @@ public class Test {
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine().trim();
 		Customer customer = retrieveCustomer(psn);
-		System.out.println("Title: " + title + "\nPSN: " + psn + "\nCustomer: " + customer);
 
 		if (title.equals("") || customer.equals(null)) {
 			throw new Exception("Empty title or social security number");
@@ -528,17 +531,19 @@ public class Test {
 		System.out.println("Enter customer personal security number: ");
 		String psn = scanner.nextLine();
 		System.out.println("Enter customer phone number: ");
-		String phoneNumber = scanner.nextLine();
+		String phoneNumber = scanner.nextLine().trim();
 
 		try {
 			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
 				
-				if(!phoneNumber.equals("")) {
+				if(phoneNumber.equals("")) {
+					createFile(psn + "LoanHistory");
+					createFile(psn+"CurrentLoans");
+					library.addCustomer(new Customer(name, address, psn));
+				} else {
 					createFile(psn + "LoanHistory");
 					createFile(psn+"CurrentLoans");
 					library.addCustomer(new Customer(name, address, psn, phoneNumber));
-				} else {
-					library.addCustomer(new Customer(name, address, psn));
 				}
 				System.out.println("Added " + name + " to customer database");
 				writeCustomerToFile(name, address, psn, phoneNumber);
