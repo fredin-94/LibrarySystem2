@@ -104,7 +104,6 @@ The God Delusion-Dawkins Richard-Transworld-Popular Science-7ps
 When Java Screws You Over-Sadface Iam-Akuin Akka-Autobiography-1au
 White Teeth-Smith Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton Kate-Pan Macmillan-Literary Fiction-6LF
-The Book Thief-Zusak Markus-Transworld-Literary Fiction-6LF
 Nights of Rain and Stars-Binchy Maeve-Orion-Literary Fiction-6LF
 The Ghost-Harris Robert-Random House-Literary Fiction-6LF
 Happy Days with the Naked Chef-Oliver Jamie-Penguin-Food & Drink-9fd
@@ -144,7 +143,6 @@ The God Delusion-Dawkins Richard-Transworld-Popular Science-7ps
 When Java Screws You Over-Sadface Iam-Akuin Akka-Autobiography-1au
 White Teeth-Smith Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton Kate-Pan Macmillan-Literary Fiction-6LF
-The Book Thief-Zusak Markus-Transworld-Literary Fiction-6LF
 Nights of Rain and Stars-Binchy Maeve-Orion-Literary Fiction-6LF
 The Ghost-Harris Robert-Random House-Literary Fiction-6LF
 Happy Days with the Naked Chef-Oliver Jamie-Penguin-Food & Drink-9fd
@@ -163,7 +161,6 @@ The God Delusion-Dawkins Richard-Transworld-Popular Science-7ps
 When Java Screws You Over-Sadface Iam-Akuin Akka-Autobiography-1au
 White Teeth-Smith Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton Kate-Pan Macmillan-Literary Fiction-6LF
-The Book Thief-Zusak Markus-Transworld-Literary Fiction-6LF
 Nights of Rain and Stars-Binchy Maeve-Orion-Literary Fiction-6LF
 The Ghost-Harris Robert-Random House-Literary Fiction-6LF
 Happy Days with the Naked Chef-Oliver Jamie-Penguin-Food & Drink-9fd
@@ -172,6 +169,8 @@ The Lost Boy:A Foster Child's Search for the Love of a Family-Pelzer Dave-Orion-
 Jamie's Ministry of Food:Anyone Can Learn to Cook in 24 Hours-Oliver Jamie-Penguin-Food & Drink-9fd
 Fantastic Beasts and Where to Find Them-Rowling J.K.-Bloomsbury-Fiction-2f
 Zebras in their natural habitat-Manzi Oliver-University of Gothenburg-Animals & Nature-4an
+<<<<<<< HEAD
+=======
 =======
 The Da Vinci Code-Brown, Dan-Transworld-Crime, Thriller & Adventure-1a
 Harry Potter and the Deathly Hallows-Rowling, J.K.-Bloomsbury-Fiction-2f
@@ -339,11 +338,3 @@ Nights of Rain and Stars-Binchy, Maeve-Orion-Literary Fiction-6LF
 Happy Days with the Naked Chef-Oliver, Jamie-Penguin-Food & Drink-9fd
 The Lost Boy:A Foster Child's Search for the Love of a Family-Pelzer, Dave-Orion-Biography-2bi
 Jamie's Ministry of Food:Anyone Can Learn to Cook in 24 Hours-Oliver, Jamie-Penguin-Food & Drink-9fd
-banana-kiwi-Colin Hawaii-fantasy-301a
-chicken-bacon-and eggs-food-304b
-Zed-hana-tul-set-10d
-Zena-cane-dana-li-10
-Zena2-meee-fkk-yoo-10a
-Zod's solution-General Zod-Krypton PD-utbildning yall-10u
-zon-oa-a-a-s
-zon-oa-la-a-a

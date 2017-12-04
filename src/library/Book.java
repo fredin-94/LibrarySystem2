@@ -28,7 +28,7 @@ public class Book {
 			throw new Exception("Input argument cannot be empty.");
 		} else {
 			this.title = title;
-			this.authors = new ArrayList<String>(Arrays.asList(authors.split(",")));
+			this.authors = new ArrayList<String>(Arrays.asList(authors.split(";")));
 			this.genre = genre;
 			this.publisher = publisher;
 			this.shelf = shelf;
@@ -48,11 +48,7 @@ public class Book {
 	}
 
 	public String getAuthor() {
-        if (this.authors.size() > 1) {
-            return this.authors.get(0) + "," + this.authors.get(1);
-        } else {
-            return this.authors.get(0);
-        }
+		return this.authors.get(0);
     }
 
 	public ArrayList<String> getAuthors(){

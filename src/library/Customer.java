@@ -39,8 +39,6 @@ public class Customer implements Serializable {
 		} else {
 			throw new Exception("Personnummer MUST consist of 10 or 12 digits");
 		}
-		//these should be in library??
-		//these cant be inilialized, since the files ..?
 		customerBooks("res/"+personnummer+"CurrentLoans.txt");
 		customerBooks("res/"+personnummer+"LoanHistory.txt");
 	}
@@ -159,21 +157,16 @@ public class Customer implements Serializable {
 	
 	
 	public void customerBooks(String path) throws FileNotFoundException {
-		//System.out.println(path);
 		File file = new File(path);
 		Scanner input = new Scanner(file);
 	    input.useDelimiter("-|\n");
 
 		while(input.hasNext()) {
-			//System.out.println("In while loop");
-	       
 	        String title = input.next();
 			String author = input.next();
 			String publisher = input.next();
 			String genre = input.next();
 			String shelf = input.next();
-			//System.out.println("Title: " + title);
-			//System.out.println("Author: " + author);
 			Book book = null;
 			try {
 				book = new Book(title, author, publisher, genre, shelf);

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82e68db0-414f-4ee2-b921-f13d0b7cb6a6" name="Default" comment="">
+<<<<<<< HEAD
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Book.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Customer.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library$1.class" afterPath="" />
@@ -14,6 +15,15 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/Library.java" afterPath="$PROJECT_DIR$/src/library/Library.java" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Library.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Test$1.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Test$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Test.class" afterPath="$PROJECT_DIR$/out/production/LibrarySystem2/library/Test.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/customer.txt" afterPath="$PROJECT_DIR$/res/customer.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/Library.java" afterPath="$PROJECT_DIR$/src/library/Library.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/Test.java" afterPath="$PROJECT_DIR$/src/library/Test.java" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,57 +40,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/library/Test.java">
+      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/library/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="12425">
               <caret line="516" column="31" lean-forward="false" selection-start-line="516" selection-start-column="31" selection-end-line="516" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <marker date="1512170693882" expanded="true" signature="15983:16056" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customer.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/customer.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Customer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/library/Customer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Book.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/library/Book.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1575">
-              <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1512170693882" expanded="false" signature="1370:1376" ph=" }" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Menu.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/library/Menu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
-              <caret line="39" column="31" lean-forward="false" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+=======
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -89,13 +60,43 @@
       <file leaf-file-name="Library.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/library/Library.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7075">
-              <caret line="310" column="42" lean-forward="true" selection-start-line="310" selection-start-column="42" selection-end-line="310" selection-end-column="42" />
+            <state relative-caret-position="685">
+              <caret line="539" column="0" lean-forward="true" selection-start-line="539" selection-start-column="0" selection-end-line="539" selection-end-column="0" />
               <folding>
-                <element signature="e#3291#3297#0" expanded="true" />
-                <element signature="e#9438#9444#0" expanded="true" />
-                <element signature="e#9489#9495#0" expanded="true" />
+                <element signature="e#8039#8040#0" expanded="true" />
+                <element signature="e#8078#8079#0" expanded="true" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customer.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/customer.txt">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="25">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+=======
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoanedBooks.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/LoanedBooks.txt">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="375">
+              <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+=======
+            <state relative-caret-position="68">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,8 +104,68 @@
       <file leaf-file-name="bookDirectory.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/bookDirectory.txt">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="-1575">
+              <caret line="33" column="31" lean-forward="false" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <marker date="1512170693882" expanded="false" signature="1370:1376" ph=" }" />
+              </folding>
+=======
+            <state relative-caret-position="493">
+              <caret line="29" column="39" lean-forward="false" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+              <folding />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Customer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/library/Customer.java">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="975">
+              <caret line="39" column="31" lean-forward="false" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+=======
+            <state relative-caret-position="372">
+              <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/library/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="7075">
+              <caret line="310" column="42" lean-forward="true" selection-start-line="310" selection-start-column="42" selection-end-line="310" selection-end-column="42" />
+              <folding>
+                <element signature="e#3291#3297#0" expanded="true" />
+                <element signature="e#9438#9444#0" expanded="true" />
+                <element signature="e#9489#9495#0" expanded="true" />
+=======
+            <state relative-caret-position="260">
+              <caret line="528" column="41" lean-forward="false" selection-start-line="528" selection-start-column="41" selection-end-line="528" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AllBooks.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/AllBooks.txt">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="8450">
               <caret line="338" column="0" lean-forward="false" selection-start-line="338" selection-start-column="0" selection-end-line="338" selection-end-column="0" />
+=======
+            <state relative-caret-position="249">
+              <caret line="150" column="20" lean-forward="false" selection-start-line="150" selection-start-column="20" selection-end-line="150" selection-end-column="20" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
               <folding />
             </state>
           </provider>
@@ -122,14 +183,19 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>customer data</find>
+<<<<<<< HEAD
       <find>authors</find>
+=======
+      <find>to librar</find>
+      <find>HEAD</find>
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="hanien2.0" />
       </map>
     </option>
   </component>
@@ -141,14 +207,20 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/library/Book.java" />
         <option value="$PROJECT_DIR$/bin/workspace.xml" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/library/Menu.java" />
         <option value="$PROJECT_DIR$/res/delayedBooks.txt" />
-        <option value="$PROJECT_DIR$/src/library/Customer.java" />
+        <option value="$PROJECT_DIR$/res/9112123022CurrentLoans.txt" />
+        <option value="$PROJECT_DIR$/src/library/Book.java" />
         <option value="$PROJECT_DIR$/res/bookDirectory.txt" />
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/res/AllBooks.txt" />
+        <option value="$PROJECT_DIR$/res/LoanedBooks.txt" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
         <option value="$PROJECT_DIR$/res/customer.txt" />
+        <option value="$PROJECT_DIR$/src/library/Customer.java" />
         <option value="$PROJECT_DIR$/src/library/Test.java" />
         <option value="$PROJECT_DIR$/src/library/Library.java" />
       </list>
@@ -180,6 +252,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -208,9 +286,12 @@
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
       <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="Scratches" />
+=======
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -232,7 +313,14 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1057" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+<<<<<<< HEAD
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+=======
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -379,10 +467,15 @@
       <updated>1511796030352</updated>
       <workItem from="1511796046170" duration="621000" />
       <workItem from="1511858540788" duration="1232000" />
+<<<<<<< HEAD
       <workItem from="1511890571059" duration="183000" />
       <workItem from="1512366652168" duration="67000" />
       <workItem from="1512374543569" duration="215000" />
       <workItem from="1512374882255" duration="833000" />
+=======
+      <workItem from="1511890571059" duration="12099000" />
+      <workItem from="1512040205794" duration="4925000" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
     </task>
     <task id="LOCAL-00003" summary="Removed merge issues">
       <created>1511796546314</created>
@@ -405,29 +498,62 @@
       <option name="project" value="LOCAL" />
       <updated>1511890684358</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Test, Library: addCustomer, removeCustomer, addBook, removeBook now works with txt files and functionlity">
+      <created>1511890757584</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1511890757584</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Test: allows customer to borrow a book and now allows the books to move around the arraylists and the txt files accordingly.">
+      <created>1511904729788</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1511904729788</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Book.java: changed getAuthor to return something more appropriate if the author isnt necessarily entered with the correct format. Still needs work though...&#10;Test.java: when removing a book, I added a line of code to make sure the book is removed for all inventories books as well as for the list that inventories all available books.">
+      <created>1511906753692</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1511906753692</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="13382000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
     <editor active="true" />
+=======
+    <option name="totallyTimeSpent" value="28560000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4506579" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4496208" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11927083" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11927083" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -435,12 +561,14 @@
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+=======
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="15" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -486,7 +614,9 @@
     <MESSAGE value="Removed merge issues" />
     <MESSAGE value="Customer.java: Fixed a bug where personnummer exception gets thrown as soon as the program runs." />
     <MESSAGE value="Test, Library: addCustomer, removeCustomer, addBook, removeBook now works with txt files and functionlity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test, Library: addCustomer, removeCustomer, addBook, removeBook now works with txt files and functionlity" />
+    <MESSAGE value="Test: allows customer to borrow a book and now allows the books to move around the arraylists and the txt files accordingly." />
+    <MESSAGE value="Book.java: changed getAuthor to return something more appropriate if the author isnt necessarily entered with the correct format. Still needs work though...&#10;Test.java: when removing a book, I added a line of code to make sure the book is removed for all inventories books as well as for the list that inventories all available books." />
+    <option name="LAST_COMMIT_MESSAGE" value="Book.java: changed getAuthor to return something more appropriate if the author isnt necessarily entered with the correct format. Still needs work though...&#10;Test.java: when removing a book, I added a line of code to make sure the book is removed for all inventories books as well as for the list that inventories all available books." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -495,6 +625,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/library/Book.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
@@ -564,6 +695,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
     <entry file="file://$PROJECT_DIR$/testy123/src/testClass.java" />
     <entry file="file://$PROJECT_DIR$/hello.java" />
     <entry file="file://$PROJECT_DIR$/src/utils/Reader.java" />
@@ -597,7 +730,10 @@
           <caret line="49" column="61" lean-forward="false" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
+<<<<<<< HEAD
             <marker date="1512170693882" expanded="false" signature="1370:1376" ph=" }" />
+=======
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
           </folding>
         </state>
       </provider>
@@ -615,9 +751,14 @@
         <state relative-caret-position="6018">
           <caret line="412" column="22" lean-forward="false" selection-start-line="412" selection-start-column="22" selection-end-line="412" selection-end-column="22" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#3291#3297#0" expanded="true" />
             <element signature="e#9438#9444#0" expanded="true" />
             <element signature="e#9489#9495#0" expanded="true" />
+=======
+            <element signature="e#8039#8040#0" expanded="true" />
+            <element signature="e#8078#8079#0" expanded="true" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
           </folding>
         </state>
       </provider>
@@ -628,7 +769,10 @@
           <caret line="37" column="12" lean-forward="false" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
+<<<<<<< HEAD
             <marker date="1512170693882" expanded="true" signature="15983:16056" ph="{...}" />
+=======
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
           </folding>
         </state>
       </provider>
@@ -639,7 +783,10 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+<<<<<<< HEAD
             <marker date="1512170693882" expanded="true" signature="15983:16056" ph="{...}" />
+=======
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
           </folding>
         </state>
       </provider>
@@ -665,7 +812,10 @@
           <caret line="49" column="61" lean-forward="false" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
+<<<<<<< HEAD
             <marker date="1512170693882" expanded="false" signature="1370:1376" ph=" }" />
+=======
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
           </folding>
         </state>
       </provider>
@@ -683,9 +833,14 @@
         <state relative-caret-position="6018">
           <caret line="412" column="22" lean-forward="false" selection-start-line="412" selection-start-column="22" selection-end-line="412" selection-end-column="22" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#3291#3297#0" expanded="true" />
             <element signature="e#9438#9444#0" expanded="true" />
             <element signature="e#9489#9495#0" expanded="true" />
+=======
+            <element signature="e#8039#8040#0" expanded="true" />
+            <element signature="e#8078#8079#0" expanded="true" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
           </folding>
         </state>
       </provider>
@@ -696,7 +851,10 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+<<<<<<< HEAD
             <marker date="1512170693882" expanded="true" signature="15983:16056" ph="{...}" />
+=======
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
           </folding>
         </state>
       </provider>
@@ -707,7 +865,10 @@
           <caret line="49" column="61" lean-forward="false" selection-start-line="49" selection-start-column="61" selection-end-line="49" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
+<<<<<<< HEAD
             <marker date="1512170693882" expanded="false" signature="1370:1376" ph=" }" />
+=======
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
           </folding>
         </state>
       </provider>
@@ -725,9 +886,14 @@
         <state relative-caret-position="5100">
           <caret line="358" column="8" lean-forward="false" selection-start-line="358" selection-start-column="8" selection-end-line="358" selection-end-column="8" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#3291#3297#0" expanded="true" />
             <element signature="e#9438#9444#0" expanded="true" />
             <element signature="e#9489#9495#0" expanded="true" />
+=======
+            <element signature="e#8039#8040#0" expanded="true" />
+            <element signature="e#8078#8079#0" expanded="true" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
           </folding>
         </state>
       </provider>
@@ -738,7 +904,10 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+<<<<<<< HEAD
             <marker date="1512170693882" expanded="true" signature="15983:16056" ph="{...}" />
+=======
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
           </folding>
         </state>
       </provider>
@@ -763,9 +932,14 @@
         <state relative-caret-position="5253">
           <caret line="367" column="28" lean-forward="false" selection-start-line="367" selection-start-column="28" selection-end-line="367" selection-end-column="28" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#3291#3297#0" expanded="true" />
             <element signature="e#9438#9444#0" expanded="true" />
             <element signature="e#9489#9495#0" expanded="true" />
+=======
+            <element signature="e#8039#8040#0" expanded="true" />
+            <element signature="e#8078#8079#0" expanded="true" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
           </folding>
         </state>
       </provider>
@@ -804,48 +978,126 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/LoanedBooks.txt">
+    <entry file="file://$PROJECT_DIR$/res/0965213467.txt" />
+    <entry file="file://$PROJECT_DIR$/res/AllBooks.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/library/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="39" column="31" lean-forward="false" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+        <state relative-caret-position="378">
+          <caret line="171" column="0" lean-forward="false" selection-start-line="171" selection-start-column="0" selection-end-line="171" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/bookDirectory.txt">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="150" column="20" lean-forward="false" selection-start-line="150" selection-start-column="20" selection-end-line="150" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/1234567890CurrentLoans.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/library/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="39" column="31" lean-forward="false" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+          <folding />
+=======
+    <entry file="file://$PROJECT_DIR$/src/library/Book.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="24" column="44" lean-forward="false" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="579">
+          <caret line="758" column="47" lean-forward="false" selection-start-line="758" selection-start-column="47" selection-end-line="758" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/Book.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="24" column="44" lean-forward="false" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/bookDirectory.txt">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="8450">
           <caret line="338" column="0" lean-forward="false" selection-start-line="338" selection-start-column="0" selection-end-line="338" selection-end-column="0" />
+=======
+        <state relative-caret-position="493">
+          <caret line="29" column="39" lean-forward="false" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/LoanedBooks.txt">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="375">
+          <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+=======
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/9112123022CurrentLoans.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/AllBooks.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="150" column="20" lean-forward="false" selection-start-line="150" selection-start-column="20" selection-end-line="150" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/library/Customer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/0965213467.txt" />
-    <entry file="file://$PROJECT_DIR$/res/customer.txt">
-      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="25">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+=======
+        <state relative-caret-position="372">
+          <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/library/Test.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="12425">
           <caret line="516" column="31" lean-forward="false" selection-start-line="516" selection-start-column="31" selection-end-line="516" selection-end-column="31" />
           <folding>
@@ -862,12 +1114,27 @@
           <folding>
             <element signature="imports" expanded="true" />
             <marker date="1512170693882" expanded="false" signature="1370:1376" ph=" }" />
+=======
+        <state relative-caret-position="260">
+          <caret line="528" column="41" lean-forward="false" selection-start-line="528" selection-start-column="41" selection-end-line="528" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/library/Library.java">
+    <entry file="file://$PROJECT_DIR$/res/customer.txt">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="7075">
           <caret line="310" column="42" lean-forward="true" selection-start-line="310" selection-start-column="42" selection-end-line="310" selection-end-column="42" />
           <folding>
@@ -875,8 +1142,99 @@
             <element signature="e#9438#9444#0" expanded="true" />
             <element signature="e#9489#9495#0" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+>>>>>>> c042301a7bb70cb4e57a6f19bc08898a19ff7f88
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/library/Library.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="685">
+          <caret line="539" column="0" lean-forward="true" selection-start-line="539" selection-start-column="0" selection-end-line="539" selection-end-column="0" />
+          <folding>
+            <element signature="e#8039#8040#0" expanded="true" />
+            <element signature="e#8078#8079#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>LibrarySystem2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
