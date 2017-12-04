@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82e68db0-414f-4ee2-b921-f13d0b7cb6a6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/library/Test.java" afterPath="$PROJECT_DIR$/src/library/Test.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,8 +86,8 @@
       <file leaf-file-name="Test.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/library/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1275">
-              <caret line="310" column="20" lean-forward="false" selection-start-line="310" selection-start-column="20" selection-end-line="310" selection-end-column="20" />
+            <state relative-caret-position="-800">
+              <caret line="181" column="14" lean-forward="false" selection-start-line="181" selection-start-column="14" selection-end-line="181" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -158,12 +158,12 @@
         <option value="$PROJECT_DIR$/res/LoanedBooks.txt" />
         <option value="$PROJECT_DIR$/res/customer.txt" />
         <option value="$PROJECT_DIR$/src/library/Customer.java" />
-        <option value="$PROJECT_DIR$/src/library/Test.java" />
         <option value="$PROJECT_DIR$/src/library/Book.java" />
-        <option value="$PROJECT_DIR$/src/library/Test.java" />
         <option value="$PROJECT_DIR$/res/customer.txt" />
         <option value="$PROJECT_DIR$/src/library/Library.java" />
         <option value="$PROJECT_DIR$/src/library/Library.java" />
+        <option value="$PROJECT_DIR$/src/library/Test.java" />
+        <option value="$PROJECT_DIR$/src/library/Test.java" />
       </list>
     </option>
   </component>
@@ -399,7 +399,7 @@
       <workItem from="1512366652168" duration="67000" />
       <workItem from="1512374543569" duration="215000" />
       <workItem from="1512374882255" duration="833000" />
-      <workItem from="1512391711116" duration="1084000" />
+      <workItem from="1512391711116" duration="1213000" />
     </task>
     <task id="LOCAL-00003" summary="Removed merge issues">
       <created>1511796546314</created>
@@ -447,7 +447,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14466000" />
+    <option name="totallyTimeSpent" value="14595000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -884,8 +884,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/library/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1275">
-          <caret line="310" column="20" lean-forward="false" selection-start-line="310" selection-start-column="20" selection-end-line="310" selection-end-column="20" />
+        <state relative-caret-position="-800">
+          <caret line="181" column="14" lean-forward="false" selection-start-line="181" selection-start-column="14" selection-end-line="181" selection-end-column="14" />
           <folding />
         </state>
       </provider>

@@ -179,7 +179,7 @@ public class Test {
 			break;
 		case 5:
 			System.out.println("Top 10 books: ");
-			library.showTopBooks();
+			//library.showTopBooks();
 			break;
 		case 0:
 			run();
