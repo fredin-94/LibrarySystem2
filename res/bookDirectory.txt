@@ -5,28 +5,32 @@ Harry Potter and the Order of the Phoenix-Rowling J.K.-Bloomsbury-Fiction-2f
 Fifty Shades of Grey-James E. L.-Random House-Romance-5r
 Harry Potter and the Goblet of Fire-Rowling J.K.-Bloomsbury-Fiction -2f
 Harry Potter and the Chamber of Secrets-Rowling J.K.-Bloomsbury-Fiction-2f
+<<<<<<< HEAD
 Harry Potter and the Prisoner of Azkaban-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Deathly Hallows-Rowling J.K.-Bloomsbury-Fiction-2f
+=======
+>>>>>>> 3dfdfc5e9416821f6ccf1fbedd5561b66bbfce12
 Harry Potter and the Philosopher's Stone-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Order of the Phoenix-Rowling J.K.-Bloomsbury-Fiction-2f
 Fifty Shades of Grey-James E. L.-Random House-Romance-5r
 Harry Potter and the Goblet of Fire-Rowling J.K.-Bloomsbury-Fiction -2f
 Harry Potter and the Chamber of Secrets-Rowling J.K.-Bloomsbury-Fiction-2f
+<<<<<<< HEAD
 Harry Potter and the Prisoner of Azkaban-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Deathly Hallows-Rowling J.K.-Bloomsbury-Fiction-2f
+=======
+>>>>>>> 3dfdfc5e9416821f6ccf1fbedd5561b66bbfce12
 Harry Potter and the Philosopher's Stone-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Order of the Phoenix-Rowling J.K.-Bloomsbury-Fiction-2f
 Fifty Shades of Grey-James E. L.-Random House-Romance-5r
 Harry Potter and the Goblet of Fire-Rowling J.K.-Bloomsbury-Fiction -2f
 Harry Potter and the Chamber of Secrets-Rowling J.K.-Bloomsbury-Fiction-2f
-Harry Potter and the Prisoner of Azkaban-Rowling J.K.-Bloomsbury-Fiction-2f
 Angels and Demons-Brown Dan-Transworld-Crime Thriller & Adventure-1a
 Harry Potter and the Halfblood Prince-Rowling J.K.-Bloomsbury-Fiction-2f
 Fifty Shades Darker-James E. L.-Random House-Romance-5r
 Twilight-Meyer Stephenie-Little Brown Book-Young Adult Fiction-4ya
 The Girl with the Dragon Tattoo-Larsson Stieg-Quercus-Crime Thriller & Adventure-1a
 Fifty Shades Freed-James E. L.-Random House-Romance-5r
-The Lost Symbol-	Brown Dan-Transworld-Crime Thriller & Adventure-1a
 New Moon-Meyer Stephenie-Little Brown Book-Young Adult Fiction-4ya
 Deception Point-Brown Dan-Transworld-Crime Thriller & Adventure-1a
 Eclipse-Meyer Stephenie-Little Brown Book-Young Adult Fiction-4ya
@@ -98,18 +102,13 @@ Nigella Express-Lawson Nigella-Random House-Food & Drink-9fd
 Brick Lane-Ali Monica-Transworld-General & Literary Fiction-6LF
 The Memory Keeper's Daughter-Edwards Kim-Penguin-Literary Fiction-6LF
 Room on the Broom-Donaldson Julia-Pan Macmillan-Picture Books-5pb
-About a Boy-Hornby Nick-Penguin-Literary Fiction-6LF
 My Booky Wook-Brand Russell-Hodder & Stoughton-Autobiography-1au
 The God Delusion-Dawkins Richard-Transworld-Popular Science-7ps
-When Java Screws You Over-Sadface Iam-Akuin Akka-Autobiography-1au
-White Teeth-Smith Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton Kate-Pan Macmillan-Literary Fiction-6LF
 Nights of Rain and Stars-Binchy Maeve-Orion-Literary Fiction-6LF
-The Ghost-Harris Robert-Random House-Literary Fiction-6LF
 Happy Days with the Naked Chef-Oliver Jamie-Penguin-Food & Drink-9fd
-The Hunger Games-Collins Suzanne-Scholastic Ltd.-Young Adult Fiction-4ya
 The Lost Boy:A Foster Child's Search for the Love of a Family-Pelzer Dave-Orion-Biography-2bi
-Jamie's Ministry of Food:Anyone Can Learn to Cook in 24 Hours-Oliver Jamie-Penguin-Food & Drink-9fd 
+Jamie's Ministry of Food:Anyone Can Learn to Cook in 24 Hours-Oliver Jamie-Penguin-Food & Drink-9fd
 Chocolat-Harris Joanne-Transworld-Literary Fiction-6LF
 The Boy in the Striped Pyjamas-Boyne John-Random House-Fiction-2f
 My Sister's Keeper-Picoult Jodi-Hodder & Stoughton-Literary Fiction-6LF
@@ -137,37 +136,29 @@ Nigella Express-Lawson Nigella-Random House-Food & Drink-9fd
 Brick Lane-Ali Monica-Transworld-General & Literary Fiction-6LF
 The Memory Keeper's Daughter-Edwards Kim-Penguin-Literary Fiction-6LF
 Room on the Broom-Donaldson Julia-Pan Macmillan-Picture Books-5pb
-About a Boy-Hornby Nick-Penguin-Literary Fiction-6LF
 My Booky Wook-Brand Russell-Hodder & Stoughton-Autobiography-1au
 The God Delusion-Dawkins Richard-Transworld-Popular Science-7ps
-When Java Screws You Over-Sadface Iam-Akuin Akka-Autobiography-1au
-White Teeth-Smith Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton Kate-Pan Macmillan-Literary Fiction-6LF
 Nights of Rain and Stars-Binchy Maeve-Orion-Literary Fiction-6LF
-The Ghost-Harris Robert-Random House-Literary Fiction-6LF
 Happy Days with the Naked Chef-Oliver Jamie-Penguin-Food & Drink-9fd
-The Hunger Games-Collins Suzanne-Scholastic Ltd.-Young Adult Fiction-4ya
 The Lost Boy:A Foster Child's Search for the Love of a Family-Pelzer Dave-Orion-Biography-2bi
-Jamie's Ministry of Food:Anyone Can Learn to Cook in 24 Hours-Oliver Jamie-Penguin-Food & Drink-9fd 
+Jamie's Ministry of Food:Anyone Can Learn to Cook in 24 Hours-Oliver Jamie-Penguin-Food & Drink-9fd
 The Summons-Grisham John-Random House-Crime Thriller & Adventure-1a
 Small Island-Levy Andrea-Headline-General & Literary Fiction-6LF
 Nigella Express-Lawson Nigella-Random House-Food & Drink-9fd
 Brick Lane-Ali Monica-Transworld-General & Literary Fiction-6LF
 The Memory Keeper's Daughter-Edwards Kim-Penguin-Literary Fiction-6LF
 Room on the Broom-Donaldson Julia-Pan Macmillan-Picture Books-5pb
-About a Boy-Hornby Nick-Penguin-Literary Fiction-6LF
 My Booky Wook-Brand Russell-Hodder & Stoughton-Autobiography-1au
 The God Delusion-Dawkins Richard-Transworld-Popular Science-7ps
-When Java Screws You Over-Sadface Iam-Akuin Akka-Autobiography-1au
-White Teeth-Smith Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton Kate-Pan Macmillan-Literary Fiction-6LF
 Nights of Rain and Stars-Binchy Maeve-Orion-Literary Fiction-6LF
-The Ghost-Harris Robert-Random House-Literary Fiction-6LF
 Happy Days with the Naked Chef-Oliver Jamie-Penguin-Food & Drink-9fd
-The Hunger Games-Collins Suzanne-Scholastic Ltd.-Young Adult Fiction-4ya
 The Lost Boy:A Foster Child's Search for the Love of a Family-Pelzer Dave-Orion-Biography-2bi
 Jamie's Ministry of Food:Anyone Can Learn to Cook in 24 Hours-Oliver Jamie-Penguin-Food & Drink-9fd
 Fantastic Beasts and Where to Find Them-Rowling J.K.-Bloomsbury-Fiction-2f
+<<<<<<< HEAD
+=======
 Zebras in their natural habitat-Manzi Oliver-University of Gothenburg-Animals & Nature-4an
 The Da Vinci Code-Brown, Dan-Transworld-Crime, Thriller & Adventure-1a
 Harry Potter and the Deathly Hallows-Rowling, J.K.-Bloomsbury-Fiction-2f
