@@ -243,14 +243,6 @@ public class Library {
         }
     }
 
-    // ----- Show 10 most popular books ----- //
-    public String showTopBooks() {
-        sortBooksBy(TIMESBORROWED);
-        String s = "";
-        for (int i = 0; i < 10; i++) s += (i) + "." + this.books.get(i).toString() + "\n";
-        return s;
-    }
-
 	/* TODO -------------------REGISTRATION--------------------- */
 
     /* register books */
@@ -296,7 +288,11 @@ public class Library {
 
         book.setStartDate(this.date);
         book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks
+
+        
         book.incrementTimesBorrowed();
+
+
         customer.addToCurrentLoan(book);
         customer.addToLoanHistory(book);
         loanedBooks.add(book);
