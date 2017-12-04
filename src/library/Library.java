@@ -134,6 +134,10 @@ public class Library {
 	// DON'T CHANGE FORMAT PLEASE.
 
 	public void sortAllBooksBy(bookKey keyToSort) {
+		// set the authors toLowerCase instead of to uppercase
+		// don't understand why you need a method converting auhtors names to uppercase when
+		// they are already stored that way.
+
 		try {
 			for (Book book : this.allBooks) book.authors2UpperCase();
 			Collections.sort(this.allBooks, Comparator.comparing(getBookFunction(keyToSort)));
