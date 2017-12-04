@@ -5,7 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Book {
-	
+
 	//*** ATTRIBUTES ***//
 	// G stuff
 	private UUID id;
@@ -28,12 +28,12 @@ public class Book {
 			throw new Exception("Input argument cannot be empty.");
 		} else {
 			this.title = title;
-			this.authors = new ArrayList<String>(Arrays.asList(authors.split(";")));
+			this.authors = new ArrayList<String>(Arrays.asList(authors.split(",")));
 			this.genre = genre;
 			this.publisher = publisher;
 			this.shelf = shelf;
 		}
-		
+
 		startDate = LocalDateTime.now();
 		returnDate = LocalDateTime.now();
 	}
@@ -48,8 +48,12 @@ public class Book {
 	}
 
 	public String getAuthor() {
-		return this.authors.get(0);
-    }
+		if (this.authors.size() > 1) {
+			return this.authors.get(0) + "," + this.authors.get(1);
+		} else {
+			return this.authors.get(0);
+		}
+	}
 
 	public ArrayList<String> getAuthors(){
 		/*String res = ": ";
@@ -117,11 +121,11 @@ public class Book {
 			this.shelf = shelf;
 		}
 	}
-	
+
 	public void authors2UpperCase() {
 		for (int i = 0; i < this.authors.size(); i++) {Character.toUpperCase(this.authors.get(i).charAt(0));}
 	}
-	
+
 
 	public void incrementTimesBorrowed() {
 		this.timesBorrowed++;
@@ -130,20 +134,13 @@ public class Book {
 	@Override
 	public String toString() {
 		return "\n" + "----------------------------------------------------------" + System.lineSeparator() +
-				"Book Title: " + this.title + System.lineSeparator() + 
-				", Authors: " + this.authors + System.lineSeparator() + 
-				", Genre: " + this.genre + System.lineSeparator() +  
+				"Book Title: " + this.title + System.lineSeparator() +
+				", Authors: " + this.authors + System.lineSeparator() +
+				", Genre: " + this.genre + System.lineSeparator() +
 				", Publisher: " + this.publisher + System.lineSeparator() +
-				", Shelf: " + this.shelf + System.lineSeparator() + 
+				", Shelf: " + this.shelf + System.lineSeparator() +
 				", Times Borrowed: " + this.timesBorrowed + System.lineSeparator() +
 				"----------------------------------------------------------" + "\n";
 	}
-	
-	
-	
+
 }
-
-
-
-	
-	

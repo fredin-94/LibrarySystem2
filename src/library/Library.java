@@ -15,150 +15,165 @@ import static library.Library.customerKey.*;
 
 public class Library {
 
-	private ArrayList<Book> allBooks;
-	private ArrayList<Book> books;
-	private ArrayList<Book> loanedBooks;
-	private ArrayList<Book> delayedBooks;
-	private ArrayList<Customer> customers;
-	private LocalDateTime date;
-	private Timer timer;
-	private TimerTask hourlyTask;
+    private ArrayList<Book> allBooks;
+    private ArrayList<Book> books;
+    private ArrayList<Book> loanedBooks;
+    private ArrayList<Book> delayedBooks;
+    private ArrayList<Customer> customers;
+    private LocalDateTime date;
+    private Timer timer;
+    private TimerTask hourlyTask;
 
-	public Library() {
-		allBooks = new ArrayList<Book>();
-		books = new ArrayList<Book>();
-		loanedBooks = new ArrayList<Book>();
-		delayedBooks = new ArrayList<Book>();
-		customers = new ArrayList<Customer>();
-		date = LocalDateTime.now();
+    public Library() {
+        allBooks = new ArrayList<Book>();
+        books = new ArrayList<Book>();
+        loanedBooks = new ArrayList<Book>();
+        delayedBooks = new ArrayList<Book>();
+        customers = new ArrayList<Customer>();
+        date = LocalDateTime.now();
+        //importBooksFrom("res/bookDirectory.txt");
 
-		try {
-			customerDirectory();
-			bookDirectory("res/bookDirectory.txt");
-			bookDirectory("res/LoanedBooks.txt");
-			bookDirectory("res/delayedBooks.txt");
-			bookDirectory("res/AllBooks.txt");
-		} catch (Exception e) {
-			e.getMessage();
-		}
-	}
+        try {
+            customerDirectory();
+            bookDirectory("res/bookDirectory.txt");
+            bookDirectory("res/LoanedBooks.txt");
+            bookDirectory("res/delayedBooks.txt");
+            bookDirectory("res/AllBooks.txt");
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
 
 	/* TODO ---------------------Basic------------------------------- */
 
-	public ArrayList<Book> getAllBooks() {
-		return allBooks;
-	}
+    public ArrayList<Book> getAllBooks() {
+        return allBooks;
+    }
 
-	public ArrayList<Book> getBooks() {
-		return books;
-	}
+    public ArrayList<Book> getBooks() {
+        return books;
+    }
 
-	public ArrayList<Customer> getCustomers() {
-		return customers;
-	}
+    public ArrayList<Customer> getCustomers() {
+        return customers;
+    }
 
-	/*---------------------SEARCH------------------------------*/
-	// DON'T CHANGE FORMAT PLEASE.
+    /*---------------------SEARCH------------------------------*/
+    // DON'T CHANGE FORMAT PLEASE.
+    public enum bookKey {
+        TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID, TIMESBORROWED
+    }
 
-	public enum bookKey {
-		TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID, TIMESBORROWED
-	}
+    public enum customerKey {NAME, ADRESS, NUMBER, DEBT, ID, PERSONNUMMER}
 
-	public enum customerKey {
-		NAME, ADRESS, NUMBER, DEBT, ID, PERSONNUMMER
-	}
+    // ----- Search for book ----- //
+    // Use findBookBy for title, genre, publisher and ID. Returns Book.
+    // Use findBooksBy for author and shelf. Returns ArrayList<Book>.
+    public List<Book> searchForBook(String searchText) throws NullPointerException {
+        searchText.trim().toLowerCase();
+        List<Book> list = new ArrayList<>();
+        for (Book book : this.books) {
+            if (book.toString().trim().toLowerCase().contains(searchText)) list.add(book);
+        }
+        if (list.size() >= 1) return list;
+        return null;
+    }
 
-	// ----- Search for book ----- //
-	// Use findBookBy for title, genre, publisher and ID. Returns Book.
-	// Use findBooksBy for author and shelf. Returns ArrayList<Book>.
+    public List<Customer> searchForCustomer(String searchText) throws NullPointerException {
+        searchText.trim().toLowerCase();
+        List<Customer> list = new ArrayList<>();
+        for (Customer customer : this.customers) {
+            if (customer.toString().trim().toLowerCase().contains(searchText)) list.add(customer);
+        }
+        if (list.size() >= 1) return list;
+        return null;
+    }
 
-	public Book findBookBy(bookKey key, String searchValue) throws InvalidKeyException {
-		searchValue.toLowerCase();
-		switch (key) {
-		case TITLE:
-			return findBookByString(searchValue, Book::getTitle); // No need for break since the return automatically
-																	// breaks the switch.
-		case GENRE:
-			return findBookByString(searchValue, Book::getGenre);
-		case PUBLISHER:
-			return findBookByString(searchValue, Book::getPublisher);
-		case ID:
-			for (Book book : books)
-				if (book.getId().toString().equals(searchValue))
-					return book;
-		default:
-			throw new InvalidKeyException("Invalid key in search function.");
-		}
-	}
 
-	public ArrayList<Book> findBooksBy(bookKey key, String searchValue) throws InvalidKeyException {
-		searchValue.toLowerCase();
-		switch (key) {
-		case AUTHOR:
-			return findBooksByString(searchValue);
-		case SHELF:
-			return findBooksByString(searchValue);
-		default:
-			throw new InvalidKeyException("Invalid key in search function.");
-		}
-	}
+    public Book findBookBy(bookKey key, String searchValue) throws InvalidKeyException {
+        searchValue.toLowerCase();
+        switch (key) {
+            case TITLE:
+                return findBookByString(searchValue, Book::getTitle); // No need for break since the return automatically breaks the switch.
+            case GENRE:
+                return findBookByString(searchValue, Book::getGenre);
+            case PUBLISHER:
+                return findBookByString(searchValue, Book::getPublisher);
+            case ID:
+                for (Book book : books) if (book.getId().toString().equals(searchValue)) return book;
+            default:
+                throw new InvalidKeyException("Invalid key in search function.");
+        }
+    }
 
-	private Book findBookByString(String s, Function<Book, ? extends Comparable> f) throws NullPointerException {
-		s.toLowerCase();
-		for (Book book : this.books)
-			if (s.equals(((String) f.apply(book)).toLowerCase()))
-				return book;
-		return null;
-	}
+    public ArrayList<Book> findBooksBy(bookKey key, String searchValue) throws InvalidKeyException {
+        searchValue.toLowerCase();
+        switch (key) {
+            case AUTHOR:
+                return findBooksByString(searchValue);
+            case SHELF:
+                return findBooksByString(searchValue);
+            default:
+                throw new InvalidKeyException("Invalid key in search function.");
+        }
+    }
 
-	private ArrayList<Book> findBooksByString(String s) throws NullPointerException {
-		s.toLowerCase();
-		ArrayList<Book> books = new ArrayList<Book>();
-		for (Book book : this.books) {
-			for (int i = 0; i < book.getAuthors().size(); i++)
-				if (s.equals(book.getAuthors().get(i).toLowerCase()))
-					books.add(book);
-		}
-		return books;
-	}
+    private Book findBookByString(String s, Function<Book, ? extends Comparable> f) throws NullPointerException {
+        s.toLowerCase();
+        for (Book book : this.books)
+            if (s.equals(((String) f.apply(book)).toLowerCase()))
+                return book;
+        return null;
+    }
 
-	// ----- Search for customer ----- //
-	public Customer findCustomerBy(customerKey key, String searchValue) throws InvalidKeyException {
-		searchValue.toLowerCase();
-		switch (key) {
-		case NAME:
-			return findCustomerByString(searchValue, Customer::getName);
-		case ADRESS:
-			return findCustomerByString(searchValue, Customer::getAdress);
-		case NUMBER:
-			return findCustomerByString(searchValue, Customer::getNumber);
-		case ID:
-			for (Customer customer : customers)
-				if (customer.getID().toString().equals(searchValue))
-					return customer;
-		case PERSONNUMMER:
-			return findCustomerByString(searchValue, Customer::getPersonnummer);
-		default:
-			throw new InvalidKeyException("Invalid enum key in search customer function");
-		}
-	}
+    private ArrayList<Book> findBooksByString(String s) throws NullPointerException {
+        s.toLowerCase();
+        ArrayList<Book> books = new ArrayList<Book>();
+        for (Book book : this.books) {
+            for (int i = 0; i < book.getAuthors().size(); i++)
+                if (s.equals(book.getAuthors().get(i).toLowerCase()))
+                    books.add(book);
+        }
+        return books;
+    }
 
-	private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f)
-			throws NullPointerException {
-		try {
-			for (Customer customer : customers) {
-				// System.out.println("search value: " + searchValue);
-				// System.out.println(f.apply(customer));
-				if (searchValue.equals(((String) f.apply(customer)).toLowerCase())) {
-					// System.out.println("found customer");
-					return customer;
-				}
-			}
-		} catch (Exception e) {
-			e.getMessage();
-		}
-		throw new NullPointerException("Customer not found.");
-	}
+    // ----- Search for customer ----- //
+    public Customer findCustomerBy(customerKey key, String searchValue) throws InvalidKeyException {
+        searchValue.toLowerCase();
+        switch (key) {
+            case NAME:
+                return findCustomerByString(searchValue, Customer::getName);
+            case ADRESS:
+                return findCustomerByString(searchValue, Customer::getAdress);
+            case NUMBER:
+                return findCustomerByString(searchValue, Customer::getNumber);
+            case ID:
+                for (Customer customer : customers)
+                    if (customer.getID().toString().equals(searchValue))
+                        return customer;
+            case PERSONNUMMER:
+                return findCustomerByString(searchValue, Customer::getPersonnummer);
+            default:
+                throw new InvalidKeyException("Invalid enum key in search customer function");
+        }
+    }
+
+    private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f)
+            throws NullPointerException {
+        try {
+            for (Customer customer : customers) {
+                System.out.println("search value: " + searchValue);
+                System.out.println(f.apply(customer));
+                if (searchValue.equals(((String) f.apply(customer)).toLowerCase())) {
+                    System.out.println("found customer");
+                    return customer;
+                }
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        throw new NullPointerException("Customer not found.");
+    }
 
 	/*---------------------SORTING------------------------------*/
 // Uses enums from search.
@@ -232,8 +247,7 @@ public class Library {
     public String showTopBooks() {
         sortBooksBy(TIMESBORROWED);
         String s = "";
-        for (int i = 0; i < 10; i++)
-            s += (i) + "." + this.books.get(i).toString() + "\n";
+        for (int i = 0; i < 10; i++) s += (i) + "." + this.books.get(i).toString() + "\n";
         return s;
     }
 
@@ -267,8 +281,6 @@ public class Library {
         customers.remove(customer);
     }
 
-	/* TODO: ---------------------loan and return----------------- */
-
     public void borrowBook(String bookTitle, String personnummer) throws Exception {
 
         Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnummer);
@@ -285,12 +297,10 @@ public class Library {
         book.setStartDate(this.date);
         book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks
         book.incrementTimesBorrowed();
-
         customer.addToCurrentLoan(book);
         customer.addToLoanHistory(book);
         loanedBooks.add(book);
         books.remove(book);
-
     }
 
     public void extendLoanPeriod(String personnumer, String bookTitle) throws Exception {
@@ -449,7 +459,7 @@ public class Library {
         }
     }
 
-	/*------ OTHER METHODS ---------*/
+    /*------ OTHER METHODS ---------*/
     // moves a book that is delayed to delayed arrayList. (is only used in
 // simulation)
     public void isDelayed(Book book) {
@@ -552,7 +562,7 @@ public class Library {
 
             Customer customer = null;
             try {
-                if(phoneNumber.equals("")) {
+                if (phoneNumber.equals("")) {
                     customer = new Customer(name, address, psn);
                 } else {
                     customer = new Customer(name, address, psn, phoneNumber);
@@ -575,6 +585,4 @@ public class Library {
         System.out.println(res);
         return res;
     }
-
 }
-
