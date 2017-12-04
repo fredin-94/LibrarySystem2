@@ -197,9 +197,12 @@ public class Test {
 				incrementDays();
 				break;
 			case 2:
-				incrementMonths();
+				incrementWeeks();
 				break;
 			case 3:
+				incrementMonths();
+				break;
+			case 4:
 				incrementYears();
 				break;
 			case 0:
@@ -590,17 +593,22 @@ public class Test {
 		int day = scanner.nextInt();
 		library.addDays(day);
 	}
+	public void incrementWeeks() {
+		System.out.println("Enter how many weeks to increment: ");
+		int week = scanner.nextInt();
+		library.addWeeks(week);
+	}
 
 	public void incrementMonths() {
 		System.out.println("Enter how many months to increment: ");
 		int month = scanner.nextInt();
-		library.addDays(month);
+		library.addMonths(month);
 	}
 
 	public void incrementYears() {
 		System.out.println("Enter how many years to increment: ");
 		int year = scanner.nextInt();
-		library.addDays(year);
+		library.addyears(year);
 	}
 
 	// VG implementations //

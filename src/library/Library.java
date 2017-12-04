@@ -20,7 +20,7 @@ public class Library {
 	private ArrayList<Book> loanedBooks;
 	private ArrayList<Book> delayedBooks;
 	private ArrayList<Customer> customers;
-	private LocalDateTime date;
+	private static LocalDateTime date;
 	private Timer timer;
 	private TimerTask hourlyTask;
 
@@ -418,8 +418,8 @@ public class Library {
 	 * IMPORTANT check whether each book has passed it's loan period and switch
 	 * delayed boolean
 	 */
-	public LocalDateTime getDate() {
-		return this.date;
+	public static LocalDateTime getDate() {
+		return date;
 	}
 
 	public void addDays(int Days) {
