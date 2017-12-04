@@ -361,23 +361,19 @@ public class Test {
 	}
 
 	public void borrowBook() throws Exception {
-		// must create txt file for customers borrowed books, create that when customer
-		// borrows their
-		// first book, or create one for every customer when they are first created
 		showAvailableBooks();
-		System.out.println("Enter title of book to borrow:");
-		String title = scanner.nextLine();
-		Book book = retrieveBook(library.getBooks(), title);
+		scanner.nextLine();
 
+		System.out.println("Enter title of book to borrow:");
+		String title = scanner.nextLine().trim();
 		System.out.println("Enter personal security number:");
-		String psn = scanner.nextLine();
+		String psn = scanner.nextLine().trim();
+		Book book = retrieveBook(library.getBooks(), title);
 		if (title.equals("") || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
 			System.out.println("about to borrow book yay");
 			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
-			writeBookToFile("res/LoanedBooks.txt", book);
-			writeBookToFile("res/"+psn+"CurrentLoans.txt", book);
 			writeBookToFile("res/LoanedBooks.txt", book); 
 			writeBookToFile("res/"+psn+"CurrentLoans.txt", book);
 			writeBookToFile("res/"+psn+"LoanHistory.txt", book);
@@ -394,8 +390,7 @@ public class Test {
 	}
 
 	public void returnBook() throws Exception {
-		// ADD FUNCTION TO REMOVE FROM TXT FILE AND ADD TO OTHER TXT FILE -- NOT
-		// NEEDED???
+		scanner.nextLine();
 		System.out.println("Enter title of book to return:");
 		String title = scanner.nextLine();
 		System.out.println("Enter personal security number:");
@@ -405,14 +400,15 @@ public class Test {
 		if (title.equals("") || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
-			Book book = null;
-			for (Customer c : retrieveCustomerDirectory()) {
-				if (c.getPersonnummer() == psn) {
-					book = c.getFromCurrentLoan(title);
+			for(Book b : customer.getCurrentLoans()){
+				if (b.getTitle().equals(title)) {
+					writeBookToFile("res/bookDirectory.txt", retrieveBook(library.getAllBooks(), title));
+					removeLineFromFile("res/LoanedBooks.txt", parseBookToString(b));
+					library.returnBook(title, psn);
 				}
 			}
-			writeBookToFile("res/bookDirectory.txt", retrieveBook(library.getAllBooks(), title));
-			library.returnBook(title, psn);
+
+
 			//System.out.println("In return book: removed book from loaned books arraylist, added to books arraylist, removed from customer current loans arraylist");
 			
 			System.out.println("Book returned successfully");
@@ -474,9 +470,6 @@ public class Test {
 	}
 
 	public void showAvailableBooks() {
-		/*
-		 * try { library.bookDirectory(); }catch (Exception e) { e.getMessage(); }
-		 */
 		System.out.println(library.toString());
 	}
 
@@ -548,10 +541,21 @@ public class Test {
 		Customer customer = retrieveCustomer(psn);
 		if (customer != null) {
 			removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
+			deleteFile("res/"+psn+"CurrentLoans.txt");
+			deleteFile("res/"+psn+"LoanHistory.txt"); // should we keep that customer's loan history in library archives??
 			library.removeCustomer(customer);
 		} else {
 			System.out.println("There's no customer with that personnummer \nPlease enter a valid one.");
 			removeCustomer();
+		}
+	}
+
+	public void deleteFile(String path){
+		File f = new File(path);
+		if(f.delete()){
+			System.out.println("Customer files deleted successfully");
+		} else {
+			System.out.println("Unable to delete customer files");
 		}
 	}
 
