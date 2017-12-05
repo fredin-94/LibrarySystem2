@@ -9,6 +9,8 @@ public class Menu {
 		System.out.println(" ==         The Royal Oxford Library              == ");
 		System.out.println(" ==                                               == ");
 		System.out.println(" ==            Established 1817                   == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}
@@ -17,6 +19,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Library System                    == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Choose an option below:                   === ");
@@ -34,6 +38,8 @@ public class Menu {
 	public void getSearch() {
 		System.out.println("\n =================================================== " + System.lineSeparator()
 				+ " ==             Search System                     == " + System.lineSeparator()
+				+ " ==                                               == " + System.lineSeparator()
+				+ " ==          "+ Library.getDate()+ "              == " + System.lineSeparator()
 				+ " =================================================== " + System.lineSeparator()
 				+ " ===                                             === " + System.lineSeparator()
 				+ " ===   Choose an option below:                   === " + System.lineSeparator()
@@ -48,6 +54,8 @@ public class Menu {
 	public void getBookOptions() {
 		System.out.println("\n =================================================== " + System.lineSeparator()
 				+ " ==             Borrow or return books            == " + System.lineSeparator()
+				+ " ==                                               == " + System.lineSeparator()
+				+ " ==          "+ Library.getDate()+ "              == " + System.lineSeparator()
 				+ " =================================================== " + System.lineSeparator()
 				+ " ===                                             === " + System.lineSeparator()
 				+ " ===   Choose an option below:                   === " + System.lineSeparator()
@@ -62,6 +70,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Book Search System                == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Search by:                                === ");
@@ -75,6 +85,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Customer Search System            == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Search by:                                === ");
@@ -88,6 +100,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Book Search System                == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Enter title below:                        === ");
@@ -100,6 +114,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Book Search System                == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Enter book id below:                      === ");
@@ -112,6 +128,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Customer Search System            == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Enter customer name below:                === ");
@@ -124,6 +142,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Customer Search System            == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Enter customer id below:                  === ");
@@ -135,6 +155,8 @@ public class Menu {
 	public void getAdministration() {
 		System.out.println(" =================================================== \n"
 				+ " ==             Administration System             == \n"
+				+ " ==                                               == \n"
+				+ " ==          "+ Library.getDate()+ "              == \n"
 				+ " =================================================== \n"
 				+ " ===                                             === \n"
 				+ " ===   Choose an option below:                   === \n"
@@ -151,6 +173,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Book Creation                     == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Do you want to add another author:        === ");
@@ -165,6 +189,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Book Search System                == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Search by:                                === ");
@@ -178,6 +204,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Customer Search System            == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Search by:                                === ");
@@ -191,6 +219,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Book Removal System               == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Enter title below:                        === ");
@@ -203,6 +233,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Book Removal System               == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Enter book id below:                      === ");
@@ -215,6 +247,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Customer Removal System           == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Enter customer name below:                === ");
@@ -227,6 +261,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Customer Removal System           == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Enter customer id below:                  === ");
@@ -239,6 +275,8 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Simulator System                  == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Choose an option below:                   === ");
@@ -256,13 +294,16 @@ public class Menu {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==             Extra                             == ");
+		System.out.println(" ==                                               == ");
+		System.out.println(" ==          "+ Library.getDate()+ "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Choose an option below:                   === ");
 		System.out.println(" ===   1. Show all lent out books                === ");
 		System.out.println(" ===   2. Show all delayed books                 === ");
 		System.out.println(" ===   3. Show customers loan history            === ");
-		System.out.println(" ===   4. Show top 10 most popular books         === ");
+		System.out.println(" ===   4. Show customers current books           === ");
+		System.out.println(" ===   5. Show top 10 most popular books         === ");
 		System.out.println(" ===   0. Return to main menu                    === ");
 		System.out.println(" ===                                             === ");
 		System.out.println(" =================================================== ");
@@ -270,4 +311,3 @@ public class Menu {
 	}
 }
 
-//hello betch!

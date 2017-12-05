@@ -1,7 +1,10 @@
 package library;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.UUID;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 public class Customer implements Serializable {
 
@@ -31,18 +34,13 @@ public class Customer implements Serializable {
 		this.currentLoans = new ArrayList<Book>();
 		this.loanHistory = new ArrayList<Book>();
 		this.debt = 0;
-		if (personnummer.matches("[0-9]+") && personnummer.length() == 10 || personnummer.length() == 12) {// This
-																											// checks
-																											// the
-																											// number of
-																											// digits of
-																											// (number).
+		if (personnummer.matches("[0-9]+") && personnummer.length() == 10 || personnummer.length() == 12) {// This																								// (number).
 			this.personnummer = personnummer;
 		} else {
 			throw new Exception("Personnummer MUST consist of 10 or 12 digits");
-
 		}
-
+		customerBooks("res/"+personnummer+"CurrentLoans.txt");
+		customerBooks("res/"+personnummer+"LoanHistory.txt");
 	}
 
 	public Customer(String name, String adress, String personnummer, String number) throws Exception {
@@ -53,6 +51,8 @@ public class Customer implements Serializable {
 		} else {
 			throw new Exception("Phone number MUST consist of 10 digits");
 		}
+		customerBooks("res/"+personnummer+"CurrentLoans.txt");
+		customerBooks("res/"+personnummer+"LoanHistory.txt");
 	}
 
 	public UUID getID() {
@@ -139,7 +139,7 @@ public class Customer implements Serializable {
 
 	public Book getFromCurrentLoan(String bookTitle) {
 		for(Book book: currentLoans) {
-			if(book.getTitle().equals(bookTitle)) {
+			if(book.getTitle().equalsIgnoreCase(bookTitle)) {
 				return book;
 			}
 		}
@@ -154,6 +154,38 @@ public class Customer implements Serializable {
 		loanHistory.add(book);
 	}
 	
+	
+	
+	public void customerBooks(String path) throws FileNotFoundException {
+		File file = new File(path);
+		Scanner input = new Scanner(file);
+	    input.useDelimiter("-|\n");
+
+		while(input.hasNext()) {
+	        String title = input.next();
+			String author = input.next();
+			String publisher = input.next();
+			String genre = input.next();
+			String shelf = input.next();
+			Book book = null;
+			try {
+				book = new Book(title, author, publisher, genre, shelf);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(path.contains("CurrentLoans")) {
+					currentLoans.add(book);
+				}else if(path.contains("LoanHistory")) {
+					loanHistory.add(book);
+				}
+			}
+		}
+	}
+	
+
+	public ArrayList<Book> getLoanHistory() {
+		return loanHistory;
+	}
 
 	public String toString() {// Need to check the form then it will be edited.
 		String printC = " " + END_OF_LINE; // PrintC is going to include everything to be printed.
