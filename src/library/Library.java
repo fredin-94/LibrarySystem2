@@ -35,13 +35,40 @@ public class Library {
 
 		try {
 			customerDirectory();
-			bookDirectory("res/bookDirectory.txt");
-			bookDirectory("res/LoanedBooks.txt");
-			bookDirectory("res/delayedBooks.txt");
-			bookDirectory("res/AllBooks.txt");
+			//bookDirectory("res/bookDirectory.txt");
+			//bookDirectory("res/LoanedBooks.txt");
+			//bookDirectory("res/delayedBooks.txt");
+			//bookDirectory("res/AllBooks.txt");
 		} catch (Exception e) {
 			e.getMessage();
 		}
+
+		try{
+			bookDirectory("res/bookDirectory.txt");
+		} catch (Exception e){
+			System.out.println("Unable to initialize available books directory");
+		}
+
+		try{
+			bookDirectory("res/LoanedBooks.txt");
+		} catch (Exception e){
+			System.out.println("Unable to initialize loaned books directory");
+		}
+
+
+		try{
+			bookDirectory("res/delayedBooks.txt");
+		} catch (Exception e){
+			System.out.println("Unable to initialize delayed books directory");
+		}
+
+		try{
+			bookDirectory("res/AllBooks.txt");
+		} catch (Exception e){
+			System.out.println("Unable to initialize all books directory");
+		}
+
+
 	}
 
 	/* TODO ---------------------Basic------------------------------- */

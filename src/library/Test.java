@@ -263,7 +263,7 @@ public class Test {
 
 	public void removeBook() {
 		System.out.println("Enter title of book to remove: ");
-		String title = scanner.nextLine();
+		String title = scanner.nextLine().trim();
 		Book book = retrieveBook(library.getAllBooks(), title);
 		// ---- Most of this will prob be deleted if Oliver implements the functionality in Library.java.-----
 		if(!book.equals(null)) {
