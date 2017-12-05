@@ -5,21 +5,15 @@ Harry Potter and the Order of the Phoenix-Rowling J.K.-Bloomsbury-Fiction-2f
 Fifty Shades of Grey-James E. L.-Random House-Romance-5r
 Harry Potter and the Goblet of Fire-Rowling J.K.-Bloomsbury-Fiction -2f
 Harry Potter and the Chamber of Secrets-Rowling J.K.-Bloomsbury-Fiction-2f
-<<<<<<< HEAD
 Harry Potter and the Prisoner of Azkaban-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Deathly Hallows-Rowling J.K.-Bloomsbury-Fiction-2f
-=======
->>>>>>> 3dfdfc5e9416821f6ccf1fbedd5561b66bbfce12
 Harry Potter and the Philosopher's Stone-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Order of the Phoenix-Rowling J.K.-Bloomsbury-Fiction-2f
 Fifty Shades of Grey-James E. L.-Random House-Romance-5r
 Harry Potter and the Goblet of Fire-Rowling J.K.-Bloomsbury-Fiction -2f
 Harry Potter and the Chamber of Secrets-Rowling J.K.-Bloomsbury-Fiction-2f
-<<<<<<< HEAD
 Harry Potter and the Prisoner of Azkaban-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Deathly Hallows-Rowling J.K.-Bloomsbury-Fiction-2f
-=======
->>>>>>> 3dfdfc5e9416821f6ccf1fbedd5561b66bbfce12
 Harry Potter and the Philosopher's Stone-Rowling J.K.-Bloomsbury-Fiction-2f
 Harry Potter and the Order of the Phoenix-Rowling J.K.-Bloomsbury-Fiction-2f
 Fifty Shades of Grey-James E. L.-Random House-Romance-5r
@@ -157,8 +151,6 @@ Happy Days with the Naked Chef-Oliver Jamie-Penguin-Food & Drink-9fd
 The Lost Boy:A Foster Child's Search for the Love of a Family-Pelzer Dave-Orion-Biography-2bi
 Jamie's Ministry of Food:Anyone Can Learn to Cook in 24 Hours-Oliver Jamie-Penguin-Food & Drink-9fd
 Fantastic Beasts and Where to Find Them-Rowling J.K.-Bloomsbury-Fiction-2f
-<<<<<<< HEAD
-=======
 Zebras in their natural habitat-Manzi Oliver-University of Gothenburg-Animals & Nature-4an
 The Da Vinci Code-Brown, Dan-Transworld-Crime, Thriller & Adventure-1a
 Harry Potter and the Deathly Hallows-Rowling, J.K.-Bloomsbury-Fiction-2f
