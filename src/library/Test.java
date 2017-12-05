@@ -289,7 +289,7 @@ public class Test {
 
 	public Book retrieveBook(ArrayList<Book> listOfBooks, String title) {
 		for (Book book : listOfBooks) {
-			if (book.getTitle().equalsIgnoreCase(title)) {
+			if (book.getTitle().equals(title)) {
 				return book;
 			}
 		}
@@ -365,13 +365,13 @@ public class Test {
 		scanner.nextLine();
 
 		System.out.println("Enter title of book to borrow:");
-		String title = scanner.nextLine().trim();
+		String title = scanner.nextLine();
 		System.out.println("Enter personal security number:");
-		String psn = scanner.nextLine().trim();
-		Book book = retrieveBook(library.getBooks(), title);
+		String psn = scanner.nextLine();
 		if (title.equals("") || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
+			Book book = retrieveBook(library.getBooks(), title);
 			System.out.println("about to borrow book yay");
 			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
 			writeBookToFile("res/LoanedBooks.txt", book); 
@@ -385,7 +385,7 @@ public class Test {
 				public void run() {
 					library.isDelayed(retrieveBook(library.getLoanedBooks(), title));
 				}
-			}, 0, 1, TimeUnit.HOURS);
+			}, 0, 1, TimeUnit.SECONDS);
 		}
 	}
 

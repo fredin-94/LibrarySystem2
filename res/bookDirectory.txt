@@ -96,8 +96,6 @@ Small Island-Levy Andrea-Headline-General & Literary Fiction-6LF
 Nigella Express-Lawson Nigella-Random House-Food & Drink-9fd
 Brick Lane-Ali Monica-Transworld-General & Literary Fiction-6LF
 The Memory Keeper's Daughter-Edwards Kim-Penguin-Literary Fiction-6LF
-Room on the Broom-Donaldson Julia-Pan Macmillan-Picture Books-5pb
-My Booky Wook-Brand Russell-Hodder & Stoughton-Autobiography-1au
 When Java Screws You Over-Sadface Iam-Akuin Akka-Autobiography-1au
 White Teeth-Smith Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton Kate-Pan Macmillan-Literary Fiction-6LF
@@ -131,8 +129,6 @@ Small Island-Levy Andrea-Headline-General & Literary Fiction-6LF
 Nigella Express-Lawson Nigella-Random House-Food & Drink-9fd
 Brick Lane-Ali Monica-Transworld-General & Literary Fiction-6LF
 The Memory Keeper's Daughter-Edwards Kim-Penguin-Literary Fiction-6LF
-Room on the Broom-Donaldson Julia-Pan Macmillan-Picture Books-5pb
-My Booky Wook-Brand Russell-Hodder & Stoughton-Autobiography-1au
 When Java Screws You Over-Sadface Iam-Akuin Akka-Autobiography-1au
 White Teeth-Smith Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton Kate-Pan Macmillan-Literary Fiction-6LF
@@ -145,8 +141,6 @@ Small Island-Levy Andrea-Headline-General & Literary Fiction-6LF
 Nigella Express-Lawson Nigella-Random House-Food & Drink-9fd
 Brick Lane-Ali Monica-Transworld-General & Literary Fiction-6LF
 The Memory Keeper's Daughter-Edwards Kim-Penguin-Literary Fiction-6LF
-Room on the Broom-Donaldson Julia-Pan Macmillan-Picture Books-5pb
-My Booky Wook-Brand Russell-Hodder & Stoughton-Autobiography-1au
 When Java Screws You Over-Sadface Iam-Akuin Akka-Autobiography-1au
 White Teeth-Smith Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton Kate-Pan Macmillan-Literary Fiction-6LF

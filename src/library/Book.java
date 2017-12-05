@@ -35,7 +35,7 @@ public class Book {
 		}
 
 		startDate = LocalDateTime.now();
-		returnDate = LocalDateTime.now();
+		returnDate = LocalDateTime.now().plusDays(TWO_WEEKS);
 	}
 
 	//*** GETTERS AND SETTERS ***//

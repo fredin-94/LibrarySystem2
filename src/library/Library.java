@@ -466,6 +466,9 @@ public class Library {
 			}
 			System.out.println("Added " + book.getTitle() + " to delayed  books.");
 		}
+		else {
+			System.out.println("book is not delayed");
+		}
 	}
 
 	// returns delay surplus
