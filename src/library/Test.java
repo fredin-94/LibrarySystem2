@@ -246,6 +246,7 @@ public class Test {
 	}
 
 	public void writeBookToFile(String path, Book book) {
+		// can probably change this to if(!book.equals(null))
 		if (!book.getTitle().equals("") && !book.getAuthor().equals("") && !book.getPublisher().equals("")
 				&& !book.getGenre().equals("") && !book.getShelf().equals("")) {
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
@@ -260,10 +261,7 @@ public class Test {
 		}
 	}
 
-	public void removeBook() { // WILL THIS WORK OR NOT???
-		// ADD FUNCTION TO REMOVE FROM TXT FILE
-		// TODO: check if books arraylist contains ALL books in the library ever or only
-		// the ones currently in stock
+	public void removeBook() {
 		System.out.println("Enter title of book to remove: ");
 		String title = scanner.nextLine();
 		Book book = retrieveBook(library.getAllBooks(), title);
