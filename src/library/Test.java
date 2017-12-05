@@ -162,11 +162,13 @@ public class Test {
 	public void handleExtra(int option) {
 		switch (option) {
 		case 1:
+			System.out.println("All lent out books: ");
 			for (int i = 0; i < library.getLoanedBooks().size(); i++) {
 				System.out.println(library.getLoanedBooks().get(i).toString());
 			}
 			break;
 		case 2:
+			System.out.println("All delayed books: ");
 			for (int i = 0; i < library.getDelayedBooks().size(); i++) {
 				System.out.println(library.getDelayedBooks().get(i).toString());
 			}
@@ -286,6 +288,8 @@ public class Test {
 			System.out.println("There's no book with that title");
 		}
 	}
+	
+	
 
 	public Book retrieveBook(ArrayList<Book> listOfBooks, String title) {
 		for (Book book : listOfBooks) {
