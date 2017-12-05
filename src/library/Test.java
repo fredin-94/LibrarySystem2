@@ -238,11 +238,11 @@ public class Test {
 
 		try {
 			library.addBook(new Book(title, author, publisher, genre, shelf));
+			writeBookToFile("res/AllBooks.txt", new Book(title, author, publisher, genre, shelf));
+			writeBookToFile("res/bookDirectory.txt", new Book(title, author, publisher, genre, shelf));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		writeBookToFile("res/AllBooks.txt", retrieveBook(library.getAllBooks(), title));
-		writeBookToFile("res/bookDirectory.txt", retrieveBook(library.getBooks(), title));
 	}
 
 	public void writeBookToFile(String path, Book book) {
