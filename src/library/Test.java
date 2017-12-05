@@ -245,8 +245,6 @@ public class Test {
 	}
 
 	public void writeBookToFile(String path, Book book) {
-		System.out.println("Title: " + book.getTitle() + "\nAuthor: " + book.getAuthor() + "\nPublisher: " + book.getPublisher()
-				+ "\nGenre: " + book.getGenre()+ "\nShelf: " + book.getShelf());
 		if (!book.getTitle().equals("") && !book.getAuthor().equals("") && !book.getPublisher().equals("")
 				&& !book.getGenre().equals("") && !book.getShelf().equals("")) {
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
@@ -286,7 +284,7 @@ public class Test {
 	}
 
 	public Customer retrieveCustomer(String psn) {
-		for (Customer customer : retrieveCustomerDirectory()) {
+		for (Customer customer : library.getCustomers()) {
 			if (customer.getPersonnummer().equals(psn)) {
 				return customer;
 			}
@@ -296,7 +294,6 @@ public class Test {
 
 	// changes objects into a format appropriate for the txt files
 	public String parseBookToString(Book book) {
-		System.out.println("Auhtor: " + book.getAuthor());
 		return book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getGenre() + "-"
 				+ book.getShelf();
 	}

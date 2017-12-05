@@ -26,7 +26,7 @@ Fifty Shades Darker-James E. L.-Random House-Romance-5r
 Twilight-Meyer Stephenie-Little Brown Book-Young Adult Fiction-4ya
 The Girl with the Dragon Tattoo-Larsson Stieg-Quercus-Crime Thriller & Adventure-1a
 Fifty Shades Freed-James E. L.-Random House-Romance-5r
-The Lost Symbol-	Brown Dan-Transworld-Crime Thriller & Adventure-1a
+The Lost Symbol-Brown Dan-Transworld-Crime Thriller & Adventure-1a
 New Moon-Meyer Stephenie-Little Brown Book-Young Adult Fiction-4ya
 Deception Point-Brown Dan-Transworld-Crime Thriller & Adventure-1a
 Eclipse-Meyer Stephenie-Little Brown Book-Young Adult Fiction-4ya
@@ -100,7 +100,6 @@ The Memory Keeper's Daughter-Edwards Kim-Penguin-Literary Fiction-6LF
 Room on the Broom-Donaldson Julia-Pan Macmillan-Picture Books-5pb
 About a Boy-Hornby Nick-Penguin-Literary Fiction-6LF
 My Booky Wook-Brand Russell-Hodder & Stoughton-Autobiography-1au
-The God Delusion-Dawkins Richard-Transworld-Popular Science-7ps
 When Java Screws You Over-Sadface Iam-Akuin Akka-Autobiography-1au
 White Teeth-Smith Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton Kate-Pan Macmillan-Literary Fiction-6LF
@@ -139,7 +138,6 @@ The Memory Keeper's Daughter-Edwards Kim-Penguin-Literary Fiction-6LF
 Room on the Broom-Donaldson Julia-Pan Macmillan-Picture Books-5pb
 About a Boy-Hornby Nick-Penguin-Literary Fiction-6LF
 My Booky Wook-Brand Russell-Hodder & Stoughton-Autobiography-1au
-The God Delusion-Dawkins Richard-Transworld-Popular Science-7ps
 When Java Screws You Over-Sadface Iam-Akuin Akka-Autobiography-1au
 White Teeth-Smith Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton Kate-Pan Macmillan-Literary Fiction-6LF
@@ -157,7 +155,6 @@ The Memory Keeper's Daughter-Edwards Kim-Penguin-Literary Fiction-6LF
 Room on the Broom-Donaldson Julia-Pan Macmillan-Picture Books-5pb
 About a Boy-Hornby Nick-Penguin-Literary Fiction-6LF
 My Booky Wook-Brand Russell-Hodder & Stoughton-Autobiography-1au
-The God Delusion-Dawkins Richard-Transworld-Popular Science-7ps
 When Java Screws You Over-Sadface Iam-Akuin Akka-Autobiography-1au
 White Teeth-Smith Zadie-Penguin-Literary Fiction-6LF
 The House at Riverton-Morton Kate-Pan Macmillan-Literary Fiction-6LF
