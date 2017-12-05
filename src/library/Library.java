@@ -553,9 +553,9 @@ public class Library {
 				if (path.contains("bookDirectory")) {
 					books.add(book);
 				} else if (path.contains("delayedBooks")) {
-					loanedBooks.add(book);
-				} else if (path.contains("LoanedBooks")) {
 					delayedBooks.add(book);
+				} else if (path.contains("LoanedBooks")) {
+					loanedBooks.add(book);
 				} else if (path.contains("AllBooks")) {
 					allBooks.add(book);
 				}
