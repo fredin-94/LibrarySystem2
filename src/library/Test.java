@@ -388,25 +388,35 @@ public class Test {
 	}
 
 	public void returnBook() throws Exception {
-		scanner.nextLine();
+		String skipString = scanner.nextLine();
+		System.out.println("Enter personal security number:");
+		String psn = scanner.nextLine();
+		
+		for (Customer customer : retrieveCustomerDirectory()) {//going into the customer arraylist
+			if (customer.getPersonnummer().equals(psn)) {
+				System.out.println("Your current books are:");
+				for(int i = 0; i<customer.getCurrentLoans().size(); i++) {
+					System.out.println(customer.getCurrentLoans().get(i).toString());
+				}	
+			}
+		}
 		System.out.println("Enter title of book to return:");
 		String title = scanner.nextLine();
-		System.out.println("Enter personal security number:");
-		String psn = scanner.nextLine().trim();
-		Customer customer = retrieveCustomer(psn);
-
+		
 		if (title.equals("") || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
-			for(Book b : customer.getCurrentLoans()){
-				if (b.getTitle().equals(title)) {
-					writeBookToFile("res/bookDirectory.txt", retrieveBook(library.getAllBooks(), title));
-					removeLineFromFile("res/LoanedBooks.txt", parseBookToString(b));
-					library.returnBook(title, psn);
+			Book book = null;
+			for (Customer customer : retrieveCustomerDirectory()) {//going into the customer arraylist
+				if (customer.getPersonnummer().equals(psn)) {
+					book = customer.getFromCurrentLoan(title);
 				}
 			}
-
-
+			// returns a book into library's available books directory
+			writeBookToFile("res/bookDirectory.txt", book);
+			removeLineFromFile("res/"+psn+"CurrentLoans.txt", parseBookToString(book));		
+			removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));	
+			library.returnBook(title, psn);
 			//System.out.println("In return book: removed book from loaned books arraylist, added to books arraylist, removed from customer current loans arraylist");
 			
 			System.out.println("Book returned successfully");
