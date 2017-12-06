@@ -1,6 +1,7 @@
 package library;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.Executors;
@@ -21,6 +22,10 @@ public class Test {
 		library = new Library();
 	}
 
+	public LocalDateTime getTheDate() {
+		return library.getDate();
+	}
+	
 	public void run() {
 		int userInput;
 		do {
