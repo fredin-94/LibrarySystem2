@@ -251,7 +251,7 @@ public class Test {
 				&& !book.getGenre().equals("") && !book.getShelf().equals("")) {
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
 				out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-"
-						+ book.getGenre() + "-" + book.getShelf());
+						+ book.getGenre() + "-" + book.getShelf() + "-" + book.getTimesBorrowed());
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
@@ -314,7 +314,7 @@ public class Test {
 	// changes objects into a format appropriate for the txt files
 	public String parseBookToString(Book book) {
 		return book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getGenre() + "-"
-				+ book.getShelf();
+				+ book.getShelf() + "-" + book.getTimesBorrowed();
 	}
 
 	public String parseCustomerToString(Customer customer) {

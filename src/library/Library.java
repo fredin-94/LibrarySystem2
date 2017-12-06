@@ -35,10 +35,10 @@ public class Library {
 
 		try {
 			customerDirectory();
-			// bookDirectory("res/bookDirectory.txt");
-			// bookDirectory("res/LoanedBooks.txt");
-			// bookDirectory("res/delayedBooks.txt");
-			// bookDirectory("res/AllBooks.txt");
+			 bookDirectory("res/bookDirectory.txt");
+			 bookDirectory("res/LoanedBooks.txt");
+			 bookDirectory("res/delayedBooks.txt");
+			 bookDirectory("res/AllBooks.txt");
 		} catch (Exception e) {
 			e.getMessage();
 		}
@@ -488,7 +488,7 @@ public class Library {
 			/* TODO: move this to java */
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/delayedBooks.txt", true)))) {
 				out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getGenre()
-						+ "-" + book.getShelf());
+						+ "-" + book.getShelf() + "-" + book.getTimesBorrowed());
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
@@ -518,10 +518,12 @@ public class Library {
 			String publisher = input.next();
 			String genre = input.next();
 			String shelf = input.next();
+			int timesBorrowed = input.nextInt();
 
 			Book book = null;
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
+				book.setTimesBorrowed(timesBorrowed);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -545,9 +547,11 @@ public class Library {
 			String publisher = input.next();
 			String genre = input.next();
 			String shelf = input.next();
+			int timesBorrowed = input.nextInt();
 			Book book = null;
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
+				book.setTimesBorrowed(timesBorrowed);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
