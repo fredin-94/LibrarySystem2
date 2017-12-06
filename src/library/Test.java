@@ -278,7 +278,6 @@ public class Test {
                 //library.removeBookFromDelayed
             }
 
-
             removeLineFromFile("res/AllBooks.txt", parseBookToString(book));
 		} else {
 			System.out.println("There's no book with that title");
@@ -370,25 +369,27 @@ public class Test {
 		if (title.equals("") || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
-			System.out.println("about to borrow book yay");
-			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
-			writeBookToFile("res/LoanedBooks.txt", book); 
-			writeBookToFile("res/"+psn+"CurrentLoans.txt", book);
-			writeBookToFile("res/"+psn+"LoanHistory.txt", book);
-			System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
-			library.borrowBook(title, psn);
-			ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
-			ses.scheduleAtFixedRate(new Runnable() {
-				@Override
-				public void run() {
-					library.isDelayed(retrieveBook(library.getLoanedBooks(), title));
-				}
-			}, 0, 1, TimeUnit.HOURS);
+			if (!book.equals(null)) {
+				System.out.println("about to borrow book yay");
+				removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
+				writeBookToFile("res/LoanedBooks.txt", book);
+				writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
+				writeBookToFile("res/" + psn + "LoanHistory.txt", book);
+				System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
+				library.borrowBook(title, psn);
+				ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+				ses.scheduleAtFixedRate(new Runnable() {
+					@Override
+					public void run() {
+						library.isDelayed(retrieveBook(library.getLoanedBooks(), title));
+					}
+				}, 0, 1, TimeUnit.HOURS);
+			}
 		}
 	}
 
 	public void returnBook() throws Exception {
-		String skipString = scanner.nextLine();
+		scanner.nextLine();
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine();
 		
