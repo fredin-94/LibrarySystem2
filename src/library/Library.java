@@ -310,7 +310,6 @@ public class Library {
 
 		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnummer);
 		Book book = findBookBy(TITLE, bookTitle);
-		// assumes default loanPeriod
 		sortBooksBy(TITLE);
 
 		if (customer == null) {
