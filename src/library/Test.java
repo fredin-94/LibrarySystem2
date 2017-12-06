@@ -366,6 +366,10 @@ public class Test {
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine().trim();
 		Book book = retrieveBook(library.getBooks(), title);
+		Customer customer = retrieveCustomer(psn);
+		if(customer != null && book != null) {
+			
+		
 		if (title.equals("") || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
@@ -385,6 +389,9 @@ public class Test {
 					}
 				}, 0, 1, TimeUnit.HOURS);
 			}
+		}
+		}else {
+			throw new Exception("Customer Not Registered Or Book Not Found");
 		}
 	}
 
