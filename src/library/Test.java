@@ -399,6 +399,8 @@ public class Test {
 		scanner.nextLine();
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine();
+		Customer customer1 = retrieveCustomer(psn);
+		if( customer1 != null) {
 		
 		for (Customer customer : retrieveCustomerDirectory()) {//going into the customer arraylist
 			if (customer.getPersonnummer().equals(psn)) {
@@ -428,6 +430,9 @@ public class Test {
 			//System.out.println("In return book: removed book from loaned books arraylist, added to books arraylist, removed from customer current loans arraylist");
 			
 			System.out.println("Book returned successfully");
+		}
+		}else {
+			throw new Exception("Customer Not Registered");
 		}
 	}
 
