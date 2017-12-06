@@ -20,10 +20,6 @@ public class Test {
 	public Test() {
 		library = new Library();
 	}
-
-	public LocalDateTime getTheDate() {
-		return library.getDate();
-	}
 	
 	public void run() {
 		int userInput;
