@@ -365,25 +365,36 @@ public class Test {
 		String title = scanner.nextLine().trim();
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine().trim();
-		Book book = retrieveBook(library.getBooks(), title);
+		Book book = retrieveBook(library.getAllBooks(), title);
+
 		if (title.equals("") || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
+			// makes sure the library actually has the book in question
 			if (!book.equals(null)) {
-				System.out.println("about to borrow book yay");
-				removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
-				writeBookToFile("res/LoanedBooks.txt", book);
-				writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
-				writeBookToFile("res/" + psn + "LoanHistory.txt", book);
-				System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
-				library.borrowBook(title, psn);
-				ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
-				ses.scheduleAtFixedRate(new Runnable() {
-					@Override
-					public void run() {
-						library.isDelayed(retrieveBook(library.getLoanedBooks(), title));
+				// makes sure the book is currently available for borrowing.
+				for(Book b : library.getBooks()){
+					if(b.getTitle().equals(title)){
+						removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
+						writeBookToFile("res/LoanedBooks.txt", book);
+						writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
+						writeBookToFile("res/" + psn + "LoanHistory.txt", book);
+						System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
+						library.borrowBook(title, psn);
+						ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+						ses.scheduleAtFixedRate(new Runnable() {
+							@Override
+							public void run() {
+								library.isDelayed(retrieveBook(library.getLoanedBooks(), title));
+							}
+						}, 0, 1, TimeUnit.HOURS);
+					} else {
+						System.out.println(title + " is currently borrowed by another customer and will be returned " + book.getReturnDate());
 					}
-				}, 0, 1, TimeUnit.HOURS);
+				}
+			} else {
+				System.out.println(title + " isn't currently owned by the library. Please retry.");
+				borrowBook();
 			}
 		}
 	}
@@ -482,12 +493,12 @@ public class Test {
 		System.out.println(library.toString());
 	}
 
-	public void writeCustomerToFile(String name, String address, String phoneNumber, String psn) {
+	public void writeCustomerToFile(String name, String address, String psn, String phoneNumber) {
 		// should allow a customer to be added to txt without entering phonenumber
-		if (!name.equals("") && !address.equals("") && !phoneNumber.equals("") && !psn.equals("")) {
+		if (!name.equals("") && !address.equals("") && !psn.equals("")) {
 
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/customer.txt", true)))) {
-				out.println(name + "/" + address + "/" + phoneNumber + "/" + psn);
+				out.println(name + "/" + address + "/" + psn + "/" + phoneNumber);
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}

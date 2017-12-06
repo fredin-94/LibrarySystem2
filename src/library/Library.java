@@ -280,14 +280,18 @@ public class Library {
 
 	/* register books */
 	public void addBook(Book book) {
-		for (Book aBook : allBooks) {
+		if(!allBooks.contains(book)){
+			allBooks.add(book);
+		}
+		books.add(book);
+		/*for (Book aBook : allBooks) {
 			if (book == aBook) {
 				break;
 			} else {
 				allBooks.add(book);
 			}
 		}
-		books.add(book);
+		books.add(book);*/
 	}
 
 	public void removeBook(Book book) {
