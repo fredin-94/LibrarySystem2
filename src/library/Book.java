@@ -142,7 +142,6 @@ public class Book {
 	public void incrementTimesBorrowed() {
 		this.timesBorrowed++;
 	}
-	
 	public void setTimesBorrowed(int timesBorrowed) {
 		this.timesBorrowed = timesBorrowed;
 	}

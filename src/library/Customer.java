@@ -34,7 +34,7 @@ public class Customer implements Serializable {
 		this.currentLoans = new ArrayList<Book>();
 		this.loanHistory = new ArrayList<Book>();
 		this.debt = 0;
-		if (personnummer.matches("[0-9]+") && (personnummer.length() == 10 || personnummer.length() == 12)) {// This																								// (number).
+		if (personnummer.matches("[0-9]+") && personnummer.length() == 10 || personnummer.length() == 12) {// This																								// (number).
 			this.personnummer = personnummer;
 		} else {
 			throw new Exception("Personnummer MUST consist of 10 or 12 digits");
