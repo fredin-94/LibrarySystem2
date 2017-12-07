@@ -20,6 +20,7 @@ public class Library {
 	private ArrayList<Book> loanedBooks;
 	private ArrayList<Book> delayedBooks;
 	private ArrayList<Customer> customers;
+	ArrayList<Book> topTen; //added by me
 	private static LocalDateTime date;
 
 	public Library() {
@@ -61,6 +62,7 @@ public class Library {
 
 		try {
 			bookDirectory("res/AllBooks.txt");
+<<<<<<< HEAD
 =======
 			//bookDirectory("res/bookDirectory.txt");
 			//bookDirectory("res/LoanedBooks.txt");
@@ -71,6 +73,12 @@ public class Library {
 			importBooksFrom("res/delayedBooks.txt");
 			importBooksFrom("res/AllBooks.txt");
 >>>>>>> 26ab557bd9314b080ca522a9b54e0888b045c556
+=======
+//			importBooksFrom("res/bookDirectory.txt");
+//			importBooksFrom("res/LoanedBooks.txt");
+//			importBooksFrom("res/delayedBooks.txt");
+//			importBooksFrom("res/AllBooks.txt");
+>>>>>>> 8a32fe6f516a057f96c957d77ec2beef06df5563
 		} catch (Exception e) {
 			System.out.println("Unable to initialize all books directory");
 			e.printStackTrace();
@@ -112,6 +120,20 @@ public class Library {
 	 */
 	public static LocalDateTime getDate() {
 		return date;
+<<<<<<< HEAD
+	}
+
+	public void addDays(int Days) {
+		this.date = this.getDate().plusDays(Days);
+		for (Book book : loanedBooks) {
+			this.isDelayed(book);
+		}
+
+	}
+
+	public void addWeeks(int weeks) {
+		date = date.plusWeeks(weeks);
+=======
 	}
 
 	public void addDays(int Days) {
@@ -131,11 +153,22 @@ public class Library {
 
 	public void addMonths(int months) {
 		this.date = this.date.plusMonths(months);
+>>>>>>> 8a32fe6f516a057f96c957d77ec2beef06df5563
 		for (Book book : loanedBooks) {
 			this.isDelayed(book);
 		}
 	}
 
+<<<<<<< HEAD
+	public void addMonths(int months) {
+		this.date = this.date.plusMonths(months);
+		for (Book book : loanedBooks) {
+			this.isDelayed(book);
+		}
+	}
+
+=======
+>>>>>>> 8a32fe6f516a057f96c957d77ec2beef06df5563
 	public void addyears(int years) {
 		this.date = this.date.plusYears(years);
 		for (Book book : loanedBooks) {
@@ -348,6 +381,8 @@ public class Library {
 		customer.addToLoanHistory(book);
 		loanedBooks.add(book);
 		books.remove(book);
+		System.out.println(book.getTitle() + " was successfully lent to " + customer.getName() + "."
+				+ "\nTo be returned no later than: " + book.getReturnDate().toLocalDate());
 	}
 
 	public void extendLoanPeriod(String personnumer, String bookTitle) throws Exception {
@@ -405,15 +440,25 @@ public class Library {
 	/* TODO: ---------------- Extra ----------------------- */
 	
 	public ArrayList<Book> getTopTen() {
-		ArrayList<Book> topTen = new ArrayList<Book>();
+		topTen = new ArrayList<Book>();
 		ArrayList<Book> oneCopy = new ArrayList<Book>();
 		this.sortAllBooksBy(TITLE);
 
+		try {
+			topTen.add(new Book("new top10", "aa", "a", "a", "a"));
+			oneCopy.add(new Book("new copy", "aa", "a", "a", "a"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for (int i = 0; i < this.allBooks.size(); i++) {
+			//System.out.println("gettopten 1st forloop");
+			
 			int numOfCopies = 0;
 			Book book = allBooks.get(i);
 			oneCopy.add(book);
 			for (int j = i; j < this.allBooks.size(); j++) {
+			//	System.out.println("Gettopten 2nd forloop");
 				if (book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle().trim())) {// trims
 					numOfCopies++;
 				}
@@ -421,17 +466,19 @@ public class Library {
 			i += numOfCopies;
 			numOfCopies = 0;
 		}
+		
+		for(int i = 0; i < 10; i++) {
+			System.out.println("gettopten forloop after tryblock");
+			Book theBook = oneCopy.get(i); 
+			topTen.add(theBook);
+		}
 
 		try {
+			System.out.println("Gettopten tryblock");
 			for (Book book : oneCopy)
 			Collections.sort(oneCopy, Comparator.comparing(getBookFunction(TIMESBORROWED)));
 		} catch (InvalidKeyException ike) {
-			ike.printStackTrace();
-		}
-		
-		for(int i = 0; i < 10; i++) {
-			Book theBook = oneCopy.get(i); 
-			topTen.add(theBook);
+			System.out.println("In gettopten: was not able to finish try block");
 		}
 
 		return topTen;
@@ -590,7 +637,23 @@ public class Library {
 		}
 	}
 
-	@Override
+	
+	public String toStringForDisplayAll() {
+		String s = "\n// ========== Books ========== //\n";
+		List<String> sList = new ArrayList<>();
+		for (int i = 0; i < this.books.size(); i++) {
+			Book book = this.books.get(i);
+			if (!(sList.contains(book.toString()))) {
+				sList.add(book.toString());
+				s += book.toString()
+						+ "\n • Copies available: " + getCopiesOfTitle(book.getTitle())
+						+ "\n----------------------------------------------------------\n";
+			}
+		}
+		return s;
+	}
+	
+	
 	public String toString() {
 		String s = "\n// ========== Books ========== //\n";
 		List<String> sList = new ArrayList<>();
