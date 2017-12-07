@@ -262,12 +262,9 @@ public class Test {
 		}
 	}
 
-	public void removeBook() { // WILL THIS WORK OR NOT???
-		// ADD FUNCTION TO REMOVE FROM TXT FILE
-		// TODO: check if books arraylist contains ALL books in the library ever or only
-		// the ones currently in stock
+	public void removeBook() {
 		System.out.println("Enter title of book to remove: ");
-		String title = scanner.nextLine();
+		String title = scanner.nextLine().trim();
 		Book book = retrieveBook(library.getAllBooks(), title);
 		// ---- Most of this will prob be deleted if Oliver implements the functionality in Library.java.-----
 		if(!book.equals(null)) {
@@ -281,7 +278,6 @@ public class Test {
                 removeLineFromFile("res/delayedBooks.txt", parseBookToString(book));
                 //library.removeBookFromDelayed
             }
-
 
             removeLineFromFile("res/AllBooks.txt", parseBookToString(book));
 		} else {
