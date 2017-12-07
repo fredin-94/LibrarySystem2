@@ -515,7 +515,7 @@ public class Test {
 		String phoneNumber = scanner.nextLine().trim();
 
 		try {
-			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
+			if (!name.equals("") && !address.equals("") && !psn.equals("") && psn.length()>9) {
 				if(phoneNumber.equals("")) {
 					createFile(psn + "LoanHistory");
 					createFile(psn+"CurrentLoans");
@@ -528,7 +528,7 @@ public class Test {
 				System.out.println("Added " + name + " to customer database");
 				writeCustomerToFile(name, address, psn, phoneNumber);
 			}
-
+			System.out.println("The customer psn (social security number) is too short. Customer not added.");
 		} catch (Exception e) {
 			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
 			addCustomer();
