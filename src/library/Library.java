@@ -34,17 +34,6 @@ public class Library {
 
 		try {
 			customerDirectory();
-<<<<<<< HEAD
-			//bookDirectory("res/bookDirectory.txt");
-			//bookDirectory("res/LoanedBooks.txt");
-			//bookDirectory("res/delayedBooks.txt");
-			//bookDirectory("res/AllBooks.txt");
-			importBooksFrom("res/bookDirectory.txt");
-			importBooksFrom("res/LoanedBooks.txt");
-			importBooksFrom("res/delayedBooks.txt");
-			importBooksFrom("res/AllBooks.txt");
-		} catch (Exception e) {
-=======
 			 bookDirectory("res/bookDirectory.txt");
 			 bookDirectory("res/LoanedBooks.txt");
 			 bookDirectory("res/delayedBooks.txt");
@@ -74,7 +63,6 @@ public class Library {
 		try {
 			bookDirectory("res/AllBooks.txt");
 		} catch (Exception e) {
->>>>>>> gitshwifty
 			System.out.println("Unable to initialize all books directory");
 			e.printStackTrace();
 		}
@@ -290,6 +278,8 @@ public class Library {
 		customer.addToLoanHistory(book);
 		loanedBooks.add(book);
 		books.remove(book);
+		System.out.println(book.getTitle() + " was successfully lent to " + customer.getName() + "."
+				+ "\nTo be returned no later than: " + book.getReturnDate().toLocalDate());
 	}
 
 	public void extendLoanPeriod(String personnumer, String bookTitle) throws Exception {
