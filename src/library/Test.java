@@ -267,7 +267,9 @@ public class Test {
 		Book book = retrieveBook(library.getAllBooks(), title);
 		// ---- Most of this will prob be deleted if Oliver implements the functionality in Library.java.-----
 		if(!book.equals(null)) {
+			System.out.println("book not null");
 		    if(isInList(library.getBooks(), book)) {
+		    	System.out.println("book is in available");
                 removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
 				library.removeBook(book);
             }else if(isInList(library.getLoanedBooks(), book)){
@@ -294,11 +296,10 @@ public class Test {
 	}
 
 	public boolean isInList(ArrayList<Book> listOfBooks, Book book){
-        for(Book b : listOfBooks){
-            if(b.equals(book)){
-                return true;
-            }
-        }
+		System.out.println("inList");
+		if(listOfBooks.contains(retrieveBook(listOfBooks, book.getTitle()))) {
+			return true;
+		}
         return false;
     }
 
@@ -323,6 +324,7 @@ public class Test {
 	}
 
 	public void removeLineFromFile(String path, String lineToRemove) {
+		int count = 0;
 		try {
 			File dirFile = new File(path);
 			File tmpFile = new File(dirFile.getAbsolutePath() + ".tmp");
@@ -333,10 +335,18 @@ public class Test {
 				// I think it's saving a new line character at the end from when the user
 				// presses enter, therefore
 				// a .trim() is required.
-				if (!line.equals(lineToRemove.trim())) {
+				if (!line.equals(lineToRemove.trim()) || count > 0) {
 					// GONNA DELETE ALL BOOKS WITH THAT TITLE, FIX PLS
 					pw.println(line);
 					pw.flush();
+				} else {
+					if(count == 0) {
+						pw.println("");
+						pw.flush();
+					} else {
+						continue;
+					}
+					count++;
 				}
 			}
 			System.gc();
