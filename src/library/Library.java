@@ -571,11 +571,17 @@ public class Library {
 
 	@Override
 	public String toString() {
-		String res = "";
-		for (Book book : books) {
-			res += book.toString() + System.lineSeparator();
+		String s = "\n// ========== Books ========== //\n";
+		List<String> sList = new ArrayList<>();
+		for (int i = 0; i < this.books.size(); i++) {
+			Book book = this.books.get(i);
+			if (!(sList.contains(book.toString()))) {
+				sList.add(book.toString());
+				s += book.toString()
+						+ "\n • Copies available: " + getCopiesOfTitle(book.getTitle())
+						+ "\n----------------------------------------------------------\n";
+			}
 		}
-		System.out.println(res);
-		return res;
+		return s;
 	}
 }
