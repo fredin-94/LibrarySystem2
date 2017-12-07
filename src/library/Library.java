@@ -32,7 +32,6 @@ public class Library {
 
 		try {
 			customerDirectory();
-<<<<<<< HEAD
 			 bookDirectory("res/bookDirectory.txt");
 			 bookDirectory("res/LoanedBooks.txt");
 			 bookDirectory("res/delayedBooks.txt");
@@ -61,7 +60,6 @@ public class Library {
 
 		try {
 			bookDirectory("res/AllBooks.txt");
-=======
 			//bookDirectory("res/bookDirectory.txt");
 			//bookDirectory("res/LoanedBooks.txt");
 			//bookDirectory("res/delayedBooks.txt");
@@ -70,7 +68,6 @@ public class Library {
 			importBooksFrom("res/LoanedBooks.txt");
 			importBooksFrom("res/delayedBooks.txt");
 			importBooksFrom("res/AllBooks.txt");
->>>>>>> 26ab557bd9314b080ca522a9b54e0888b045c556
 		} catch (Exception e) {
 			System.out.println("Unable to initialize all books directory");
 			e.printStackTrace();
