@@ -633,6 +633,16 @@ public class Test {
 	public void extendLoan() {
 		// wait for them to implement - tell them to implement?
 		// Loan extension should be in Library class, we should only call it from here.
+		System.out.println("Enter the personal security number of the customer:");
+		scanner.nextLine();
+		String customerPsn = scanner.nextLine();
+		System.out.println("Enter the book title:");
+		String bookTitle = scanner.nextLine();
+		try {
+			library.extendLoanPeriod(customerPsn, bookTitle);
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	}
 
 	// -- Time handling methods - do we need?? --//
@@ -693,7 +703,7 @@ public class Test {
 
 	public void showCustomerLoanHistory() { // WILL THIS WORK?? ----- IT NOW WORKS
 		System.out.println("Enter the personal security number of the customer:");
-		String skipString = scanner.nextLine();
+		scanner.nextLine();
 		String customerPsn = scanner.nextLine();
 		System.out.println(customerPsn);
 		Customer customer = retrieveCustomer(customerPsn.trim());
@@ -717,7 +727,7 @@ public class Test {
 
 	public void showCustomerLCurrentLoans() { // WILL THIS WORK?? ----- IT NOW WORKS
 		System.out.println("Enter the personal security number of the customer:");
-		String skipString = scanner.nextLine();
+		scanner.nextLine();
 		String customerPsn = scanner.nextLine();
 		Customer customer = retrieveCustomer(customerPsn.trim());
 
