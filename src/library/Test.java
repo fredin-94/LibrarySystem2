@@ -181,7 +181,7 @@ public class Test {
 			break;
 		case 5:
 			System.out.println("Top 10 books: ");
-			//library.showTopBooks();
+			library.getTopTen();
 			break;
 		case 0:
 			run();
@@ -242,6 +242,7 @@ public class Test {
 			library.addBook(new Book(title, author, publisher, genre, shelf));
 			writeBookToFile("res/AllBooks.txt", new Book(title, author, publisher, genre, shelf));
 			writeBookToFile("res/bookDirectory.txt", new Book(title, author, publisher, genre, shelf));
+			System.out.println("Added " + title + " to library");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -262,7 +263,7 @@ public class Test {
 		}
 	}
 
-	public void removeBook() {
+	public void removeBook() { //need to change this!! the ifelse statements dont seem to work!!
 		System.out.println("Enter title of book to remove: ");
 		String title = scanner.nextLine().trim();
 		Book book = retrieveBook(library.getAllBooks(), title);
@@ -278,7 +279,7 @@ public class Test {
                 removeLineFromFile("res/delayedBooks.txt", parseBookToString(book));
                 //library.removeBookFromDelayed
             }
-
+		    removeLineFromFile("res/bookDirectory.txt", parseBookToString(book)); //denna borde inte va här!
             removeLineFromFile("res/AllBooks.txt", parseBookToString(book));
 		} else {
 			System.out.println("There's no book with that title");
@@ -378,6 +379,9 @@ public class Test {
 			writeBookToFile("res/"+psn+"CurrentLoans.txt", book);
 			writeBookToFile("res/"+psn+"LoanHistory.txt", book);
 			System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
+			library.addDays(14);
+			System.out.println("The book needs to be returned after 14 days, which is on: " + library.getDate());
+			library.addDays(-14);
 			library.borrowBook(title, psn);
 			ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
 			ses.scheduleAtFixedRate(new Runnable() {
