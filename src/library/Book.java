@@ -130,6 +130,21 @@ public class Book {
 	public void incrementTimesBorrowed() {
 		this.timesBorrowed++;
 	}
+	
+	public void firstLettersToUpperCase() {
+		this.title = firstLetterInStringToUpperCase(this.title);
+		ArrayList<String> list = new ArrayList<>();
+		for (int i = 0; i < this.authors.size(); i++) list.add(firstLetterInStringToUpperCase(this.authors.get(i)));
+		this.authors = list;
+		this.genre = firstLetterInStringToUpperCase(this.genre);
+		this.publisher = firstLetterInStringToUpperCase(this.publisher);
+		this.shelf = firstLetterInStringToUpperCase(this.shelf);
+	}
+	private String firstLetterInStringToUpperCase(String whichString) {
+		String s = (whichString.charAt(0) + "").toUpperCase();
+		for (int i = 1; i < whichString.length(); i++) s += whichString.charAt(i);
+		return s;
+	}
 
 	@Override
 	public String toString() {

@@ -329,17 +329,25 @@ public class Library {
 		ArrayList<Book> oneCopy = new ArrayList<Book>();
 		this.sortAllBooksBy(TITLE);
 		int numOfCopies = 0;
-
+		System.out.println("In gettopten");
+		try {
+			allBooks.add(new Book("new book", "mu", "mu", "ma", "mama"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for (int i = 0; i < this.allBooks.size(); i++) {
+			System.out.println("In gettopten first for loop");
 			Book book = allBooks.get(i);
 			oneCopy.add(book);
 
 			for (int j = i; j < this.allBooks.size(); j++) {
+				System.out.println("In gettopten second 4 loop");
 				if (book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle().trim())) {// trims
 					numOfCopies++;
 				}
 			}
-
+			System.out.println("In gettopten after forloops");
 			i += numOfCopies;
 			numOfCopies = 0;
 		}
