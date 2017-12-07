@@ -34,14 +34,14 @@ public class Library {
 
 		try {
 			customerDirectory();
-			//bookDirectory("res/bookDirectory.txt");
-			//bookDirectory("res/LoanedBooks.txt");
-			//bookDirectory("res/delayedBooks.txt");
-			//bookDirectory("res/AllBooks.txt");
-			importBooksFrom("res/bookDirectory.txt");
-			importBooksFrom("res/LoanedBooks.txt");
-			importBooksFrom("res/delayedBooks.txt");
-			importBooksFrom("res/AllBooks.txt");
+			bookDirectory("res/bookDirectory.txt");
+			bookDirectory("res/LoanedBooks.txt");
+			bookDirectory("res/delayedBooks.txt");
+			bookDirectory("res/AllBooks.txt");
+//			importBooksFrom("res/bookDirectory.txt");
+//			importBooksFrom("res/LoanedBooks.txt");
+//			importBooksFrom("res/delayedBooks.txt");
+//			importBooksFrom("res/AllBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize all books directory");
 			e.printStackTrace();
@@ -330,19 +330,13 @@ public class Library {
 		this.sortAllBooksBy(TITLE);
 		int numOfCopies = 0;
 		System.out.println("In gettopten");
-		try {
-			allBooks.add(new Book("new book", "mu", "mu", "ma", "mama"));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		for (int i = 0; i < this.allBooks.size(); i++) {
 			System.out.println("In gettopten first for loop");
 			Book book = allBooks.get(i);
 			oneCopy.add(book);
 
 			for (int j = i; j < this.allBooks.size(); j++) {
-				System.out.println("In gettopten second 4 loop");
+				System.out.println("In gettopten second forloop");
 				if (book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle().trim())) {// trims
 					numOfCopies++;
 				}
@@ -353,8 +347,10 @@ public class Library {
 		}
 		
 		try {
+			System.out.println("in gettopten try ");
 			for (Book book : oneCopy)
 			Collections.sort(oneCopy, Comparator.comparing(getBookFunction(TIMESBORROWED)));
+			//add them to topten arraylist here?
 		} catch (InvalidKeyException ike) {
 			ike.printStackTrace();
 		}
@@ -552,8 +548,8 @@ public class Library {
 		}
 	}
 
-	@Override
-	public String toString() {
+	
+	public String toStringForDisplayAll() {
 		String s = "\n// ========== Books ========== //\n";
 		List<String> sList = new ArrayList<>();
 		for (int i = 0; i < this.books.size(); i++) {
@@ -566,5 +562,15 @@ public class Library {
 			}
 		}
 		return s;
+	}
+	
+	
+	public String toString() {
+		String res = "";
+		for (Book book : books) {
+			res += book.toString() + System.lineSeparator();
+		}
+		System.out.println(res);
+		return res;
 	}
 }
