@@ -3,6 +3,7 @@ package library;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import static library.Library.bookKey.*;
 
 public class Book {
 
@@ -122,8 +123,19 @@ public class Book {
 		}
 	}
 
-	public void authors2UpperCase() {
-		for (int i = 0; i < this.authors.size(); i++) {Character.toUpperCase(this.authors.get(i).charAt(0));}
+	public void firstLettersToUpperCase() {
+		this.title = firstLetterInStringToUpperCase(this.title);
+		ArrayList<String> list = new ArrayList<>();
+		for (int i = 0; i < this.authors.size(); i++) list.add(firstLetterInStringToUpperCase(this.authors.get(i)));
+		this.authors = list;
+		this.genre = firstLetterInStringToUpperCase(this.genre);
+		this.publisher = firstLetterInStringToUpperCase(this.publisher);
+		this.shelf = firstLetterInStringToUpperCase(this.shelf);
+	}
+	private String firstLetterInStringToUpperCase(String whichString) {
+		String s = (whichString.charAt(0) + "").toUpperCase();
+		for (int i = 1; i < whichString.length(); i++) s += whichString.charAt(i);
+		return s;
 	}
 
 
@@ -136,14 +148,13 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "\n" + "----------------------------------------------------------" + System.lineSeparator() +
-				"Book Title: " + this.title + System.lineSeparator() +
-				", Authors: " + this.authors + System.lineSeparator() +
-				", Genre: " + this.genre + System.lineSeparator() +
-				", Publisher: " + this.publisher + System.lineSeparator() +
-				", Shelf: " + this.shelf + System.lineSeparator() +
-				", Times Borrowed: " + this.timesBorrowed + System.lineSeparator() +
-				"----------------------------------------------------------" + "\n";
+		return "\n" + "----------------------------------------------------------\n" +
+				"Book Title: " + this.title +
+				"\n • Authors: " + this.authors +
+				"\n • Genre: " + this.genre +
+				"\n • Publisher: " + this.publisher +
+				"\n • Shelf: " + this.shelf +
+				"\n • Times Borrowed: " + this.timesBorrowed;
 	}
 
 }

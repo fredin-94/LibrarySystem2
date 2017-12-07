@@ -1,7 +1,7 @@
 package library;
-
+import library.Library;
 public class Menu {
-
+	
 	public void getWelcomeScreen() {
 		System.out.println();
 		System.out.println(" =================================================== ");
@@ -10,7 +10,7 @@ public class Menu {
 		System.out.println(" ==                                               == ");
 		System.out.println(" ==            Established 1817                   == ");
 		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
+		System.out.println(" ==          "+ Library.getDate() + "              == ");
 		System.out.println(" =================================================== ");
 		System.out.println();
 	}

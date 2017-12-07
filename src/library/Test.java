@@ -1,8 +1,8 @@
 package library;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -20,7 +20,6 @@ public class Test {
 	public Test() {
 		library = new Library();
 	}
-
 	public void run() {
 		int userInput;
 		do {
@@ -237,9 +236,11 @@ public class Test {
 		String shelf = scanner.nextLine();
 
 		try {
-			library.addBook(new Book(title, author, publisher, genre, shelf));
-			writeBookToFile("res/AllBooks.txt", new Book(title, author, publisher, genre, shelf));
-			writeBookToFile("res/bookDirectory.txt", new Book(title, author, publisher, genre, shelf));
+			Book b = new Book(title, author, publisher, genre, shelf);
+			library.addBook(b);
+			writeBookToFile("res/AllBooks.txt", b);
+			writeBookToFile("res/bookDirectory.txt", b);
+			System.out.println(b.getTitle() + " was successfully added to the library.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -596,7 +597,7 @@ public class Test {
 	public void showCustomers() {
 		String res = "";
 		try {
-			for (Customer c : retrieveCustomerDirectory()) {
+			for (Customer c : library.getCustomers()) {
 				if (c != null) {
 					res += c.toString();
 				}
@@ -604,6 +605,7 @@ public class Test {
 		} catch (Exception e) {
 			e.getMessage();
 		}
+		if (res.equals("")) res = "No customers are registered.";
 		System.out.println(res);
 	}
 
