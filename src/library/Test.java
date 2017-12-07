@@ -162,11 +162,13 @@ public class Test {
 	public void handleExtra(int option) {
 		switch (option) {
 		case 1:
+			System.out.println("All lent out books: ");
 			for (int i = 0; i < library.getLoanedBooks().size(); i++) {
 				System.out.println(library.getLoanedBooks().get(i).toString());
 			}
 			break;
 		case 2:
+			System.out.println("All delayed books: ");
 			for (int i = 0; i < library.getDelayedBooks().size(); i++) {
 				System.out.println(library.getDelayedBooks().get(i).toString());
 			}
@@ -179,7 +181,11 @@ public class Test {
 			break;
 		case 5:
 			System.out.println("Top 10 books: ");
-			// library.showTopBooks();
+
+			// library.getTopTen();
+			for (int i = 0; i < 10; i++) {
+				System.out.println(library.getTopTen().get(i).toString());
+			}
 			break;
 		case 0:
 			run();
@@ -237,11 +243,10 @@ public class Test {
 		String shelf = scanner.nextLine();
 
 		try {
-			Book b = new Book(title, author, publisher, genre, shelf);
-			library.addBook(b);
-			writeBookToFile("res/AllBooks.txt", b);
-			writeBookToFile("res/bookDirectory.txt", b);
-			System.out.println(b.getTitle() + " was successfully added to the library.");
+			library.addBook(new Book(title, author, publisher, genre, shelf));
+			writeBookToFile("res/AllBooks.txt", new Book(title, author, publisher, genre, shelf));
+			writeBookToFile("res/bookDirectory.txt", new Book(title, author, publisher, genre, shelf));
+			System.out.println("Added " + title + " to library");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -252,8 +257,8 @@ public class Test {
 		if (!book.getTitle().equals("") && !book.getAuthor().equals("") && !book.getPublisher().equals("")
 				&& !book.getGenre().equals("") && !book.getShelf().equals("")) {
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
-				out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-"
-						+ book.getGenre() + "-" + book.getShelf() + "-" + book.getTimesBorrowed());
+				out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getGenre()
+						+ "-" + book.getShelf() + "-" + book.getTimesBorrowed());
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
@@ -264,16 +269,17 @@ public class Test {
 		}
 	}
 
-	public void removeBook() {
+	public void removeBook() { // need to change this!! the ifelse statements dont seem to work!!
 		System.out.println("Enter title of book to remove: ");
 		String title = scanner.nextLine().trim();
 		Book book = retrieveBook(library.getAllBooks(), title);
-		// ---- Most of this will prob be deleted if Oliver implements the functionality in Library.java.-----
-		if(!book.equals(null)) {
+		// ---- Most of this will prob be deleted if Oliver implements the functionality
+		// in Library.java.-----
+		if (!book.equals(null)) {
 			System.out.println("book not null");
-		    if(isInList(library.getBooks(), book)) {
-		    	System.out.println("book is in available");
-                removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
+			if (isInList(library.getBooks(), book)) {
+				System.out.println("book is in available");
+				removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
 				library.removeBook(book);
 			} else if (isInList(library.getLoanedBooks(), book)) {
 				removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
@@ -282,7 +288,7 @@ public class Test {
 				removeLineFromFile("res/delayedBooks.txt", parseBookToString(book));
 				// library.removeBookFromDelayed
 			}
-
+			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book)); // denna borde inte va här!
 			removeLineFromFile("res/AllBooks.txt", parseBookToString(book));
 		} else {
 			System.out.println("There's no book with that title");
@@ -298,13 +304,13 @@ public class Test {
 		return null;
 	}
 
-	public boolean isInList(ArrayList<Book> listOfBooks, Book book){
+	public boolean isInList(ArrayList<Book> listOfBooks, Book book) {
 		System.out.println("inList");
-		if(listOfBooks.contains(retrieveBook(listOfBooks, book.getTitle()))) {
+		if (listOfBooks.contains(retrieveBook(listOfBooks, book.getTitle()))) {
 			return true;
 		}
-        return false;
-    }
+		return false;
+	}
 
 	public Customer retrieveCustomer(String psn) {
 		for (Customer customer : library.getCustomers()) {
@@ -343,7 +349,7 @@ public class Test {
 					pw.println(line);
 					pw.flush();
 				} else {
-					if(count == 0) {
+					if (count == 0) {
 						pw.println("");
 						pw.flush();
 					} else {
@@ -359,10 +365,10 @@ public class Test {
 			boolean renameSuccess = tmpFile.renameTo(dirFile);
 
 			if (success) {
-				System.out.println("Old file deleted");
+				// System.out.println("Old file deleted");
 			}
 			if (renameSuccess) {
-				System.out.println("file renamed");
+				// System.out.println("file renamed");
 			}
 		} catch (Exception e) {
 			// e.getMessage();
@@ -386,8 +392,8 @@ public class Test {
 			// makes sure the library actually has the book in question
 			if (!book.equals(null)) {
 				// makes sure the book is currently available for borrowing.
-				for(Book b : library.getBooks()){
-					if(b.getTitle().equals(title)){
+				for (Book b : library.getBooks()) {
+					if (b.getTitle().equals(title)) {
 						removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
 						writeBookToFile("res/LoanedBooks.txt", book);
 						writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
@@ -402,7 +408,8 @@ public class Test {
 							}
 						}, 0, 1, TimeUnit.HOURS);
 					} else {
-						System.out.println(title + " is currently borrowed by another customer and will be returned " + book.getReturnDate());
+						System.out.println(title + " is currently borrowed by another customer and will be returned "
+								+ book.getReturnDate());
 					}
 				}
 			} else {
@@ -535,7 +542,7 @@ public class Test {
 		String phoneNumber = scanner.nextLine().trim();
 
 		try {
-			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
+			if (!name.equals("") && !address.equals("") && !psn.equals("") && psn.length() > 9) {
 				if (phoneNumber.equals("")) {
 					createFile(psn + "LoanHistory");
 					createFile(psn + "CurrentLoans");
@@ -548,7 +555,7 @@ public class Test {
 				System.out.println("Added " + name + " to customer database");
 				writeCustomerToFile(name, address, psn, phoneNumber);
 			}
-
+			System.out.println("The customer psn (social security number) is too short. Customer not added.");
 		} catch (Exception e) {
 			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
 			addCustomer();
@@ -698,13 +705,13 @@ public class Test {
 					library.getCustomerLoanHistory(c);
 
 					for (int i = 0; i < customer.getLoanHistory().size(); i++) {
-						System.out.println(customer.getLoanHistory().get(i).toString());
+						// System.out.println(customer.getLoanHistory().get(i).toString());
 					}
 				}
 			}
 		} catch (Exception e) {
 			System.out.println("No customer registered with that psn");
-			showCustomerLoanHistory();
+			// showCustomerLoanHistory();
 		}
 	}
 
@@ -721,13 +728,13 @@ public class Test {
 					customer.getCurrentLoans();
 
 					for (int i = 0; i < customer.getCurrentLoans().size(); i++) {
-						System.out.println(customer.getCurrentLoans().get(i).toString());
+						// System.out.println(customer.getCurrentLoans().get(i).toString());
 					}
 				}
 			}
 		} catch (Exception e) {
 			System.out.println("No customer registered with that psn");
-			showCustomerLoanHistory();
+			// showCustomerLoanHistory();
 		}
 	}
 
