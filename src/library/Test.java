@@ -181,8 +181,10 @@ public class Test {
 			break;
 		case 5:
 			System.out.println("Top 10 books: ");
-				library.getTopTen();
-
+				//library.getTopTen();
+				for (int i = 0; i < 10; i++) {
+					System.out.println(library.getTopTen().get(i).toString());
+				}
 			break;
 		case 0:
 			run();

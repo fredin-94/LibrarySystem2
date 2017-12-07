@@ -20,6 +20,7 @@ public class Library {
 	private ArrayList<Book> loanedBooks;
 	private ArrayList<Book> delayedBooks;
 	private ArrayList<Customer> customers;
+	ArrayList<Book> topTen; //added by me
 	private static LocalDateTime date;
 	private Timer timer;
 	private TimerTask hourlyTask;
@@ -325,7 +326,7 @@ public class Library {
 	}
 
 	public ArrayList<Book> getTopTen() {
-		ArrayList<Book> topTen = new ArrayList<Book>();
+		topTen = new ArrayList<Book>();
 		ArrayList<Book> oneCopy = new ArrayList<Book>();
 		this.sortAllBooksBy(TITLE);
 
