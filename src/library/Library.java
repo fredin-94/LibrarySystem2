@@ -170,10 +170,10 @@ public class Library {
 			throws NullPointerException {
 		try {
 			for (Customer customer : customers) {
-				System.out.println("search value: " + searchValue);
-				System.out.println(f.apply(customer));
+				//System.out.println("search value: " + searchValue);
+				//System.out.println(f.apply(customer));
 				if (searchValue.equals(((String) f.apply(customer)).toLowerCase())) {
-					System.out.println("found customer");
+					//System.out.println("found customer");
 					return customer;
 				}
 			}

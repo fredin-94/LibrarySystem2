@@ -350,10 +350,10 @@ public class Test {
 			boolean renameSuccess = tmpFile.renameTo(dirFile);
 
 			if (success) {
-				System.out.println("Old file deleted");
+				//System.out.println("Old file deleted");
 			}
 			if (renameSuccess) {
-				System.out.println("file renamed");
+				//System.out.println("file renamed");
 			}
 		} catch (Exception e) {
 			//e.getMessage();
@@ -373,7 +373,7 @@ public class Test {
 		if (title.equals("") || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
-			System.out.println("about to borrow book yay");
+			//System.out.println("about to borrow book yay");
 			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
 			writeBookToFile("res/LoanedBooks.txt", book); 
 			writeBookToFile("res/"+psn+"CurrentLoans.txt", book);
@@ -674,13 +674,13 @@ public class Test {
 					library.getCustomerLoanHistory(c);
 					
 					for (int i = 0; i < customer.getLoanHistory().size(); i++) {
-						System.out.println(customer.getLoanHistory().get(i).toString());
+						//System.out.println(customer.getLoanHistory().get(i).toString());
 					}
 				}
 			}
 		} catch (Exception e) {
 			System.out.println("No customer registered with that psn");
-			showCustomerLoanHistory();
+			//showCustomerLoanHistory();
 		}
 	}
 	public void showCustomerLCurrentLoans() { // WILL THIS WORK?? ----- IT NOW WORKS
@@ -696,13 +696,13 @@ public class Test {
 					customer.getCurrentLoans();
 					
 					for (int i = 0; i < customer.getCurrentLoans().size(); i++) {
-						System.out.println(customer.getCurrentLoans().get(i).toString());
+						//System.out.println(customer.getCurrentLoans().get(i).toString());
 					}
 				}
 			}
 		} catch (Exception e) {
 			System.out.println("No customer registered with that psn");
-			showCustomerLoanHistory();
+			//showCustomerLoanHistory();
 		}
 	}
 
