@@ -34,6 +34,7 @@ public class Library {
 
 		try {
 			customerDirectory();
+<<<<<<< HEAD
 			//bookDirectory("res/bookDirectory.txt");
 			//bookDirectory("res/LoanedBooks.txt");
 			//bookDirectory("res/delayedBooks.txt");
@@ -43,6 +44,37 @@ public class Library {
 			importBooksFrom("res/delayedBooks.txt");
 			importBooksFrom("res/AllBooks.txt");
 		} catch (Exception e) {
+=======
+			 bookDirectory("res/bookDirectory.txt");
+			 bookDirectory("res/LoanedBooks.txt");
+			 bookDirectory("res/delayedBooks.txt");
+			 bookDirectory("res/AllBooks.txt");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
+		try {
+			bookDirectory("res/bookDirectory.txt");
+		} catch (Exception e) {
+			System.out.println("Unable to initialize available books directory");
+		}
+
+		try {
+			bookDirectory("res/LoanedBooks.txt");
+		} catch (Exception e) {
+			System.out.println("Unable to initialize loaned books directory");
+		}
+
+		try {
+			bookDirectory("res/delayedBooks.txt");
+		} catch (Exception e) {
+			System.out.println("Unable to initialize delayed books directory");
+		}
+
+		try {
+			bookDirectory("res/AllBooks.txt");
+		} catch (Exception e) {
+>>>>>>> gitshwifty
 			System.out.println("Unable to initialize all books directory");
 			e.printStackTrace();
 		}
@@ -328,22 +360,20 @@ public class Library {
 		ArrayList<Book> topTen = new ArrayList<Book>();
 		ArrayList<Book> oneCopy = new ArrayList<Book>();
 		this.sortAllBooksBy(TITLE);
-		int numOfCopies = 0;
 
 		for (int i = 0; i < this.allBooks.size(); i++) {
+			int numOfCopies = 0;
 			Book book = allBooks.get(i);
 			oneCopy.add(book);
-
 			for (int j = i; j < this.allBooks.size(); j++) {
 				if (book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle().trim())) {// trims
 					numOfCopies++;
 				}
 			}
-
 			i += numOfCopies;
 			numOfCopies = 0;
 		}
-		
+
 		try {
 			for (Book book : oneCopy)
 			Collections.sort(oneCopy, Comparator.comparing(getBookFunction(TIMESBORROWED)));
@@ -351,6 +381,11 @@ public class Library {
 			ike.printStackTrace();
 		}
 		
+		for(int i = 0; i < 10; i++) {
+			Book theBook = oneCopy.get(i); 
+			topTen.add(theBook);
+		}
+
 		return topTen;
 	}
 
@@ -419,7 +454,7 @@ public class Library {
 			/* TODO: move this to java */
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/delayedBooks.txt", true)))) {
 				out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getGenre()
-						+ "-" + book.getShelf());
+						+ "-" + book.getShelf() + "-" + book.getTimesBorrowed());
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
@@ -449,10 +484,12 @@ public class Library {
 			String publisher = input.next();
 			String genre = input.next();
 			String shelf = input.next();
+			int timesBorrowed = input.nextInt();
 
 			Book book = null;
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
+				book.setTimesBorrowed(timesBorrowed);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -476,9 +513,11 @@ public class Library {
 			String publisher = input.next();
 			String genre = input.next();
 			String shelf = input.next();
+			int timesBorrowed = input.nextInt();
 			Book book = null;
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
+				book.setTimesBorrowed(timesBorrowed);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
