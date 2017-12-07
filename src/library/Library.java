@@ -32,14 +32,34 @@ public class Library {
 
 		try {
 			customerDirectory();
-			//bookDirectory("res/bookDirectory.txt");
-			//bookDirectory("res/LoanedBooks.txt");
-			//bookDirectory("res/delayedBooks.txt");
-			//bookDirectory("res/AllBooks.txt");
-			importBooksFrom("res/bookDirectory.txt");
-			importBooksFrom("res/LoanedBooks.txt");
-			importBooksFrom("res/delayedBooks.txt");
-			importBooksFrom("res/AllBooks.txt");
+			 bookDirectory("res/bookDirectory.txt");
+			 bookDirectory("res/LoanedBooks.txt");
+			 bookDirectory("res/delayedBooks.txt");
+			 bookDirectory("res/AllBooks.txt");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
+		try {
+			bookDirectory("res/bookDirectory.txt");
+		} catch (Exception e) {
+			System.out.println("Unable to initialize available books directory");
+		}
+
+		try {
+			bookDirectory("res/LoanedBooks.txt");
+		} catch (Exception e) {
+			System.out.println("Unable to initialize loaned books directory");
+		}
+
+		try {
+			bookDirectory("res/delayedBooks.txt");
+		} catch (Exception e) {
+			System.out.println("Unable to initialize delayed books directory");
+		}
+
+		try {
+			bookDirectory("res/AllBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize all books directory");
 			e.printStackTrace();
@@ -323,6 +343,8 @@ public class Library {
 		customer.addToLoanHistory(book);
 		loanedBooks.add(book);
 		books.remove(book);
+		System.out.println(book.getTitle() + " was successfully lent to " + customer.getName() + "."
+				+ "\nTo be returned no later than: " + book.getReturnDate().toLocalDate());
 	}
 
 	public void extendLoanPeriod(String personnumer, String bookTitle) throws Exception {
@@ -425,7 +447,7 @@ public class Library {
 			/* TODO: move this to java */
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/delayedBooks.txt", true)))) {
 				out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getGenre()
-						+ "-" + book.getShelf());
+						+ "-" + book.getShelf() + "-" + book.getTimesBorrowed());
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
@@ -466,10 +488,12 @@ public class Library {
 			String publisher = input.next();
 			String genre = input.next();
 			String shelf = input.next();
+			int timesBorrowed = input.nextInt();
 
 			Book book = null;
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
+				book.setTimesBorrowed(timesBorrowed);
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -493,9 +517,11 @@ public class Library {
 			String publisher = input.next();
 			String genre = input.next();
 			String shelf = input.next();
+			int timesBorrowed = input.nextInt();
 			Book book = null;
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
+				book.setTimesBorrowed(timesBorrowed);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
