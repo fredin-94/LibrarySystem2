@@ -328,33 +328,45 @@ public class Library {
 		ArrayList<Book> topTen = new ArrayList<Book>();
 		ArrayList<Book> oneCopy = new ArrayList<Book>();
 		this.sortAllBooksBy(TITLE);
-		int numOfCopies = 0;
-		System.out.println("In gettopten");
+
+		try {
+			topTen.add(new Book("new top10", "aa", "a", "a", "a"));
+			oneCopy.add(new Book("new copy", "aa", "a", "a", "a"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for (int i = 0; i < this.allBooks.size(); i++) {
-			System.out.println("In gettopten first for loop");
+			//System.out.println("gettopten 1st forloop");
+			int numOfCopies = 0;
 			Book book = allBooks.get(i);
 			oneCopy.add(book);
-
 			for (int j = i; j < this.allBooks.size(); j++) {
-				System.out.println("In gettopten second forloop");
+			//	System.out.println("Gettopten 2nd forloop");
 				if (book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle().trim())) {// trims
 					numOfCopies++;
 				}
 			}
-			System.out.println("In gettopten after forloops");
 			i += numOfCopies;
 			numOfCopies = 0;
 		}
 		
+		for(int i = 0; i < 10; i++) {
+			System.out.println("gettopten forloop after tryblock");
+			Book theBook = oneCopy.get(i); 
+			topTen.add(theBook);
+		}
+
 		try {
-			System.out.println("in gettopten try ");
+			System.out.println("Gettopten tryblock");
 			for (Book book : oneCopy)
 			Collections.sort(oneCopy, Comparator.comparing(getBookFunction(TIMESBORROWED)));
-			//add them to topten arraylist here?
 		} catch (InvalidKeyException ike) {
-			ike.printStackTrace();
+			System.out.println("In gettopten: was not able to finish try block");
 		}
 		
+
+
 		return topTen;
 	}
 

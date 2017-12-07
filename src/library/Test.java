@@ -180,15 +180,9 @@ public class Test {
 			showCustomerLCurrentLoans();
 			break;
 		case 5:
-			System.out.println("Top 10 (5 now) books: ");
-			
-			try {
+			System.out.println("Top 10 books: ");
 				library.getTopTen();
-			} catch (Exception e) {
-				for (int i = 0; i < 5; i++) {
-					System.out.println(library.getAllBooks().get(i));
-				}
-			}
+
 			break;
 		case 0:
 			run();
