@@ -267,7 +267,9 @@ public class Test {
 		Book book = retrieveBook(library.getAllBooks(), title);
 		// ---- Most of this will prob be deleted if Oliver implements the functionality in Library.java.-----
 		if(!book.equals(null)) {
+			System.out.println("book not null");
 		    if(isInList(library.getBooks(), book)) {
+		    	System.out.println("book is in available");
                 removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
 				library.removeBook(book);
             }else if(isInList(library.getLoanedBooks(), book)){
@@ -294,11 +296,10 @@ public class Test {
 	}
 
 	public boolean isInList(ArrayList<Book> listOfBooks, Book book){
-        for(Book b : listOfBooks){
-            if(b.equals(book)){
-                return true;
-            }
-        }
+		System.out.println("inList");
+		if(listOfBooks.contains(retrieveBook(listOfBooks, book.getTitle()))) {
+			return true;
+		}
         return false;
     }
 
@@ -323,6 +324,7 @@ public class Test {
 	}
 
 	public void removeLineFromFile(String path, String lineToRemove) {
+		int count = 0;
 		try {
 			File dirFile = new File(path);
 			File tmpFile = new File(dirFile.getAbsolutePath() + ".tmp");
@@ -333,10 +335,18 @@ public class Test {
 				// I think it's saving a new line character at the end from when the user
 				// presses enter, therefore
 				// a .trim() is required.
-				if (!line.equals(lineToRemove.trim())) {
+				if (!line.equals(lineToRemove.trim()) || count > 0) {
 					// GONNA DELETE ALL BOOKS WITH THAT TITLE, FIX PLS
 					pw.println(line);
 					pw.flush();
+				} else {
+					if(count == 0) {
+						pw.println("");
+						pw.flush();
+					} else {
+						continue;
+					}
+					count++;
 				}
 			}
 			System.gc();
@@ -365,25 +375,36 @@ public class Test {
 		String title = scanner.nextLine().trim();
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine().trim();
-		Book book = retrieveBook(library.getBooks(), title);
+		Book book = retrieveBook(library.getAllBooks(), title);
+
 		if (title.equals("") || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
 		} else {
+			// makes sure the library actually has the book in question
 			if (!book.equals(null)) {
-				System.out.println("about to borrow book yay");
-				removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
-				writeBookToFile("res/LoanedBooks.txt", book);
-				writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
-				writeBookToFile("res/" + psn + "LoanHistory.txt", book);
-				System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
-				library.borrowBook(title, psn);
-				ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
-				ses.scheduleAtFixedRate(new Runnable() {
-					@Override
-					public void run() {
-						library.isDelayed(retrieveBook(library.getLoanedBooks(), title));
+				// makes sure the book is currently available for borrowing.
+				for(Book b : library.getBooks()){
+					if(b.getTitle().equals(title)){
+						removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
+						writeBookToFile("res/LoanedBooks.txt", book);
+						writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
+						writeBookToFile("res/" + psn + "LoanHistory.txt", book);
+						System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
+						library.borrowBook(title, psn);
+						ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+						ses.scheduleAtFixedRate(new Runnable() {
+							@Override
+							public void run() {
+								library.isDelayed(retrieveBook(library.getLoanedBooks(), title));
+							}
+						}, 0, 1, TimeUnit.HOURS);
+					} else {
+						System.out.println(title + " is currently borrowed by another customer and will be returned " + book.getReturnDate());
 					}
-				}, 0, 1, TimeUnit.HOURS);
+				}
+			} else {
+				System.out.println(title + " isn't currently owned by the library. Please retry.");
+				borrowBook();
 			}
 		}
 	}
@@ -482,12 +503,12 @@ public class Test {
 		System.out.println(library.toString());
 	}
 
-	public void writeCustomerToFile(String name, String address, String phoneNumber, String psn) {
+	public void writeCustomerToFile(String name, String address, String psn, String phoneNumber) {
 		// should allow a customer to be added to txt without entering phonenumber
-		if (!name.equals("") && !address.equals("") && !phoneNumber.equals("") && !psn.equals("")) {
+		if (!name.equals("") && !address.equals("") && !psn.equals("")) {
 
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/customer.txt", true)))) {
-				out.println(name + "/" + address + "/" + phoneNumber + "/" + psn);
+				out.println(name + "/" + address + "/" + psn + "/" + phoneNumber);
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}

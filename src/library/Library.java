@@ -35,39 +35,37 @@ public class Library {
 
 		try {
 			customerDirectory();
-			//bookDirectory("res/bookDirectory.txt");
-			//bookDirectory("res/LoanedBooks.txt");
-			//bookDirectory("res/delayedBooks.txt");
-			//bookDirectory("res/AllBooks.txt");
+			// bookDirectory("res/bookDirectory.txt");
+			// bookDirectory("res/LoanedBooks.txt");
+			// bookDirectory("res/delayedBooks.txt");
+			// bookDirectory("res/AllBooks.txt");
 		} catch (Exception e) {
 			e.getMessage();
 		}
 
-		try{
+		try {
 			bookDirectory("res/bookDirectory.txt");
-		} catch (Exception e){
+		} catch (Exception e) {
 			System.out.println("Unable to initialize available books directory");
 		}
 
-		try{
+		try {
 			bookDirectory("res/LoanedBooks.txt");
-		} catch (Exception e){
+		} catch (Exception e) {
 			System.out.println("Unable to initialize loaned books directory");
 		}
 
-
-		try{
+		try {
 			bookDirectory("res/delayedBooks.txt");
-		} catch (Exception e){
+		} catch (Exception e) {
 			System.out.println("Unable to initialize delayed books directory");
 		}
 
-		try{
+		try {
 			bookDirectory("res/AllBooks.txt");
-		} catch (Exception e){
+		} catch (Exception e) {
 			System.out.println("Unable to initialize all books directory");
 		}
-
 
 	}
 
@@ -282,14 +280,18 @@ public class Library {
 
 	/* register books */
 	public void addBook(Book book) {
-		for (Book aBook : allBooks) {
+		if(!allBooks.contains(book)){
+			allBooks.add(book);
+		}
+		books.add(book);
+		/*for (Book aBook : allBooks) {
 			if (book == aBook) {
 				break;
 			} else {
 				allBooks.add(book);
 			}
 		}
-		books.add(book);
+		books.add(book);*/
 	}
 
 	public void removeBook(Book book) {
@@ -405,22 +407,20 @@ public class Library {
 		ArrayList<Book> topTen = new ArrayList<Book>();
 		ArrayList<Book> oneCopy = new ArrayList<Book>();
 		this.sortAllBooksBy(TITLE);
-		int numOfCopies = 0;
 
 		for (int i = 0; i < this.allBooks.size(); i++) {
+			int numOfCopies = 0;
 			Book book = allBooks.get(i);
 			oneCopy.add(book);
-
 			for (int j = i; j < this.allBooks.size(); j++) {
 				if (book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle().trim())) {// trims
 					numOfCopies++;
 				}
 			}
-
 			i += numOfCopies;
 			numOfCopies = 0;
 		}
-		
+
 		try {
 			for (Book book : oneCopy)
 				book.authors2UpperCase();
@@ -429,6 +429,11 @@ public class Library {
 			ike.printStackTrace();
 		}
 		
+		for(int i = 0; i < 10; i++) {
+			Book theBook = oneCopy.get(i); 
+			topTen.add(theBook);
+		}
+
 		return topTen;
 	}
 
@@ -553,9 +558,9 @@ public class Library {
 				if (path.contains("bookDirectory")) {
 					books.add(book);
 				} else if (path.contains("delayedBooks")) {
-					loanedBooks.add(book);
-				} else if (path.contains("LoanedBooks")) {
 					delayedBooks.add(book);
+				} else if (path.contains("LoanedBooks")) {
+					loanedBooks.add(book);
 				} else if (path.contains("AllBooks")) {
 					allBooks.add(book);
 				}
