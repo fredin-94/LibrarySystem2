@@ -499,7 +499,6 @@ public class Test {
 
 	// -- Customer handling methods --//
 	public void addCustomer() {
-		// ADD FUNCTION TO ADD TO TXT FILE --done
 		System.out.println("Enter customer name: ");
 		String name = scanner.nextLine();
 		System.out.println("Enter customer adress: ");
@@ -511,17 +510,21 @@ public class Test {
 
 		try {
 			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
-				if(phoneNumber.equals("")) {
-					createFile(psn + "LoanHistory");
-					createFile(psn+"CurrentLoans");
-					library.addCustomer(new Customer(name, address, psn));
+				if (psn.matches("[0-9]+") && psn.length() == 10 || psn.length() == 12) {
+					if (phoneNumber.equals("")) {
+						createFile(psn + "LoanHistory");
+						createFile(psn + "CurrentLoans");
+						library.addCustomer(new Customer(name, address, psn));
+					} else {
+						createFile(psn + "LoanHistory");
+						createFile(psn + "CurrentLoans");
+						library.addCustomer(new Customer(name, address, psn, phoneNumber));
+					}
+					System.out.println("Added " + name + " to customer database");
+					writeCustomerToFile(name, address, psn, phoneNumber);
 				} else {
-					createFile( psn + "LoanHistory");
-					createFile(psn+"CurrentLoans");
-					library.addCustomer(new Customer(name, address, psn, phoneNumber));
+					System.out.println("Invalid social security number.");
 				}
-				System.out.println("Added " + name + " to customer database");
-				writeCustomerToFile(name, address, psn, phoneNumber);
 			}
 
 		} catch (Exception e) {
