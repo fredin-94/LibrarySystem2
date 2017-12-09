@@ -365,12 +365,21 @@ public class Test {
 
 		System.out.println("Enter title of book to borrow:");
 		String title = scanner.nextLine().trim();
+		Book book = retrieveBook(library.getAllBooks(), title);
 		System.out.println("Enter personal security number:");
 		String psn = scanner.nextLine().trim();
-		Book book = retrieveBook(library.getBooks(), title);
 		Customer customer = retrieveCustomer(psn);
 		if(customer != null && book != null) {
 			
+		
+		/* 
+	 	ArrayList <Book> options = new ArrayList <Book>();
+		ArrayList <Book> list = new ArrayList <Book>();
+		for(Book somebook: library.getAllBooks()) {
+			if(somebook.getTitle().equalsIgnoreCase(title)) {
+				options.add(somebook);
+			}
+		}*/
 		
 		if (title.equals("") || psn.equals("")) {
 			throw new Exception("Empty title or social security number");
