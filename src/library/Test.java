@@ -532,17 +532,22 @@ public class Test {
 
 		try {
 			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
-				if(phoneNumber.equals("")) {
-					createFile(psn + "LoanHistory");
-					createFile(psn+"CurrentLoans");
-					library.addCustomer(new Customer(name, address, psn));
+				if(psn.matches("[0-9]+") && psn.length() == 10 || psn.length() == 12) {
+					if (phoneNumber.equals("")) {
+						createFile(psn + "LoanHistory");
+						createFile(psn + "CurrentLoans");
+						library.addCustomer(new Customer(name, address, psn));
+					} else {
+						createFile(psn + "LoanHistory");
+						createFile(psn + "CurrentLoans");
+						library.addCustomer(new Customer(name, address, psn, phoneNumber));
+					}
+					System.out.println("Added " + name + " to customer database");
+					writeCustomerToFile(name, address, psn, phoneNumber);
 				} else {
-					createFile( psn + "LoanHistory");
-					createFile(psn+"CurrentLoans");
-					library.addCustomer(new Customer(name, address, psn, phoneNumber));
+					System.out.println("Social security number must be 10 numbers long. Please retry.");
+					addCustomer();
 				}
-				System.out.println("Added " + name + " to customer database");
-				writeCustomerToFile(name, address, psn, phoneNumber);
 			}
 
 		} catch (Exception e) {
