@@ -20,7 +20,6 @@ public class Library {
 	private ArrayList<Book> loanedBooks;
 	private ArrayList<Book> delayedBooks;
 	private ArrayList<Customer> customers;
-	ArrayList<Book> topTen; //added by me
 	private static LocalDateTime date;
 
 	public Library() {
@@ -61,10 +60,14 @@ public class Library {
 
 		try {
 			bookDirectory("res/AllBooks.txt");
-//			importBooksFrom("res/bookDirectory.txt");
-//			importBooksFrom("res/LoanedBooks.txt");
-//			importBooksFrom("res/delayedBooks.txt");
-//			importBooksFrom("res/AllBooks.txt");
+			//bookDirectory("res/bookDirectory.txt");
+			//bookDirectory("res/LoanedBooks.txt");
+			//bookDirectory("res/delayedBooks.txt");
+			//bookDirectory("res/AllBooks.txt");
+			importBooksFrom("res/bookDirectory.txt");
+			importBooksFrom("res/LoanedBooks.txt");
+			importBooksFrom("res/delayedBooks.txt");
+			importBooksFrom("res/AllBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize all books directory");
 			e.printStackTrace();
@@ -328,14 +331,8 @@ public class Library {
 
 		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnummer);
 		Book book = findBookBy(TITLE, bookTitle);
+		// assumes default loanPeriod
 		sortBooksBy(TITLE);
-
-		if (customer == null) {
-			throw new Exception("Customer is not in System.");
-		} else if (book == null) {
-			throw new Exception("Book is (currently) not in directory");
-		}
-
 		book.setStartDate(this.date);
 		book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks
 
@@ -348,8 +345,6 @@ public class Library {
 		customer.addToLoanHistory(book);
 		loanedBooks.add(book);
 		books.remove(book);
-		System.out.println(book.getTitle() + " was successfully lent to " + customer.getName() + "."
-				+ "\nTo be returned no later than: " + book.getReturnDate().toLocalDate());
 	}
 
 	public void extendLoanPeriod(String personnumer, String bookTitle) throws Exception {
@@ -407,25 +402,15 @@ public class Library {
 	/* TODO: ---------------- Extra ----------------------- */
 	
 	public ArrayList<Book> getTopTen() {
-		topTen = new ArrayList<Book>();
+		ArrayList<Book> topTen = new ArrayList<Book>();
 		ArrayList<Book> oneCopy = new ArrayList<Book>();
 		this.sortAllBooksBy(TITLE);
 
-		try {
-			topTen.add(new Book("new top10", "aa", "a", "a", "a"));
-			oneCopy.add(new Book("new copy", "aa", "a", "a", "a"));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		for (int i = 0; i < this.allBooks.size(); i++) {
-			//System.out.println("gettopten 1st forloop");
-			
 			int numOfCopies = 0;
 			Book book = allBooks.get(i);
 			oneCopy.add(book);
 			for (int j = i; j < this.allBooks.size(); j++) {
-			//	System.out.println("Gettopten 2nd forloop");
 				if (book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle().trim())) {// trims
 					numOfCopies++;
 				}
@@ -433,19 +418,17 @@ public class Library {
 			i += numOfCopies;
 			numOfCopies = 0;
 		}
-		
-		for(int i = 0; i < 10; i++) {
-			System.out.println("gettopten forloop after tryblock");
-			Book theBook = oneCopy.get(i); 
-			topTen.add(theBook);
-		}
 
 		try {
-			System.out.println("Gettopten tryblock");
 			for (Book book : oneCopy)
 			Collections.sort(oneCopy, Comparator.comparing(getBookFunction(TIMESBORROWED)));
 		} catch (InvalidKeyException ike) {
-			System.out.println("In gettopten: was not able to finish try block");
+			ike.printStackTrace();
+		}
+		
+		for(int i = 0; i < 10; i++) {
+			Book theBook = oneCopy.get(i); 
+			topTen.add(theBook);
 		}
 
 		return topTen;
@@ -604,23 +587,7 @@ public class Library {
 		}
 	}
 
-	
-	public String toStringForDisplayAll() {
-		String s = "\n// ========== Books ========== //\n";
-		List<String> sList = new ArrayList<>();
-		for (int i = 0; i < this.books.size(); i++) {
-			Book book = this.books.get(i);
-			if (!(sList.contains(book.toString()))) {
-				sList.add(book.toString());
-				s += book.toString()
-						+ "\n • Copies available: " + getCopiesOfTitle(book.getTitle())
-						+ "\n----------------------------------------------------------\n";
-			}
-		}
-		return s;
-	}
-	
-	
+	@Override
 	public String toString() {
 		String s = "\n// ========== Books ========== //\n";
 		List<String> sList = new ArrayList<>();
