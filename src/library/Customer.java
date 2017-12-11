@@ -44,9 +44,33 @@ public class Customer implements Serializable {
 	}
 
 	public Customer(String name, String adress, String personnummer, String number) throws Exception {
-		this(name, adress, personnummer);// calling the first constructor.
+		//this(name, adress, personnummer);// calling the first constructor.
 
-		if (number.trim().matches("[0-9]+") && number.trim().length() == 10) {// This checks the number of digits of (number).
+		this.name = name;
+		this.adress = adress;
+		this.personnummer = personnummer;
+		this.number = number;
+
+		this.currentLoans = new ArrayList<Book>();
+		this.loanHistory = new ArrayList<Book>();
+
+		if (name.equals("")) {
+			throw new Exception("Name can not be empty");
+		} else {
+			this.name = name;
+		}
+		if (adress.equals("")) {
+			throw new Exception("Adress can not be empty");
+		} else {
+			this.adress = adress;
+		}
+		if (personnummer.matches("[0-9]+") && personnummer.length() == 10 || personnummer.length() == 12) {// This																								// (number).
+			this.personnummer = personnummer;
+		} else {
+			throw new Exception("Personnummer MUST consist of 10 or 12 digits");
+		}
+
+		if ((!number.equals("") && number.trim().matches("[0-9]+") && number.trim().length() == 10) || number.equals("")) {// This checks the number of digits of (number).
 			this.number = number;
 		} else {
 			throw new Exception("Phone number MUST consist of 10 digits");
@@ -161,16 +185,19 @@ public class Customer implements Serializable {
 		Scanner input = new Scanner(file);
 	    input.useDelimiter("-|\n");
 
+	    System.out.println("current customer: " + this.name);
+
 		while(input.hasNext()) {
-	        String title = input.next();
-			String author = input.next();
-			String publisher = input.next();
-			String genre = input.next();
-			String shelf = input.next();
+	        String title = input.next().trim();
+			String author = input.next().trim();
+			String publisher = input.next().trim();
+			String genre = input.next().trim();
+			String shelf = input.next().trim();
 			Book book = null;
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
 			} catch (Exception e) {
+				//System.out.println(e.getMessage());
 				e.printStackTrace();
 			} finally {
 				if(path.contains("CurrentLoans")) {

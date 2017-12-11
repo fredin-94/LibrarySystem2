@@ -373,6 +373,7 @@ public class Test {
 		Customer customer = retrieveCustomer(psn);
 		if (customer != null && book != null) {
 
+
 			ArrayList<Book> options = new ArrayList<Book>();
 			for (Book somebook : library.getBooks()) {
 				if (somebook.getTitle().equalsIgnoreCase(title)) {
@@ -432,6 +433,7 @@ public class Test {
 					}
 				}
 			}
+
 			System.out.println("Enter title of book to return:");
 			String title = scanner.nextLine();
 
@@ -535,16 +537,48 @@ public class Test {
 	// -- Customer handling methods --//
 	public void addCustomer() {
 		// ADD FUNCTION TO ADD TO TXT FILE --done
-		System.out.println("Enter customer name: ");
+		/*System.out.println("Enter customer name: ");
 		String name = scanner.nextLine();
 		System.out.println("Enter customer adress: ");
 		String address = scanner.nextLine();
 		System.out.println("Enter customer psn: ");
 		String psn = scanner.nextLine();
 		System.out.println("Enter customer phone number: ");
-		String phoneNumber = scanner.nextLine().trim();
+		String phoneNumber = scanner.nextLine().trim();*/
 
-		try {
+		String name = "";
+		String address = "";
+		String ssn = "";
+		String phoneNum = "";
+		try{
+			name = requestName();
+			address = requestAddress();
+			ssn = requestSsn();
+			phoneNum = requestPhoneNumber();
+			library.addCustomer(new Customer(name, address, ssn, phoneNum));
+		} catch(Exception e){
+			System.out.println(e.getMessage());
+			addCustomer();
+		}
+		if(retrieveCustomer(ssn)!= null) {
+			createFile(ssn + "LoanHistory");
+			createFile(ssn + "CurrentLoans");
+			writeCustomerToFile(name, address, ssn, phoneNum);
+		}
+
+
+
+		/*try{
+			library.addCustomer(new Customer(name, address, ssn, phoneNum));
+		} catch (Exception e){
+			System.out.println(e.getMessage());
+		} finally {
+			createFile(ssn + "LoanHistory");
+			createFile(ssn + "CurrentLoans");
+		}*/
+
+
+		/*try {
 			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
 				if (psn.matches("[0-9]+") && psn.length() == 10 || psn.length() == 12) {
 					if (phoneNumber.equals("")) {
@@ -567,6 +601,48 @@ public class Test {
 		} catch (Exception e) {
 			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
 			addCustomer();
+		}*/
+	}
+
+	public String requestName() throws Exception{
+		System.out.println("Enter customer name: ");
+		String name = scanner.nextLine().trim();
+		if(name.equals("")){
+			throw new Exception("Customer name cannot be empty. Please retry.");
+		} else {
+			return name;
+		}
+	}
+
+	public String requestAddress() throws Exception{
+		System.out.println("Enter customer address: ");
+		String address = scanner.nextLine().trim();
+		if(address.equals("")){
+			throw new Exception("Customer address cannot be empty. Please retry.");
+		} else {
+			return address;
+		}
+	}
+
+	public String requestSsn() throws Exception{
+		System.out.println("Enter customer social security number: ");
+		String ssn = scanner.nextLine().trim();
+		if(ssn.equals("")){
+			throw new Exception("Customer social security number cannot be empty. Please retry.");
+		} else if(!(ssn.matches("[0-9]+") && ssn.length() == 10 || ssn.length() == 12)){
+			throw new Exception("Incorrect social security number input. Please retry.");
+		} else {
+			return ssn;
+		}
+	}
+
+	public String requestPhoneNumber() throws Exception{
+		System.out.println("Enter customer phone number: ");
+		String phoneNum = scanner.nextLine().trim();
+		if(phoneNum.equals("")){
+			return "";
+		} else {
+			return phoneNum;
 		}
 	}
 
