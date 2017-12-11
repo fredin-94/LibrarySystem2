@@ -275,7 +275,7 @@ public class Test {
 				removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
 				library.removeBook(book);
 			} else if (isInList(library.getLoanedBooks(), book)) {
-				removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
+				removeLineFromFile("res/LoanedBookssd.txt", parseBookToString(book));
 				// library.removeBookFromLoanedBooks
 			} else if (isInList(library.getDelayedBooks(), book)) {
 				removeLineFromFile("res/delayedBooks.txt", parseBookToString(book));
@@ -373,48 +373,45 @@ public class Test {
 		Customer customer = retrieveCustomer(psn);
 		if (customer != null && book != null) {
 
-
 			ArrayList<Book> options = new ArrayList<Book>();
 			for (Book somebook : library.getBooks()) {
 				if (somebook.getTitle().equalsIgnoreCase(title)) {
 					options.add(somebook);
 				}
 			}
-			
-			/*ArrayList<Book> list = new ArrayList<Book>();
+
+			ArrayList<Book> list = new ArrayList<Book>();
 			for (Book aBook : options) {
 				Book authorDiff = aBook;
 				boolean author = false;
 				for (int i = 0; i < list.size(); i++) {
-					if(!authorDiff.getAuthor().equalsIgnoreCase(options.get(i).getAuthor())) {
+					if (!authorDiff.getAuthor().equalsIgnoreCase(options.get(i).getAuthor())) {
 						list.add(aBook);
+						if (title.equals("") || psn.equals("")) {
+							throw new Exception("Empty title or social security number");
+						} else {
+							if (!book.equals(null)) {
+								System.out.println("about to borrow book yay");
+								removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
+								writeBookToFile("res/LoanedBooks.txt", book);
+								writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
+								writeBookToFile("res/" + psn + "LoanHistory.txt", book);
+								System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
+								library.borrowBook(title, psn);
+								ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
+								ses.scheduleAtFixedRate(new Runnable() {
+									@Override
+									public void run() {
+										library.isDelayed(retrieveBook(library.getLoanedBooks(), title));
+									}
+								}, 0, 1, TimeUnit.HOURS);
+							}
+						}
+					} else {
+						throw new Exception("Customer Not Registered Or Book Not Found");
 					}
 				}
-			}*/
-
-
-			if (title.equals("") || psn.equals("")) {
-				throw new Exception("Empty title or social security number");
-			} else {
-				if (!book.equals(null)) {
-					System.out.println("about to borrow book yay");
-					removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
-					writeBookToFile("res/LoanedBooks.txt", book);
-					writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
-					writeBookToFile("res/" + psn + "LoanHistory.txt", book);
-					System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
-					library.borrowBook(title, psn);
-					ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
-					ses.scheduleAtFixedRate(new Runnable() {
-						@Override
-						public void run() {
-							library.isDelayed(retrieveBook(library.getLoanedBooks(), title));
-						}
-					}, 0, 1, TimeUnit.HOURS);
-				}
 			}
-		} else {
-			throw new Exception("Customer Not Registered Or Book Not Found");
 		}
 	}
 
@@ -537,112 +534,98 @@ public class Test {
 	// -- Customer handling methods --//
 	public void addCustomer() {
 		// ADD FUNCTION TO ADD TO TXT FILE --done
-		/*System.out.println("Enter customer name: ");
-		String name = scanner.nextLine();
-		System.out.println("Enter customer adress: ");
-		String address = scanner.nextLine();
-		System.out.println("Enter customer psn: ");
-		String psn = scanner.nextLine();
-		System.out.println("Enter customer phone number: ");
-		String phoneNumber = scanner.nextLine().trim();*/
+		/*
+		 * System.out.println("Enter customer name: "); String name =
+		 * scanner.nextLine(); System.out.println("Enter customer adress: "); String
+		 * address = scanner.nextLine(); System.out.println("Enter customer psn: ");
+		 * String psn = scanner.nextLine();
+		 * System.out.println("Enter customer phone number: "); String phoneNumber =
+		 * scanner.nextLine().trim();
+		 */
 
 		String name = "";
 		String address = "";
 		String ssn = "";
 		String phoneNum = "";
-		try{
+		try {
 			name = requestName();
 			address = requestAddress();
 			ssn = requestSsn();
 			phoneNum = requestPhoneNumber();
 			library.addCustomer(new Customer(name, address, ssn, phoneNum));
-		} catch(Exception e){
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			addCustomer();
 		}
-		if(retrieveCustomer(ssn)!= null) {
+		if (retrieveCustomer(ssn) != null) {
 			createFile(ssn + "LoanHistory");
 			createFile(ssn + "CurrentLoans");
 			writeCustomerToFile(name, address, ssn, phoneNum);
 		}
 
+		/*
+		 * try{ library.addCustomer(new Customer(name, address, ssn, phoneNum)); } catch
+		 * (Exception e){ System.out.println(e.getMessage()); } finally { createFile(ssn
+		 * + "LoanHistory"); createFile(ssn + "CurrentLoans"); }
+		 */
 
-
-		/*try{
-			library.addCustomer(new Customer(name, address, ssn, phoneNum));
-		} catch (Exception e){
-			System.out.println(e.getMessage());
-		} finally {
-			createFile(ssn + "LoanHistory");
-			createFile(ssn + "CurrentLoans");
-		}*/
-
-
-		/*try {
-			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
-				if (psn.matches("[0-9]+") && psn.length() == 10 || psn.length() == 12) {
-					if (phoneNumber.equals("")) {
-						createFile(psn + "LoanHistory");
-						createFile(psn + "CurrentLoans");
-						library.addCustomer(new Customer(name, address, psn));
-					} else {
-						createFile(psn + "LoanHistory");
-						createFile(psn + "CurrentLoans");
-						library.addCustomer(new Customer(name, address, psn, phoneNumber));
-					}
-					System.out.println("Added " + name + " to customer database");
-					writeCustomerToFile(name, address, psn, phoneNumber);
-				} else {
-					System.out.println("Social security number must be 10 numbers long. Please retry.");
-					addCustomer();
-				}
-			}
-
-		} catch (Exception e) {
-			System.out.println("Please make sure name, address and personal security numbers are all filled out.");
-			addCustomer();
-		}*/
+		/*
+		 * try { if (!name.equals("") && !address.equals("") && !psn.equals("")) { if
+		 * (psn.matches("[0-9]+") && psn.length() == 10 || psn.length() == 12) { if
+		 * (phoneNumber.equals("")) { createFile(psn + "LoanHistory"); createFile(psn +
+		 * "CurrentLoans"); library.addCustomer(new Customer(name, address, psn)); }
+		 * else { createFile(psn + "LoanHistory"); createFile(psn + "CurrentLoans");
+		 * library.addCustomer(new Customer(name, address, psn, phoneNumber)); }
+		 * System.out.println("Added " + name + " to customer database");
+		 * writeCustomerToFile(name, address, psn, phoneNumber); } else { System.out.
+		 * println("Social security number must be 10 numbers long. Please retry.");
+		 * addCustomer(); } }
+		 * 
+		 * } catch (Exception e) { System.out.
+		 * println("Please make sure name, address and personal security numbers are all filled out."
+		 * ); addCustomer(); }
+		 */
 	}
 
-	public String requestName() throws Exception{
+	public String requestName() throws Exception {
 		System.out.println("Enter customer name: ");
 		String name = scanner.nextLine().trim();
-		if(name.equals("")){
+		if (name.equals("")) {
 			throw new Exception("Customer name cannot be empty. Please retry.");
 		} else {
 			return name;
 		}
 	}
 
-	public String requestAddress() throws Exception{
+	public String requestAddress() throws Exception {
 		System.out.println("Enter customer address: ");
 		String address = scanner.nextLine().trim();
-		if(address.equals("")){
+		if (address.equals("")) {
 			throw new Exception("Customer address cannot be empty. Please retry.");
 		} else {
 			return address;
 		}
 	}
 
-	public String requestSsn() throws Exception{
-		System.out.println("Enter customer social security number: ");
-		String ssn = scanner.nextLine().trim();
-		if(ssn.equals("")){
-			throw new Exception("Customer social security number cannot be empty. Please retry.");
-		} else if(!(ssn.matches("[0-9]+") && ssn.length() == 10 || ssn.length() == 12)){
-			throw new Exception("Incorrect social security number input. Please retry.");
-		} else {
-			return ssn;
-		}
-	}
-
-	public String requestPhoneNumber() throws Exception{
+	public String requestPhoneNumber() throws Exception {
 		System.out.println("Enter customer phone number: ");
 		String phoneNum = scanner.nextLine().trim();
-		if(phoneNum.equals("")){
+		if (phoneNum.equals("")) {
 			return "";
 		} else {
 			return phoneNum;
+		}
+	}
+
+	public String requestSsn() throws Exception {
+		System.out.println("Enter customer social security number: ");
+		String ssn = scanner.nextLine().trim();
+		if (ssn.equals("")) {
+			throw new Exception("Customer social security number cannot be empty. Please retry.");
+		} else if (!(ssn.matches("[0-9]+") && ssn.length() == 10 || ssn.length() == 12)) {
+			throw new Exception("Incorrect social security number input. Please retry.");
+		} else {
+			return ssn;
 		}
 	}
 

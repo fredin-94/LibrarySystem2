@@ -18,34 +18,8 @@ public class Customer implements Serializable {
 	private String personnummer;
 	final String END_OF_LINE = System.lineSeparator();// Skips A Line
 
-	public Customer(String name, String adress, String personnummer) throws Exception {
-		if (name.equals("")) {
-
-			throw new Exception("Name can not be empty");
-		} else {
-			this.name = name;
-		}
-		if (adress.equals("")) {
-			throw new Exception("Adress can not be empty");
-		} else {
-			this.adress = adress;
-		}
-		this.ID = UUID.randomUUID();
-		this.currentLoans = new ArrayList<Book>();
-		this.loanHistory = new ArrayList<Book>();
-		this.debt = 0;
-		if (personnummer.matches("[0-9]+") && personnummer.length() == 10 || personnummer.length() == 12) {// This																								// (number).
-			this.personnummer = personnummer;
-		} else {
-			throw new Exception("Personnummer MUST consist of 10 or 12 digits");
-		}
-		customerBooks("res/"+personnummer+"CurrentLoans.txt");
-		customerBooks("res/"+personnummer+"LoanHistory.txt");
-	}
-
 	public Customer(String name, String adress, String personnummer, String number) throws Exception {
 		//this(name, adress, personnummer);// calling the first constructor.
-
 		this.name = name;
 		this.adress = adress;
 		this.personnummer = personnummer;

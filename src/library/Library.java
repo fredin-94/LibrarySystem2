@@ -573,11 +573,11 @@ public class Library {
 
 			Customer customer = null;
 			try {
-				if (phoneNumber.equals("")) {
+				/*if (phoneNumber.equals("")) {
 					customer = new Customer(name, address, psn);
-				} else {
+				} else {*/
 					customer = new Customer(name, address, psn, phoneNumber);
-				}
+				//}
 				// System.out.println("Sup, " + psn);
 			} catch (Exception e) {
 				e.printStackTrace();
