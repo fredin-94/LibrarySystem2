@@ -552,7 +552,9 @@ public class Test {
 			address = requestAddress();
 			psn = requestSsn();
 			phoneNum = requestPhoneNumber();
-			library.addCustomer(new Customer(name, address, psn, phoneNum));
+			if(retrieveCustomer(psn) != null) {
+				throw new Exception("Can not proceed, Social Security Number already exists");
+			}
 			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
 				if(phoneNum.equals("")) {
 					createFile(psn + "LoanHistory");
@@ -570,7 +572,7 @@ public class Test {
 			System.out.println(e.getMessage());
 			addCustomer();
 		}
-		if (retrieveCustomer(psn) != null) {
+		/*if (retrieveCustomer(psn) != null) {
 			createFile(psn + "LoanHistory");
 			createFile(psn + "CurrentLoans");
 			writeCustomerToFile(name, address, psn, phoneNum);

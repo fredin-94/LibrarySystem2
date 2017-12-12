@@ -314,7 +314,7 @@ public class Library {
 	public void addCustomer(Customer customer) {
 		boolean exists = false;
 		for(Customer theCustomer: customers) {
-			if(theCustomer.getPersonnummer().trim().equalsIgnoreCase(customer.getPersonnummer().trim())) {
+			if(theCustomer.getPersonnummer().equalsIgnoreCase(customer.getPersonnummer())) {
 				exists = true;
 			}
 		}
