@@ -545,22 +545,35 @@ public class Test {
 
 		String name = "";
 		String address = "";
-		String ssn = "";
+		String psn = "";
 		String phoneNum = "";
 		try {
 			name = requestName();
 			address = requestAddress();
-			ssn = requestSsn();
+			psn = requestSsn();
 			phoneNum = requestPhoneNumber();
-			library.addCustomer(new Customer(name, address, ssn, phoneNum));
+			library.addCustomer(new Customer(name, address, psn, phoneNum));
+			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
+				if(phoneNum.equals("")) {
+					createFile(psn + "LoanHistory");
+					createFile(psn+"CurrentLoans");
+					library.addCustomer(new Customer(name, address, psn, phoneNum));
+				} else {
+					createFile( psn + "LoanHistory");
+					createFile(psn+"CurrentLoans");
+					library.addCustomer(new Customer(name, address, psn, phoneNum));
+				}
+				System.out.println("Added " + name + " to customer database");
+				writeCustomerToFile(name, address, psn, phoneNum);
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			addCustomer();
 		}
-		if (retrieveCustomer(ssn) != null) {
-			createFile(ssn + "LoanHistory");
-			createFile(ssn + "CurrentLoans");
-			writeCustomerToFile(name, address, ssn, phoneNum);
+		if (retrieveCustomer(psn) != null) {
+			createFile(psn + "LoanHistory");
+			createFile(psn + "CurrentLoans");
+			writeCustomerToFile(name, address, psn, phoneNum);
 		}
 
 		/*
