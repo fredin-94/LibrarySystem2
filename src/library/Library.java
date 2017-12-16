@@ -100,9 +100,6 @@ public class Library {
 	public void addDays(int Days) {
 		this.date = this.getDate().plusDays(Days);
 		for (Book book : getLoanedBooks()) {
-			if (!getLoanedBooks().contains(book)) {
-				this.isDelayed(book);
-			}
 			for (Customer customer : customers) {
 				for (Book sameBook : customer.getCurrentLoans()) {
 					if (book.equals(sameBook)) {
@@ -118,9 +115,6 @@ public class Library {
 	public void addWeeks(int weeks) {
 		date = date.plusWeeks(weeks);
 		for (Book book : getLoanedBooks()) {
-			if (!getLoanedBooks().contains(book)) {
-				this.isDelayed(book);
-			}
 			for (Customer customer : customers) {
 				for (Book sameBook : customer.getCurrentLoans()) {
 					if (book.equals(sameBook)) {
@@ -135,9 +129,6 @@ public class Library {
 	public void addMonths(int months) {
 		this.date = this.date.plusMonths(months);
 		for (Book book : getLoanedBooks()) {
-			if (!getLoanedBooks().contains(book)) {
-				this.isDelayed(book);
-			}
 			for (Customer customer : customers) {
 				for (Book sameBook : customer.getCurrentLoans()) {
 					if (book.equals(sameBook)) {
@@ -152,9 +143,6 @@ public class Library {
 	public void addyears(int years) {
 		this.date = this.date.plusYears(years);
 		for (Book book : getLoanedBooks()) {
-			if (!getLoanedBooks().contains(book)) {
-				this.isDelayed(book);
-			}
 			for (Customer customer : customers) {
 				for (Book sameBook : customer.getCurrentLoans()) {
 					if (book.equals(sameBook)) {
@@ -440,21 +428,12 @@ public class Library {
 	public ArrayList<Book> getCustomerLoanHistory(Customer customer) {
 		return customer.getloanHistory();
 	}
-
-	/* TODO ------ OTHER METHODS --------- */
-	// appropriates the delayed books arrayList. *Only used in simulator*
-	public void isDelayed(Book book) {
-		if (this.checkDelay(book) > 0) {
-			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/delayedBooks.txt", true)))) {
-				out.println(book.getTitle() + "-" + book.getAuthors() + "-" + book.getPublisher() + "-"
-						+ book.getGenre() + "-" + book.getShelf() + "-" + book.getTimesBorrowed());
-			} catch (IOException ioe) {
-				ioe.printStackTrace();
-			}
-			System.out.println("Added " + book.getTitle() + " to delayed  books.");
-		}
+	
+	public ArrayList <Book> getCustomerCurrentLoan(Customer customer){
+		return customer.getCurrentLoans();
 	}
 
+	/* TODO ------ OTHER METHODS --------- */
 	// returns delay surplus
 	public int checkDelay(Book book) {
 		if (this.date.compareTo(book.getReturnDate()) > 0) {
