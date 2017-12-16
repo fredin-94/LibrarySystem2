@@ -75,7 +75,7 @@ public class Menu {
 		System.out.println(" ===                                             === ");
 		System.out.println(" ===   Choose an option below:                   === ");
 		System.out.println(" ===   1. Add Book                               === ");
-		System.out.println(" ===   2. Remove Book                            === ");
+		System.out.println(" ===   2. Delete Book from directory             === ");
 		System.out.println(" ===   3. Add Customer                           === ");
 		System.out.println(" ===   4. Remove Customer                        === ");
 		System.out.println(" ===   0. Return to main menu                    === ");
@@ -116,5 +116,15 @@ public class Menu {
 		System.out.println(" ===                                             === ");
 		System.out.println(" =================================================== ");
 		System.out.println();
+	}
+	
+	public void getCustomerFeatures() {
+		System.out.println("||-----------------------------------------------|| ");
+		System.out.println("||-   Choose an option below:                   -|| ");
+		System.out.println("||-----------------------------------------------|| ");
+		System.out.println("---   1. Show current loans                     --- ");
+		System.out.println("---   2. Show loan history                      --- ");
+		System.out.println("---   3. Pay current fee                        --- ");
+		System.out.println("---   0. Return to main menu                    --- ");
 	}
 }

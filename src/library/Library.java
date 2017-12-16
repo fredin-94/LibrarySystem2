@@ -39,13 +39,13 @@ public class Library {
 		}
 
 		try {
-			//bookDirectory("res/LoanedBooks.txt");
+			// bookDirectory("res/LoanedBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize loaned books directory");
 		}
 
 		try {
-			//bookDirectory("res/delayedBooks.txt");
+			// bookDirectory("res/delayedBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize delayed books directory");
 		}
@@ -69,8 +69,8 @@ public class Library {
 
 	public ArrayList<Book> getLoanedBooks() {
 		ArrayList<Book> allLoanedBooks = new ArrayList<Book>();
-		for(Customer customer: customers) {
-			for(Book book: customer.getCurrentLoans()) {
+		for (Customer customer : customers) {
+			for (Book book : customer.getCurrentLoans()) {
 				allLoanedBooks.add(book);
 			}
 		}
@@ -79,8 +79,8 @@ public class Library {
 
 	public ArrayList<Book> getDelayedBooks() {
 		ArrayList<Book> allDelayedBooks = new ArrayList<Book>();
-		for(Book book: getLoanedBooks()) {
-			if(checkDelay(book) > 0) {
+		for (Book book : getLoanedBooks()) {
+			if (checkDelay(book) > 0) {
 				allDelayedBooks.add(book);
 			}
 		}
@@ -313,19 +313,15 @@ public class Library {
 		books.remove(book);
 	}
 
-	public void deleteBook(Book book) {
+	public void deleteBook(Book book) throws Exception {
 		if (this.checkDelay(book) > 0) {
-			Customer customer = null;
 			for (Customer theCustomer : customers) {
-				if (customer.getCurrentLoans().contains(book)) {
-					customer = theCustomer;
+				if (theCustomer.getCurrentLoans().contains(book)) {
+					this.returnBook(book.getTitle(), theCustomer.getPersonnummer());
 				}
 			}
-			int debt = this.checkDelay(book) * 2;
-			customer.setDebt(debt);
-		} 
+		}
 		allBooks.remove(book);
-		books.remove(book);
 		books.remove(book);
 	}
 
@@ -407,30 +403,93 @@ public class Library {
 		books.add(book);
 		customer.removeFromCurrentLoan(book);
 
+		if (debt > 0) {
+			System.out.println(customer.getName() + " returned the book " + (debt / 2) + " days after the return date."
+					+ "\nA fee of " + debt + " SEK has been placed on customers account.");
+		} else {
+			System.out.println("** Customer returned the book on time. **");
+		}
+
 	}
 
 	/* TODO: ---------------- Extra ----------------------- */
 
 	public ArrayList<Book> getTopTen() {
-		ArrayList<Book> topTen = new ArrayList<Book>();
-		for(Book book: allBooks){
-			for(Book someBook: topTen) {
-				if(book.getTitle().trim().equalsIgnoreCase(someBook.getTitle().trim()) && book.getAuthors().trim().equalsIgnoreCase(someBook.getAuthors().trim())) {
-					//nothing
-				}else {
-					topTen.add(book);
-				}
+		boolean aBookInLibraryHasBeenBorrowed = false;
+		for(Book aBook: allBooks) {
+			if(aBook.getTimesBorrowed() > 0) {
+				aBookInLibraryHasBeenBorrowed = true;
+				break;
 			}
 		}
-		return topTen;
+		
+		System.out.println("Test 2: checked if a book had been borrowed");
+		
+		ArrayList<Book> fooBar = new ArrayList<Book>();
+		sortTimesBorrowed();
+		boolean fooBarContains = true;// for comparison
+		
+		if (aBookInLibraryHasBeenBorrowed) {
+			System.out.println("Test 3: added a book to foobar");
+			fooBar.add(allBooks.get(0));
+			for (int i = 1; fooBar.size() <= 9; i++) {
+				Book book = allBooks.get(i);
+				System.out.println("Test 4: got a compare book");
+				for (int j = i - 1; j >= 0; i--) {
+					Book aBookInFooBar = fooBar.get(j);
+					System.out.println("Test 5: got another compare book");
+					if (book.getTitle().trim().equalsIgnoreCase(aBookInFooBar.getTitle().trim())
+							&& book.getAuthors().trim().equalsIgnoreCase(aBookInFooBar.getAuthors().trim())) {
+						System.out.println("Test 6: compared");
+						fooBarContains = true;
+					}
+				}
+				if (fooBarContains == false) {
+					System.out.println("Test 7: added to foobar");
+					fooBar.add(book);
+				}
+				fooBarContains = true; // resets checker
+			}
+		}
+		return fooBar;
 	}
 
-	public ArrayList<Book> getCustomerLoanHistory(Customer customer) {
-		return customer.getloanHistory();
+	public void sortTimesBorrowed() {
+		try {
+			for (Book book : this.allBooks)
+				book.firstLettersToUpperCase();
+			Collections.sort(this.allBooks, Comparator.comparing(getBookFunction(TIMESBORROWED)));
+		} catch (InvalidKeyException ike) {
+			ike.printStackTrace();
+		}
 	}
-	
-	public ArrayList <Book> getCustomerCurrentLoan(Customer customer){
-		return customer.getCurrentLoans();
+
+	public String getCustomerLoanHistoryString(Customer customer) {
+		String current = "";
+		String END_OF_LINE = "\n";
+		if (customer.getLoanHistory().isEmpty()) {
+			current += "\n--------- Customer's has no current loan(s) ---------" + END_OF_LINE;
+		} else {
+			System.out.println("\n--------- Customer's loan history: ---------");
+			for (int i = 0; i < customer.getLoanHistory().size(); i++) {
+				current += customer.getLoanHistory().get(i).toString() + END_OF_LINE;
+			}
+		}
+		return current;
+	}
+
+	public String getCustomerCurrentLoanString(Customer customer) {
+		String currentLoan = "";
+		String END_OF_LINE = "\n";
+		if (customer.getCurrentLoans().isEmpty()) {
+			currentLoan += "\n--------- Customer's loan is empty ---------" + END_OF_LINE;
+		} else {
+			System.out.println("\n--------- Customer's current loan(s): ---------");
+			for (int i = 0; i < customer.getCurrentLoans().size(); i++) {
+				currentLoan += customer.getCurrentLoans().get(i).toString() + END_OF_LINE;
+			}
+		}
+		return currentLoan;
 	}
 
 	/* TODO ------ OTHER METHODS --------- */
@@ -480,9 +539,9 @@ public class Library {
 				if (path.contains("bookDirectory")) {
 					books.add(book);
 				} else if (path.contains("delayedBooks")) {
-					//delayedBooks.add(book);
+					// delayedBooks.add(book);
 				} else if (path.contains("LoanedBooks")) {
-					//loanedBooks.add(book);
+					// loanedBooks.add(book);
 				} else if (path.contains("AllBooks")) {
 					allBooks.add(book);
 				}

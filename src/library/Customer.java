@@ -59,7 +59,7 @@ public class Customer implements Serializable {
 		return this.currentLoans;
 	}
 
-	public ArrayList<Book> getloanHistory() {
+	public ArrayList<Book> getRealLoanHistory() {
 		return this.loanHistory;
 	}
 
@@ -91,8 +91,12 @@ public class Customer implements Serializable {
 		this.debt = newDebt + this.debt;
 	}
 	
-	public void payDebt(double payement) {
-		this.debt = this.debt - payement;
+	public void payDebt(double payement) throws Exception {
+		if((this.debt - payement) >= 0) {
+			this.debt = this.debt - payement;
+		} else {
+			throw new Exception ( payement + " SEK exceeds the required\n amount of " + (this.debt - 0) + " SEK");
+		}
 	}
 
 	public void addToCurrentLoan(Book book) {
@@ -154,34 +158,14 @@ public class Customer implements Serializable {
 	@Override
 	public String toString() {
 		String customerToString = " " + END_OF_LINE;
-		customerToString += "||----------------------------------------------------------||" + END_OF_LINE;
+		customerToString += "||----------------------------------------------||" + END_OF_LINE;
 		customerToString += "Customer Name: " + this.name + END_OF_LINE;
 		customerToString += "Customer Personnummer: " + this.personnummer + END_OF_LINE;
 		customerToString += "Customer Adress: " + this.adress + END_OF_LINE;
 		customerToString += "Customer Phone Number: " + this.number + END_OF_LINE;
 		customerToString += "Customer Debt: " + this.debt + END_OF_LINE;
-
-		if (this.currentLoans.isEmpty()) {
-			customerToString += "\n--------- Customer's has no current loan(s) ---------" + END_OF_LINE;
-		} else {
-			String current = "";
-
-			for (int i = 0; i < currentLoans.size(); i++) {
-				current += currentLoans.get(i).toString() + END_OF_LINE;
-			}
-			customerToString += "\n--------- Customer's current loan(s): ---------" + END_OF_LINE + current;
-		}
-		
-		if (this.loanHistory.isEmpty()) {
-			customerToString += "\n--------- Customer's loan history is empty ---------" + END_OF_LINE;
-		} else {
-			String history = "";
-			for (int i = 0; i < loanHistory.size(); i++) {
-				history += loanHistory.get(i).toString() + END_OF_LINE;
-			}
-			customerToString += "\n--------- Customer's loan History: ---------" + END_OF_LINE + history;
-		}
-
+		customerToString += "Size of curently loaned books: " + this.currentLoans.size() + " book(s)" + END_OF_LINE;
+		customerToString += "Size of loan history: " + this.loanHistory.size() + " book(s)" + END_OF_LINE;
 		return customerToString;
 	}
 
