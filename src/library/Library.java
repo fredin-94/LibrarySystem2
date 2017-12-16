@@ -6,38 +6,30 @@ import java.util.function.*;
 
 import static library.Library.bookKey.*;
 //--------------------
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import static library.Library.bookKey.*;
 import static library.Library.customerKey.*;
 
 public class Library {
 
 	private ArrayList<Book> allBooks;
 	private ArrayList<Book> books;
-	private ArrayList<Book> loanedBooks;
-	private ArrayList<Book> delayedBooks;
 	private ArrayList<Customer> customers;
-	private static LocalDateTime date;
+	private LocalDate date;
 
 	public Library() {
-		allBooks = new ArrayList<>();
-		books = new ArrayList<>();
-		loanedBooks = new ArrayList<>();
-		delayedBooks = new ArrayList<>();
-		customers = new ArrayList<>();
-		date = LocalDateTime.now();
+		allBooks = new ArrayList<Book>();
+		books = new ArrayList<Book>();
+		customers = new ArrayList<Customer>();
+		date = LocalDate.now();
 
 		try {
 			customerDirectory();
-			 bookDirectory("res/bookDirectory.txt");
-			 bookDirectory("res/LoanedBooks.txt");
-			 bookDirectory("res/delayedBooks.txt");
-			 bookDirectory("res/AllBooks.txt");
 		} catch (Exception e) {
-			e.getMessage();
+			System.out.println("Unable to initialize customer directory");
 		}
 
 		try {
@@ -47,32 +39,22 @@ public class Library {
 		}
 
 		try {
-			bookDirectory("res/LoanedBooks.txt");
+			//bookDirectory("res/LoanedBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize loaned books directory");
 		}
 
 		try {
-			bookDirectory("res/delayedBooks.txt");
+			//bookDirectory("res/delayedBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize delayed books directory");
 		}
 
 		try {
 			bookDirectory("res/AllBooks.txt");
-			//bookDirectory("res/bookDirectory.txt");
-			//bookDirectory("res/LoanedBooks.txt");
-			//bookDirectory("res/delayedBooks.txt");
-			//bookDirectory("res/AllBooks.txt");
-			importBooksFrom("res/bookDirectory.txt");
-			importBooksFrom("res/LoanedBooks.txt");
-			importBooksFrom("res/delayedBooks.txt");
-			importBooksFrom("res/AllBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize all books directory");
-			e.printStackTrace();
 		}
-
 	}
 
 	/* TODO ---------------------Basic------------------------------- */
@@ -85,107 +67,149 @@ public class Library {
 		return books;
 	}
 
-	public ArrayList <Book> getLoanedBooks(){
-		return loanedBooks;
+	public ArrayList<Book> getLoanedBooks() {
+		ArrayList<Book> allLoanedBooks = new ArrayList<Book>();
+		for(Customer customer: customers) {
+			for(Book book: customer.getCurrentLoans()) {
+				allLoanedBooks.add(book);
+			}
+		}
+		return allLoanedBooks;
 	}
-	
-	public ArrayList <Book> getDelayedBooks(){
-		return delayedBooks;
+
+	public ArrayList<Book> getDelayedBooks() {
+		ArrayList<Book> allDelayedBooks = new ArrayList<Book>();
+		for(Book book: getLoanedBooks()) {
+			if(checkDelay(book) > 0) {
+				allDelayedBooks.add(book);
+			}
+		}
+		return allDelayedBooks;
 	}
-	
+
 	public ArrayList<Customer> getCustomers() {
 		return customers;
 	}
 
-	//Time 
 	/* TODO: ---------------- Simulate ------------------------ */
 
-	/*
-	 * this simulation alters the library date and then alters the return date of
-	 * all books in the loaned arrayList.
-	 *
-	 * IMPORTANT check whether each book has passed it's loan period and switch
-	 * delayed boolean
-	 */
-	public static LocalDateTime getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
 	public void addDays(int Days) {
 		this.date = this.getDate().plusDays(Days);
-		for (Book book : loanedBooks) {
-			this.isDelayed(book);
+		for (Book book : getLoanedBooks()) {
+			if (!getLoanedBooks().contains(book)) {
+				this.isDelayed(book);
+			}
+			for (Customer customer : customers) {
+				for (Book sameBook : customer.getCurrentLoans()) {
+					if (book.equals(sameBook)) {
+						int debt = this.checkDelay(sameBook) * 2;
+						customer.setDebt(debt);
+					}
+				}
+			}
 		}
 
 	}
 
 	public void addWeeks(int weeks) {
 		date = date.plusWeeks(weeks);
-		for (Book book : loanedBooks) {
-			this.isDelayed(book);
+		for (Book book : getLoanedBooks()) {
+			if (!getLoanedBooks().contains(book)) {
+				this.isDelayed(book);
+			}
+			for (Customer customer : customers) {
+				for (Book sameBook : customer.getCurrentLoans()) {
+					if (book.equals(sameBook)) {
+						int debt = this.checkDelay(sameBook) * 2;
+						customer.setDebt(debt);
+					}
+				}
+			}
 		}
 	}
 
 	public void addMonths(int months) {
 		this.date = this.date.plusMonths(months);
-		for (Book book : loanedBooks) {
-			this.isDelayed(book);
+		for (Book book : getLoanedBooks()) {
+			if (!getLoanedBooks().contains(book)) {
+				this.isDelayed(book);
+			}
+			for (Customer customer : customers) {
+				for (Book sameBook : customer.getCurrentLoans()) {
+					if (book.equals(sameBook)) {
+						int debt = this.checkDelay(sameBook) * 2;
+						customer.setDebt(debt);
+					}
+				}
+			}
 		}
 	}
 
 	public void addyears(int years) {
 		this.date = this.date.plusYears(years);
-		for (Book book : loanedBooks) {
-			this.isDelayed(book);
+		for (Book book : getLoanedBooks()) {
+			if (!getLoanedBooks().contains(book)) {
+				this.isDelayed(book);
+			}
+			for (Customer customer : customers) {
+				for (Book sameBook : customer.getCurrentLoans()) {
+					if (book.equals(sameBook)) {
+						int debt = this.checkDelay(sameBook) * 2;
+						customer.setDebt(debt);
+					}
+				}
+			}
 		}
 	}
-	
-	/*TODO---------------------SEARCH------------------------------*/
+
+	/* TODO---------------------SEARCH------------------------------ */
 	// DON'T CHANGE FORMAT PLEASE.
-	public enum bookKey {TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID, TIMESBORROWED}
-	public enum customerKey {NAME, ADRESS, NUMBER, DEBT, ID, PERSONNUMMER}
+	public enum bookKey {
+		TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID, TIMESBORROWED
+	}
 
-	// ----- Search for book ----- //
-	// findBookBy returns a book if used for title, genre, publisher and ID.
-	// findBookBy returns ArrayList<Book> if used for author and shelf.
-	
-	public List<Book> searchForBook(String searchText) throws NullPointerException {
+	public enum customerKey {
+		NAME, ADRESS, NUMBER, DEBT, ID, PERSONNUMMER
+	}
+
+	public ArrayList<Book> searchForBook(String searchText) throws NullPointerException {
 		searchText.trim().toLowerCase();
-		List<Book> list = new ArrayList<>();
+		ArrayList<Book> list = new ArrayList<>();
 		for (Book book : this.books) {
-			if (book.toString().trim().toLowerCase().contains(searchText)) list.add(book);
+			if (book.getTitle().trim().toLowerCase().contains(searchText.trim().toLowerCase())
+					|| book.getAuthors().trim().toLowerCase().contains(searchText.trim().toLowerCase())
+					|| book.getPublisher().trim().toLowerCase().contains(searchText.trim().toLowerCase())
+					|| book.getGenre().trim().toLowerCase().contains(searchText)
+					|| book.getShelf().trim().toLowerCase().contains(searchText.trim().toLowerCase())) {
+				if (!list.contains(book)) {
+					list.add(book);
+				}
+			}
 		}
-		if (list.size() >= 1) return list;
-		return null;
+		if (list.size() >= 1) {
+			return list;
+		} else {
+			return null;
+		}
 	}
 
-	public List<Customer> searchForCustomer(String searchText) throws NullPointerException {
+	public ArrayList<Customer> searchForCustomer(String searchText) throws NullPointerException {
 		searchText.trim().toLowerCase();
-		List<Customer> list = new ArrayList<>();
+		ArrayList<Customer> list = new ArrayList<>();
 		for (Customer customer : this.customers) {
-			if (customer.toString().trim().toLowerCase().contains(searchText)) list.add(customer);
+			if (customer.getName().trim().toLowerCase().contains(searchText.trim().toLowerCase())
+					|| customer.getAdress().toLowerCase().trim().contains(searchText.trim().toLowerCase())
+					|| customer.getPersonnummer().toLowerCase().trim().contains(searchText.trim().toLowerCase())
+					|| customer.getNumber().trim().toLowerCase().contains(searchText.trim().toLowerCase())) {
+				list.add(customer);
+			}
 		}
-		if (list.size() >= 1) return list;
-		return null;
-	}
-
-	public Book findBookBy(bookKey key, String searchValue) throws InvalidKeyException {
-		searchValue.toLowerCase();
-		switch (key) {
-		case TITLE: return findBookByString(searchValue, Book::getTitle);
-		case GENRE: return findBookByString(searchValue, Book::getGenre);
-		case PUBLISHER: return findBookByString(searchValue, Book::getPublisher);
-		case ID:
-			for (Book book : books)
-				if (book.getId().toString().equals(searchValue)) return book;
-		default: throw new InvalidKeyException("Invalid key in search function.");
-		}
-	}
-
-	private Book findBookByString(String s, Function<Book, ? extends Comparable> f) throws NullPointerException {
-		s.toLowerCase();
-		for (Book book : this.books)
-			if (s.equals(((String) f.apply(book)).toLowerCase())) return book;
+		if (list.size() >= 1)
+			return list;
 		return null;
 	}
 
@@ -193,18 +217,21 @@ public class Library {
 	public Customer findCustomerBy(customerKey key, String searchValue) throws InvalidKeyException {
 		searchValue.toLowerCase();
 		switch (key) {
-		case NAME: return findCustomerByString(searchValue, Customer::getName);
-		case ADRESS: return findCustomerByString(searchValue, Customer::getAdress);
-		case NUMBER: return findCustomerByString(searchValue, Customer::getNumber);
-		case ID:
-			for (Customer customer : customers)
-				if (customer.getID().toString().equals(searchValue)) return customer;
-		case PERSONNUMMER: return findCustomerByString(searchValue, Customer::getPersonnummer);
-		default: throw new InvalidKeyException("Invalid enum key in search customer function");
+		case NAME:
+			return findCustomerByString(searchValue, Customer::getName);
+		case ADRESS:
+			return findCustomerByString(searchValue, Customer::getAdress);
+		case NUMBER:
+			return findCustomerByString(searchValue, Customer::getNumber);
+		case PERSONNUMMER:
+			return findCustomerByString(searchValue, Customer::getPersonnummer);
+		default:
+			throw new InvalidKeyException("Invalid enum key in search customer function");
 		}
 	}
 
-	private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f) throws NullPointerException {
+	private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f)
+			throws NullPointerException {
 		try {
 			for (Customer customer : customers) {
 				System.out.println("search value: " + searchValue);
@@ -220,13 +247,12 @@ public class Library {
 		throw new NullPointerException("Customer not found.");
 	}
 
-	/*TODO---------------------SORTING------------------------------*/
-	// Uses enums from search.
-	// DON'T CHANGE FORMAT PLEASE.
+	/* TODO---------------------SORTING------------------------------ */
 
 	public void sortAllBooksBy(bookKey keyToSort) {
 		try {
-			for (Book book : this.allBooks) book.firstLettersToUpperCase();
+			for (Book book : this.allBooks)
+				book.firstLettersToUpperCase();
 			Collections.sort(this.allBooks, Comparator.comparing(getBookFunction(keyToSort)));
 		} catch (InvalidKeyException ike) {
 			ike.printStackTrace();
@@ -235,7 +261,8 @@ public class Library {
 
 	public void sortBooksBy(bookKey keyToSort) {
 		try {
-			for (Book book : this.books) book.firstLettersToUpperCase();
+			for (Book book : this.books)
+				book.firstLettersToUpperCase();
 			Collections.sort(this.books, Comparator.comparing(getBookFunction(keyToSort)));
 		} catch (InvalidKeyException ike) {
 			ike.printStackTrace();
@@ -244,15 +271,20 @@ public class Library {
 
 	private Function<Book, ? extends Comparable> getBookFunction(bookKey key) throws InvalidKeyException {
 		switch (key) {
-		case TITLE: return Book::getTitle;
-		case AUTHOR: return Book::getAuthor;
-		case GENRE: return Book::getGenre;
-		case PUBLISHER: return Book::getPublisher;
-		case SHELF: return Book::getShelf;
+		case TITLE:
+			return Book::getTitle;
+		case AUTHOR:
+			return Book::getAuthors;
+		case GENRE:
+			return Book::getGenre;
+		case PUBLISHER:
+			return Book::getPublisher;
+		case SHELF:
+			return Book::getShelf;
 		case TIMESBORROWED:
-			// TODO: Needs testing. Not sure if this works for primitive types.
 			return Book::getTimesBorrowed;
-		default: throw new InvalidKeyException("Invalid key in sort book function");
+		default:
+			throw new InvalidKeyException("Invalid key in sort book function");
 		}
 	}
 
@@ -269,10 +301,10 @@ public class Library {
 				Collections.sort(customers, Comparator.comparing(Customer::getNumber));
 				break;
 			case DEBT:
-				// TODO: Needs testing. Not sure if this works for primitive types.
 				Collections.sort(this.customers, Comparator.comparing(Customer::getDebt));
 				break;
-			default: throw new InvalidKeyException("Invalid key in customer sort function");
+			default:
+				throw new InvalidKeyException("Invalid key in customer sort function");
 			}
 		} catch (InvalidKeyException ike) {
 			ike.printStackTrace();
@@ -283,7 +315,7 @@ public class Library {
 
 	/* register books */
 	public void addBook(Book book) {
-		if(allBooks.contains(book) == false) {
+		if (allBooks.contains(book) == false) {
 			allBooks.add(book);
 		}
 		books.add(book);
@@ -294,31 +326,25 @@ public class Library {
 	}
 
 	public void deleteBook(Book book) {
-		if(this.checkDelay(book) > 0) {
+		if (this.checkDelay(book) > 0) {
 			Customer customer = null;
-			for(Customer theCustomer: customers) {
-				if(customer.getCurrentLoans().contains(book)) {
+			for (Customer theCustomer : customers) {
+				if (customer.getCurrentLoans().contains(book)) {
 					customer = theCustomer;
 				}
 			}
 			int debt = this.checkDelay(book) * 2;
 			customer.setDebt(debt);
-			delayedBooks.remove(book);
-		}else {delayedBooks.remove(book);}
+		} 
 		allBooks.remove(book);
 		books.remove(book);
-		loanedBooks.remove(book);
 		books.remove(book);
 	}
 
-	public void addCustomer(Customer customer) {
-		boolean exists = false;
-		for(Customer theCustomer: customers) {
-			if(theCustomer.getPersonnummer().trim().equalsIgnoreCase(customer.getPersonnummer().trim())) {
-				exists = true;
-			}
-		}
-		if(!exists) {
+	public void addCustomer(Customer customer) throws Exception {
+		if (customer == null) {
+			throw new Exception("Customer object is null");
+		} else {
 			customers.add(customer);
 		}
 	}
@@ -327,15 +353,16 @@ public class Library {
 		customers.remove(customer);
 	}
 
+	/* TODO -------------------loan and return--------------------- */
 	public void borrowBook(String bookTitle, String personnummer) throws Exception {
 
 		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnummer);
-		Book book = findBookBy(TITLE, bookTitle);
+		Book book = searchForBook(bookTitle).get(0);
 		// assumes default loanPeriod
 		sortBooksBy(TITLE);
-		book.setStartDate(this.date);
 		book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks
 
+		book.incrementTimesBorrowed();
 		for (Book books : allBooks) {
 			if (book.getTitle().trim().equalsIgnoreCase(books.getTitle().trim())) {
 				books.incrementTimesBorrowed();// not sure if this increments this book as well
@@ -343,7 +370,6 @@ public class Library {
 		}
 		customer.addToCurrentLoan(book);
 		customer.addToLoanHistory(book);
-		loanedBooks.add(book);
 		books.remove(book);
 	}
 
@@ -356,7 +382,7 @@ public class Library {
 		ArrayList<Book> temp = customer.getCurrentLoans();
 		Book book = null;
 		for (Book theBook : temp) {
-			if (theBook.getTitle().equals(bookTitle)) {
+			if (theBook.getTitle().trim().equalsIgnoreCase(bookTitle.trim())) {
 				book = theBook;
 				break;
 			}
@@ -366,14 +392,11 @@ public class Library {
 			throw new Exception("Book is not in" + customer.getName() + "'s current loans");
 		}
 
-		long loanPeriod = ChronoUnit.DAYS.between(book.getReturnDate(), book.getStartDate());
-
-		if (loanPeriod >= 14 || this.checkDelay(book) > 0) {
-			// return a error message
+		if (this.checkDelay(book) > 0) {
+			throw new Exception("Book cannot be extended because it is delayed");
 		} else {
 			book.setReturnDate(book.getReturnDate().plusWeeks(2));
 		}
-
 	}
 
 	public void returnBook(String bookTitle, String personnummer) throws Exception {
@@ -390,47 +413,27 @@ public class Library {
 
 		int debt = this.checkDelay(book) * 2;
 		customer.setDebt(debt);
-		LocalDateTime date = LocalDateTime.now();
-		book.setReturnDate(date);
-		book.setStartDate(date);
+		LocalDate restartDate = LocalDate.of(2017, 10, 31);
+		;
+		book.setReturnDate(restartDate);
 		books.add(book);
-		loanedBooks.remove(book);
 		customer.removeFromCurrentLoan(book);
 
 	}
 
 	/* TODO: ---------------- Extra ----------------------- */
-	
+
 	public ArrayList<Book> getTopTen() {
 		ArrayList<Book> topTen = new ArrayList<Book>();
-		ArrayList<Book> oneCopy = new ArrayList<Book>();
-		this.sortAllBooksBy(TITLE);
-
-		for (int i = 0; i < this.allBooks.size(); i++) {
-			int numOfCopies = 0;
-			Book book = allBooks.get(i);
-			oneCopy.add(book);
-			for (int j = i; j < this.allBooks.size(); j++) {
-				if (book.getTitle().equalsIgnoreCase(this.allBooks.get(j).getTitle().trim())) {// trims
-					numOfCopies++;
+		for(Book book: allBooks){
+			for(Book someBook: topTen) {
+				if(book.getTitle().trim().equalsIgnoreCase(someBook.getTitle().trim()) && book.getAuthors().trim().equalsIgnoreCase(someBook.getAuthors().trim())) {
+					//nothing
+				}else {
+					topTen.add(book);
 				}
 			}
-			i += numOfCopies;
-			numOfCopies = 0;
 		}
-
-		try {
-			for (Book book : oneCopy)
-			Collections.sort(oneCopy, Comparator.comparing(getBookFunction(TIMESBORROWED)));
-		} catch (InvalidKeyException ike) {
-			ike.printStackTrace();
-		}
-		
-		for(int i = 0; i < 10; i++) {
-			Book theBook = oneCopy.get(i); 
-			topTen.add(theBook);
-		}
-
 		return topTen;
 	}
 
@@ -438,16 +441,13 @@ public class Library {
 		return customer.getloanHistory();
 	}
 
-	/*------ OTHER METHODS ---------*/
-	// moves a book that is delayed to delayed arrayList. 
-	// (is only used in simulation)
+	/* TODO ------ OTHER METHODS --------- */
+	// appropriates the delayed books arrayList. *Only used in simulator*
 	public void isDelayed(Book book) {
 		if (this.checkDelay(book) > 0) {
-			delayedBooks.add(book);
-			/* TODO: move this to java */
 			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/delayedBooks.txt", true)))) {
-				out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getGenre()
-						+ "-" + book.getShelf() + "-" + book.getTimesBorrowed());
+				out.println(book.getTitle() + "-" + book.getAuthors() + "-" + book.getPublisher() + "-"
+						+ book.getGenre() + "-" + book.getShelf() + "-" + book.getTimesBorrowed());
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
@@ -473,42 +473,12 @@ public class Library {
 		}
 		return copies;
 	}
-	
-	//TODO -------------Text Files-----------------------------
-	
-	// Reading a text file into arraylist: (Books)// - change the exception handling
-	// for them(?)
-	public void bookDirectory() throws FileNotFoundException {
-		Scanner input = new Scanner(new File("res/bookDirectory.txt"));
-		input.useDelimiter("-|\n");
 
-		while (input.hasNext()) {
-			String title = input.next();
-			String author = input.next();
-			String publisher = input.next();
-			String genre = input.next();
-			String shelf = input.next();
-			int timesBorrowed = input.nextInt();
-
-			Book book = null;
-			try {
-				book = new Book(title, author, publisher, genre, shelf);
-				book.setTimesBorrowed(timesBorrowed);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				books.add(book);
-			}
-		}
-	}
-
-	// Reading a text file into arraylist: (Books)// - change the exception handling
-	// for them(?)
+	// TODO -------------Text Files-----------------------------
 	public void bookDirectory(String path) throws FileNotFoundException {
 		File file = new File(path);
 		Scanner input = new Scanner(file);
-		input.useDelimiter("-|\n");
+		input.useDelimiter("/|\n");
 
 		while (input.hasNext()) {
 
@@ -517,40 +487,36 @@ public class Library {
 			String publisher = input.next();
 			String genre = input.next();
 			String shelf = input.next();
-			int timesBorrowed = input.nextInt();
+			String timesBorrowed = input.next();
+			String returnDate = input.next();
 			Book book = null;
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
-				book.setTimesBorrowed(timesBorrowed);
+				book.setTimesBorrowed(Integer.parseInt(timesBorrowed)); // changed this!!
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // need to change this?
+				book.setReturnDate(LocalDate.parse(returnDate, formatter));
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				if (path.contains("bookDirectory")) {
 					books.add(book);
 				} else if (path.contains("delayedBooks")) {
-					delayedBooks.add(book);
+					//delayedBooks.add(book);
 				} else if (path.contains("LoanedBooks")) {
-					loanedBooks.add(book);
+					//loanedBooks.add(book);
 				} else if (path.contains("AllBooks")) {
 					allBooks.add(book);
 				}
-				// else if(path.contains("CurrentLoans")) {
-				// customer.getLoanHistory().add(book);
-				// }else if(path.contains("LoanHistory")) {
-				// customer.getCurrentLoans().add(book);
-				// }
 			}
 		}
 	}
 
 	public void importBooksFrom(String fileName) throws Exception {
-		try (
-				FileInputStream fis = new FileInputStream(fileName);
-				BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
-		) {
+		try (FileInputStream fis = new FileInputStream(fileName);
+				BufferedReader reader = new BufferedReader(new InputStreamReader(fis));) {
 			String line;
 			while ((line = reader.readLine()) != null) {
-				String[] args = line.split("\\-");
+				String[] args = line.split("\\/"); // change back to \\- ???
 				addBook(new Book(args[0], args[1], args[2], args[3], args[4]));
 			}
 		} catch (IOException ioe) {
@@ -573,12 +539,7 @@ public class Library {
 
 			Customer customer = null;
 			try {
-				/*if (phoneNumber.equals("")) {
-					customer = new Customer(name, address, psn);
-				} else {*/
-					customer = new Customer(name, address, psn, phoneNumber);
-				//}
-				// System.out.println("Sup, " + psn);
+				customer = new Customer(name, address, psn, phoneNumber);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -589,14 +550,14 @@ public class Library {
 
 	@Override
 	public String toString() {
-		String s = "\n// ========== Books ========== //\n";
+		String s = "|======== Books ==========|\n===========================\nBooks Available: " + this.books.size()
+				+ "	===\n===========================\n";
 		List<String> sList = new ArrayList<>();
 		for (int i = 0; i < this.books.size(); i++) {
 			Book book = this.books.get(i);
 			if (!(sList.contains(book.toString()))) {
 				sList.add(book.toString());
-				s += book.toString()
-						+ "\n • Copies available: " + getCopiesOfTitle(book.getTitle())
+				s += book.toString() + "\n • Copies available: " + getCopiesOfTitle(book.getTitle())
 						+ "\n----------------------------------------------------------\n";
 			}
 		}

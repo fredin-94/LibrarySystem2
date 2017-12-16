@@ -1,12 +1,8 @@
 package library;
 
 import java.io.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
 import library.Library.bookKey;
 import static library.Library.bookKey.*; // Needed to take enum keys as parameters. //Fabian.
 import static library.Library.customerKey.*;
@@ -21,6 +17,728 @@ public class Test {
 		library = new Library();
 	}
 
+	// TODO Retrieving Book Information
+	public void searchBook() {
+		System.out.println("===================================================\n" + "== Search for book:\n"
+				+ "=================================================== ");
+		scanner.nextLine();
+		String searchText = scanner.nextLine();
+		ArrayList<Book> searchResults = library.searchForBook(searchText);
+		try {
+			String result = "\n==================================================="
+					+ "\nSearch Reasult\nSize of result: " + searchResults.size()
+					+ "\n===================================================\n";
+			for (Book book : searchResults) {
+				result += book.toString() + "\n";
+			}
+			System.out.println(result);
+		} catch (NullPointerException npe) {
+			System.out.println("\n~~~~~~~~ No matches with '" + searchText + "'. Try again later.\n");
+		}
+	}
+
+	public String requestTitle() throws Exception {
+		System.out.println("===================================================\n" + "Enter title *: "
+				+ "\n===================================================");
+		String title = scanner.nextLine().trim();
+		if (title.equals("")) {
+			throw new Exception("~~~~~~~~ Title of a book cannot be empty. Please retry. ");
+		}
+		return title;
+	}
+
+	public String requestAuthor() throws Exception {
+		System.out.println("===================================================\n" + "Enter author(s) *: "
+				+ "\n===================================================");
+		String author = scanner.nextLine().trim();
+		if (author.equals("")) {
+			throw new Exception("~~~~~~~~ Author of a book cannot be empty. Please retry.");
+		}
+		return author;
+	}
+
+	public String requestPublisher() throws Exception {
+		System.out.println("===================================================\n" + "Enter publisher *: "
+				+ "\n===================================================");
+		String publisher = scanner.nextLine().trim();
+		if (publisher.equals("")) {
+			throw new Exception("~~~~~~~~ Publisher of a book cannot be empty. Please retry.");
+		}
+		return publisher;
+	}
+
+	public String requestGenre() throws Exception {
+		System.out.println("===================================================\n" + "Enter genre *: "
+				+ "\n===================================================");
+		String genre = scanner.nextLine().trim();
+		if (genre.equals("")) {
+			throw new Exception("~~~~~~~~ Genre of a book cannot be empty. Please retry.");
+		}
+		return genre;
+	}
+
+	public String requestShelf() throws Exception {
+		System.out.println("===================================================\n" + "Enter shelf *: "
+				+ "\n===================================================");
+		String shelf = scanner.nextLine();
+		if (shelf.equals("")) {
+			throw new Exception("~~~~~~~~ Shelf of a book cannot be empty. Please retry.");
+		}
+		return shelf;
+	}
+
+	// TODO Retrieve Customer information
+	public void searchCustomer() {
+		System.out.println("===================================================\n" + "Search for customer: "
+				+ "\n===================================================");
+		scanner.nextLine();
+		String searchText = scanner.nextLine();
+		ArrayList<Customer> searchResults = library.searchForCustomer(searchText);
+		String s = "\n===================================================\nSearch Reasult\nSize of result: "
+				+ searchResults.size() + "\n===================================================\n";
+		try {
+			for (Customer customer : library.searchForCustomer(searchText)) {
+				s += customer.toString() + "\n";
+			}
+		} catch (NullPointerException npe) {
+			System.out.println("~~~~~~~~ No matches with '" + searchText + "'.");
+		}
+		System.out.println(s);
+	}
+
+	public String requestName() throws Exception {
+		System.out.println("===================================================\n" + "Enter customer name *: "
+				+ "\n===================================================");
+		String name = scanner.nextLine().trim();
+		if (name.equals("")) {
+			throw new Exception("~~~~~~~~ Customer name cannot be empty. Please retry.");
+		} else {
+			return name;
+		}
+	}
+
+	public String requestAddress() throws Exception {
+		System.out.println("===================================================\n" + "Enter customer address *: "
+				+ "\n===================================================");
+		String address = scanner.nextLine().trim();
+		if (address.equals("")) {
+			throw new Exception("~~~~~~~~ Customer address cannot be empty. Please retry.");
+		} else {
+			return address;
+		}
+	}
+
+	public String requestPhoneNumber() throws Exception {
+		System.out.println("===================================================\n" + "Enter customer phonenumber: "
+				+ "\n===================================================");
+		String phoneNum = scanner.nextLine().trim();
+		if (phoneNum.equals("") || (phoneNum.trim().matches("[0-9]+") && phoneNum.trim().length() == 10)) {
+			return phoneNum;
+		} else {
+			throw new Exception("~~~~~~~~ Phone number MUST either be empty or consist of 10 digits");
+		}
+	}
+
+	public String requestPsn() throws Exception {
+		System.out.println("===================================================\n" + "Enter customer personal security number *: "
+				+ "\n===================================================");
+		String psn = scanner.nextLine().trim();
+		if (psn.equals("")) {
+			throw new Exception("~~~~~~~~ Customer social security number cannot be empty. Please retry.");
+		} else if (!(psn.matches("[0-9]+") && psn.length() == 10 || psn.length() == 12)) {
+			throw new Exception("~~~~~~~~ Incorrect social security number input. Please retry.");
+		}
+
+		boolean exists = false;
+		for (Customer theCustomer : library.getCustomers()) {
+			if (theCustomer.getPersonnummer().length() > psn.length() && theCustomer.getPersonnummer().contains(psn)) {
+				exists = true;
+			} else if (theCustomer.getPersonnummer().length() < psn.length()
+					&& psn.contains(theCustomer.getPersonnummer())) {
+				exists = true;
+			} else if (theCustomer.getPersonnummer().trim().equals(psn.trim())) {
+				exists = true;
+			}
+		}
+
+		if (!exists) {
+			return psn;
+		} else {
+			throw new Exception("~~~~~~~~ Customer with " + psn + " Social Security Number Already Exists");
+		}
+	}
+
+	public String getPsn() throws Exception {
+		System.out.println("Enter customer social security number: ");
+		String psn = scanner.nextLine().trim();
+		if (psn.equals("")) {
+			throw new Exception("~~~~~~~~ Customer social security number cannot be empty. Please retry.");
+		} else if (!(psn.matches("[0-9]+") && psn.length() == 10 || psn.length() == 12)) {
+			throw new Exception("~~~~~~~~ Incorrect social security number input. Please retry.");
+		}
+		return psn;
+	}
+
+	// TODO Administration Tools
+
+	public void addBook() {
+		String title = "";
+		String author = "";
+		String publisher = "";
+		String genre = "";
+		String shelf = "";
+		System.out.println("===================================================\n" + "Book Registration" + "\n Fields with (*) MUST be filled "
+				+ "\n===================================================");
+		try {
+			title = requestTitle();
+			author = requestAuthor();
+			publisher = requestPublisher();
+			genre = requestGenre();
+			shelf = requestShelf();
+			Book b = new Book(title, author, publisher, genre, shelf);
+			library.addBook(b);
+			writeBookToFile("res/AllBooks.txt", b);
+			writeBookToFile("res/bookDirectory.txt", b);
+			System.out.println(b.getTitle() + " was successfully added to the library.");
+		} catch (Exception e) {
+			System.out.println(
+					"~~~~~~~~~~~~~~~~\n" + e.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
+		}
+	}
+
+	public void removeBook() {
+		String title = "";
+		Book book = null;
+		try {
+			title = requestTitle();
+			book = retrieveBook(library.getAllBooks(), title);
+		} catch (Exception e) {
+			System.out.println(
+					"~~~~~~~~~~~~~~~~\n" + e.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again later...");
+		}
+
+		if (isInList(library.getBooks(), book)) {
+			removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
+			library.removeBook(book);
+		} else if (isInList(library.getLoanedBooks(), book)) {
+			// removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
+			library.deleteBook(book);
+		} else if (isInList(library.getDelayedBooks(), book)) {
+			// removeLineFromFile("res/delayedBooks.txt", parseBookToString(book));
+			library.deleteBook(book);
+		}
+
+		removeLineFromFile("res/AllBooks.txt", parseBookToString(book));
+	}
+
+	public void addCustomer() {
+		String name = "";
+		String address = "";
+		String psn = "";
+		String phoneNumber = "";
+		System.out.println("===================================================\n" + "Customer Registration" + "\n Fields with (*) MUST be filled "
+				+ "\n===================================================");
+		try {
+			name = requestName();
+			address = requestAddress();
+			psn = requestPsn();
+			phoneNumber = requestPhoneNumber();
+			createFile(psn + "LoanHistory");
+			createFile(psn + "CurrentLoans");
+			writeCustomerToFile(name, address, psn, phoneNumber);
+			System.out.println("Added " + name + " to customer database");
+			System.out.println("bugChecker: No bugs found. Success!");
+			library.addCustomer(new Customer(name, address, psn, phoneNumber));
+		} catch (Exception e) {
+			removeLineFromFile("res/customer.txt", name + "/" + address + "/" + psn + "/" + phoneNumber);
+			deleteFile("res/" + psn + "CurrentLoans.txt");
+			deleteFile("res/" + psn + "LoanHistory.txt");
+			System.out.println(
+					"~~~~~~~~~~~~~~~~\n" + e.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
+			addCustomer();
+		}
+	}
+
+	public void removeCustomer() {
+		String ssn = "";
+		Customer customer = null;
+		try {
+			ssn = getPsn();
+			customer = retrieveCustomer(ssn);
+		} catch (Exception e) {
+			System.out.println(
+					"~~~~~~~~~~~~~~~~\n" + e.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
+			removeCustomer();
+		}
+		removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
+		deleteFile("res/" + ssn + "CurrentLoans.txt");
+		deleteFile("res/" + ssn + "LoanHistory.txt");
+		library.removeCustomer(customer);
+	}
+
+	// TODO Loan and Return
+
+	public void borrowBook() throws Exception {
+		scanner.nextLine();
+		// Retrieving customer
+		System.out.println("===================================================\n" + "== Search for customer:");
+		String searchTextCustomer = scanner.nextLine();
+		ArrayList<Customer> searchResult = library.searchForCustomer(searchTextCustomer);
+		Customer theCustomer = null;
+
+		try {
+			String res = "\n===================================================\nSearch Reasult\nSize of result: " + searchResult.size()
+					+ "\n===================================================\n";
+			
+			/*TODO fix*/
+			for (int i = 0; i < searchResult.size(); i++) {
+				res += "===============\nCustomer number -> " + (i + 1) + ") " + searchResult.get(i).toString() + "\n";
+			}
+			System.out.println(res);
+		} catch (NullPointerException npe) {
+			System.out.println("No matches with '" + searchTextCustomer + "'.");
+		}
+
+		System.out.println("\n===================================================\n" + "Enter the customer number: ");
+		int userInput = scanner.nextInt();
+		scanner.nextLine();
+		theCustomer = searchResult.get(userInput - 1);
+		System.out.println("===================================================\n== "+theCustomer.getName() + " has been chosen\n===================================================\n");
+
+		// retrieving book
+		String searchTextBook = requestTitle();
+		ArrayList<Book> searchResults = library.searchForBook(searchTextBook);
+		Book bookToBorrow = null;
+		try {
+			String result = "\n===================================================\nSearch Reasult\nSize of result: " + searchResults.size()
+					+ "\n===================================================\n";
+			if (searchResults.isEmpty() || searchResults == null) {
+				System.out.println("~~~~~~~~~~~~~~~~Nothing matched with " + searchTextBook);
+			} else {
+				for (int i = 0; i < searchResults.size(); i++) {
+					result += "===============\nBook number -> " + (i + 1) + ") " + searchResults.get(i).toString()
+							+ "\n";
+				}
+			}
+			System.out.println(result);
+			System.out.println("\n===================================================\n" + "Enter the book number: " + "\n===================================================\n");
+			int userInp = scanner.nextInt();
+			scanner.nextLine();
+			bookToBorrow = searchResults.get(userInp - 1);
+			System.out.println(
+					"===================================================\n"+ bookToBorrow.getTitle() + " by :" + bookToBorrow.getAuthors() + " has been chosen\n--------\n");
+		} catch (NullPointerException npe) {
+			System.out.println(
+					"~~~~~~~~~~~~~~~~\n" + npe.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
+			System.out.println("\nNo matches with '" + searchTextBook + "'. Try again. \n");
+			borrowBook();
+		}
+
+		// borrowing book
+		System.out.println("Borrowing " + bookToBorrow.getTitle() + " ...");
+		library.borrowBook(bookToBorrow.getTitle(), theCustomer.getPersonnummer());
+		borrowBookTxtHandling(theCustomer.getPersonnummer(), bookToBorrow);
+		System.out.println(bookToBorrow.getTitle() + " by: " + bookToBorrow.getAuthors() + " was successfully lent to "
+				+ theCustomer.getName() + "." + "\nTo be returned no later than: " + bookToBorrow.getReturnDate());
+	}
+
+	public void borrowBookTxtHandling(String psn, Book book) throws Exception {
+		// ** text file handling for borrow book **//
+
+		removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
+		// TODO: ^Doesn't work.
+
+		// writeBookToFile("res/LoanedBooks.txt", book);
+		writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
+		writeBookToFile("res/" + psn + "LoanHistory.txt", book);
+	}
+
+	public boolean titleHasDifferentAuthors(Book book) {
+		for (Book b : library.getBooks()) {
+			if (book.getTitle().equalsIgnoreCase(b.getTitle())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void returnBook() throws Exception {
+		scanner.nextLine();
+
+		// Retrieving customer
+		System.out.println("===================================================\n" + "== Search for customer:");
+		String searchTextCustomer = scanner.nextLine();
+		ArrayList<Customer> searchResult = library.searchForCustomer(searchTextCustomer);
+		Customer theCustomer = null;
+
+		try {
+			String res = "\n===================================================\n== Search Result\n== Size of result: " + searchResult.size()
+					+ "\n===================================================\n";
+			for (int i = 0; i < searchResult.size(); i++) {
+				res += "===============\nCustomer number ->" + (i + 1) + ") " + searchResult.get(i).toString() + "\n";
+			}
+			System.out.println(res);
+		} catch (NullPointerException npe) {
+			System.out.println("~~~~~~~~ No matches with '" + searchTextCustomer + "'.");
+		}
+		
+		/*TODO fix layout*/
+		System.out.println("\n===================================================\n" + "== Enter the customer number:");
+		int UserInput = scanner.nextInt();
+		scanner.nextLine();
+		theCustomer = searchResult.get(UserInput - 1);
+		System.out.println("===================================================\n== "+theCustomer.getName() + " has been chosen\n===================================================\n");
+
+		// retrieving book
+		System.out.println("\n===================================================\n" + "== Enter title for book to return:		(Hint: Review customer current loans)" + "\n===================================================\n");
+		scanner.nextLine();
+		Book bookToBorrow = null;
+		ArrayList<Book> customerBooks = theCustomer.getCurrentLoans();
+		try {
+			String result = "\n===================================================\n== Reasult\n== Size of result: " + customerBooks.size()
+					+ "\n===================================================\n";
+			if (customerBooks.isEmpty() || customerBooks == null) {
+				System.out.println("===================================================\n== "+theCustomer.getName() + "'s current loans are empty." + "\n===================================================");
+			} else {
+				for (int i = 0; i < customerBooks.size(); i++) {
+					result += "===============\nBook number ->" + (i + 1) + ") " + customerBooks.get(i).toString()
+							+ "\n";
+				}
+			}
+			System.out.println(result);
+			System.out.println("\n===================================================\n" + "Enter the book number: ");
+			int UserInp = scanner.nextInt();
+			scanner.nextLine();
+			bookToBorrow = customerBooks.get(UserInp - 1);
+
+		} catch (NullPointerException npe) {
+			System.out.println("\n~~~~~~~~~~~~~~~~ Failed to return book. Try again. \n");
+			returnBook();
+		}
+
+		// return a book
+		Book book = theCustomer.getFromCurrentLoan(bookToBorrow.getTitle());
+		// returns a book into library's available books directory
+		writeBookToFile("res/bookDirectory.txt", book);
+		removeLineFromFile("res/" + theCustomer.getPersonnummer() + "CurrentLoans.txt", parseBookToString(book));
+		// removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
+		library.returnBook(bookToBorrow.getTitle(), theCustomer.getPersonnummer());
+
+		System.out.println("*** Book returned successfully ***");
+	}
+
+	public void extendLoan() {
+		scanner.nextLine();
+
+		// Retrieving customer
+		System.out.println("\n===================================================\n" + "Search for customer:");
+		String searchTextCustomer = scanner.nextLine();
+		ArrayList<Customer> searchResult = library.searchForCustomer(searchTextCustomer);
+		Customer theCustomer = null;
+
+		try {
+			String res = "\n===================================================\nSearch Reasult\nSize of result: " + searchResult.size()
+					+ "\n===================================================\n";
+			for (int i = 0; i < searchResult.size(); i++) {
+				res += "===============\nCustomer number ->" + (i + 1) + ") " + searchResult.get(i).toString() + "\n";
+			}
+			System.out.println(res);
+		} catch (NullPointerException npe) {
+			System.out.println("~~~~~~~~ No matches with '" + searchTextCustomer + "'.");
+		}
+
+		System.out.println("\n===================================================\n" + "Enter the customer number: ");
+		int UserInput = scanner.nextInt();
+		scanner.nextLine();
+		theCustomer = searchResult.get(UserInput - 1);
+
+		System.out.println(theCustomer.getName() + "'s currently loaned books are:");
+		String customersLoans = "";
+		Book book = null;
+		if (theCustomer.getCurrentLoans().isEmpty()) {
+			System.out.println(theCustomer.getName() + "'s current loans are empty.");
+		} else {
+			for (int i = 0; i < theCustomer.getCurrentLoans().size(); i++) {
+				customersLoans += "Book number ->" + (i + 1) + ") " + theCustomer.getCurrentLoans().get(i).toString()
+						+ "\n";
+			}
+		}
+		System.out.println(customersLoans);
+		System.out.println("\n===================================================\n" + "Enter the book number: ");
+		int UserInp = scanner.nextInt();
+		scanner.nextLine();
+		book = theCustomer.getCurrentLoans().get(UserInp - 1);
+
+		try {
+			library.extendLoanPeriod(theCustomer.getPersonnummer(), book.getTitle());
+			System.out.println("*** " + book.getTitle() + " has been extended until " + book.getReturnDate() + "***");
+		} catch (Exception e) {
+			System.out.println("=========================\n" + e.getMessage() + "\n=========================\n");
+		}
+	}
+
+	// TODO Showing Statistics
+
+	public void sortBooks() { // this is never called haha
+		System.out.println("Show all books: Choose what to sort by");
+		System.out.println("1. Sort after title");
+		System.out.println("2. Sort after author");
+		System.out.println("3. Sort after publisher");
+		System.out.println("4. Sort after genre");
+		System.out.println("5. Sort after shelf");
+		System.out.println("6. Sort after times borrowed");
+
+		int userInput = scanner.nextInt();
+		if (userInput == 1) {
+			library.sortBooksBy(bookKey.TITLE);
+			for (int i = 0; i < library.getBooks().size(); i++) {
+				System.out.println(library.getBooks().get(i));
+			}
+		} else if (userInput == 2) {
+			library.sortBooksBy(bookKey.AUTHOR);
+			for (int i = 0; i < library.getBooks().size(); i++) {
+				System.out.println(library.getBooks().get(i));
+			}
+		} else if (userInput == 3) {
+			library.sortBooksBy(bookKey.PUBLISHER);
+			for (int i = 0; i < library.getBooks().size(); i++) {
+				System.out.println(library.getBooks().get(i));
+			}
+		} else if (userInput == 4) {
+			library.sortBooksBy(bookKey.GENRE);
+			for (int i = 0; i < library.getBooks().size(); i++) {
+				System.out.println(library.getBooks().get(i));
+			}
+		} else if (userInput == 5) {
+			library.sortBooksBy(bookKey.SHELF);
+			for (int i = 0; i < library.getBooks().size(); i++) {
+				System.out.println(library.getBooks().get(i));
+			}
+		} else if (userInput == 6) {
+			library.sortBooksBy(bookKey.TIMESBORROWED);
+			for (int i = 0; i < library.getBooks().size(); i++) {
+				System.out.println(library.getBooks().get(i));
+			}
+		}
+	}
+
+	public void showAvailableBooks() {
+		System.out.println(library.toString());
+	}
+
+	public void showCustomers() {
+		System.out.println("|==================== Customers =====================|"+"\n==\nSearch results: "
+				+ library.getCustomers().size() + "\n===================================================\n");
+		String res = "";
+		try {
+			for (Customer c : library.getCustomers()) {
+				if (c != null) {
+					res += c.toString();
+				}
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
+		if (res.equals("")) {
+			res = "~~~~~~~~ No customers are registered.";
+		} else {
+			System.out.println(res);
+		}
+	}
+
+	// TODO VG implementations //
+	public void showAllLoanedBooks() {
+		for (int i = 0; i < library.getLoanedBooks().size(); i++) {
+			System.out.println(library.getLoanedBooks().get(i).toString());
+		}
+	}
+
+	public void showAllDelayedBooks() {
+		for (int i = 0; i < library.getDelayedBooks().size(); i++) {
+			System.out.println(library.getDelayedBooks().get(i).toString());
+		}
+	}
+
+	public void showMostPopularBook() {
+		// this is the like method below but only for 1 single book.. need?
+		System.out.println("Most popular book right now is:");
+		String res = "";
+		for (Book b : library.getTopTen()) {
+			res += b.toString();
+		}
+		System.out.println(res);
+	}
+
+	// TODO Simulator
+
+	public void incrementDays() {
+		System.out.println("==================================================="+"== Enter how many days to increment: ");
+		int day = scanner.nextInt();
+		library.addDays(day);
+	}
+
+	public void incrementWeeks() {
+		System.out.println("==================================================="+"== Enter how many weeks to increment: ");
+		int week = scanner.nextInt();
+		library.addWeeks(week);
+	}
+
+	public void incrementMonths() {
+		System.out.println("==================================================="+"== Enter how many months to increment: ");
+		int month = scanner.nextInt();
+		library.addMonths(month);
+	}
+
+	public void incrementYears() {
+		System.out.println("==================================================="+"== Enter how many years to increment: ");
+		int year = scanner.nextInt();
+		library.addyears(year);
+	}
+
+	// TODO Helpful Methods
+
+	public Book retrieveBook(ArrayList<Book> listOfBooks, String title) throws Exception {
+		for (Book book : listOfBooks) {
+			if (book.getTitle().equalsIgnoreCase(title)) {
+				return book;
+			}
+		}
+		throw new Exception("~~~~~~~~ The book is not in that directory.");
+
+	}
+
+	public boolean isInList(ArrayList<Book> listOfBooks, Book book) {
+		for (Book b : listOfBooks) {
+			if (b.getTitle().equals(book.getTitle())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public Customer retrieveCustomer(String psn) throws Exception {
+		Customer somePerson = null;
+		for (Customer customer : library.getCustomers()) {
+			if (customer.getPersonnummer().equals(psn)) {
+				somePerson = customer;
+				break;
+			}
+		}
+		if (somePerson != null) {
+			return somePerson;
+		} else {
+			throw new Exception("C~~~~~~~~ ustomer does not exist in the library's database.");
+		}
+	}
+
+	// TODO Handling Text Files
+
+	public void writeBookToFile(String path, Book book) {
+		if (!book.getTitle().equals("") && !book.getAuthors().equals("") && !book.getPublisher().equals("")
+				&& !book.getGenre().equals("") && !book.getShelf().equals("")) {
+			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
+				out.println(
+						book.getTitle() + "/" + book.getAuthors() + "/" + book.getPublisher() + "/" + book.getGenre()
+								+ "/" + book.getShelf() + "/" + book.getTimesBorrowed() + "/" + book.getReturnDate());
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
+			}
+			// System.out.println("In Write book to file: Added " + book.getTitle() + " to
+			// library");
+		} else {
+			System.out.println("In write book to file: No parameters allowed to be empty");
+		}
+	}
+
+	// changes objects into a format appropriate for the txt files
+	public String parseBookToString(Book book) {
+		return book.getTitle() + "/" + book.getAuthors() + "/" + book.getPublisher() + "/" + book.getGenre() + "/"
+				+ book.getShelf() + "/" + book.getTimesBorrowed() + "/" + book.getReturnDate();
+	}
+
+	public String parseCustomerToString(Customer customer) {
+		return customer.getName() + "/" + customer.getAdress() + "/" + customer.getPersonnummer() + "/"
+				+ customer.getNumber();
+	}
+
+	public void removeLineFromFile(String path, String lineToRemove) {
+		int count = 0;
+		try {
+			File dirFile = new File(path);
+			File tmpFile = new File(dirFile.getAbsolutePath() + ".tmp");
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			PrintWriter pw = new PrintWriter(new FileWriter(tmpFile));
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (!line.equals(lineToRemove.trim()) || count > 0) {
+					pw.println(line);
+					pw.flush();
+				} else {
+					if (count == 0) {
+						continue;
+					}
+					count++;
+				}
+			}
+			System.gc();
+			pw.close();
+			br.close();
+			boolean success = dirFile.delete();
+			boolean renameSuccess = tmpFile.renameTo(dirFile);
+
+			if (success) {
+				System.out.println("Old file deleted");
+			}
+			if (renameSuccess) {
+				System.out.println("file renamed");
+			}
+		} catch (Exception e) {
+			// e.getMessage();
+			System.out.println("In remove line from file: Not able to complete method");
+		}
+	}
+
+	public void writeCustomerToFile(String name, String address, String psn, String phoneNumber) {
+		// should allow a customer to be added to txt without entering phonenumber
+		if (!name.equals("") && !address.equals("") && !psn.equals("")) {
+
+			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/customer.txt", true)))) {
+				out.println(name + "/" + address + "/" + psn + "/" + phoneNumber);
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
+			}
+			System.out.println("Added " + name + " to customer database");
+		} else {
+			System.out.println("No parameters allowed to be empty");
+		}
+	}
+
+	// -- Customer handling methods --//
+	public void createFile(String fileName) {
+		System.out.println("in createFIle");
+		try {
+			File file = new File("res/" + fileName + ".txt");
+			if (file.createNewFile()) {
+				System.out.println("Text file is created!");
+			} else {
+				System.out.println("Text file for " + fileName + " already exists.");
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+	}
+
+	public void deleteFile(String path) {
+		File f = new File(path);
+		if (f.delete()) {
+			System.out.println("Customer files deleted successfully");
+		} else {
+			System.out.println("Unable to delete customer files");
+		}
+	}
+
+	// TODO Menu Handling
 	public void run() {
 		int userInput;
 		do {
@@ -58,7 +776,7 @@ public class Test {
 			case 0:
 				System.exit(0);
 			default:
-				System.out.println("Not a valid option");
+				System.out.println("~~~~~~~~ Not a valid option");
 				break;
 			}
 		} while (userInput != 0);
@@ -79,6 +797,7 @@ public class Test {
 			System.out.println("3. Publisher");
 			System.out.println("4. Genre");
 			System.out.println("5. Shelf");
+			System.out.println("6. Most borrowed");
 			option = scanner.nextInt(); // need another one and not reuse "option"?
 			if (option == 1) {
 				library.sortBooksBy(TITLE);
@@ -90,22 +809,21 @@ public class Test {
 				library.sortBooksBy(GENRE);
 			} else if (option == 5) {
 				library.sortBooksBy(SHELF);
+			} else if (option == 6) {
+				library.sortBooksBy(TIMESBORROWED);
 			} else {
-				System.out.println("Not a valid option, displaying randomly");// ??
+				System.out.println("~~~~~~~~ Not a valid option, displaying randomly");// ??
 			}
 			showAvailableBooks();
 			break;
 		case 4:
 			showCustomers();
 			break;
-		case 5:
-			showCustomerLoanHistory();
-			break;
 		case 0:
 			run();
 			break;
 		default:
-			System.out.println("Not a valid option.");
+			System.out.println("~~~~~~~~ Not a valid option.");
 			break;
 		}
 	}
@@ -126,11 +844,18 @@ public class Test {
 				e.getMessage();
 			}
 			break;
+		case 3:
+			try {
+				extendLoan();
+			} catch (Exception e) {
+				e.getMessage();
+			}
+			break;
 		case 0:
 			run();
 			break;
 		default:
-			System.out.println("Not a valid option");
+			System.out.println("~~~~~~~~ Not a valid option");
 			break;
 		}
 	}
@@ -154,7 +879,7 @@ public class Test {
 			run();
 			break;
 		default:
-			System.out.println("Not a valid option");
+			System.out.println("~~~~~~~~ Not a valid option");
 			break;
 		}
 	}
@@ -162,22 +887,12 @@ public class Test {
 	public void handleExtra(int option) {
 		switch (option) {
 		case 1:
-			for (int i = 0; i < library.getLoanedBooks().size(); i++) {
-				System.out.println(library.getLoanedBooks().get(i).toString());
-			}
+			showAllLoanedBooks();
 			break;
 		case 2:
-			for (int i = 0; i < library.getDelayedBooks().size(); i++) {
-				System.out.println(library.getDelayedBooks().get(i).toString());
-			}
+			showAllDelayedBooks();
 			break;
 		case 3:
-			showCustomerLoanHistory();
-			break;
-		case 4:
-			showCustomerLCurrentLoans();
-			break;
-		case 5:
 			System.out.println("Top 10 books: ");
 			// library.showTopBooks();
 			break;
@@ -186,7 +901,7 @@ public class Test {
 			break;
 
 		default:
-			System.out.println("Not a valid option");
+			System.out.println("~~~~~~~~ Not a valid option");
 			break;
 		}
 	}
@@ -209,653 +924,15 @@ public class Test {
 			menu.getMenu();
 			break;
 		default:
-			System.out.println("Not a valid option");
+			System.out.println("~~~~~~~~ Not a valid option");
 			break;
 		}
 	}
 
-	public ArrayList<Customer> retrieveCustomerDirectory() {
-		return library.getCustomers();
-	}
-
-	// Methods - everything is void now - change that if needed
-	// -- Book handling methods --//
-	public void addBook() {
-
-		/* TODO: add to all books directory */
-		// ADD FUNCTION TO WRITE TO TXT FILE! --DONE
-		System.out.println("Creating new book:");
-		System.out.println("Enter title: ");
-		String title = scanner.nextLine();
-		System.out.println("Enter author: ");
-		String author = scanner.nextLine();
-		System.out.println("Enter publisher: ");
-		String publisher = scanner.nextLine();
-		System.out.println("Enter genre: ");
-		String genre = scanner.nextLine();
-		System.out.println("Enter shelf: ");
-		String shelf = scanner.nextLine();
-
-		try {
-			Book b = new Book(title, author, publisher, genre, shelf);
-			library.addBook(b);
-			writeBookToFile("res/AllBooks.txt", b);
-			writeBookToFile("res/bookDirectory.txt", b);
-			System.out.println(b.getTitle() + " was successfully added to the library.");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void writeBookToFile(String path, Book book) {
-		// can probably change this to if(!book.equals(null))
-		if (!book.getTitle().equals("") && !book.getAuthor().equals("") && !book.getPublisher().equals("")
-				&& !book.getGenre().equals("") && !book.getShelf().equals("")) {
-			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(path, true)))) {
-				out.println(book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getGenre()
-						+ "-" + book.getShelf() + "-" + book.getTimesBorrowed());
-			} catch (IOException ioe) {
-				ioe.printStackTrace();
-			}
-			// System.out.println("In Write book to file: Added " + book.getTitle() + " to
-			// library");
-		} else {
-			System.out.println("In write book to file: No parameters allowed to be empty");
-		}
-	}
-
-	public void removeBook() {
-		System.out.println("Enter title of book to remove: ");
-		String title = scanner.nextLine().trim();
-		Book book = retrieveBook(library.getAllBooks(), title);
-		// ---- Most of this will prob be deleted if Oliver implements the functionality
-		// in Library.java.-----
-		if (!book.equals(null)) {
-			if (isInList(library.getBooks(), book)) {
-				removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
-				library.removeBook(book);
-			} else if (isInList(library.getLoanedBooks(), book)) {
-				removeLineFromFile("res/LoanedBookssd.txt", parseBookToString(book));
-				// library.removeBookFromLoanedBooks
-			} else if (isInList(library.getDelayedBooks(), book)) {
-				removeLineFromFile("res/delayedBooks.txt", parseBookToString(book));
-				// library.removeBookFromDelayed
-			}
-
-			removeLineFromFile("res/AllBooks.txt", parseBookToString(book));
-		} else {
-			System.out.println("There's no book with that title");
-		}
-	}
-
-	public Book retrieveBook(ArrayList<Book> listOfBooks, String title) {
-		for (Book book : listOfBooks) {
-			if (book.getTitle().equalsIgnoreCase(title)) {
-				return book;
-			}
-		}
-		return null;
-	}
-
-	public boolean isInList(ArrayList<Book> listOfBooks, Book book) {
-		for (Book b : listOfBooks) {
-			if (b.equals(book)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public Customer retrieveCustomer(String psn) {
-		for (Customer customer : library.getCustomers()) {
-			if (customer.getPersonnummer().equals(psn)) {
-				return customer;
-			}
-		}
-		return null;
-	}
-
-	// changes objects into a format appropriate for the txt files
-	public String parseBookToString(Book book) {
-		return book.getTitle() + "-" + book.getAuthor() + "-" + book.getPublisher() + "-" + book.getGenre() + "-"
-				+ book.getShelf() + "-" + book.getTimesBorrowed();
-	}
-
-	public String parseCustomerToString(Customer customer) {
-		return customer.getName() + "/" + customer.getAdress() + "/" + customer.getPersonnummer() + "/"
-				+ customer.getNumber();
-	}
-
-	public void removeLineFromFile(String path, String lineToRemove) {
-		try {
-			File dirFile = new File(path);
-			File tmpFile = new File(dirFile.getAbsolutePath() + ".tmp");
-			BufferedReader br = new BufferedReader(new FileReader(path));
-			PrintWriter pw = new PrintWriter(new FileWriter(tmpFile));
-			String line;
-			while ((line = br.readLine()) != null) {
-				// I think it's saving a new line character at the end from when the user
-				// presses enter, therefore
-				// a .trim() is required.
-				if (!line.equals(lineToRemove.trim())) {
-					// GONNA DELETE ALL BOOKS WITH THAT TITLE, FIX PLS
-					pw.println(line);
-					pw.flush();
-				}
-			}
-			System.gc();
-			pw.close();
-			br.close();
-			boolean success = dirFile.delete();
-			boolean renameSuccess = tmpFile.renameTo(dirFile);
-
-			if (success) {
-				System.out.println("Old file deleted");
-			}
-			if (renameSuccess) {
-				System.out.println("file renamed");
-			}
-		} catch (Exception e) {
-			// e.getMessage();
-			System.out.println("In remove line from file: Not able to complete method");
-		}
-	}
-
-	public void borrowBook() throws Exception {
-		showAvailableBooks();
-		scanner.nextLine();
-
-		System.out.println("Enter title of book to borrow:");
-		String title = scanner.nextLine().trim();
-		Book book = retrieveBook(library.getAllBooks(), title);
-		System.out.println("Enter personal security number:");
-		String psn = scanner.nextLine().trim();
-		Customer customer = retrieveCustomer(psn);
-		if (customer != null && book != null) {
-
-			ArrayList<Book> options = new ArrayList<Book>();
-			for (Book somebook : library.getBooks()) {
-				if (somebook.getTitle().equalsIgnoreCase(title)) {
-					options.add(somebook);
-				}
-			}
-
-			ArrayList<Book> list = new ArrayList<Book>();
-			for (Book aBook : options) {
-				Book authorDiff = aBook;
-				boolean author = false;
-				for (int i = 0; i < list.size(); i++) {
-					if (!authorDiff.getAuthor().equalsIgnoreCase(options.get(i).getAuthor())) {
-						list.add(aBook);
-						if (title.equals("") || psn.equals("")) {
-							throw new Exception("Empty title or social security number");
-						} else {
-							if (!book.equals(null)) {
-								System.out.println("about to borrow book yay");
-								removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
-								writeBookToFile("res/LoanedBooks.txt", book);
-								writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
-								writeBookToFile("res/" + psn + "LoanHistory.txt", book);
-								System.out.println("--In test, borrow book: Success! Borrowed " + title + "--");
-								library.borrowBook(title, psn);
-								ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
-								ses.scheduleAtFixedRate(new Runnable() {
-									@Override
-									public void run() {
-										library.isDelayed(retrieveBook(library.getLoanedBooks(), title));
-									}
-								}, 0, 1, TimeUnit.HOURS);
-							}
-						}
-					} else {
-						throw new Exception("Customer Not Registered Or Book Not Found");
-					}
-				}
-			}
-		}
-	}
-
-	public void returnBook() throws Exception {
-		scanner.nextLine();
-		System.out.println("Enter personal security number:");
-		String psn = scanner.nextLine();
-		Customer customer1 = retrieveCustomer(psn);
-		if (customer1 != null) {
-
-			for (Customer customer : retrieveCustomerDirectory()) {// going into the customer arraylist
-				if (customer.getPersonnummer().equals(psn)) {
-					System.out.println("Your current books are:");
-					for (int i = 0; i < customer.getCurrentLoans().size(); i++) {
-						System.out.println(customer.getCurrentLoans().get(i).toString());
-					}
-				}
-			}
-
-			System.out.println("Enter title of book to return:");
-			String title = scanner.nextLine();
-
-			if (title.equals("") || psn.equals("")) {
-				throw new Exception("Empty title or social security number");
-			} else {
-				Book book = null;
-				for (Customer customer : retrieveCustomerDirectory()) {// going into the customer arraylist
-					if (customer.getPersonnummer().equals(psn)) {
-						book = customer.getFromCurrentLoan(title);
-					}
-				}
-				// returns a book into library's available books directory
-				writeBookToFile("res/bookDirectory.txt", book);
-				removeLineFromFile("res/" + psn + "CurrentLoans.txt", parseBookToString(book));
-				removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
-				library.returnBook(title, psn);
-				// System.out.println("In return book: removed book from loaned books arraylist,
-				// added to books arraylist, removed from customer current loans arraylist");
-
-				System.out.println("Book returned successfully");
-			}
-		} else {
-			throw new Exception("Customer Not Registered");
-		}
-	}
-
-	public void searchBook() {
-		System.out.println("Search for book: ");
-		scanner.nextLine();
-		String searchText = scanner.nextLine();
-		try {
-			for (Book book : library.searchForBook(searchText)) {
-				System.out.println(book.toString());
-			}
-		} catch (NullPointerException npe) {
-			System.out.println("No matches with '" + searchText + "'.");
-		}
-	}
-
-	// Seems ok//
-	public void sortBooks() { // doesnt work if the book starts with an lowercase letter,
-		// also would be good to skip the "The" at the beginning of a book
-
-		System.out.println("Show all books: Choose what to sort by");
-		System.out.println("1. Sort after title");
-		System.out.println("2. Sort after author");
-		System.out.println("3. Sort after publisher");
-		System.out.println("4. Sort after genre");
-		System.out.println("5. Sort after shelf");
-
-		int userInput = scanner.nextInt();
-		if (userInput == 1) {
-			library.sortBooksBy(bookKey.TITLE);
-			for (int i = 0; i < library.getBooks().size(); i++) {
-				System.out.println(library.getBooks().get(i));
-			}
-		} else if (userInput == 2) {
-			library.sortBooksBy(bookKey.AUTHOR);
-			for (int i = 0; i < library.getBooks().size(); i++) {
-				System.out.println(library.getBooks().get(i));
-			}
-		} else if (userInput == 3) {
-			library.sortBooksBy(bookKey.PUBLISHER);
-			for (int i = 0; i < library.getBooks().size(); i++) {
-				System.out.println(library.getBooks().get(i));
-			}
-		} else if (userInput == 4) {
-			library.sortBooksBy(bookKey.GENRE);
-			for (int i = 0; i < library.getBooks().size(); i++) {
-				System.out.println(library.getBooks().get(i));
-			}
-		} else if (userInput == 5) {
-			library.sortBooksBy(bookKey.SHELF);
-			for (int i = 0; i < library.getBooks().size(); i++) {
-				System.out.println(library.getBooks().get(i));
-			}
-		}
-
-	}
-
-	public void showAvailableBooks() {
-		System.out.println(library.toString());
-	}
-
-	public void writeCustomerToFile(String name, String address, String phoneNumber, String psn) {
-		// should allow a customer to be added to txt without entering phonenumber
-		if (!name.equals("") && !address.equals("") && !phoneNumber.equals("") && !psn.equals("")) {
-
-			try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("res/customer.txt", true)))) {
-				out.println(name + "/" + address + "/" + phoneNumber + "/" + psn);
-			} catch (IOException ioe) {
-				ioe.printStackTrace();
-			}
-			System.out.println("Added " + name + " to customer database");
-		} else {
-			System.out.println("No parameters allowed to be empty");
-		}
-	}
-
-	// -- Customer handling methods --//
-	public void addCustomer() {
-		// ADD FUNCTION TO ADD TO TXT FILE --done
-		/*
-		 * System.out.println("Enter customer name: "); String name =
-		 * scanner.nextLine(); System.out.println("Enter customer adress: "); String
-		 * address = scanner.nextLine(); System.out.println("Enter customer psn: ");
-		 * String psn = scanner.nextLine();
-		 * System.out.println("Enter customer phone number: "); String phoneNumber =
-		 * scanner.nextLine().trim();
-		 */
-
-		String name = "";
-		String address = "";
-		String psn = "";
-		String phoneNum = "";
-		try {
-			name = requestName();
-			address = requestAddress();
-			psn = requestSsn();
-			phoneNum = requestPhoneNumber();
-			library.addCustomer(new Customer(name, address, psn, phoneNum));
-			if (!name.equals("") && !address.equals("") && !psn.equals("")) {
-				if(phoneNum.equals("")) {
-					createFile(psn + "LoanHistory");
-					createFile(psn+"CurrentLoans");
-					library.addCustomer(new Customer(name, address, psn, phoneNum));
-				} else {
-					createFile( psn + "LoanHistory");
-					createFile(psn+"CurrentLoans");
-					library.addCustomer(new Customer(name, address, psn, phoneNum));
-				}
-				System.out.println("Added " + name + " to customer database");
-				writeCustomerToFile(name, address, psn, phoneNum);
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			addCustomer();
-		}
-		if (retrieveCustomer(psn) != null) {
-			createFile(psn + "LoanHistory");
-			createFile(psn + "CurrentLoans");
-			writeCustomerToFile(name, address, psn, phoneNum);
-		}
-
-		/*
-		 * try{ library.addCustomer(new Customer(name, address, ssn, phoneNum)); } catch
-		 * (Exception e){ System.out.println(e.getMessage()); } finally { createFile(ssn
-		 * + "LoanHistory"); createFile(ssn + "CurrentLoans"); }
-		 */
-
-		/*
-		 * try { if (!name.equals("") && !address.equals("") && !psn.equals("")) { if
-		 * (psn.matches("[0-9]+") && psn.length() == 10 || psn.length() == 12) { if
-		 * (phoneNumber.equals("")) { createFile(psn + "LoanHistory"); createFile(psn +
-		 * "CurrentLoans"); library.addCustomer(new Customer(name, address, psn)); }
-		 * else { createFile(psn + "LoanHistory"); createFile(psn + "CurrentLoans");
-		 * library.addCustomer(new Customer(name, address, psn, phoneNumber)); }
-		 * System.out.println("Added " + name + " to customer database");
-		 * writeCustomerToFile(name, address, psn, phoneNumber); } else { System.out.
-		 * println("Social security number must be 10 numbers long. Please retry.");
-		 * addCustomer(); } }
-		 * 
-		 * } catch (Exception e) { System.out.
-		 * println("Please make sure name, address and personal security numbers are all filled out."
-		 * ); addCustomer(); }
-		 */
-	}
-
-	public String requestName() throws Exception {
-		System.out.println("Enter customer name: ");
-		String name = scanner.nextLine().trim();
-		if (name.equals("")) {
-			throw new Exception("Customer name cannot be empty. Please retry.");
-		} else {
-			return name;
-		}
-	}
-
-	public String requestAddress() throws Exception {
-		System.out.println("Enter customer address: ");
-		String address = scanner.nextLine().trim();
-		if (address.equals("")) {
-			throw new Exception("Customer address cannot be empty. Please retry.");
-		} else {
-			return address;
-		}
-	}
-
-	public String requestPhoneNumber() throws Exception {
-		System.out.println("Enter customer phone number: ");
-		String phoneNum = scanner.nextLine().trim();
-		if (phoneNum.equals("")) {
-			return "";
-		} else {
-			return phoneNum;
-		}
-	}
-
-	public String requestSsn() throws Exception {
-		System.out.println("Enter customer social security number: ");
-		String ssn = scanner.nextLine().trim();
-		if (ssn.equals("")) {
-			throw new Exception("Customer social security number cannot be empty. Please retry.");
-		} else if (!(ssn.matches("[0-9]+") && ssn.length() == 10 || ssn.length() == 12)) {
-			throw new Exception("Incorrect social security number input. Please retry.");
-		} else {
-			return ssn;
-		}
-	}
-
-	public void createFile(String fileName) {
-		System.out.println("in createFIle");
-		try {
-			File file = new File("res/" + fileName + ".txt");
-			if (file.createNewFile()) {
-				System.out.println("Text file is created!");
-			} else {
-				System.out.println("Text file for " + fileName + " already exists.");
-			}
-		} catch (Exception e) {
-			e.getMessage();
-		}
-	}
-
-	public void removeCustomer() {
-		System.out.println("Enter personal security number of customer to remove: ");
-		String psn = scanner.nextLine();
-		Customer customer = retrieveCustomer(psn);
-		if (customer != null) {
-			removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
-			deleteFile("res/" + psn + "CurrentLoans.txt");
-			deleteFile("res/" + psn + "LoanHistory.txt"); // should we keep that customer's loan history in library
-															// archives??
-			library.removeCustomer(customer);
-		} else {
-			System.out.println("There's no customer with that personnummer \nPlease enter a valid one.");
-			removeCustomer();
-		}
-	}
-
-	public void deleteFile(String path) {
-		File f = new File(path);
-		if (f.delete()) {
-			System.out.println("Customer files deleted successfully");
-		} else {
-			System.out.println("Unable to delete customer files");
-		}
-	}
-
-	public void searchCustomer() {
-		System.out.println("Search for customer: ");
-		scanner.nextLine();
-		String searchText = scanner.nextLine();
-		try {
-			for (Customer customer : library.searchForCustomer(searchText)) {
-				System.out.println(customer.toString());
-			}
-		} catch (NullPointerException npe) {
-			System.out.println("No matches with '" + searchText + "'.");
-		}
-	}
-
-	public void showCustomers() {
-		String res = "";
-		try {
-			for (Customer c : library.getCustomers()) {
-				if (c != null) {
-					res += c.toString();
-				}
-			}
-		} catch (Exception e) {
-			e.getMessage();
-		}
-		if (res.equals(""))
-			res = "No customers are registered.";
-		System.out.println(res);
-	}
-
-	public void extendLoan() {
-		// wait for them to implement - tell them to implement?
-		// Loan extension should be in Library class, we should only call it from here.
-	}
-
-	// -- Time handling methods - do we need?? --//
-	public void incrementDays() {
-		System.out.println("Enter how many days to increment: ");
-		int day = scanner.nextInt();
-		library.addDays(day);
-	}
-
-	public void incrementWeeks() {
-		System.out.println("Enter how many weeks to increment: ");
-		int week = scanner.nextInt();
-		library.addWeeks(week);
-	}
-
-	public void incrementMonths() {
-		System.out.println("Enter how many months to increment: ");
-		int month = scanner.nextInt();
-		library.addMonths(month);
-	}
-
-	public void incrementYears() {
-		System.out.println("Enter how many years to increment: ");
-		int year = scanner.nextInt();
-		library.addyears(year);
-	}
-
-	// VG implementations //
-	// MAKE TOSTRING METHODS FOR BOOKS!! --DONE
-	public void showAllLoanedBooks() {
-		library.getLoanedBooks();
-		for (int i = 0; i < library.getLoanedBooks().size(); i++) {
-			System.out.println(library.getLoanedBooks().get(i).toString());
-		}
-	}
-
-	// MAKE TOSTRING METHODS FOR BOOKS!! --DONE, that is not the issue with these
-	// methods though.
-	// most methods have the same issue, namely that bookDirectory() isnt called
-	// from the customer
-	// so the books arraylist doesnt fill with the books from txt
-	public void showAllDelayedBooks() {
-		library.getDelayedBooks();
-		for (int i = 0; i < library.getDelayedBooks().size(); i++) {
-			System.out.println(library.getDelayedBooks().get(i).toString());
-		}
-	}
-
-	public void showMostPopularBook() {
-		// this is the like method below but only for 1 single book.. need?
-		System.out.println("Most popular book right now is:");
-		String res = "";
-		for (Book b : library.getTopTen()) {
-			res += b.toString();
-		}
-		System.out.println(res);
-	}
-
-	public void showCustomerLoanHistory() { // WILL THIS WORK?? ----- IT NOW WORKS
-		System.out.println("Enter the personal security number of the customer:");
-		String skipString = scanner.nextLine();
-		String customerPsn = scanner.nextLine();
-		System.out.println(customerPsn);
-		Customer customer = retrieveCustomer(customerPsn.trim());
-
-		try {
-			for (Customer c : retrieveCustomerDirectory()) {
-				if (c.equals(customer)) {
-					System.out.println("Here is " + c.getName() + "'s loan history: ");
-					library.getCustomerLoanHistory(c);
-
-					for (int i = 0; i < customer.getLoanHistory().size(); i++) {
-						System.out.println(customer.getLoanHistory().get(i).toString());
-					}
-				}
-			}
-		} catch (Exception e) {
-			System.out.println("No customer registered with that psn");
-			showCustomerLoanHistory();
-		}
-	}
-
-	public void showCustomerLCurrentLoans() { // WILL THIS WORK?? ----- IT NOW WORKS
-		System.out.println("Enter the personal security number of the customer:");
-		String skipString = scanner.nextLine();
-		String customerPsn = scanner.nextLine();
-		Customer customer = retrieveCustomer(customerPsn.trim());
-
-		try {
-			for (Customer c : retrieveCustomerDirectory()) {
-				if (c.equals(customer)) {
-					System.out.println("Here is " + c.getName() + "'s current loans: ");
-					customer.getCurrentLoans();
-
-					for (int i = 0; i < customer.getCurrentLoans().size(); i++) {
-						System.out.println(customer.getCurrentLoans().get(i).toString());
-					}
-				}
-			}
-		} catch (Exception e) {
-			System.out.println("No customer registered with that psn");
-			showCustomerLoanHistory();
-		}
-	}
-
+	// TODO Main
 	public static void main(String[] args) {
-		// System.out.println("hello m");
 		Test test = new Test();
 		test.run();
 
 	}
 }
-
-// TODO: things i wrote in my comments above, and add options for VG things !!,
-// ADD error handling!!
-// Add all the new options in the menu in this class and menu class (all methods
-// must be used somewhere)
-// make user able to exit by pressing "q" or "quit" --CAN DO THAT, need to
-// change switch conditional to a char
-// make sure everything is displayed - that they are in a sysout!
-// write sysouts that confirm users actions tex if adding a book was successful
-// or not
-// see if i should use nextLine or if next is enough
-// etc! - look through comments and go through the code, make sure all methods
-// in library are used
-
-/*
- * For the grade (Pass), the following is expected:
- *
- * There should be a directory of books. --DONE currently kept in list in
- * Library and a txt in res/.txt It should be possible to add new books to the
- * directory (title, author, genre, publisher, shelf)--DONE for both list and
- * txt Sorting and searching of books, for example by Author. --DONE To lend out
- * a book to a customer and specify the date the book should be returned. --NOT
- * SURE; NEEDS FURTHER TESTING Register that the customer has returned the book.
- * --RETURN OF BOOK REGISTERED, NOT SURE HOW IT INTERACTIS WITH CUSTOMER
- * Customers should be in a customer register. --DONE
- */
-/*
- * FOR VG For the grade (Pass with distinction) the criteria for pass must be
- * met as well as: Should be able to show all borrowed books Should be able to
- * view all delayed books Should be able to show if the borrower returned the
- * book is delayed and what the total delay fee will be. Statistics on what
- * books have been lent out the most To be able to view the borrower's loan
- * history --DONE
- */
