@@ -590,7 +590,7 @@ public class Test {
 	// TODO VG implementations //
 	public void showAllLoanedBooks() {
 		if (library.getLoanedBooks().isEmpty()) {
-			System.out.println("~~~~~~~~ No delayed books... yet");
+			System.out.println("~~~~~~~~ No lent out books... yet");
 		} else {
 			for (int i = 0; i < library.getLoanedBooks().size(); i++) {
 				System.out.println(library.getLoanedBooks().get(i).toString());
@@ -611,7 +611,7 @@ public class Test {
 	public void showMostPopularBook() {
 		System.out.println("Test 1");
 		String res = "";
-		if (library.getTopTen().isEmpty()) {
+		if (library.getTopTen().isEmpty() || library.getTopTen().equals(null)) {
 			res += "No book has been loaned out yet.";
 		} else {
 			res += "Top Ten Most popular books now are:\n";
@@ -905,7 +905,7 @@ public class Test {
 			} else if (option == 5) {
 				library.sortBooksBy(SHELF);
 			} else if (option == 6) {
-				library.sortBooksBy(TIMESBORROWED);
+				library.sortAllBooksBy(TIMESBORROWED); //why is this showing the wrong list??
 			} else {
 				System.out.println("~~~~~~~~ Not a valid option, displaying randomly");// ??
 			}
