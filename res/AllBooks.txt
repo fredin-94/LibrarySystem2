@@ -1,0 +1,4 @@
+Java/Daniel Liang/Pearsons/Education/A1/0/2017-10-31
+Probability and Statistics for Engineers/Sheldon M. Ross/Academic Press/Education/A2/0/2017-10-31
+Discrete Mathematics/Keneth H. Rosen/McGraw Hill/Education/A2/0/2017-10-31
+Head First: Java/Bert Bates, Kathy Sierra/O'Rielly/Education/A1/0/2017-10-31

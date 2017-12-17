@@ -337,7 +337,7 @@ public class Test {
 		int userInput = scanner.nextInt();
 		scanner.nextLine();
 		theCustomer = searchResult.get(userInput - 1);
-		System.out.println("n== " + theCustomer.getName() + " has been chosen\n");
+		System.out.println("== " + theCustomer.getName() + " has been chosen\n");
 
 		// retrieving book
 		String searchTextBook = requestTitle();
@@ -614,7 +614,7 @@ public class Test {
 		if (library.getTopTen().isEmpty() || library.getTopTen().equals(null)) {
 			res += "No book has been loaned out yet.";
 		} else {
-			res += "Top Ten Most popular books now are:\n";
+			res += "Most popular books:\n";
 			for (Book book : library.getTopTen()) {
 				res += book.toString();
 			}
@@ -665,28 +665,28 @@ public class Test {
 
 	public void incrementDays() {
 		System.out.println(
-				"===================================================" + "== Enter how many days to increment: ");
+				"===================================================" + "\n== Enter how many days to increment: ");
 		int day = scanner.nextInt();
 		library.addDays(day);
 	}
 
 	public void incrementWeeks() {
 		System.out.println(
-				"===================================================" + "== Enter how many weeks to increment: ");
+				"===================================================" + "\n== Enter how many weeks to increment: ");
 		int week = scanner.nextInt();
 		library.addWeeks(week);
 	}
 
 	public void incrementMonths() {
 		System.out.println(
-				"===================================================" + "== Enter how many months to increment: ");
+				"===================================================" + "\n== Enter how many months to increment: ");
 		int month = scanner.nextInt();
 		library.addMonths(month);
 	}
 
 	public void incrementYears() {
 		System.out.println(
-				"===================================================" + "== Enter how many years to increment: ");
+				"===================================================" + "\n== Enter how many years to increment: ");
 		int year = scanner.nextInt();
 		library.addyears(year);
 	}
@@ -1014,7 +1014,7 @@ public class Test {
 			incrementYears();
 			break;
 		case 0:
-			menu.getMenu();
+			run();
 			break;
 		default:
 			System.out.println("~~~~~~~~ Not a valid option");
