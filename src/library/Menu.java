@@ -1,13 +1,11 @@
 package library;
-
 public class Menu {
 
 	public void getWelcomeScreen() {
 		System.out.println();
 		System.out.println(" =================================================== ");
 		System.out.println(" ==               Welcome to                      == ");
-		System.out.println(" ==         The Royal Oxford Library              == ");
-		System.out.println(" ==                                               == ");
+		System.out.println(" ==            The TEAM 9 Library                 == ");
 		System.out.println(" ==            Established 1817                   == ");
 		System.out.println(" ==                                               == ");
 		System.out.println(" =================================================== ");

@@ -1,5 +1,4 @@
 package library;
-
 import java.io.*;
 import java.security.*;
 import java.util.function.*;
@@ -10,8 +9,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-
-import static library.Library.customerKey.*;
 
 public class Library {
 
@@ -415,43 +412,43 @@ public class Library {
 	/* TODO: ---------------- Extra ----------------------- */
 
 	public ArrayList<Book> getTopTen() {
-		boolean aBookInLibraryHasBeenBorrowed = false;
-		for(Book aBook: allBooks) {
-			if(aBook.getTimesBorrowed() > 0) {
-				aBookInLibraryHasBeenBorrowed = true;
+		sortAllBooksBy(TIMESBORROWED);
+		Set<String> hashSetTitle = new LinkedHashSet<String>();
+		ArrayList<String> arrayTitle = new ArrayList<String>();
+
+		for (Book book : allBooks) {
+			arrayTitle.add(book.getTitle());
+			hashSetTitle.add(book.getTitle());
+		}
+		for (int i = 0; i < arrayTitle.size(); i++) {
+			hashSetTitle.add(arrayTitle.get(i));
+			arrayTitle.clear();
+			arrayTitle.addAll(hashSetTitle);
+		}
+
+		ArrayList<Book> topBooks = new ArrayList<Book>();
+		if (arrayTitle.size() < 10) {
+			for (int i = 0; i < arrayTitle.size(); i++) {
+				addBookToList(arrayTitle.get(i), topBooks);
+			}
+		} else {
+			if (arrayTitle.size() > 10) {
+				for (int i = 0; i < 10; i++) {
+					addBookToList(arrayTitle.get(i), topBooks);
+				}
+			}
+		}
+		return topBooks;
+	}
+
+	public void addBookToList(String title, ArrayList<Book> list) {
+
+		for (int i = 0; i < allBooks.size(); i++) {
+			if (title.equals(allBooks.get(i).getTitle())) {
+				list.add(allBooks.get(i));
 				break;
 			}
 		}
-		
-		System.out.println("Test 2: checked if a book had been borrowed");
-		
-		ArrayList<Book> fooBar = new ArrayList<Book>();
-		sortTimesBorrowed();
-		boolean fooBarContains = true;// for comparison
-		
-		if (aBookInLibraryHasBeenBorrowed) {
-			System.out.println("Test 3: added a book to foobar");
-			fooBar.add(allBooks.get(0));
-			for (int i = 1; fooBar.size() <= 9; i++) {
-				Book book = allBooks.get(i);
-				System.out.println("Test 4: got a compare book");
-				for (int j = i - 1; j >= 0; i--) {
-					Book aBookInFooBar = fooBar.get(j);
-					System.out.println("Test 5: got another compare book");
-					if (book.getTitle().trim().equalsIgnoreCase(aBookInFooBar.getTitle().trim())
-							&& book.getAuthors().trim().equalsIgnoreCase(aBookInFooBar.getAuthors().trim())) {
-						System.out.println("Test 6: compared");
-						fooBarContains = true;
-					}
-				}
-				if (fooBarContains == false) {
-					System.out.println("Test 7: added to foobar");
-					fooBar.add(book);
-				}
-				fooBarContains = true; // resets checker
-			}
-		}
-		return fooBar;
 	}
 
 	public void sortTimesBorrowed() {
