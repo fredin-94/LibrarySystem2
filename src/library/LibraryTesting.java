@@ -4,13 +4,13 @@ import java.util.*;
 import library.Library.bookKey;
 import static library.Library.bookKey.*; // Needed to take enum keys as parameters. //Fabian.
 
-public class Test {
+public class LibraryTesting {
 
 	private Menu menu = new Menu();
 	private Scanner scanner = new Scanner(System.in);
 	private Library library;
 
-	public Test() {
+	public LibraryTesting() {
 		library = new Library();
 	}
 
