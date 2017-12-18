@@ -3,6 +3,8 @@ import java.io.*;
 import java.security.*;
 import java.util.function.*;
 
+import library.Library.bookKey;
+
 import static library.Library.bookKey.*;
 //--------------------
 import java.time.LocalDate;
@@ -239,6 +241,9 @@ public class Library {
 			for (Book book : this.allBooks)
 				book.firstLettersToUpperCase();
 			Collections.sort(this.allBooks, Comparator.comparing(getBookFunction(keyToSort)));
+			if(keyToSort.equals(TIMESBORROWED)) {
+				Collections.reverse(this.allBooks);
+			}
 		} catch (InvalidKeyException ike) {
 			ike.printStackTrace();
 		}
@@ -249,6 +254,9 @@ public class Library {
 			for (Book book : this.books)
 				book.firstLettersToUpperCase();
 			Collections.sort(this.books, Comparator.comparing(getBookFunction(keyToSort)));
+			if(keyToSort.equals(TIMESBORROWED)) {
+				Collections.reverse(this.allBooks);
+			}
 		} catch (InvalidKeyException ike) {
 			ike.printStackTrace();
 		}
