@@ -253,7 +253,7 @@ public class LibraryTesting {
 		} catch (NullPointerException npe) {
 			System.out.println("~~~~~~~~~~~~~~~~\n" + npe.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
 			System.out.println("\nNo matches with '" + searchTextBook + "'. Try again. \n");
-			menu.getAdministration();
+			menu.getAdministration(library.getDate());
 			int userInput = scanner.nextInt();
 			scanner.nextLine();
 			handleAdmin(userInput);
@@ -855,34 +855,34 @@ public class LibraryTesting {
 	public void run() {
 		int userInput;
 		do {
-			menu.getWelcomeScreen();
-			menu.getMenu();
+			menu.getWelcomeScreen(library.getDate());
+			menu.getMenu(library.getDate());
 			userInput = scanner.nextInt();
 			scanner.nextLine();
 
 			switch (userInput) {
 			case 1:
-				menu.getSearch();
+				menu.getSearch(library.getDate());
 				userInput = scanner.nextInt();
 				handleSearchMenu(userInput);
 				break;
 			case 2:
-				menu.getBookOptions();
+				menu.getBookOptions(library.getDate());
 				userInput = scanner.nextInt();
 				handleBookMenu(userInput);
 				break;
 			case 3:
-				menu.getAdministration();
+				menu.getAdministration(library.getDate());
 				userInput = scanner.nextInt();
 				handleAdmin(userInput);
 				break;
 			case 4:
-				menu.getExtra();
+				menu.getExtra(library.getDate());
 				userInput = scanner.nextInt();
 				handleExtra(userInput);
 				break;
 			case 5:
-				menu.getSimulator();
+				menu.getSimulator(library.getDate());
 				userInput = scanner.nextInt();
 				handleTimeSimMenu(userInput);
 				break;
