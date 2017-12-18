@@ -609,7 +609,7 @@ public class LibraryTesting {
 	// TODO VG implementations //
 	public void showAllLoanedBooks() {
 		if (library.getLoanedBooks().isEmpty()) {
-			System.out.println("~~~~~~~~ No delayed books... yet");
+			System.out.println("~~~~~~~~ No books have been lent out... yet");
 		} else {
 			for (int i = 0; i < library.getLoanedBooks().size(); i++) {
 				System.out.println(library.getLoanedBooks().get(i).toString());
