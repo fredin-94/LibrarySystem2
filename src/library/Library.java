@@ -591,9 +591,11 @@ public class Library {
 				System.out.println(customer.getName());
 				/*if (phoneNumber.equals("")) {
 					customer = new Customer(name, address, psn);
-				} else {
+				} else {*/
 					customer = new Customer(name, address, psn, phoneNumber);
-				}*/
+				
+
+
 				// System.out.println("Sup, " + psn);
 			} catch (Exception e) {
 				//System.out.println(e.getMessage());
