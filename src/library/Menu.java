@@ -1,313 +1,162 @@
 package library;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 public class Menu {
 
-	public void getWelcomeScreen() {
+	public void getWelcomeScreen(LocalDate date) {
+		SimpleDateFormat theDate = new SimpleDateFormat("EEE MMM dd-yyyy");
+		Date fooBarBat = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		String fooBarDate = theDate.format(fooBarBat);
 		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==               Welcome to                      == ");
-		System.out.println(" ==         The Royal Oxford Library              == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==            Established 1817                   == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println();
-	}
-
-	public void getMenu() {
-		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Library System                    == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Choose an option below:                   === ");
-		System.out.println(" ===   1. Search library directory               === ");
-		System.out.println(" ===   2. Borrow or return books                 === ");
-		System.out.println(" ===   3. Administration                         === ");
-		System.out.println(" ===   4. Extra                                  === ");
-		System.out.println(" ===   5. Time Simulator FX40000                 === ");
-		System.out.println(" ===   0. Quit program                           === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
+		System.out.println(" ===================================================\n"
+		+ " ==               Welcome to                      ==\n"
+		+ " ==            The TEAM 9 Library                 ==\n"
+		+ " ==            Established 1817                   ==\n"
+		+ " ==                                               ==\n"
+		+ " ==           "  + fooBarDate +"                     ==\n"
+		+ " ===================================================\n");
 		System.out.println();
 	}
 
-	public void getSearch() {
-		System.out.println("\n =================================================== " + System.lineSeparator()
-				+ " ==             Search System                     == " + System.lineSeparator()
-				+ " ==                                               == " + System.lineSeparator()
-				+ " ==          "+ Library.getDate()+ "              == " + System.lineSeparator()
-				+ " =================================================== " + System.lineSeparator()
-				+ " ===                                             === " + System.lineSeparator()
-				+ " ===   Choose an option below:                   === " + System.lineSeparator()
-				+ " ===   1. Search for book                        === " + System.lineSeparator()
-				+ " ===   2. Search for customer                    === " + System.lineSeparator()
-				+ " ===   3. Print all available books              === " + System.lineSeparator()
-				+ " ===   4. Print all customers                    === " + System.lineSeparator()
-				+ " ===   0. Return to main menu                    === " + System.lineSeparator()
-				+ " =================================================== \n");
-	}
-
-	public void getBookOptions() {
-		System.out.println("\n =================================================== " + System.lineSeparator()
-				+ " ==             Borrow or return books            == " + System.lineSeparator()
-				+ " ==                                               == " + System.lineSeparator()
-				+ " ==          "+ Library.getDate()+ "              == " + System.lineSeparator()
-				+ " =================================================== " + System.lineSeparator()
-				+ " ===                                             === " + System.lineSeparator()
-				+ " ===   Choose an option below:                   === " + System.lineSeparator()
-				+ " ===   1. Borrow book                            === " + System.lineSeparator()
-				+ " ===   2. Return book                            === " + System.lineSeparator()
-				+ " ===   0. Return to main menu                    === " + System.lineSeparator()
-				+ " ===                                             === " + System.lineSeparator()
-				+ " =================================================== \n");
-	}
-
-	public void bookOption() {
+	public void getMenu(LocalDate date) {
+		SimpleDateFormat theDate = new SimpleDateFormat("EEE MMM dd-yyyy");
+		Date fooBarBat = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		String fooBarDate = theDate.format(fooBarBat);
 		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Book Search System                == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Search by:                                === ");
-		System.out.println(" ===   1. Title                                  === ");
-		System.out.println(" ===   2. Id                                     === ");
-		System.out.println(" =================================================== ");
+		System.out.println(" ===================================================\n"
+		+ " ==             Library System                    ==\n"
+		+ " ==                                               ==\n"
+		+ " ==           "  + fooBarDate +"                     ==\n"
+		+ " ===================================================\n"
+		+ " ===                                             ===\n"
+		+ " ===   Choose an option below:                   ===\n"
+		+ " ===   1. Search library directory               ===\n"
+		+ " ===   2. Borrow or return books                 ===\n"
+		+ " ===   3. Administration                         ===\n"
+		+ " ===   4. Extra                                  ===\n"
+		+ " ===   5. Time Simulator FX40000                 ===\n"
+		+ " ===   0. Quit program                           ===\n"
+		+ " ===                                             ===\n"
+		+ " ===================================================\n");
 		System.out.println();
 	}
 
-	public void customerOption() {
+	public void getSearch(LocalDate date) {
+		SimpleDateFormat theDate = new SimpleDateFormat("EEE MMM dd-yyyy");
+		Date fooBarBat = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		String fooBarDate = theDate.format(fooBarBat);
 		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Customer Search System            == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Search by:                                === ");
-		System.out.println(" ===   1. Name                                   === ");
-		System.out.println(" ===   2. Id                                     === ");
-		System.out.println(" =================================================== ");
-		System.out.println();
-	}
-
-	public void searchBookByTitle() {
-		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Book Search System                == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Enter title below:                        === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
+		System.out.println(" ===================================================\n"
+		+ " ==             Search System                     ==\n"
+		+ " ==                                               ==\n"
+		+ " ==           "  + fooBarDate +"                     ==\n"
+		+ " ===================================================\n"
+		+ " ===                                             ===\n"
+		+ " ===   Choose an option below:                   ===\n"
+		+ " ===   1. Search for Book                        ===\n"
+		+ " ===   2. Search for Customer                    ===\n"
+		+ " ===   3. Print all Books                        ===\n"
+		+ " ===   4. Print all Customers                    ===\n"
+		+ " ===   0. Return to main menu                    ===\n"
+		+ " ===================================================\n");
 		System.out.println();
 	}
 
-	public void searchBookById() {
+	public void getBookOptions(LocalDate date) {
+		SimpleDateFormat theDate = new SimpleDateFormat("EEE MMM dd-yyyy");
+		Date fooBarBat = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		String fooBarDate = theDate.format(fooBarBat);
 		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Book Search System                == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Enter book id below:                      === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
-		System.out.println();
-	}
-
-	public void searchCustomerByName() {
-		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Customer Search System            == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Enter customer name below:                === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
+		System.out.println(" ===================================================\n"
+		+ " ==             Borrow or Return books            ==\n"
+		+ " ==                                               ==\n"
+		+ " ==           "  + fooBarDate +"                     ==\n"
+		+ " ===================================================\n"
+		+ " ===                                             ===\n"
+		+ " ===   Choose an option below:                   ===\n"
+		+ " ===   1. Borrow Book                            ===\n"
+		+ " ===   2. Return Book                            ===\n"
+		+ " ===   3. Extend Book Loan (beta test)           ===\n"
+		+ " ===   0. Return to main menu                    ===\n"
+		+ " ===================================================\n");
 		System.out.println();
 	}
 
-	public void searchCustomerById() {
+	public void getAdministration(LocalDate date) {
+		SimpleDateFormat theDate = new SimpleDateFormat("EEE MMM dd-yyyy");
+		Date fooBarBat = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		String fooBarDate = theDate.format(fooBarBat);
 		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Customer Search System            == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Enter customer id below:                  === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
-		System.out.println();
-	}
-
-	public void getAdministration() {
-		System.out.println(" =================================================== \n"
-				+ " ==             Administration System             == \n"
-				+ " ==                                               == \n"
-				+ " ==          "+ Library.getDate()+ "              == \n"
-				+ " =================================================== \n"
-				+ " ===                                             === \n"
-				+ " ===   Choose an option below:                   === \n"
-				+ " ===   1. Add Book                               === \n"
-				+ " ===   2. Remove Book                            === \n"
-				+ " ===   3. Add Customer                           === \n"
-				+ " ===   4. Remove Customer                        === \n"
-				+ " ===   0. Return to main menu                    === \n"
-				+ " ===                                             === \n"
-				+ " =================================================== \n");
-	}
-
-	public void addAuthor() {
-		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Book Creation                     == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Do you want to add another author:        === ");
-		System.out.println(" ===   1. Yes                                    === ");
-		System.out.println(" ===   2. No                                     === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
+		System.out.println(" ===================================================\n"
+		+ " ==             Asministration System             ==\n"
+		+ " ==                                               ==\n"
+		+ " ==           "  + fooBarDate +"                     ==\n"
+		+ " ===================================================\n"
+		+ " ===                                             ===\n"
+		+ " ===   Choose an option below:                   ===\n"
+		+ " ===   1. Add Book                               ===\n"
+		+ " ===   2. Delete Book from directory             ===\n"
+		+ " ===   3. Add Customer                           ===\n"
+		+ " ===   4. Remove Customer                        ===\n"
+		+ " ===   0. Return to main menu                    ===\n"
+		+ " ===================================================\n");
 		System.out.println();
 	}
 
-	public void removeBookOption() {
+	public void getSimulator(LocalDate date) {
+		SimpleDateFormat theDate = new SimpleDateFormat("EEE MMM dd-yyyy");
+		Date fooBarBat = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		String fooBarDate = theDate.format(fooBarBat);
 		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Book Search System                == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Search by:                                === ");
-		System.out.println(" ===   1. Title                                  === ");
-		System.out.println(" ===   2. Id                                     === ");
-		System.out.println(" =================================================== ");
-		System.out.println();
-	}
-
-	public void removeCustomerOption() {
-		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Customer Search System            == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Search by:                                === ");
-		System.out.println(" ===   1. Name                                   === ");
-		System.out.println(" ===   2. Id                                     === ");
-		System.out.println(" =================================================== ");
+		System.out.println(" ===================================================\n"
+		+ " ==             Simulator System                  ==\n"
+		+ " ==                                               ==\n"
+		+ " ==           "  + fooBarDate +"                     ==\n"
+		+ " ===================================================\n"
+		+ " ===                                             ===\n"
+		+ " ===   Choose an option below:                   ===\n"
+		+ " ===   1. Increment Days                         ===\n"
+		+ " ===   2. Increment Weeks                        ===\n"
+		+ " ===   3. Increment Months                       ===\n"
+		+ " ===   4. Increment Years                        ===\n"
+		+ " ===   0. Return to main menu                    ===\n"
+		+ " ===                                             ===\n"
+		+ " ===================================================\n");
 		System.out.println();
 	}
 
-	public void removeBookByTitle() {
+	public void getExtra(LocalDate date) {
+		SimpleDateFormat theDate = new SimpleDateFormat("EEE MMM dd-yyyy");
+		Date fooBarBat = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		String fooBarDate = theDate.format(fooBarBat);
 		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Book Removal System               == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Enter title below:                        === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
-		System.out.println();
-	}
-
-	public void removeBookById() {
-		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Book Removal System               == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Enter book id below:                      === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
+		System.out.println(" ===================================================\n"
+		+ " ==             Extra                             ==\n"
+		+ " ==                                               ==\n"
+		+ " ==           "  + fooBarDate +"                     ==\n"
+		+ " ===================================================\n"
+		+ " ===                                             ===\n"
+		+ " ===   Choose an option below:                   ===\n"
+		+ " ===   1. Show all lent out books                ===\n"
+		+ " ===   2. Show all delayed books                 ===\n"
+		+ " ===   3. Show most popular books                ===\n"
+		+ " ===   0. Return to main menu                    ===\n"
+		+ " ===                                             ===\n"
+		+ " ===================================================\n");
 		System.out.println();
 	}
-
-	public void removeCustomerByName() {
-		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Customer Removal System           == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Enter customer name below:                === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
-		System.out.println();
-	}
-
-	public void removeCustomerById() {
-		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Customer Removal System           == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Enter customer id below:                  === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
-		System.out.println();
-	}
-
-	public void getSimulator() {
-		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Simulator System                  == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Choose an option below:                   === ");
-		System.out.println(" ===   1. Increment Days                         === ");
-		System.out.println(" ===   2. Increment Weeks                        === ");
-		System.out.println(" ===   3. Increment Months                       === ");
-		System.out.println(" ===   4. Increment Years                        === ");
-		System.out.println(" ===   0. Return to main menu                    === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
-		System.out.println();
-	}
-
-	public void getExtra() {
-		System.out.println();
-		System.out.println(" =================================================== ");
-		System.out.println(" ==             Extra                             == ");
-		System.out.println(" ==                                               == ");
-		System.out.println(" ==          "+ Library.getDate()+ "              == ");
-		System.out.println(" =================================================== ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" ===   Choose an option below:                   === ");
-		System.out.println(" ===   1. Show all lent out books                === ");
-		System.out.println(" ===   2. Show all delayed books                 === ");
-		System.out.println(" ===   3. Show customers loan history            === ");
-		System.out.println(" ===   4. Show customers current books           === ");
-		System.out.println(" ===   5. Show top 10 most popular books         === ");
-		System.out.println(" ===   0. Return to main menu                    === ");
-		System.out.println(" ===                                             === ");
-		System.out.println(" =================================================== ");
-		System.out.println();
+	
+	public void getCustomerFeatures() {
+		System.out.println("||-----------------------------------------------||\n"
+		+ "||-   Choose an option below:                   -||\n"
+		+ "||-----------------------------------------------||\n"
+		+ "---   1. Show current loans                     ---\n"
+		+ "---   2. Show loan history                      ---\n"
+		+ "---   3. Pay current fee                        ---\n"
+		+ "---   0. Return to main menu                    ---\n");
 	}
 }
-
