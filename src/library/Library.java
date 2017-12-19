@@ -349,12 +349,12 @@ public class Library {
 		Book book = searchForBook(bookTitle).get(0);
 		// assumes default loanPeriod
 		sortBooksBy(TITLE);
-		book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks
+		book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks //Need to delete this??
 
 		book.incrementTimesBorrowed();
 		for (Book books : allBooks) {
 			if (book.getTitle().trim().equalsIgnoreCase(books.getTitle().trim())) {
-				books.incrementTimesBorrowed();// not sure if this increments this book as well
+				//books.incrementTimesBorrowed();// not sure if this increments this book as well
 			}
 		}
 		customer.addToCurrentLoan(book);

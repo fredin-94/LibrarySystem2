@@ -1,5 +1,6 @@
 package library;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.*;
 import library.Library.bookKey;
 import static library.Library.bookKey.*; // Needed to take enum keys as parameters. //Fabian.
@@ -318,7 +319,7 @@ public class LibraryTesting {
 
 	public void borrowBook() throws Exception {
 		scanner.nextLine();
-		// Retrieving customer
+		// Retrieving custowriteBookToFile("res/" + psn + "CurrentLoans.txt", book);mer
 		System.out.println("===================================================\n" + "== Search for customer:");
 		String searchTextCustomer = scanner.nextLine();
 		ArrayList<Customer> searchResult = library.searchForCustomer(searchTextCustomer);
@@ -372,6 +373,8 @@ public class LibraryTesting {
 			int userInp = scanner.nextInt();
 			scanner.nextLine();
 			bookToBorrow = searchResults.get(userInp - 1);
+			//bookToBorrow.setReturnDate(LocalDate.now().plusDays(14));
+			System.out.println("borrowing: " + bookToBorrow.getReturnDate());
 			System.out.println("== " + bookToBorrow.getTitle()
 					+ " by :" + bookToBorrow.getAuthors() + " has been chosen\n--------\n");
 		} catch (NullPointerException npe) {
@@ -382,8 +385,12 @@ public class LibraryTesting {
 
 		// borrowing book
 		System.out.println("Borrowing " + bookToBorrow.getTitle() + " ...");
-		removeLineFromFile("res/bookDirectory.txt", parseBookToString(bookToBorrow));
+		removeLineFromFile("res/AllBooks.txt", parseBookToString(bookToBorrow)); //doesnt work cuz the returndate is different - so seen as different object
+		System.out.println("borrowing: " + bookToBorrow.getReturnDate());
+		removeLineFromFile("res/bookDirectory.txt", parseBookToString(bookToBorrow)); //this is also done in borrowBookTxtHandling
+		System.out.println("borrowing: " + bookToBorrow.getReturnDate());
 		library.borrowBook(bookToBorrow.getTitle(), theCustomer.getPersonnummer());
+		System.out.println("borrowing: " + bookToBorrow.getReturnDate());
 		borrowBookTxtHandling(theCustomer.getPersonnummer(), bookToBorrow);
 		System.out.println("||-----------------------------------------------||\n" + bookToBorrow.getTitle() + "\nby: "
 				+ bookToBorrow.getAuthors() + " was\nsuccessfully lent to " + theCustomer.getName() + "."
@@ -394,10 +401,18 @@ public class LibraryTesting {
 	public void borrowBookTxtHandling(String psn, Book book) throws Exception {
 		// ** text file handling for borrow book **//
 
-		removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
+		//removeLineFromFile("res/bookDirectory.txt", parseBookToString(book)); //doesnt work here cuz you already changed the parameters of the book, so it will be seen as a different object
 		// TODO: ^Doesn't work.
+		book.setReturnDate(LocalDate.now().plusDays(14));
 		writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
+		System.out.println("borrowing: " + book.getReturnDate());
 		writeBookToFile("res/" + psn + "LoanHistory.txt", book);
+		System.out.println("borrowing: " + book.getReturnDate());
+		book.setReturnDate(LocalDate.of(2017, 10, 31));
+		writeBookToFile("res/AllBooks.txt", book); //will only add one book, but the remove line from file deles all books, so if we had several books we only get one back
+		book.setReturnDate(LocalDate.now().plusDays(14));
+		System.out.println("borrowing: " + book.getReturnDate());
+	
 	}
 
 	public boolean titleHasDifferentAuthors(Book book) {
@@ -478,10 +493,12 @@ public class LibraryTesting {
 		// return a book
 		Book book = theCustomer.getFromCurrentLoan(bookToBorrow.getTitle());
 		// returns a book into library's available books directory
-		writeBookToFile("res/bookDirectory.txt", book);
 		removeLineFromFile("res/" + theCustomer.getPersonnummer() + "CurrentLoans.txt", parseBookToString(book));
-		// removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
 		library.returnBook(bookToBorrow.getTitle(), theCustomer.getPersonnummer());
+		book.setReturnDate(LocalDate.of(2017, 10, 31));
+		writeBookToFile("res/bookDirectory.txt", book);	
+		// removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
+		
 		System.out.println("*** Book returned successfully ***");
 	}
 
@@ -811,6 +828,39 @@ public class LibraryTesting {
 			System.out.println("In remove line from file: Not able to complete method");
 		}
 	}
+
+//	public void removeLineFromFile(String path, String lineToRemove) {
+//		try {
+//			File dirFile = new File(path);
+//			File tmpFile = new File(dirFile.getAbsolutePath() + ".tmp");
+//			BufferedReader br = new BufferedReader(new FileReader(path));
+//			PrintWriter pw = new PrintWriter(new FileWriter(tmpFile));
+//			String line;
+//			while ((line = br.readLine()) != null) {
+//				if (!line.equals(lineToRemove.trim())) {
+//					// GONNA DELETE ALL BOOKS WITH THAT TITLE, FIX PLS
+//					pw.println(line);
+//					pw.flush();
+//					break;
+//				}
+//			}
+//			System.gc();
+//			pw.close();
+//			br.close();
+//			boolean success = dirFile.delete();
+//			boolean renameSuccess = tmpFile.renameTo(dirFile);
+//
+//			if (success) {
+//				// System.out.println("Old file deleted");
+//			}
+//			if (renameSuccess) {
+//				// System.out.println("file renamed");
+//			}
+//		} catch (Exception e) {
+//			// e.getMessage();
+//			System.out.println("In remove line from file: Not able to complete method");
+//		}
+//	}
 
 	public void writeCustomerToFile(String name, String address, String psn, String phoneNumber) {
 		// should allow a customer to be added to txt without entering phonenumber
