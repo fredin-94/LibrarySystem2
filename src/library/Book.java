@@ -51,6 +51,7 @@ public class Book {
 		if (this.authors.size() > 1) {
 			return this.authors.get(0) + "," + this.authors.get(1);
 		} else {
+			System.out.println(this.authors.get(0));
 			return this.authors.get(0);
 		}
 	}
