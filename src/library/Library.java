@@ -27,6 +27,10 @@ public class Library {
 
 		try {
 			customerDirectory();
+			// bookDirectory("res/bookDirectory.txt");
+			// bookDirectory("res/LoanedBookssd.txt");
+			// bookDirectory("res/delayedBooks.txt");
+			// bookDirectory("res/AllBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize customer directory");
 		}
@@ -38,7 +42,7 @@ public class Library {
 		}
 
 		try {
-			// bookDirectory("res/LoanedBooks.txt");
+			//bookDirectory("res/LoanedBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize loaned books directory");
 		}
@@ -576,15 +580,16 @@ public class Library {
 
 		while (input.hasNext()) {
 
-			String name = input.next();
-			String address = input.next();
-			String psn = input.next();
+			String name = input.next().trim();
+			String address = input.next().trim();
+			String psn = input.next().trim();
 			String phoneNumber = input.next().trim();
 
 			Customer customer = null;
 			try {
 				customer = new Customer(name, address, psn, phoneNumber);
 			} catch (Exception e) {
+				//System.out.println(e.getMessage());
 				e.printStackTrace();
 			} finally {
 				customers.add(customer);

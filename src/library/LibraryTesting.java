@@ -385,19 +385,83 @@ public class LibraryTesting {
 		removeLineFromFile("res/bookDirectory.txt", parseBookToString(bookToBorrow));
 		library.borrowBook(bookToBorrow.getTitle(), theCustomer.getPersonnummer());
 		borrowBookTxtHandling(theCustomer.getPersonnummer(), bookToBorrow);
+
 		System.out.println("||-----------------------------------------------||\n" + bookToBorrow.getTitle() + "\nby: "
 				+ bookToBorrow.getAuthors() + " was\nsuccessfully lent to " + theCustomer.getName() + "."
 				+ "\nTo be returned no later than: *" + bookToBorrow.getReturnDate() + "*"
 				+ "\n||-----------------------------------------------||\n");
 	}
 
-	public void borrowBookTxtHandling(String psn, Book book) throws Exception {
+	public void borrowBookTxtHandling(String psn, Book book){
 		// ** text file handling for borrow book **//
+		incrementTimesBorrowed("res/AllBooks.txt", book);
+		incrementTimesBorrowed("res/bookDirectory.txt", book);
 
 		removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
 		// TODO: ^Doesn't work.
 		writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
 		writeBookToFile("res/" + psn + "LoanHistory.txt", book);
+
+		checkCustomerFiles(book);
+	}
+
+
+	// This can definitely be prettied up especially because the code is so similar to what's going on in removeLineFromFile
+	public void incrementTimesBorrowed(String path, Book book){
+		String currentTimes = Integer.toString(book.getTimesBorrowed()-1);
+		String incremented = Integer.toString(book.getTimesBorrowed());
+
+		try {
+			File dirFile = new File(path);
+			File tmpFile = new File(dirFile.getAbsolutePath() + ".tmp");
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			PrintWriter pw = new PrintWriter(new FileWriter(tmpFile));
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (line.contains(book.getTitle()) && line.contains(book.getAuthors())) {
+					pw.println(line.replaceFirst("/"+currentTimes+"/", "/"+incremented+"/"));
+					pw.flush();
+				} else {
+					pw.println(line);
+					pw.flush();
+				}
+			}
+			System.gc();
+			pw.close();
+			br.close();
+			boolean success = dirFile.delete();
+			boolean renameSuccess = tmpFile.renameTo(dirFile);
+
+			if (success) {
+				//System.out.println("Old file deleted");
+			}
+			if (renameSuccess) {
+				//System.out.println("file renamed");
+			}
+		} catch (Exception e) {
+			// e.getMessage();
+			System.out.println("In remove line from file: Not able to complete method");
+		}
+	}
+
+	public void checkCustomerFiles(Book book){
+		File dir = new File("res/");
+		File[] dirList = dir.listFiles();
+		String line;
+
+		for(File file : dirList){
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
+				System.out.println("File currently checking: " + file.getPath());
+				while((line = br.readLine()) != null){
+					if(line.contains(book.getTitle()) && line.contains(book.getAuthors())){
+						incrementTimesBorrowed(file.getName(), book);
+					}
+				}
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public boolean titleHasDifferentAuthors(Book book) {
@@ -789,9 +853,8 @@ public class LibraryTesting {
 					pw.flush();
 				} else {
 					if (count == 0) {
-						continue;
+						count++;
 					}
-					count++;
 				}
 			}
 			System.gc();
