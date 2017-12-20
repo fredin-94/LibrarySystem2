@@ -1,19 +1,16 @@
 package library;
-
 import java.io.*;
-import java.time.LocalDate;
 import java.util.*;
 import library.Library.bookKey;
 import static library.Library.bookKey.*; // Needed to take enum keys as parameters. //Fabian.
-import static library.Library.customerKey.*;
 
-public class Test {
+public class LibraryTesting {
 
 	private Menu menu = new Menu();
 	private Scanner scanner = new Scanner(System.in);
 	private Library library;
 
-	public Test() {
+	public LibraryTesting() {
 		library = new Library();
 	}
 
@@ -94,9 +91,11 @@ public class Test {
 		String searchText = scanner.nextLine();
 		ArrayList<Customer> searchResults = library.searchForCustomer(searchText);
 		Customer theCustomer = null;
-		String s = "\n===================================================\nSearch Reasult\nSize of result: "
-				+ searchResults.size() + "\n===================================================\n";
+		String s = "";
 		try {
+			s += "\n===================================================\nSearch Reasult\nSize of result: "
+					+ searchResults.size() + "\n===================================================\n";
+			
 			for (int i = 0; i < searchResults.size(); i++) {
 				s += "\n===================================================\nCustomer number -> " + (i + 1) + ") "
 						+ searchResults.get(i).toString();
@@ -105,6 +104,10 @@ public class Test {
 			System.out.println(s);
 			System.out
 					.println("===================================================\n" + "Enter the customer number*: ");
+			while(!scanner.hasNextInt()) {
+				scanner.next();
+				System.out.println("~~~~~~~~ Please enter an integer\nfrom 1 to " + searchResults.size());
+			}
 			int userInput = scanner.nextInt();
 			scanner.nextLine();
 			theCustomer = searchResults.get(userInput - 1);
@@ -142,7 +145,9 @@ public class Test {
 		System.out.println("===================================================\n" + "Enter customer phonenumber: "
 				+ "\n===================================================");
 		String phoneNum = scanner.nextLine().trim();
-		if (phoneNum.equals("") || (phoneNum.trim().matches("[0-9]+") && phoneNum.trim().length() == 10)) {
+		if(phoneNum.equals("")) {
+			return "Not Available";
+		}else if ((phoneNum.trim().matches("[0-9]+") && phoneNum.trim().length() == 10)) {
 			return phoneNum;
 		} else {
 			throw new Exception("~~~~~~~~ Phone number MUST either be empty or consist of 10 digits");
@@ -198,8 +203,8 @@ public class Test {
 		String publisher = "";
 		String genre = "";
 		String shelf = "";
-		System.out.println("===================================================\n" + "Book Registration"
-				+ "\n Fields with (*) MUST be filled " + "\n===================================================");
+		System.out.println("===================================================\n" + "==		Book Registration"
+				+ "\n==		Fields with (*) MUST be filled " + "\n===================================================");
 		try {
 			title = requestTitle();
 			author = requestAuthor();
@@ -210,7 +215,7 @@ public class Test {
 			library.addBook(b);
 			writeBookToFile("res/AllBooks.txt", b);
 			writeBookToFile("res/bookDirectory.txt", b);
-			System.out.println(b.getTitle() + " was successfully added to the library.");
+			System.out.println(b.getTitle() + " was successfully added\nto the library.");
 		} catch (Exception e) {
 			System.out.println("~~~~~~~~~~~~~~~~\n" + e.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
 		}
@@ -248,7 +253,7 @@ public class Test {
 		} catch (NullPointerException npe) {
 			System.out.println("~~~~~~~~~~~~~~~~\n" + npe.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
 			System.out.println("\nNo matches with '" + searchTextBook + "'. Try again. \n");
-			menu.getAdministration();
+			menu.getAdministration(library.getDate());
 			int userInput = scanner.nextInt();
 			scanner.nextLine();
 			handleAdmin(userInput);
@@ -334,6 +339,10 @@ public class Test {
 		}
 
 		System.out.println("\n===================================================\n" + "Enter the customer number: ");
+		while(!scanner.hasNextInt()) {
+			scanner.next();
+			System.out.println("~~~~~~~~ Please enter an integer\nfrom 1 to " + searchResult.size());
+		}
 		int userInput = scanner.nextInt();
 		scanner.nextLine();
 		theCustomer = searchResult.get(userInput - 1);
@@ -355,8 +364,11 @@ public class Test {
 				}
 			}
 			System.out.println(result);
-			System.out.println("\n===================================================\n" + "Enter the book number: "
-					+ "\n===================================================\n");
+			System.out.println("\n===================================================\n" + "Enter the book number: ");
+			while(!scanner.hasNextInt()) {
+				scanner.next();
+				System.out.println("~~~~~~~~ Please enter an integer\nfrom 1 to " + searchResults.size());
+			}
 			int userInp = scanner.nextInt();
 			scanner.nextLine();
 			bookToBorrow = searchResults.get(userInp - 1);
@@ -411,7 +423,7 @@ public class Test {
 					+ searchResult.size() + "\n===================================================\n";
 			for (int i = 0; i < searchResult.size(); i++) {
 				res += "\n===================================================\nCustomer number ->" + (i + 1) + ") "
-						+ searchResult.get(i).toString() + "\n" +library.getCustomerCurrentLoanString(theCustomer);
+						+ searchResult.get(i).toString() + "\n" +library.getCustomerCurrentLoanString(searchResult.get(i));
 			}
 			System.out.println(res);
 		} catch (NullPointerException npe) {
@@ -419,15 +431,19 @@ public class Test {
 		}
 
 		System.out.println("\n===================================================\n" + "== Enter the customer number:");
+		while(!scanner.hasNextInt()) {
+			scanner.next();
+			System.out.println("~~~~~~~~ Please enter an integer\nfrom 1 to " + searchResult.size());
+		}
 		int UserInput = scanner.nextInt();
 		scanner.nextLine();
 		theCustomer = searchResult.get(UserInput - 1);
 		System.out.println("\n== " + theCustomer.getName()
-				+ " has been chosen\n===================================================\n");
+				+ "'s currently loaned books\n===================================================\n" + library.getCustomerCurrentLoanString(theCustomer));
 
 		// retrieving book
 		System.out.println("\n===================================================\n"
-				+ "== Enter title for book to return:		(Hint: Review customer current loans)"
+				+ "== Enter title for book to return:\n(Hint: Review customer current loans)"
 				+ "\n===================================================\n");
 		scanner.nextLine();
 		Book bookToBorrow = null;
@@ -446,6 +462,10 @@ public class Test {
 			}
 			System.out.println(result);
 			System.out.println("\n===================================================\n" + "Enter the book number: ");
+			while(!scanner.hasNextInt()) {
+				scanner.next();
+				System.out.println("~~~~~~~~ Please enter an integer\nfrom 1 to " + searchResult.size());
+			}
 			int UserInp = scanner.nextInt();
 			scanner.nextLine();
 			bookToBorrow = customerBooks.get(UserInp - 1);
@@ -462,7 +482,6 @@ public class Test {
 		removeLineFromFile("res/" + theCustomer.getPersonnummer() + "CurrentLoans.txt", parseBookToString(book));
 		// removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
 		library.returnBook(bookToBorrow.getTitle(), theCustomer.getPersonnummer());
-
 		System.out.println("*** Book returned successfully ***");
 	}
 
@@ -590,7 +609,7 @@ public class Test {
 	// TODO VG implementations //
 	public void showAllLoanedBooks() {
 		if (library.getLoanedBooks().isEmpty()) {
-			System.out.println("~~~~~~~~ No lent out books... yet");
+			System.out.println("~~~~~~~~ No books have been lent out... yet");
 		} else {
 			for (int i = 0; i < library.getLoanedBooks().size(); i++) {
 				System.out.println(library.getLoanedBooks().get(i).toString());
@@ -609,12 +628,11 @@ public class Test {
 	}
 
 	public void showMostPopularBook() {
-		System.out.println("Test 1");
 		String res = "";
 		if (library.getTopTen().isEmpty() || library.getTopTen().equals(null)) {
 			res += "No book has been loaned out yet.";
 		} else {
-			res += "Most popular books:\n";
+			res += "Most popular books now are:\n";
 			for (Book book : library.getTopTen()) {
 				res += book.toString();
 			}
@@ -723,7 +741,7 @@ public class Test {
 		if (somePerson != null) {
 			return somePerson;
 		} else {
-			throw new Exception("C~~~~~~~~ ustomer does not exist in the library's database.");
+			throw new Exception("C~~~~~~~~ Customer does not exist in the library's database.");
 		}
 	}
 
@@ -742,7 +760,7 @@ public class Test {
 			// System.out.println("In Write book to file: Added " + book.getTitle() + " to
 			// library");
 		} else {
-			System.out.println("In write book to file: No parameters allowed to be empty");
+			//System.out.println("In write book to file: No parameters allowed to be empty");
 		}
 	}
 
@@ -783,10 +801,10 @@ public class Test {
 			boolean renameSuccess = tmpFile.renameTo(dirFile);
 
 			if (success) {
-				System.out.println("Old file deleted");
+				//System.out.println("Old file deleted");
 			}
 			if (renameSuccess) {
-				System.out.println("file renamed");
+				//System.out.println("file renamed");
 			}
 		} catch (Exception e) {
 			// e.getMessage();
@@ -805,19 +823,19 @@ public class Test {
 			}
 			System.out.println("Added " + name + " to customer database");
 		} else {
-			System.out.println("No parameters allowed to be empty");
+			//System.out.println("No parameters allowed to be empty");
 		}
 	}
 
 	// -- Customer handling methods --//
 	public void createFile(String fileName) {
-		System.out.println("in createFIle");
+		//System.out.println("in createFIle");
 		try {
 			File file = new File("res/" + fileName + ".txt");
 			if (file.createNewFile()) {
-				System.out.println("Text file is created!");
+				//System.out.println("Text file is created!");
 			} else {
-				System.out.println("Text file for " + fileName + " already exists.");
+				//System.out.println("Text file for " + fileName + " already exists.");
 			}
 		} catch (Exception e) {
 			e.getMessage();
@@ -827,9 +845,9 @@ public class Test {
 	public void deleteFile(String path) {
 		File f = new File(path);
 		if (f.delete()) {
-			System.out.println("Customer files deleted successfully");
+			//System.out.println("Customer files deleted successfully");
 		} else {
-			System.out.println("Unable to delete customer files");
+			//System.out.println("Unable to delete customer files");
 		}
 	}
 
@@ -837,34 +855,34 @@ public class Test {
 	public void run() {
 		int userInput;
 		do {
-			menu.getWelcomeScreen();
-			menu.getMenu();
+			menu.getWelcomeScreen(library.getDate());
+			menu.getMenu(library.getDate());
 			userInput = scanner.nextInt();
 			scanner.nextLine();
 
 			switch (userInput) {
 			case 1:
-				menu.getSearch();
+				menu.getSearch(library.getDate());
 				userInput = scanner.nextInt();
 				handleSearchMenu(userInput);
 				break;
 			case 2:
-				menu.getBookOptions();
+				menu.getBookOptions(library.getDate());
 				userInput = scanner.nextInt();
 				handleBookMenu(userInput);
 				break;
 			case 3:
-				menu.getAdministration();
+				menu.getAdministration(library.getDate());
 				userInput = scanner.nextInt();
 				handleAdmin(userInput);
 				break;
 			case 4:
-				menu.getExtra();
+				menu.getExtra(library.getDate());
 				userInput = scanner.nextInt();
 				handleExtra(userInput);
 				break;
 			case 5:
-				menu.getSimulator();
+				menu.getSimulator(library.getDate());
 				userInput = scanner.nextInt();
 				handleTimeSimMenu(userInput);
 				break;
@@ -1020,12 +1038,5 @@ public class Test {
 			System.out.println("~~~~~~~~ Not a valid option");
 			break;
 		}
-	}
-
-	// TODO Main
-	public static void main(String[] args) {
-		Test test = new Test();
-		test.run();
-
 	}
 }

@@ -1,8 +1,9 @@
 package library;
-
 import java.io.*;
 import java.security.*;
 import java.util.function.*;
+
+import library.Library.bookKey;
 
 import static library.Library.bookKey.*;
 //--------------------
@@ -10,8 +11,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-
-import static library.Library.customerKey.*;
 
 public class Library {
 
@@ -242,7 +241,7 @@ public class Library {
 			for (Book book : this.allBooks)
 				book.firstLettersToUpperCase();
 			Collections.sort(this.allBooks, Comparator.comparing(getBookFunction(keyToSort)));
-			if (keyToSort.equals(TIMESBORROWED)) {
+			if(keyToSort.equals(TIMESBORROWED)) {
 				Collections.reverse(this.allBooks);
 			}
 		} catch (InvalidKeyException ike) {
@@ -255,8 +254,8 @@ public class Library {
 			for (Book book : this.books)
 				book.firstLettersToUpperCase();
 			Collections.sort(this.books, Comparator.comparing(getBookFunction(keyToSort)));
-			if (keyToSort.equals(TIMESBORROWED)) {
-				Collections.reverse(this.books);
+			if(keyToSort.equals(TIMESBORROWED)) {
+				Collections.reverse(this.allBooks);
 			}
 		} catch (InvalidKeyException ike) {
 			ike.printStackTrace();
@@ -424,35 +423,36 @@ public class Library {
 		sortAllBooksBy(TIMESBORROWED);
 		Set<String> hashSetTitle = new LinkedHashSet<String>();
 		ArrayList<String> arrayTitle = new ArrayList<String>();
-		
-		for(Book book : allBooks) {	
+
+		for (Book book : allBooks) {
 			arrayTitle.add(book.getTitle());
 			hashSetTitle.add(book.getTitle());
 		}
-		for(int i = 0; i < arrayTitle.size(); i++) {
+		for (int i = 0; i < arrayTitle.size(); i++) {
 			hashSetTitle.add(arrayTitle.get(i));
 			arrayTitle.clear();
-			arrayTitle.addAll(hashSetTitle);	
+			arrayTitle.addAll(hashSetTitle);
 		}
-			
+
 		ArrayList<Book> topBooks = new ArrayList<Book>();
 		if (arrayTitle.size() < 10) {
 			for (int i = 0; i < arrayTitle.size(); i++) {
 				addBookToList(arrayTitle.get(i), topBooks);
 			}
 		} else {
-			if(arrayTitle.size()>10) {
+			if (arrayTitle.size() > 10) {
 				for (int i = 0; i < 10; i++) {
 					addBookToList(arrayTitle.get(i), topBooks);
 				}
-			}			
+			}
 		}
 		return topBooks;
-	}	
+	}
+
 	public void addBookToList(String title, ArrayList<Book> list) {
-		
-		for(int i =0; i <allBooks.size(); i++) {
-			if(title.equals(allBooks.get(i).getTitle())) {
+
+		for (int i = 0; i < allBooks.size(); i++) {
+			if (title.equals(allBooks.get(i).getTitle())) {
 				list.add(allBooks.get(i));
 				break;
 			}

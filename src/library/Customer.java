@@ -1,15 +1,12 @@
 package library;
-
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.UUID;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Customer implements Serializable {
+public class Customer {
 
 	private String name;
 	private String adress;
@@ -128,7 +125,7 @@ public class Customer implements Serializable {
 		File file = new File(path);
 		Scanner input = new Scanner(file);
 		input.useDelimiter("/|\n");
-		System.out.println("current customer: " + this.name);
+		//System.out.println("current customer: " + this.name);
 		while (input.hasNext()) {
 			String title = input.next().trim();
 			String authors = input.next().trim();
