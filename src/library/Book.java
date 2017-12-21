@@ -29,8 +29,6 @@ public class Book {
 												// this was
 	}
 
-	// TODO Getters and Setters
-
 	public UUID getId() {
 		return this.id;
 	}
