@@ -376,7 +376,7 @@ public class LibraryTesting {
 			//bookToBorrow.setReturnDate(LocalDate.now().plusDays(14));
 			System.out.println("borrowing: " + bookToBorrow.getReturnDate());
 			System.out.println("== " + bookToBorrow.getTitle()
-					+ " by :" + bookToBorrow.getAuthors() + " has been chosen\n--------\n");
+					+ " by: " + bookToBorrow.getAuthors() + " has been chosen\n--------\n");
 		} catch (NullPointerException npe) {
 			System.out.println("~~~~~~~~~~~~~~~~\n" + npe.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
 			System.out.println("\nNo matches with '" + searchTextBook + "'. Try again. \n");
@@ -385,12 +385,7 @@ public class LibraryTesting {
 
 		// borrowing book
 		System.out.println("Borrowing " + bookToBorrow.getTitle() + " ...");
-		removeLineFromFile("res/AllBooks.txt", parseBookToString(bookToBorrow)); //doesnt work cuz the returndate is different - so seen as different object
-		System.out.println("borrowing: " + bookToBorrow.getReturnDate());
-		removeLineFromFile("res/bookDirectory.txt", parseBookToString(bookToBorrow)); //this is also done in borrowBookTxtHandling
-		System.out.println("borrowing: " + bookToBorrow.getReturnDate());
 		library.borrowBook(bookToBorrow.getTitle(), theCustomer.getPersonnummer());
-		System.out.println("borrowing: " + bookToBorrow.getReturnDate());
 		borrowBookTxtHandling(theCustomer.getPersonnummer(), bookToBorrow);
 
 		System.out.println("||-----------------------------------------------||\n" + bookToBorrow.getTitle() + "\nby: "
@@ -404,16 +399,19 @@ public class LibraryTesting {
 		incrementTimesBorrowed("res/AllBooks.txt", book);
 		incrementTimesBorrowed("res/bookDirectory.txt", book);
 
-		//removeLineFromFile("res/bookDirectory.txt", parseBookToString(book)); //doesnt work here cuz you already changed the parameters of the book, so it will be seen as a different object
-		// TODO: ^Doesn't work.
-		book.setReturnDate(LocalDate.now().plusDays(14));
-		writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
-		writeBookToFile("res/" + psn + "LoanHistory.txt", book);
-		System.out.println("borrowing: " + book.getReturnDate());
-		book.setReturnDate(LocalDate.of(2017, 10, 31));
-		writeBookToFile("res/AllBooks.txt", book); //will only add one book, but the remove line from file deles all books, so if we had several books we only get one back
-		book.setReturnDate(LocalDate.now().plusDays(14));
-		System.out.println("borrowing: " + book.getReturnDate());
+		removeLineFromFile("res/bookDirectory.txt", parseBookToString(book)); //doesnt work here cuz you already changed the parameters of the book, so it will be seen as a different object
+		try {
+			book.setReturnDate(LocalDate.now().plusDays(14));
+			writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
+			writeBookToFile("res/" + psn + "LoanHistory.txt", book);
+			System.out.println("borrowing: " + book.getReturnDate());
+			//book.setReturnDate(LocalDate.of(2017, 10, 31));
+			//writeBookToFile("res/AllBooks.txt", book); //will only add one book, but the remove line from file deles all books, so if we had several books we only get one back
+			book.setReturnDate(LocalDate.now().plusDays(14));
+			System.out.println("borrowing: " + book.getReturnDate());
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 
 		checkCustomerFiles(book);
 	}
@@ -445,32 +443,26 @@ public class LibraryTesting {
 			boolean success = dirFile.delete();
 			boolean renameSuccess = tmpFile.renameTo(dirFile);
 
+			System.out.println("current file: " + path);
 			if (success) {
-				//System.out.println("Old file deleted");
+				//System.out.println("Old file deleted " + path);
 			}
 			if (renameSuccess) {
-				//System.out.println("file renamed");
+				//System.out.println("file renamed " + path);
 			}
 		} catch (Exception e) {
 			// e.getMessage();
-			System.out.println("In remove line from file: Not able to complete method");
+			System.out.println("In increment times borrowed: Not able to complete method");
 		}
 	}
 
 	public void checkCustomerFiles(Book book){
 		File dir = new File("res/");
 		File[] dirList = dir.listFiles();
-		String line;
 
 		for(File file : dirList){
 			try {
-				BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
-				System.out.println("File currently checking: " + file.getPath());
-				while((line = br.readLine()) != null){
-					if(line.contains(book.getTitle()) && line.contains(book.getAuthors())){
-						incrementTimesBorrowed(file.getName(), book);
-					}
-				}
+				incrementTimesBorrowed(file.getAbsolutePath(), book);
 			}catch (Exception e){
 				e.printStackTrace();
 			}
