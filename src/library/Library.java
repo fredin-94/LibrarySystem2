@@ -352,7 +352,8 @@ public class Library {
 		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnummer);
 		Book book = searchForBook(bookTitle).get(0);
 		// assumes default loanPeriod
-		sortBooksBy(TITLE);
+		//sortBooksBy(TITLE);		*** this line of code was changing the title to have a first letter uppercase even
+		// 								if it was put in by the user as lower case ***
 		book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks //Need to delete this??
 
 		book.incrementTimesBorrowed();
