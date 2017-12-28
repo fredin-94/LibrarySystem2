@@ -25,7 +25,7 @@ public class Book {
 		this.genre = genre;
 		this.publisher = publisher;
 		this.shelf = shelf;
-		returnDate = LocalDate.of(2017, 10, 31);// homage to the first mini-project lecture... before we knew how fucked
+		//returnDate = LocalDate.of(2017, 10, 31);// homage to the first mini-project lecture... before we knew how fucked
 												// this was
 	}
 

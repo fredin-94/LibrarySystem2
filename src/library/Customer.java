@@ -1,4 +1,6 @@
 package library;
+import java.net.Inet4Address;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
@@ -135,11 +137,16 @@ public class Customer {
 			String timesBorrowed = input.next().trim();
 			String returnDate = input.next();
 			Book book = null;
+			LocalDate d;
 			try {
 				book = new Book(title, authors, publisher, genre, shelf);
 				book.setTimesBorrowed(Integer.parseInt(timesBorrowed));
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // need to change this?
-				book.setReturnDate(LocalDate.parse(returnDate, formatter));
+				String[] temp = returnDate.split("-");
+				int year = Integer.parseInt(temp[0]);
+				int month = Integer.parseInt(temp[1]);
+				int day = Integer.parseInt(temp[2].trim());
+				d = LocalDate.of(year, month, day);
+				book.setReturnDate(d);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {

@@ -386,6 +386,7 @@ public class Library {
 			throw new Exception("Book is not in" + customer.getName() + "'s current loans");
 		}
 
+		System.out.println("checkDelay: " + checkDelay(book));
 		if (this.checkDelay(book) > 0) {
 			throw new Exception("Book cannot be extended because it is delayed");
 		} else {
@@ -505,6 +506,8 @@ public class Library {
 	/* TODO ------ OTHER METHODS --------- */
 	// returns delay surplus
 	public int checkDelay(Book book) {
+		System.out.println("current date: " + this.date);
+		System.out.println("return date: " + book.getReturnDate());
 		if (this.date.compareTo(book.getReturnDate()) > 0) {
 			return (int) ChronoUnit.DAYS.between(book.getReturnDate(), this.date);
 		} else {
@@ -538,11 +541,17 @@ public class Library {
 			String timesBorrowed = input.next();
 			String returnDate = input.next();
 			Book book = null;
+			LocalDate d;
 			try {
 				book = new Book(title, author, publisher, genre, shelf);
 				book.setTimesBorrowed(Integer.parseInt(timesBorrowed)); // changed this!!
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // need to change this?
-				book.setReturnDate(LocalDate.parse(returnDate, formatter));
+
+				String[] temp = returnDate.split("-");
+				int year = Integer.parseInt(temp[0]);
+				int month = Integer.parseInt(temp[1]);
+				int day = Integer.parseInt(temp[2].trim());
+				d = LocalDate.of(year, month, day);
+				book.setReturnDate(d);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
