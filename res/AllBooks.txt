@@ -1,6 +1,99 @@
-Java/Daniel Liang/Pearsons/Education/A1/0/2017-10-31
-Probability and Statistics for Engineers/Sheldon M. Ross/Academic Press/Education/A2/0/2017-10-31
-Discrete Mathematics/Keneth H. Rosen/McGraw Hill/Education/A2/0/2017-10-31
-Head First: Java/Bert Bates, Kathy Sierra/O'Rielly/Education/A1/0/2017-10-31
-Misbehaving/Richard Thaler/Econ/Education/A3/0/2017-10-31
-Designing Interfaces/Jenifer Tidwell/O'Reilly/Education/A5/0/2017-10-31
+The Da Vinci Code/Brown Dan/Transworld/Crime Thriller & Adventure/1a/11/2017-10-31
+Harry Potter and the Deathly Hallows/Rowling J.K./Bloomsbury/Fiction/2f/9/2017-10-31
+Harry Potter and the Philosopher's Stone/Rowling J.K./Bloomsbury/Fiction/2f/8/2017-10-31
+Harry Potter and the Order of the Phoenix/Rowling J.K./Bloomsbury/Fiction/2f/7/2017-10-31
+Fifty Shades of Grey/James E. L./Random House/Romance/5r/7/2017-10-31
+Harry Potter and the Goblet of Fire/Rowling J.K./Bloomsbury/Fiction /2f/6/2017-10-31
+Harry Potter and the Chamber of Secrets/Rowling J.K./Bloomsbury/Fiction/2f/5/2017-10-31
+Harry Potter and the Prisoner of Azkaban/Rowling J.K./Bloomsbury/Fiction/2f/4/2017-10-31
+Harry Potter and the Deathly Hallows/Rowling J.K./Bloomsbury/Fiction/2f/3/2017-10-31
+Angels and Demons/Brown Dan/Transworld/Crime Thriller & Adventure/1a/2/2017-10-31
+Harry Potter and the Halfblood Prince/Rowling J.K./Bloomsbury/Fiction/2f/1/2017-10-31
+Fifty Shades Darker/James E. L./Random House/Romance/5r/0/2017-10-31
+Twilight/Meyer Stephenie/Little Brown Book/Young Adult Fiction/4ya/0/2017-10-31
+The Girl with the Dragon Tattoo/Larsson Stieg/Quercus/Crime Thriller & Adventure/1a/0/2017-10-31
+Fifty Shades Freed/James E. L./Random House/Romance/5r/0/2017-10-31
+The Lost Symbol/	Brown Dan/Transworld/Crime Thriller & Adventure/1a/0/2017-10-31
+New Moon/Meyer Stephenie/Little Brown Book/Young Adult Fiction/4ya/0/2017-10-31
+Deception Point/Brown Dan/Transworld/Crime Thriller & Adventure/1a/0/2017-10-31
+Eclipse/Meyer Stephenie/Little Brown Book/Young Adult Fiction/4ya/0/2017-10-31
+The Lovely Bones/Sebold Alice/Pan Macmillan/Literary Fiction/6LF/0/2017-10-31
+The Curious Incident of the Dog in the Nighttime/Haddon Mark/Random House/Literary Fiction/6LF/0/2017-10-31
+Digital Fortress/Brown Dan/Transworld/Crime Thriller & Adventure/1a/0/2017-10-31
+A Short History of Nearly Everything/Bryson Bill/Transworld/Popular Science/7ps/0/2017-10-31
+The Girl Who Played with Fire/Larsson Stieg/Quercus/Crime Thriller & Adventure/1a/0/2017-10-31
+Breaking Dawn/Meyer Stephenie/Little Brown Book/Young Adult Fiction/4ya/0/2017-10-31
+The Very Hungry Caterpillar/Carle Eric/Penguin/Picture Books/8pb/0/2017-10-31
+The Gruffalo/Donaldson Julia/Pan Macmillan/Picture Books/8pb/0/2017-10-31
+Jamie's 30 Minute Meals/	Oliver Jamie/Penguin/Food & Drink/9fd/0/2017-10-31
+The Kite Runner/Hosseini Khaled/Bloomsbury/Literary Fiction/6LF/0/2017-10-31
+One Day/Nicholls David/Hodder & Stoughton/Literary Fiction/6LF/0/2017-10-31
+A Thousand Splendid Suns/Hosseini Khaled/Bloomsbury/Literary Fiction/6LF/0/2017-10-31
+The Girl Who Kicked the Hornets' Nest/Larsson Stieg/Quercus/Crime Thriller & Adventure/1a/0/2017-10-31
+The Time Traveler's Wife/Niffenegger Audrey/Random House/Literary Fiction/6LF/0/2017-10-31
+Atonement/McEwan Ian/Random House/Literary Fiction/6LF/0/2017-10-31
+Bridget Jones's Diary/Fielding Helen/Pan Macmillan/Literary Fiction/6LF/0/2017-10-31
+The World According to Clarkson/Clarkson Jeremy/Penguin/Humour/10hu/0/2017-10-31
+Captain Corelli's Mandolin/Bernieres Louis de/Random House/Literary Fiction/6LF/0/2017-10-31
+The Sound of Laughter/Kay Peter/Random House/Autobiography/1au/0/2017-10-31
+Life of Pi/Martel Yann/Canongate/Literary Fiction/6LF/0/2017-10-31
+Billy Connolly/Stephenson Pamela/HarperCollins/Biography/2bi/0/2017-10-31
+A Child Called It/Pelzer Dave/Orion/Autobiography/1au/0/2017-10-31
+The Gruffalo's Child/Donaldson Julia/Pan Macmillan/Picture Books/5pb/0/2017-10-31
+Angela's Ashes:A Memoir of a Childhood/McCourt Frank/HarperCollins/Autobiography/1au/0/2017-10-31
+Birdsong/Faulks Sebastian/Random House/Literary Fiction/6LF/0/2017-10-31
+Northern Lights/Pullman Philip/Scholastic Ltd./Young Adult Fiction/4ya/0/2017-10-31
+Labyrinth/Mosse Kate/Orion/Literary Fiction/6LF/0/2017-10-31
+The Help/Stockett Kathryn/Penguin/Literary Fiction/6LF/0/2017-10-31
+Man and Boy/Parsons Tony/HarperCollins/Literary Fiction/6LF/0/2017-10-31
+Memoirs of a Geisha/Golden Arthur/Random House/Literary Fiction/6LF/0/2017-10-31
+The No.1 Ladies' Detective Agency/McCall Smith Alexander/Little Brown Book/Crime Thriller & Adventure/1a/0/2017-10-31
+The Island/Hislop Victoria/Headline/Literary Fiction/6LF/0/2017-10-31
+PS I Love You/Ahern Cecelia/HarperCollins/Literary Fiction/6LF/0/2017-10-31
+You are What You Eat:The Plan That Will Change Your Life/	McKeith Gillian/Penguin/Fitness & Diet/1FD/0/2017-10-31
+The Shadow of the Wind/Zafon Carlos Ruiz/Orion/Literary Fiction/6LF/0/2017-10-31
+The Tales of Beedle the Bard/Rowling J.K./Bloomsbury/Children's Fiction/2CF/0/2017-10-31
+The Broker/Grisham John/Random House/Crime Thriller & Adventure/1a/0/2017-10-31
+Dr. Atkins' New Diet Revolution/Atkins Robert C./Random House/Fitness & Diet/1FD/0/2017-10-31
+The Subtle Knife/Pullman Philip/Scholastic Ltd./Young Adult Fiction/4ya/0/2017-10-31
+Eats Shoots and Leaves:The Zero Tolerance Approach to Punctuation/Truss Lynne/Profile Books Group/Writing Guides/10wg/0/2017-10-31
+Delia's How to Cook/Smith Delia/Random House/Food & Drink/9fd/0/2017-10-31
+Chocolat/Harris Joanne/Transworld/Literary Fiction/6LF/0/2017-10-31
+The Boy in the Striped Pyjamas/Boyne John/Random House/Fiction/2f/0/2017-10-31
+My Sister's Keeper/Picoult Jodi/Hodder & Stoughton/Literary Fiction/6LF/0/2017-10-31
+The Amber Spyglass/Pullman Philip/Scholastic Ltd./Young Adult Fiction/4ya/0/2017-10-31
+To Kill a Mockingbird/Lee Harper/Random House/Literary Fiction/6LF/0/2017-10-31
+Men are from Mars Women are from Venus/Gray John/HarperCollins/Popular Culture/8pc/0/2017-10-31
+Dear Fatty/French Dawn/Random House/Autobiography/1au/0/2017-10-31
+A Short History of Tractors in Ukrainian/Lewycka Marina/Penguin/Literary Fiction/6LF/0/2017-10-31
+Hannibal/Harris Thomas/	Random House/Crime Thriller & Adventure/1a/0/2017-10-31
+The Lord of the Rings/Tolkien J. R. R./	HarperCollins/Science Fiction & Fantasy/2sff/0/2017-10-31
+Stupid White Men:...and Other Sorry Excuses for the State of the Natio/Moore Michael/Penguin/Current Affairs & Issues/02ai/0/2017-10-31
+The Interpretation of Murder/Rubenfeld Jed/Headline/Crime Thriller & Adventure/1a/0/2017-10-31
+Sharon Osbourne Extreme:My Autobiography/Osbourne Sharon/Little Brown Book/Autobiography/1au/0/2017-10-31
+The Alchemist: A Fable About Following Your Dream/Coelho Paulo/HarperCollins/Literary Fiction/6LF/0/2017-10-31
+At My Mother's Knee ...:and Other Low Joints/O'Grady Paul/Transworld/Autobiography/1au/0/2017-10-31
+Notes from a Small Island/Bryson Bill/Transworld/Travel Writing/01TW/0/2017-10-31
+The Return of the Naked Chef/Oliver Jamie/Penguin/Food & Drink/9fd/0/2017-10-31
+Bridget Jones: The Edge of Reason/Fielding Helen/Pan Macmillan/Literary Fiction/6LF/0/2017-10-31
+Jamie's Italy/Oliver Jamie/Penguin/Food & Drink/9fd/0/2017-10-31
+I Can Make You Thin/McKenna Paul/Transworld/Fitness & Diet/1FD/0/2017-10-31
+Down Under/Bryson Bill/	Transworld/Travel Writing/01TW/0/2017-10-31
+The Summons/Grisham John/Random House/Crime Thriller & Adventure/1a/0/2017-10-31
+Small Island/Levy Andrea/Headline/General & Literary Fiction/6LF/0/2017-10-31
+Nigella Express/Lawson Nigella/Random House/Food & Drink/9fd/0/2017-10-31
+Brick Lane/Ali Monica/Transworld/General & Literary Fiction/6LF/0/2017-10-31
+The Memory Keeper's Daughter/Edwards Kim/Penguin/Literary Fiction/6LF/0/2017-10-31
+Room on the Broom/Donaldson Julia/Pan Macmillan/Picture Books/5pb/0/2017-10-31
+About a Boy/Hornby Nick/Penguin/Literary Fiction/6LF/0/2017-10-31
+My Booky Wook/Brand Russell/Hodder & Stoughton/Autobiography/1au/0/2017-10-31
+The God Delusion/Dawkins Richard/Transworld/Popular Science/7ps/0/2017-10-31
+When Java Screws You Over/Sadface Iam/Akuin Akka/Autobiography/1au/0/2017-10-31
+White Teeth/Smith Zadie/Penguin/Literary Fiction/6LF/0/2017-10-31
+The House at Riverton/Morton Kate/Pan Macmillan/Literary Fiction/6LF/0/2017-10-31
+The Book Thief/Zusak Markus/Transworld/Literary Fiction/6LF/0/2017-10-31
+Nights of Rain and Stars/Binchy Maeve/Orion/Literary Fiction/6LF/0/2017-10-31
+The Ghost/Harris Robert/Random House/Literary Fiction/6LF/0/2017-10-31
+Happy Days with the Naked Chef/Oliver Jamie/Penguin/Food & Drink/9fd/0/2017-10-31
+The Hunger Games/Collins Suzanne/Scholastic Ltd./Young Adult Fiction/4ya/0/2017-10-31
+The Lost Boy:A Foster Child's Search for the Love of a Family/Pelzer Dave/Orion/Biography/2bi/0/2017-10-31
