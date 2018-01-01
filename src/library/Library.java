@@ -58,22 +58,20 @@ public class Library {
 		} catch (Exception e) {
 			System.out.println("Unable to initialize all books directory");
 		}
-		
-//		for(Customer customer : customers) {
-//			customer.setDebt(this.checkDelay(customer.getCurrentLoans().get(i)));
-//		}
-		
-		//int debt = this.checkDelay(book) * 2;
-		//customer.setDebt(debt);
+
+		setDebt();
 	}
-//	
-//	public void setDebt() {
-//		for() {
-//			for(int i = 0; i < currentLoans.size(); i++) {
-//				this.debt = library.checkDelay(getCurrentLoans().get(i));
-//			}
-//		}
-//	}
+
+	
+	public void setDebt() {
+		for(int i = 0; i < customers.size(); i++) {
+			int debt = 0;
+			for(int j = 0; j < customers.get(i).getCurrentLoans().size(); j++) {
+				debt += this.checkDelay(customers.get(i).getCurrentLoans().get(j)) * 2;
+			}
+			customers.get(i).setDebt(debt);;
+		}
+	}
 
 	/* TODO ---------------------Basic------------------------------- */
 

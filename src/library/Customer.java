@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Customer {
 
-	private Library library = new Library();
+
 	private String name;
 	private String adress;
 	private String number;

@@ -743,7 +743,7 @@ public class LibraryTesting {
                 System.out.println();
                 customerExtraFeatures(customer);
                 break;
-            case "3":
+            case "3": //CHANGE HERE TO DISPLAY DEBT BEFORE PAYING TO SEE WHAT U NEED TO PAY
                 System.out.print("===================================================\n" + "Enter payment: ");
                 double payement = scanner.nextDouble();
                 scanner.nextLine();
