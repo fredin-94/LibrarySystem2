@@ -156,7 +156,7 @@ public class Menu {
 		+ "||-----------------------------------------------||\n"
 		+ "---   1. Show current loans                     ---\n"
 		+ "---   2. Show loan history                      ---\n"
-		+ "---   3. Pay current fee                        ---\n"
+		//+ "---   3. Pay current fee                        ---\n"
 		+ "---   0. Return to main menu                    ---\n");
 	}
 }

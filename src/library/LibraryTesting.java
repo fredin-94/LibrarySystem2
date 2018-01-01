@@ -326,6 +326,7 @@ public class LibraryTesting {
         deleteFile("res/" + ssn + "CurrentLoans.txt");
         deleteFile("res/" + ssn + "LoanHistory.txt");
         library.removeCustomer(customer);
+        System.out.println("Removed customer");
     }
 
     // TODO Loan and Return
@@ -743,19 +744,19 @@ public class LibraryTesting {
                 System.out.println();
                 customerExtraFeatures(customer);
                 break;
-            case "3": //CHANGE HERE TO DISPLAY DEBT BEFORE PAYING TO SEE WHAT U NEED TO PAY
-                System.out.print("===================================================\n" + "Enter payment: ");
-                double payement = scanner.nextDouble();
-                scanner.nextLine();
-                try {
-                    customer.payDebt(payement);
-                } catch (Exception e) {
-                    System.out.println("~~~~~~~~\n " + e.getMessage() + "\ntry again later...\n~~~~~~~~");
-                }
-                System.out.println();
-                System.out.println(customer.toString());
-                customerExtraFeatures(customer);
-                break;
+//            case "3": //CHANGE HERE TO DISPLAY DEBT BEFORE PAYING TO SEE WHAT U NEED TO PAY
+//                System.out.print("===================================================\n" + "Enter payment: ");
+//                double payement = scanner.nextDouble();
+//                scanner.nextLine();
+//                try {
+//                    customer.payDebt(payement);
+//                } catch (Exception e) {
+//                    System.out.println("~~~~~~~~\n " + e.getMessage() + "\ntry again later...\n~~~~~~~~");
+//                }
+//                System.out.println();
+//                System.out.println(customer.toString());
+//                customerExtraFeatures(customer);
+//                break;
             case "0":
                 break;
             default:
