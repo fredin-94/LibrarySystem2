@@ -80,7 +80,7 @@ public class Menu {
 		+ " ===   Choose an option below:                   ===\n"
 		+ " ===   1. Borrow Book                            ===\n"
 		+ " ===   2. Return Book                            ===\n"
-		+ " ===   3. Extend Book Loan (beta test)           ===\n"
+		//+ " ===   3. Extend Book Loan (beta test)           ===\n"
 		+ " ===   0. Return to main menu                    ===\n"
 		+ " ===================================================\n");
 		System.out.println();

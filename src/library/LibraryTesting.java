@@ -27,7 +27,7 @@ public class LibraryTesting {
         ArrayList<Book> searchResults = library.searchForBook(searchText);
         try {
             String result = "\n==================================================="
-                    + "\nSearch Reasult\nSize of result: " + searchResults.size()
+                    + "\nSearch Result\nSize of result: " + searchResults.size()
                     + "\n===================================================\n";
             for (Book book : searchResults) {
                 result += book.toString() + "\n";
@@ -107,7 +107,7 @@ public class LibraryTesting {
         Customer theCustomer = null;
         String s = "";
         try {
-            s += "\n===================================================\nSearch Reasult\nSize of result: "
+            s += "\n===================================================\nSearch Result\nSize of result: "
                     + searchResults.size() + "\n===================================================\n";
 
             for (int i = 0; i < searchResults.size(); i++) {
@@ -246,7 +246,7 @@ public class LibraryTesting {
         ArrayList<Book> searchResults = library.searchForBook(searchTextBook);
         Book bookToDelete = null;
         try {
-            String result = "\n===================================================\nSearch Reasult\nSize of result: "
+            String result = "\n===================================================\nSearch Result\nSize of result: "
                     + searchResults.size() + "\n===================================================\n";
             if (searchResults.isEmpty() || searchResults == null) {
                 System.out.println("~~~~~~~~~~~~~~~~Nothing matched with " + searchTextBook);
@@ -340,7 +340,7 @@ public class LibraryTesting {
         Customer theCustomer = null;
 
         try {
-            String res = "\n===================================================\nSearch Reasult\nSize of result: "
+            String res = "\n===================================================\nSearch Result\nSize of result: "
                     + searchResult.size() + "\n===================================================\n";
 
 			/* TODO fix */
@@ -368,7 +368,7 @@ public class LibraryTesting {
         ArrayList<Book> searchResults = library.searchForBook(searchTextBook);
         Book bookToBorrow = null;
         try {
-            String result = "\n===================================================\nSearch Reasult\nSize of result: "
+            String result = "\n===================================================\nSearch Result\nSize of result: "
                     + searchResults.size() + "\n===================================================\n";
             if (searchResults.isEmpty() || searchResults == null) {
                 System.out.println("~~~~~~~~~~~~~~~~Nothing matched with " + searchTextBook);
@@ -533,7 +533,7 @@ public class LibraryTesting {
         Book bookToBorrow = null;
         ArrayList<Book> customerBooks = theCustomer.getCurrentLoans();
         try {
-            String result = "\n===================================================\n== Reasult\n== Size of result: "
+            String result = "\n===================================================\n== Result\n== Size of result: "
                     + customerBooks.size() + "\n===================================================\n";
             if (customerBooks.isEmpty() || customerBooks == null) {
                 System.out.println("===================================================\n== " + theCustomer.getName()
@@ -581,7 +581,7 @@ public class LibraryTesting {
         Customer theCustomer = null;
 
         try {
-            String res = "\n===================================================\nSearch Reasult\nSize of result: "
+            String res = "\n===================================================\nSearch Result\nSize of result: "
                     + searchResult.size() + "\n===================================================\n";
             for (int i = 0; i < searchResult.size(); i++) {
                 res += "\n===================================================\nCustomer number ->" + (i + 1) + ") "
@@ -1071,13 +1071,13 @@ public class LibraryTesting {
                     e.getMessage();
                 }
                 break;
-            case 3:
-                try {
-                    extendLoan();
-                } catch (Exception e) {
-                    e.getMessage();
-                }
-                break;
+//            case 3:
+//                try {
+//                   // extendLoan();
+//                } catch (Exception e) {
+//                    e.getMessage();
+//                }
+//                break;
             case 0:
                 run();
                 break;
