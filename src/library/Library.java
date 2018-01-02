@@ -65,11 +65,12 @@ public class Library {
 	
 	public void setDebt() {
 		for(int i = 0; i < customers.size(); i++) {
+			customers.get(i).setDebt(0);
 			int debt = 0;
 			for(int j = 0; j < customers.get(i).getCurrentLoans().size(); j++) {
 				debt += this.checkDelay(customers.get(i).getCurrentLoans().get(j)) * 2;
 			}
-			customers.get(i).setDebt(debt);;
+			customers.get(i).setDebt(debt);
 		}
 	}
 
@@ -429,7 +430,9 @@ public class Library {
 		if (debt > 0) {
 			System.out.println(customer.getName() + " returned the book " + (debt / 2) + " days after the return date");
 			System.out.println("and was charged the delay fee.");
-			
+			customers.clear();
+			customerDirectory();
+			setDebt();
 		} else {
 			System.out.println("** Customer returned the book on time. **");
 		}
