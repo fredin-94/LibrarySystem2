@@ -114,63 +114,6 @@ public class Library {
 		return date;
 	}
 
-	public void addDays(int Days) {
-		this.date = this.getDate().plusDays(Days);
-		for (Book book : getLoanedBooks()) {
-			for (Customer customer : customers) {
-				for (Book sameBook : customer.getCurrentLoans()) {
-					if (book.equals(sameBook)) {
-						int debt = this.checkDelay(sameBook) * 2;
-						customer.setDebt(debt);
-					}
-				}
-			}
-		}
-
-	}
-
-	public void addWeeks(int weeks) {
-		date = date.plusWeeks(weeks);
-		for (Book book : getLoanedBooks()) {
-			for (Customer customer : customers) {
-				for (Book sameBook : customer.getCurrentLoans()) {
-					if (book.equals(sameBook)) {
-						int debt = this.checkDelay(sameBook) * 2;
-						customer.setDebt(debt);
-					}
-				}
-			}
-		}
-	}
-
-	public void addMonths(int months) {
-		this.date = this.date.plusMonths(months);
-		for (Book book : getLoanedBooks()) {
-			for (Customer customer : customers) {
-				for (Book sameBook : customer.getCurrentLoans()) {
-					if (book.equals(sameBook)) {
-						int debt = this.checkDelay(sameBook) * 2;
-						customer.setDebt(debt);
-					}
-				}
-			}
-		}
-	}
-
-	public void addyears(int years) {
-		this.date = this.date.plusYears(years);
-		for (Book book : getLoanedBooks()) {
-			for (Customer customer : customers) {
-				for (Book sameBook : customer.getCurrentLoans()) {
-					if (book.equals(sameBook)) {
-						int debt = this.checkDelay(sameBook) * 2;
-						customer.setDebt(debt);
-					}
-				}
-			}
-		}
-	}
-
 	/* TODO---------------------SEARCH------------------------------ */
 	// DON'T CHANGE FORMAT PLEASE.
 	public enum bookKey {
@@ -381,32 +324,6 @@ public class Library {
 		books.remove(book);
 	}
 
-	public void extendLoanPeriod(String personnumer, String bookTitle) throws Exception {
-		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnumer);
-		if (customer == null) {
-			throw new Exception("Customer is not in System.");
-		}
-
-		ArrayList<Book> temp = customer.getCurrentLoans();
-		Book book = null;
-		for (Book theBook : temp) {
-			if (theBook.getTitle().trim().equalsIgnoreCase(bookTitle.trim())) {
-				book = theBook;
-				break;
-			}
-		}
-
-		if (book == null) {
-			throw new Exception("Book is not in" + customer.getName() + "'s current loans");
-		}
-
-		if (this.checkDelay(book) > 0) {
-			throw new Exception("Book cannot be extended because it is delayed");
-		} else {
-			book.setReturnDate(book.getReturnDate().plusWeeks(2));
-		}
-	}
-
 	public void returnBook(String bookTitle, String personnummer) throws Exception {
 
 		Customer customer = findCustomerBy(customerKey.PERSONNUMMER, personnummer);
@@ -429,7 +346,7 @@ public class Library {
 
 		if (debt > 0) {
 			System.out.println(customer.getName() + " returned the book " + (debt / 2) + " days after the return date");
-			System.out.println("and was charged the delay fee.");
+			System.out.println("and was charged the delay fee of "+ debt +" SEK.");
 			customers.clear();
 			customerDirectory();
 			setDebt();

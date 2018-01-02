@@ -38,7 +38,6 @@ public class Menu {
 		+ " ===   2. Borrow or return books                 ===\n"
 		+ " ===   3. Administration                         ===\n"
 		+ " ===   4. Extra                                  ===\n"
-		+ " ===   5. Time Simulator FX40000                 ===\n"
 		+ " ===   0. Quit program                           ===\n"
 		+ " ===                                             ===\n"
 		+ " ===================================================\n");
@@ -103,28 +102,6 @@ public class Menu {
 		+ " ===   3. Add Customer                           ===\n"
 		+ " ===   4. Remove Customer                        ===\n"
 		+ " ===   0. Return to main menu                    ===\n"
-		+ " ===================================================\n");
-		System.out.println();
-	}
-
-	public void getSimulator(LocalDate date) {
-		SimpleDateFormat theDate = new SimpleDateFormat("EEE MMM dd-yyyy");
-		Date fooBarBat = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-		String fooBarDate = theDate.format(fooBarBat);
-		System.out.println();
-		System.out.println(" ===================================================\n"
-		+ " ==             Simulator System                  ==\n"
-		+ " ==                                               ==\n"
-		+ " ==           "  + fooBarDate +"                     ==\n"
-		+ " ===================================================\n"
-		+ " ===                                             ===\n"
-		+ " ===   Choose an option below:                   ===\n"
-		+ " ===   1. Increment Days                         ===\n"
-		+ " ===   2. Increment Weeks                        ===\n"
-		+ " ===   3. Increment Months                       ===\n"
-		+ " ===   4. Increment Years                        ===\n"
-		+ " ===   0. Return to main menu                    ===\n"
-		+ " ===                                             ===\n"
 		+ " ===================================================\n");
 		System.out.println();
 	}

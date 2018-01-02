@@ -306,7 +306,7 @@ public class LibraryTesting {
             createFile(psn + "LoanHistory");
             createFile(psn + "CurrentLoans");
             writeCustomerToFile(name, address, psn, phoneNumber);
-            System.out.println("Added " + name + " to customer database");
+            //System.out.println("Added " + name + " to customer database");
             //System.out.println("bugChecker: No bugs found. Success!");
             library.addCustomer(new Customer(name, address, psn, phoneNumber));
         } catch (Exception e) {
@@ -575,60 +575,7 @@ public class LibraryTesting {
         // removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
         System.out.println("*** Book returned successfully ***");
     }
-
-    public void extendLoan() {
-        scanner.nextLine();
-
-        // Retrieving customer
-        System.out.println("\n===================================================\n" + "Search for customer:");
-        String searchTextCustomer = scanner.nextLine();
-        ArrayList<Customer> searchResult = library.searchForCustomer(searchTextCustomer);
-        Customer theCustomer = null;
-
-        try {
-            String res = "\n===================================================\nSearch Result\nSize of result: "
-                    + searchResult.size() + "\n===================================================\n";
-            for (int i = 0; i < searchResult.size(); i++) {
-                res += "\n===================================================\nCustomer number ->" + (i + 1) + ") "
-                        + searchResult.get(i).toString();
-            }
-            System.out.println(res);
-        } catch (NullPointerException npe) {
-            System.out.println("~~~~~~~~ No matches with '" + searchTextCustomer + "'.");
-        }
-
-        System.out.println("\n===================================================\n" + "Enter the customer number: ");
-        int UserInput = scanner.nextInt();
-        scanner.nextLine();
-        theCustomer = searchResult.get(UserInput - 1);
-
-        System.out.println(theCustomer.getName() + "'s currently loaned books are:");
-        String customersLoans = "";
-        Book book = null;
-        if (theCustomer.getCurrentLoans().isEmpty()) {
-            System.out.println(theCustomer.getName() + "'s current loans are empty.");
-        } else {
-            for (int i = 0; i < theCustomer.getCurrentLoans().size(); i++) {
-                customersLoans += "Book number ->" + (i + 1) + ") " + theCustomer.getCurrentLoans().get(i).toString()
-                        + "\n";
-            }
-        }
-        System.out.println(customersLoans);
-        System.out.println("\n===================================================\n" + "Enter the book number: ");
-        int UserInp = scanner.nextInt();
-        scanner.nextLine();
-        book = theCustomer.getCurrentLoans().get(UserInp - 1);
-
-        try {
-            library.extendLoanPeriod(theCustomer.getPersonnummer(), book.getTitle());
-            System.out.println("*** " + book.getTitle() + " has been extended until " + book.getReturnDate() + "***");
-        } catch (Exception e) {
-            System.out.println("=========================\n" + e.getMessage() + "\n=========================\n");
-        }
-    }
-
-    // TODO Showing Statistics
-
+    
     public void sortBooks() { // this is never called haha
         System.out.println("Show all books: Choose what to sort by");
         System.out.println("1. Sort after title");
@@ -770,37 +717,6 @@ public class LibraryTesting {
 
         }
     }
-    // TODO Simulator
-
-    public void incrementDays() {
-        System.out.println(
-                "===================================================" + "\n== Enter how many days to increment: ");
-        int day = scanner.nextInt();
-        library.addDays(day);
-    }
-
-    public void incrementWeeks() {
-        System.out.println(
-                "===================================================" + "\n== Enter how many weeks to increment: ");
-        int week = scanner.nextInt();
-        library.addWeeks(week);
-    }
-
-    public void incrementMonths() {
-        System.out.println(
-                "===================================================" + "\n== Enter how many months to increment: ");
-        int month = scanner.nextInt();
-        library.addMonths(month);
-    }
-
-    public void incrementYears() {
-        System.out.println(
-                "===================================================" + "\n== Enter how many years to increment: ");
-        int year = scanner.nextInt();
-        library.addyears(year);
-    }
-
-    // TODO Helpful Methods
 
     public Book retrieveBook(ArrayList<Book> listOfBooks, String title) throws Exception {
         for (Book book : listOfBooks) {
@@ -1000,10 +916,6 @@ public class LibraryTesting {
                     menu.getExtra(library.getDate());
                     handleExtra(requestUserInput());
                     break;
-                case 5:
-                    menu.getSimulator(library.getDate());
-                    handleTimeSimMenu(requestUserInput());
-                    break;
                 case 0:
                     System.exit(0);
                 default:
@@ -1128,29 +1040,6 @@ public class LibraryTesting {
                 break;
             case 3:
                 showMostPopularBook();
-                break;
-            case 0:
-                run();
-                break;
-            default:
-                System.out.println("~~~~~~~~ Not a valid option");
-                break;
-        }
-    }
-
-    public void handleTimeSimMenu(int option) {
-        switch (option) {
-            case 1:
-                incrementDays();
-                break;
-            case 2:
-                incrementWeeks();
-                break;
-            case 3:
-                incrementMonths();
-                break;
-            case 4:
-                incrementYears();
                 break;
             case 0:
                 run();
