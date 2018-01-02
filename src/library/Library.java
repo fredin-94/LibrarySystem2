@@ -497,7 +497,7 @@ public class Library {
 		} else {
 			System.out.println("\n--------- Customer's loan history: ---------");
 			for (int i = 0; i < customer.getLoanHistory().size(); i++) {
-				current += customer.getLoanHistory().get(i).toString() + END_OF_LINE;
+				current += customer.getLoanHistory().get(i).toStringCurrentLoans() + END_OF_LINE;
 			}
 		}
 		return current;
@@ -511,7 +511,7 @@ public class Library {
 		} else {
 			System.out.println("\n--------- Customer's current loan(s): ---------");
 			for (int i = 0; i < customer.getCurrentLoans().size(); i++) {
-				currentLoan += customer.getCurrentLoans().get(i).toString() + END_OF_LINE;
+				currentLoan += customer.getCurrentLoans().get(i).toStringCurrentLoans() + END_OF_LINE;
 			}
 		}
 		return currentLoan;

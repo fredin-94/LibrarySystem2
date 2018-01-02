@@ -277,6 +277,7 @@ public class LibraryTesting {
             removeLineFromFile("res/bookDirectory.txt", parseBookToString(bookToDelete));
             try {
                 library.deleteBook(bookToDelete);
+                System.out.println("Book deleted");
             } catch (Exception e) {
                 System.out.println("~~~~~~~~~~~~~~~~\n" + e.getMessage() + "\n~~~~~~~~~~~~~~~~\n");
             }
@@ -1025,6 +1026,7 @@ public class LibraryTesting {
                 System.out.println("5. Shelf");
                 System.out.println("6. Most borrowed");
                 option = scanner.nextInt(); // need another one and not reuse "option"?
+                
                 if (option == 1) {
                     library.sortBooksBy(TITLE);
                 } else if (option == 2) {
@@ -1038,6 +1040,7 @@ public class LibraryTesting {
                 } else if (option == 6) {
                     library.sortAllBooksBy(TIMESBORROWED); //why is this showing the wrong list??
                 } else {
+                		
                     System.out.println("~~~~~~~~ Not a valid option, displaying randomly");// ??
                 }
                 showAvailableBooks();
