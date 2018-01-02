@@ -92,7 +92,7 @@ public class Menu {
 		String fooBarDate = theDate.format(fooBarBat);
 		System.out.println();
 		System.out.println(" ===================================================\n"
-		+ " ==             Asministration System             ==\n"
+		+ " ==             Administration System             ==\n"
 		+ " ==                                               ==\n"
 		+ " ==           "  + fooBarDate +"                     ==\n"
 		+ " ===================================================\n"

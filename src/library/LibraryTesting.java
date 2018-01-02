@@ -263,7 +263,7 @@ public class LibraryTesting {
             scanner.nextLine();
             bookToDelete = searchResults.get(userInp - 1);
             System.out.println("== " + bookToDelete.getTitle()
-                    + " by :" + bookToDelete.getAuthors() + " has been chosen\n--------\n");
+                    + " by: " + bookToDelete.getAuthors() + " has been chosen\n--------\n");
         } catch (NullPointerException npe) {
             System.out.println("~~~~~~~~~~~~~~~~\n" + npe.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
             System.out.println("\nNo matches with '" + searchTextBook + "'. Try again. \n");
@@ -567,7 +567,6 @@ public class LibraryTesting {
         book.setReturnDate(LocalDate.of(2017, 10, 31));
         writeBookToFile("res/bookDirectory.txt", book);
         // removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
-
         System.out.println("*** Book returned successfully ***");
     }
 
