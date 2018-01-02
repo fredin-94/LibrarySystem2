@@ -265,25 +265,30 @@ public class LibraryTesting {
             System.out.println("== " + bookToDelete.getTitle()
                     + " by: " + bookToDelete.getAuthors() + " has been chosen\n--------\n");
         } catch (NullPointerException npe) {
-            System.out.println("~~~~~~~~~~~~~~~~\n" + npe.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
+            //System.out.println("~~~~~~~~~~~~~~~~\n" + npe.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
             System.out.println("\nNo matches with '" + searchTextBook + "'. Try again. \n");
             menu.getAdministration(library.getDate());
-            int userInput = scanner.nextInt();
-            scanner.nextLine();
+            int userInput = requestUserInput();
+           // scanner.nextLine();
             handleAdmin(userInput);
         }
 
-        if (isInList(library.getBooks(), bookToDelete)) {
-            removeLineFromFile("res/bookDirectory.txt", parseBookToString(bookToDelete));
-            try {
-                library.deleteBook(bookToDelete);
-                System.out.println("Book deleted");
-            } catch (Exception e) {
-                System.out.println("~~~~~~~~~~~~~~~~\n" + e.getMessage() + "\n~~~~~~~~~~~~~~~~\n");
-            }
-        }
-
-        removeLineFromFile("res/AllBooks.txt", parseBookToString(bookToDelete));
+        try {
+        	 if (isInList(library.getBooks(), bookToDelete)) { //gives nullpointer exception
+                 removeLineFromFile("res/bookDirectory.txt", parseBookToString(bookToDelete));
+                 removeLineFromFile("res/AllBooks.txt", parseBookToString(bookToDelete));
+                 try {
+                     library.deleteBook(bookToDelete);
+                     System.out.println("Book deleted");
+                 } 
+                 catch (Exception e) {
+                     System.out.println("~~~~~~~~~~~~~~~~\n" + e.getMessage() + "\n~~~~~~~~~~~~~~~~\n");
+                 }
+             }
+		} catch (NullPointerException e) {
+			//menu.getAdministration(library.getDate());
+		}
+        
     }
 
     public void addCustomer() {
