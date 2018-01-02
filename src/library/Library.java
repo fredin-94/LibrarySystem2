@@ -419,7 +419,7 @@ public class Library {
 		}
 
 		int debt = this.checkDelay(book) * 2;
-		customer.setDebt(debt);
+		//customer.setDebt(debt);
 		LocalDate restartDate = LocalDate.of(2017, 10, 31);
 		;
 		book.setReturnDate(restartDate);
@@ -427,8 +427,9 @@ public class Library {
 		customer.removeFromCurrentLoan(book);
 
 		if (debt > 0) {
-			System.out.println(customer.getName() + " returned the book " + (debt / 2) + " days after the return date."
-					+ "\nA fee of " + debt + " SEK has been placed on customers account.");
+			System.out.println(customer.getName() + " returned the book " + (debt / 2) + " days after the return date");
+			System.out.println("and was charged the delay fee.");
+			
 		} else {
 			System.out.println("** Customer returned the book on time. **");
 		}
