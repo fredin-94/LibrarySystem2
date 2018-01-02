@@ -80,7 +80,7 @@ public class Menu {
 		+ " ===   Choose an option below:                   ===\n"
 		+ " ===   1. Borrow Book                            ===\n"
 		+ " ===   2. Return Book                            ===\n"
-		+ " ===   3. Extend Book Loan (beta test)           ===\n"
+		//+ " ===   3. Extend Book Loan (beta test)           ===\n"
 		+ " ===   0. Return to main menu                    ===\n"
 		+ " ===================================================\n");
 		System.out.println();
@@ -92,7 +92,7 @@ public class Menu {
 		String fooBarDate = theDate.format(fooBarBat);
 		System.out.println();
 		System.out.println(" ===================================================\n"
-		+ " ==             Asministration System             ==\n"
+		+ " ==             Administration System             ==\n"
 		+ " ==                                               ==\n"
 		+ " ==           "  + fooBarDate +"                     ==\n"
 		+ " ===================================================\n"
@@ -156,7 +156,7 @@ public class Menu {
 		+ "||-----------------------------------------------||\n"
 		+ "---   1. Show current loans                     ---\n"
 		+ "---   2. Show loan history                      ---\n"
-		+ "---   3. Pay current fee                        ---\n"
-		+ "---   0. Return to main menu                    ---\n");
+		//+ "---   3. Pay current fee                        ---\n"
+		+ "---   0. Return to Search Menu                    ---\n");
 	}
 }

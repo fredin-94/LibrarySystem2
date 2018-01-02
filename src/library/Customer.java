@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Customer {
 
+
 	private String name;
 	private String adress;
 	private String number;
@@ -30,6 +31,9 @@ public class Customer {
 		customerBooks("res/" + personnummer + "LoanHistory.txt");
 	}
 
+	
+	
+	
 	// TODO Getters and Setters
 
 	public String getName() {
@@ -165,5 +169,4 @@ public class Customer {
 		customerToString += "Size of loan history: " + this.loanHistory.size() + " book(s)" + END_OF_LINE;
 		return customerToString;
 	}
-
 }

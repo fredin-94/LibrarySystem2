@@ -105,7 +105,7 @@ public class Book {
 	public String toString() {
 		return "\n" + "||----------------------------------------------------------||\n" + "Book Title: " + this.title
 				+ "\n • Authors: " + this.authors + "\n • Genre: " + this.genre + "\n • Publisher: " + this.publisher
-				+ "\n • Shelf: " + this.shelf + "\n • Times Borrowed: " + this.timesBorrowed;
+				+ "\n • Shelf: " + this.shelf + "\n • Times Borrowed: " + this.timesBorrowed + "\n • Returndate: " + this.returnDate;
 	}
 
 }
