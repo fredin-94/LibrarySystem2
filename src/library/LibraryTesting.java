@@ -1025,7 +1025,7 @@ public class LibraryTesting {
                 System.out.println("4. Genre");
                 System.out.println("5. Shelf");
                 System.out.println("6. Most borrowed");
-                option = scanner.nextInt(); // need another one and not reuse "option"?
+                option = requestUserInput(); // need another one and not reuse "option"?
                 
                 if (option == 1) {
                     library.sortBooksBy(TITLE);
