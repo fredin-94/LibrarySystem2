@@ -65,11 +65,12 @@ public class Library {
 	
 	public void setDebt() {
 		for(int i = 0; i < customers.size(); i++) {
+			customers.get(i).setDebt(0);
 			int debt = 0;
 			for(int j = 0; j < customers.get(i).getCurrentLoans().size(); j++) {
 				debt += this.checkDelay(customers.get(i).getCurrentLoans().get(j)) * 2;
 			}
-			customers.get(i).setDebt(debt);;
+			customers.get(i).setDebt(debt);
 		}
 	}
 
@@ -238,10 +239,10 @@ public class Library {
 			throws NullPointerException {
 		try {
 			for (Customer customer : customers) {
-				System.out.println("search value: " + searchValue);
-				System.out.println(f.apply(customer));
+			//	System.out.println("search value: " + searchValue);
+			//	System.out.println(f.apply(customer));
 				if (searchValue.equals(((String) f.apply(customer)).toLowerCase())) {
-					System.out.println("found customer");
+				//	System.out.println("found customer");
 					return customer;
 				}
 			}
@@ -429,7 +430,9 @@ public class Library {
 		if (debt > 0) {
 			System.out.println(customer.getName() + " returned the book " + (debt / 2) + " days after the return date");
 			System.out.println("and was charged the delay fee.");
-			
+			customers.clear();
+			customerDirectory();
+			setDebt();
 		} else {
 			System.out.println("** Customer returned the book on time. **");
 		}
@@ -497,7 +500,7 @@ public class Library {
 		} else {
 			System.out.println("\n--------- Customer's loan history: ---------");
 			for (int i = 0; i < customer.getLoanHistory().size(); i++) {
-				current += customer.getLoanHistory().get(i).toString() + END_OF_LINE;
+				current += customer.getLoanHistory().get(i).toStringCurrentLoans() + END_OF_LINE;
 			}
 		}
 		return current;
@@ -511,7 +514,7 @@ public class Library {
 		} else {
 			System.out.println("\n--------- Customer's current loan(s): ---------");
 			for (int i = 0; i < customer.getCurrentLoans().size(); i++) {
-				currentLoan += customer.getCurrentLoans().get(i).toString() + END_OF_LINE;
+				currentLoan += customer.getCurrentLoans().get(i).toStringCurrentLoans() + END_OF_LINE;
 			}
 		}
 		return currentLoan;

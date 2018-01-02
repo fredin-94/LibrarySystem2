@@ -32,6 +32,7 @@ A Thousand Splendid Suns/Hosseini Khaled/Bloomsbury/Literary Fiction/6LF/0/2017-
 The Girl Who Kicked the Hornets' Nest/Larsson Stieg/Quercus/Crime Thriller & Adventure/1a/0/2017-10-31
 The Time Traveler's Wife/Niffenegger Audrey/Random House/Literary Fiction/6LF/0/2017-10-31
 Atonement/McEwan Ian/Random House/Literary Fiction/6LF/0/2017-10-31
+Bridget Jones's Diary/Fielding Helen/Pan Macmillan/Literary Fiction/6LF/1/2017-10-31
 The World According to Clarkson/Clarkson Jeremy/Penguin/Humour/10hu/0/2017-10-31
 Captain Corelli's Mandolin/Bernieres Louis de/Random House/Literary Fiction/6LF/0/2017-10-31
 The Sound of Laughter/Kay Peter/Random House/Autobiography/1au/0/2017-10-31
@@ -65,6 +66,7 @@ To Kill a Mockingbird/Lee Harper/Random House/Literary Fiction/6LF/0/2017-10-31
 Men are from Mars Women are from Venus/Gray John/HarperCollins/Popular Culture/8pc/0/2017-10-31
 Dear Fatty/French Dawn/Random House/Autobiography/1au/0/2017-10-31
 A Short History of Tractors in Ukrainian/Lewycka Marina/Penguin/Literary Fiction/6LF/0/2017-10-31
+Hannibal/Harris Thomas/	Random House/Crime Thriller & Adventure/1a/1/2017-10-31
 The Lord of the Rings/Tolkien J. R. R./	HarperCollins/Science Fiction & Fantasy/2sff/0/2017-10-31
 Stupid White Men:...and Other Sorry Excuses for the State of the Natio/Moore Michael/Penguin/Current Affairs & Issues/02ai/0/2017-10-31
 The Interpretation of Murder/Rubenfeld Jed/Headline/Crime Thriller & Adventure/1a/0/2017-10-31
@@ -86,6 +88,8 @@ Room on the Broom/Donaldson Julia/Pan Macmillan/Picture Books/5pb/0/2017-10-31
 About a Boy/Hornby Nick/Penguin/Literary Fiction/6LF/0/2017-10-31
 My Booky Wook/Brand Russell/Hodder & Stoughton/Autobiography/1au/0/2017-10-31
 The God Delusion/Dawkins Richard/Transworld/Popular Science/7ps/0/2017-10-31
+When Java Screws You Over/Sadface Iam/Akuin Akka/Autobiography/1au/1/2017-10-31
+White Teeth/Smith Zadie/Penguin/Literary Fiction/6LF/3/2017-10-31
 The House at Riverton/Morton Kate/Pan Macmillan/Literary Fiction/6LF/0/2017-10-31
 The Book Thief/Zusak Markus/Transworld/Literary Fiction/6LF/0/2017-10-31
 Nights of Rain and Stars/Binchy Maeve/Orion/Literary Fiction/6LF/0/2017-10-31
@@ -93,5 +97,3 @@ The Ghost/Harris Robert/Random House/Literary Fiction/6LF/0/2017-10-31
 Happy Days with the Naked Chef/Oliver Jamie/Penguin/Food & Drink/9fd/0/2017-10-31
 The Hunger Games/Collins Suzanne/Scholastic Ltd./Young Adult Fiction/4ya/0/2017-10-31
 The Lost Boy:A Foster Child's Search for the Love of a Family/Pelzer Dave/Orion/Biography/2bi/0/2017-10-31
-White Teeth/Smith Zadie/Penguin/Literary Fiction/6LF/2/2017-10-31
-When Java Screws You Over/Sadface Iam/Akuin Akka/Autobiography/1au/5/2017-10-31

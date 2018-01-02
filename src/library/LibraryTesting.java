@@ -265,24 +265,30 @@ public class LibraryTesting {
             System.out.println("== " + bookToDelete.getTitle()
                     + " by: " + bookToDelete.getAuthors() + " has been chosen\n--------\n");
         } catch (NullPointerException npe) {
-            System.out.println("~~~~~~~~~~~~~~~~\n" + npe.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
+            //System.out.println("~~~~~~~~~~~~~~~~\n" + npe.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
             System.out.println("\nNo matches with '" + searchTextBook + "'. Try again. \n");
             menu.getAdministration(library.getDate());
-            int userInput = scanner.nextInt();
-            scanner.nextLine();
+            int userInput = requestUserInput();
+           // scanner.nextLine();
             handleAdmin(userInput);
         }
 
-        if (isInList(library.getBooks(), bookToDelete)) {
-            removeLineFromFile("res/bookDirectory.txt", parseBookToString(bookToDelete));
-            try {
-                library.deleteBook(bookToDelete);
-            } catch (Exception e) {
-                System.out.println("~~~~~~~~~~~~~~~~\n" + e.getMessage() + "\n~~~~~~~~~~~~~~~~\n");
-            }
-        }
-
-        removeLineFromFile("res/AllBooks.txt", parseBookToString(bookToDelete));
+        try {
+        	 if (isInList(library.getBooks(), bookToDelete)) { //gives nullpointer exception
+                 removeLineFromFile("res/bookDirectory.txt", parseBookToString(bookToDelete));
+                 removeLineFromFile("res/AllBooks.txt", parseBookToString(bookToDelete));
+                 try {
+                     library.deleteBook(bookToDelete);
+                     System.out.println("Book deleted");
+                 } 
+                 catch (Exception e) {
+                     System.out.println("~~~~~~~~~~~~~~~~\n" + e.getMessage() + "\n~~~~~~~~~~~~~~~~\n");
+                 }
+             }
+		} catch (NullPointerException e) {
+			//menu.getAdministration(library.getDate());
+		}
+        
     }
 
     public void addCustomer() {
@@ -301,7 +307,7 @@ public class LibraryTesting {
             createFile(psn + "CurrentLoans");
             writeCustomerToFile(name, address, psn, phoneNumber);
             System.out.println("Added " + name + " to customer database");
-            System.out.println("bugChecker: No bugs found. Success!");
+            //System.out.println("bugChecker: No bugs found. Success!");
             library.addCustomer(new Customer(name, address, psn, phoneNumber));
         } catch (Exception e) {
             removeLineFromFile("res/customer.txt", name + "/" + address + "/" + psn + "/" + phoneNumber);
@@ -388,7 +394,7 @@ public class LibraryTesting {
             scanner.nextLine();
             bookToBorrow = searchResults.get(userInp - 1);
             //bookToBorrow.setReturnDate(LocalDate.now().plusDays(14));
-            System.out.println("borrowing: " + bookToBorrow.getReturnDate());
+          //  System.out.println("borrowing: " + bookToBorrow.getReturnDate());
             System.out.println("== " + bookToBorrow.getTitle()
                     + " by: " + bookToBorrow.getAuthors() + " has been chosen\n--------\n");
         } catch (NullPointerException npe) {
@@ -419,11 +425,11 @@ public class LibraryTesting {
             book.setReturnDate(LocalDate.now().plusDays(14));
             writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
             writeBookToFile("res/" + psn + "LoanHistory.txt", book);
-            System.out.println("borrowing: " + book.getReturnDate());
+           // System.out.println("borrowing: " + book.getReturnDate());
             //book.setReturnDate(LocalDate.of(2017, 10, 31));
             //writeBookToFile("res/AllBooks.txt", book); //will only add one book, but the remove line from file deles all books, so if we had several books we only get one back
             book.setReturnDate(LocalDate.now().plusDays(14));
-            System.out.println("borrowing: " + book.getReturnDate());
+           // System.out.println("borrowing: " + book.getReturnDate());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -458,7 +464,7 @@ public class LibraryTesting {
             boolean success = dirFile.delete();
             boolean renameSuccess = tmpFile.renameTo(dirFile);
 
-            System.out.println("current file: " + path);
+           // System.out.println("current file: " + path);
             if (success) {
                 //System.out.println("Old file deleted " + path);
             }
@@ -707,7 +713,7 @@ public class LibraryTesting {
             System.out.println("~~~~~~~~ No delayed books... yet");
         } else {
             for (int i = 0; i < library.getDelayedBooks().size(); i++) {
-                System.out.println(library.getDelayedBooks().get(i).toString());
+                System.out.println(library.getDelayedBooks().get(i).toStringCurrentLoans());
             }
         }
     }
@@ -1024,7 +1030,8 @@ public class LibraryTesting {
                 System.out.println("4. Genre");
                 System.out.println("5. Shelf");
                 System.out.println("6. Most borrowed");
-                option = scanner.nextInt(); // need another one and not reuse "option"?
+                option = requestUserInput(); // need another one and not reuse "option"?
+                
                 if (option == 1) {
                     library.sortBooksBy(TITLE);
                 } else if (option == 2) {
@@ -1038,6 +1045,7 @@ public class LibraryTesting {
                 } else if (option == 6) {
                     library.sortAllBooksBy(TIMESBORROWED); //why is this showing the wrong list??
                 } else {
+                		
                     System.out.println("~~~~~~~~ Not a valid option, displaying randomly");// ??
                 }
                 showAvailableBooks();
