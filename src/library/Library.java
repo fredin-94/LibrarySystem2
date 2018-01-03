@@ -19,6 +19,14 @@ public class Library {
 	private ArrayList<Customer> customers;
 	private LocalDate date;
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * @author Fabian Fröding
+	 * @author Lucas Fredin
+	 * @author Hanien Kobus
+	 * @author Majd Hatoum
+	 * */
 	public Library() {
 		allBooks = new ArrayList<Book>();
 		books = new ArrayList<Book>();
@@ -74,14 +82,26 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public ArrayList<Book> getAllBooks() {
 		return allBooks;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public ArrayList<Book> getBooks() {
 		return books;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public ArrayList<Book> getLoanedBooks() {
 		ArrayList<Book> allLoanedBooks = new ArrayList<Book>();
 		for (Customer customer : customers) {
@@ -92,6 +112,10 @@ public class Library {
 		return allLoanedBooks;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public ArrayList<Book> getDelayedBooks() {
 		ArrayList<Book> allDelayedBooks = new ArrayList<Book>();
 		for (Book book : getLoanedBooks()) {
@@ -102,14 +126,26 @@ public class Library {
 		return allDelayedBooks;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public ArrayList<Customer> getCustomers() {
 		return customers;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public LocalDate getDate() {
 		return date;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public void addDays(int Days) {
 		this.date = this.getDate().plusDays(Days);
 		for (Book book : getLoanedBooks()) {
@@ -125,6 +161,10 @@ public class Library {
 
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public void addWeeks(int weeks) {
 		date = date.plusWeeks(weeks);
 		for (Book book : getLoanedBooks()) {
@@ -139,6 +179,10 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public void addMonths(int months) {
 		this.date = this.date.plusMonths(months);
 		for (Book book : getLoanedBooks()) {
@@ -153,6 +197,10 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public void addyears(int years) {
 		this.date = this.date.plusYears(years);
 		for (Book book : getLoanedBooks()) {
@@ -167,14 +215,31 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Fabian Fröding
+	 * */
 	public enum bookKey {
 		TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID, TIMESBORROWED
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Fabian Fröding
+	 * */
 	public enum customerKey {
 		NAME, ADRESS, NUMBER, DEBT, ID, PERSONNUMMER
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Fabian Fröding
+	 * @author Oliver Manzi
+	 * 
+	 * version 1.0 Created by Fabian to read book toString.
+	 * version 1.1 Modified by Oliver to read book object 
+	 * attributes instead of toString
+	 * */
 	public ArrayList<Book> searchForBook(String searchText) throws NullPointerException {
 		searchText.trim().toLowerCase();
 		ArrayList<Book> list = new ArrayList<>();
@@ -196,6 +261,15 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Fabian Fröding
+	 * @author Oliver Manzi
+	 * 
+	 * version 1.0 Created by Fabian to read customer toString.
+	 * version 1.1 Modified by Oliver to read customer object 
+	 * attributes instead of toString
+	 * */
 	public ArrayList<Customer> searchForCustomer(String searchText) throws NullPointerException {
 		searchText.trim().toLowerCase();
 		ArrayList<Customer> list = new ArrayList<>();
@@ -212,6 +286,10 @@ public class Library {
 		return null;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Fabian Fröding
+	 * */
 	public Customer findCustomerBy(customerKey key, String searchValue) throws InvalidKeyException {
 		searchValue.toLowerCase();
 		switch (key) {
@@ -228,6 +306,10 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Fabian Fröding
+	 * */
 	private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f)
 			throws NullPointerException {
 		try {
@@ -246,6 +328,10 @@ public class Library {
 	}
 
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Fabian Fröding
+	 * */
 	public void sortAllBooksBy(bookKey keyToSort) {
 		try {
 			for (Book book : this.allBooks)
@@ -259,6 +345,10 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Fabian Fröding
+	 * */
 	public void sortBooksBy(bookKey keyToSort) {
 		try {
 			for (Book book : this.books)
@@ -272,6 +362,10 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Fabian Fröding
+	 * */
 	private Function<Book, ? extends Comparable> getBookFunction(bookKey key) throws InvalidKeyException {
 		switch (key) {
 		case TITLE:
@@ -291,6 +385,10 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Fabian Fröding
+	 * */
 	public void sortCustomersBy(customerKey keyToSort) {
 		try {
 			switch (keyToSort) {
@@ -314,6 +412,10 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public void addBook(Book book) {
 		if (allBooks.contains(book) == false) {
 			allBooks.add(book);
@@ -321,10 +423,18 @@ public class Library {
 		books.add(book);
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public void removeBook(Book book) {
 		books.remove(book);
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public void deleteBook(Book book) throws Exception {
 		if (this.checkDelay(book) > 0) {
 			for (Customer theCustomer : customers) {
@@ -337,6 +447,10 @@ public class Library {
 		books.remove(book);
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public void addCustomer(Customer customer) throws Exception {
 		if (customer == null) {
 			throw new Exception("Customer object is null");
@@ -345,10 +459,18 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public void removeCustomer(Customer customer) {
 		customers.remove(customer);
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public void borrowBook(String bookTitle, String personnummer) throws Exception {
 
 		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnummer);
@@ -367,32 +489,10 @@ public class Library {
 		books.remove(book);
 	}
 
-	public void extendLoanPeriod(String personnumer, String bookTitle) throws Exception {
-		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnumer);
-		if (customer == null) {
-			throw new Exception("Customer is not in System.");
-		}
-
-		ArrayList<Book> temp = customer.getCurrentLoans();
-		Book book = null;
-		for (Book theBook : temp) {
-			if (theBook.getTitle().trim().equalsIgnoreCase(bookTitle.trim())) {
-				book = theBook;
-				break;
-			}
-		}
-
-		if (book == null) {
-			throw new Exception("Book is not in" + customer.getName() + "'s current loans");
-		}
-
-		if (this.checkDelay(book) > 0) {
-			throw new Exception("Book cannot be extended because it is delayed");
-		} else {
-			book.setReturnDate(book.getReturnDate().plusWeeks(2));
-		}
-	}
-
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	public void returnBook(String bookTitle, String personnummer) throws Exception {
 
 		Customer customer = findCustomerBy(customerKey.PERSONNUMMER, personnummer);
@@ -426,6 +526,11 @@ public class Library {
 	}
 
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * @author Lucas Fredin
+	 * */
 	public ArrayList<Book> getTopTen() {
 		sortAllBooksBy(TIMESBORROWED);
 		Set<String> hashSetTitle = new LinkedHashSet<String>();
@@ -466,6 +571,10 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Fabian Fröding
+	 * */
 	public void sortTimesBorrowed() {
 		try {
 			for (Book book : this.allBooks)
@@ -477,6 +586,11 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * @author Lucas Fredin
+	 * */
 	public String getCustomerLoanHistoryString(Customer customer) {
 		String current = "";
 		String END_OF_LINE = "\n";
@@ -491,6 +605,11 @@ public class Library {
 		return current;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * @author Lucas Fredin
+	 * */
 	public String getCustomerCurrentLoanString(Customer customer) {
 		String currentLoan = "";
 		String END_OF_LINE = "\n";
@@ -505,6 +624,10 @@ public class Library {
 		return currentLoan;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Hanien Kobus
+	 * */
 	public int checkDelay(Book book) {
 		if (this.date.compareTo(book.getReturnDate()) > 0) {
 			return (int) ChronoUnit.DAYS.between(book.getReturnDate(), this.date);
@@ -513,6 +636,11 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Lucas Fredin
+	 * @author Hanien Kobus
+	 * */
 	private int getCopiesOfTitle(String title) {
 		int copies = 0;
 		for (int i = 0; i < this.books.size(); i++) {
@@ -523,6 +651,11 @@ public class Library {
 		return copies;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Lucas Fredin
+	 * @author Hanien Kobus
+	 * */
 	public void bookDirectory(String path) throws FileNotFoundException {
 		File file = new File(path);
 		Scanner input = new Scanner(file);
@@ -559,6 +692,11 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Lucas Fredin
+	 * @author Hanien Kobus
+	 * */
 	public void importBooksFrom(String fileName) throws Exception {
 		try (FileInputStream fis = new FileInputStream(fileName);
 				BufferedReader reader = new BufferedReader(new InputStreamReader(fis));) {
@@ -573,6 +711,11 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Lucas Fredin
+	 * @author Hanien Kobus
+	 * */
 	public void customerDirectory() throws Exception {
 		Scanner input = new Scanner(new File("res/customer.txt"));
 		input.useDelimiter("/|\n");
@@ -596,6 +739,10 @@ public class Library {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Oliver Manzi
+	 * */
 	@Override
 	public String toString() {
 		String s = "|======== Books ==========|\n===========================\nBooks Available: " + this.books.size()

@@ -1,6 +1,6 @@
 package library;
 
-/*This class runs the program.
+/**This class runs the program.
  * 
  * @author Team 9
  * @version 1.0

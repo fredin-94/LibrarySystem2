@@ -5,9 +5,13 @@ import java.util.*;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
+/**<I, the author, am a jackass!>
+ * 
+ * @author Hanien Kobus
+ * @author Oliver Manzi
+ * */
 public class Book {
 
-	private UUID id;
 	private String title;
 	private String authors;
 	private String genre;
@@ -25,35 +29,54 @@ public class Book {
 		this.genre = genre;
 		this.publisher = publisher;
 		this.shelf = shelf;
-		returnDate = LocalDate.of(2017, 10, 31);// homage to the first mini-project lecture... before we knew how fucked
-												// this was
+		returnDate = LocalDate.of(2017, 10, 31);
 	}
 
-	public UUID getId() {
-		return this.id;
-	}
-
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Hanien Kobus
+	 * */
 	public String getTitle() {
 		return this.title;
 	}
 
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Hanien Kobus
+	 * */
 	public String getAuthors() {
 		return authors;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Hanien Kobus
+	 * */
 	public String getGenre() {
 		return this.genre;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Hanien Kobus
+	 * */
 	public String getPublisher() {
 		return this.publisher;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Hanien Kobus
+	 * */
 	public String getShelf() {
 		return this.shelf;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Hanien Kobus
+	 * */
 	public void setShelf(String shelf) throws Exception {
 		if (shelf.equals("")) {
 			throw new Exception("A shelf must be chosen in order to move the book.");
@@ -62,14 +85,26 @@ public class Book {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Hanien Kobus
+	 * */
 	public int getTimesBorrowed() {
 		return this.timesBorrowed;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Hanien Kobus
+	 * */
 	public LocalDate getReturnDate() {
 		return this.returnDate;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Hanien Kobus
+	 * */
 	public void setReturnDate(LocalDate returnDate) throws Exception {
 		if (returnDate.equals(null)) {
 			throw new Exception("Date can't be empty.");
@@ -78,6 +113,10 @@ public class Book {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Fabian Fröding
+	 * */
 	public void firstLettersToUpperCase() {
 		this.title = firstLetterInStringToUpperCase(this.title);
 		this.authors = firstLetterInStringToUpperCase(this.authors);
@@ -93,14 +132,30 @@ public class Book {
 		return s;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Hanien Kobus
+	 * */
 	public void incrementTimesBorrowed() {
 		this.timesBorrowed++;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Hanien Kobus
+	 * */
 	public void setTimesBorrowed(int timesBorrowed) {
 		this.timesBorrowed = timesBorrowed;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Hanien Kobus
+	 * @author Oliver Manzi
+	 * 
+	 * @version 1.0 Created by Hanien: Displays customer information.
+	 * @version 1.1 Modified by Oliver: Distinguishes "prints" from attributes"
+	 * */
 	@Override
 	public String toString() {
 		return "\n" + "||----------------------------------------------------------||\n" + "Book Title: " + this.title
@@ -108,6 +163,10 @@ public class Book {
 				+ "\n • Shelf: " + this.shelf + "\n • Times Borrowed: " + this.timesBorrowed;
 	}
 	
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Lucas Fredin
+	 * */
 	public String toStringCurrentLoans() {
 		return "\n" + "||----------------------------------------------------------||\n" + "Book Title: " + this.title
 				+ "\n • Authors: " + this.authors + "\n • Genre: " + this.genre + "\n • Publisher: " + this.publisher

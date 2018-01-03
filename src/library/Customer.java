@@ -1,4 +1,5 @@
 package library;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
@@ -6,6 +7,11 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**<I, the author, am a jackass!>
+ * 
+ * @author Majd Hatoum
+ * @author Oliver Manzi
+ * */
 public class Customer {
 
 
@@ -30,37 +36,67 @@ public class Customer {
 		customerBooks("res/" + personnummer + "CurrentLoans.txt");
 		customerBooks("res/" + personnummer + "LoanHistory.txt");
 	}
-
-	// TODO Getters and Setters
-
+	
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public String getName() {
 		return this.name;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public String getAdress() {
 		return this.adress;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public String getPersonnummer() {
 		return this.personnummer;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public String getNumber() {
 		return this.number;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public double getDebt() {
 		return this.debt;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public ArrayList<Book> getCurrentLoans() {
 		return this.currentLoans;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public ArrayList<Book> getRealLoanHistory() {
 		return this.loanHistory;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public void setName(String newName) throws Exception {
 		if (newName.equals("")) {
 			throw new Exception("Name can not be empty");
@@ -69,6 +105,10 @@ public class Customer {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public void setAdress(String newAdress) throws Exception {
 		if (newAdress.equals("")) {
 			throw new Exception("Adress can not be empty");
@@ -77,6 +117,10 @@ public class Customer {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public void setNumber(String newNumber) throws Exception {
 		if (newNumber.trim().matches("[0-9]+") && newNumber.trim().length() == 10) {
 			this.number = newNumber;
@@ -85,10 +129,18 @@ public class Customer {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public void setDebt(double newDebt) {
 		this.debt = newDebt + this.debt;
 	}
 	
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public void payDebt(double payement) throws Exception {
 		if((this.debt - payement) >= 0) {
 			this.debt = this.debt - payement;
@@ -97,22 +149,42 @@ public class Customer {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public void addToCurrentLoan(Book book) {
 		currentLoans.add(book);
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public void addToLoanHistory(Book book) {
 		loanHistory.add(book);
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public ArrayList<Book> getLoanHistory() {
 		return loanHistory;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public void removeFromCurrentLoan(Book book) {
 		currentLoans.remove(book);
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public Book getFromCurrentLoan(String bookTitle) {
 		for (Book book : currentLoans) {
 			if (book.getTitle().equalsIgnoreCase(bookTitle)) {
@@ -122,6 +194,10 @@ public class Customer {
 		return null;
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * */
 	public void customerBooks(String path) throws FileNotFoundException {
 		File file = new File(path);
 		Scanner input = new Scanner(file);
@@ -153,6 +229,14 @@ public class Customer {
 		}
 	}
 
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Majd Hatoum
+	 * @author Oliver Manzi
+	 * 
+	 * @version 1.0 Created by Majd: Displays customer information.
+	 * @version 1.1 Modified by Oliver: Distinguishes "prints" from attributes"
+	 * */
 	@Override
 	public String toString() {
 		String customerToString = " " + END_OF_LINE;

@@ -97,3 +97,9 @@ The Ghost/Harris Robert/Random House/Literary Fiction/6LF/0/2017-10-31
 Happy Days with the Naked Chef/Oliver Jamie/Penguin/Food & Drink/9fd/0/2017-10-31
 The Hunger Games/Collins Suzanne/Scholastic Ltd./Young Adult Fiction/4ya/0/2017-10-31
 The Lost Boy:A Foster Child's Search for the Love of a Family/Pelzer Dave/Orion/Biography/2bi/0/2017-10-31
+Java/Daniel Liang/Pearsons/Education/A1/0/2017-10-31
+Probability and Statistics for Engineers/Sheldon M. Ross/Academic Press/Education/A2/0/2017-10-31
+Discrete Mathematics/Keneth H. Rosen/McGraw Hill/Education/A2/0/2017-10-31
+Head First: Java/Bert Bates, Kathy Sierra/O'Rielly/Education/A1/0/2017-10-31
+Misbehaving/Richard Thaler/Econ/Education/A3/0/2017-10-31
+Designing Interfaces/Jenifer Tidwell/O'Reilly/Education/A5/0/2017-10-31
