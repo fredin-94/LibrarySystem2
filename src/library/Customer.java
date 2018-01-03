@@ -16,7 +16,7 @@ public class Customer {
 	private ArrayList<Book> currentLoans;
 	private ArrayList<Book> loanHistory;
 	private String personnummer;
-	final String END_OF_LINE = System.lineSeparator();// Skips A Line
+	final String END_OF_LINE = System.lineSeparator();
 
 	public Customer(String name, String adress, String personnummer, String number) throws Exception {
 
@@ -31,9 +31,6 @@ public class Customer {
 		customerBooks("res/" + personnummer + "LoanHistory.txt");
 	}
 
-	
-	
-	
 	// TODO Getters and Setters
 
 	public String getName() {

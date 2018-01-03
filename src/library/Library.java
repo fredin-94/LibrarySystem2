@@ -74,8 +74,6 @@ public class Library {
 		}
 	}
 
-	/* TODO ---------------------Basic------------------------------- */
-
 	public ArrayList<Book> getAllBooks() {
 		return allBooks;
 	}
@@ -107,8 +105,6 @@ public class Library {
 	public ArrayList<Customer> getCustomers() {
 		return customers;
 	}
-
-	/* TODO: ---------------- Simulate ------------------------ */
 
 	public LocalDate getDate() {
 		return date;
@@ -171,8 +167,6 @@ public class Library {
 		}
 	}
 
-	/* TODO---------------------SEARCH------------------------------ */
-	// DON'T CHANGE FORMAT PLEASE.
 	public enum bookKey {
 		TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID, TIMESBORROWED
 	}
@@ -218,7 +212,6 @@ public class Library {
 		return null;
 	}
 
-	// ----- Search for customer ----- //
 	public Customer findCustomerBy(customerKey key, String searchValue) throws InvalidKeyException {
 		searchValue.toLowerCase();
 		switch (key) {
@@ -252,7 +245,6 @@ public class Library {
 		throw new NullPointerException("Customer not found.");
 	}
 
-	/* TODO---------------------SORTING------------------------------ */
 
 	public void sortAllBooksBy(bookKey keyToSort) {
 		try {
@@ -322,9 +314,6 @@ public class Library {
 		}
 	}
 
-	/* TODO -------------------Administration--------------------- */
-
-	/* register books */
 	public void addBook(Book book) {
 		if (allBooks.contains(book) == false) {
 			allBooks.add(book);
@@ -360,15 +349,12 @@ public class Library {
 		customers.remove(customer);
 	}
 
-	/* TODO -------------------loan and return--------------------- */
 	public void borrowBook(String bookTitle, String personnummer) throws Exception {
 
 		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnummer);
 		Book book = searchForBook(bookTitle).get(0);
-		// assumes default loanPeriod
-		//sortBooksBy(TITLE);		*** this line of code was changing the title to have a first letter uppercase even
-		// 								if it was put in by the user as lower case ***
-		book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks //Need to delete this??
+		
+		book.setReturnDate(this.date.plusWeeks(2));
 
 		book.incrementTimesBorrowed();
 		for (Book books : allBooks) {
@@ -439,7 +425,6 @@ public class Library {
 
 	}
 
-	/* TODO: ---------------- Extra ----------------------- */
 
 	public ArrayList<Book> getTopTen() {
 		sortAllBooksBy(TIMESBORROWED);
@@ -520,8 +505,6 @@ public class Library {
 		return currentLoan;
 	}
 
-	/* TODO ------ OTHER METHODS --------- */
-	// returns delay surplus
 	public int checkDelay(Book book) {
 		if (this.date.compareTo(book.getReturnDate()) > 0) {
 			return (int) ChronoUnit.DAYS.between(book.getReturnDate(), this.date);
@@ -540,7 +523,6 @@ public class Library {
 		return copies;
 	}
 
-	// TODO -------------Text Files-----------------------------
 	public void bookDirectory(String path) throws FileNotFoundException {
 		File file = new File(path);
 		Scanner input = new Scanner(file);
@@ -582,7 +564,7 @@ public class Library {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(fis));) {
 			String line;
 			while ((line = reader.readLine()) != null) {
-				String[] args = line.split("\\/"); // change back to \\- ???
+				String[] args = line.split("\\/"); 
 				addBook(new Book(args[0], args[1], args[2], args[3], args[4]));
 			}
 		} catch (IOException ioe) {
@@ -591,7 +573,6 @@ public class Library {
 		}
 	}
 
-	// Reading a txt file into arraylist (Customers)//
 	public void customerDirectory() throws Exception {
 		Scanner input = new Scanner(new File("res/customer.txt"));
 		input.useDelimiter("/|\n");

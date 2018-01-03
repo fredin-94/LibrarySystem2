@@ -5,8 +5,16 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
+/*
+ * This class stores all the menu prints and user prompts in order to use the system.
+ * 
+ * @author Oliver Manzi
+ * @Version 1.1 Modification: added a localDate parameter in the method signature.
+ * Additionally, added a date formater that takes given date and prints it out in 
+ * "Weekday-Month-calendar day-year" to facilitate user (less numbers, easier to read)
+ * */
 public class Menu {
-
+	
 	public void getWelcomeScreen(LocalDate date) {
 		SimpleDateFormat theDate = new SimpleDateFormat("EEE MMM dd-yyyy");
 		Date fooBarBat = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -80,7 +88,6 @@ public class Menu {
 		+ " ===   Choose an option below:                   ===\n"
 		+ " ===   1. Borrow Book                            ===\n"
 		+ " ===   2. Return Book                            ===\n"
-		//+ " ===   3. Extend Book Loan (beta test)           ===\n"
 		+ " ===   0. Return to main menu                    ===\n"
 		+ " ===================================================\n");
 		System.out.println();
@@ -156,7 +163,6 @@ public class Menu {
 		+ "||-----------------------------------------------||\n"
 		+ "---   1. Show current loans                     ---\n"
 		+ "---   2. Show loan history                      ---\n"
-		//+ "---   3. Pay current fee                        ---\n"
 		+ "---   0. Return to Search Menu                    ---\n");
 	}
 }

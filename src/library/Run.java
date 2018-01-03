@@ -1,8 +1,13 @@
 package library;
+
+/*This class runs the program.
+ * 
+ * @author Team 9
+ * @version 1.0
+ * */
 public class Run {
-	// TODO Pass with a VG
 	public static void main(String[] args) {
-		LibraryTesting test = new LibraryTesting();
+		LibrarySystem test = new LibrarySystem();
 		test.run();
 	}
 }
