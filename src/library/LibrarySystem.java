@@ -441,7 +441,6 @@ public class LibrarySystem {
 			String res = "\n===================================================\nSearch Result\nSize of result: "
 					+ searchResult.size() + "\n===================================================\n";
 
-			/* TODO fix */
 			for (int i = 0; i < searchResult.size(); i++) {
 				res += "\n===================================================\nCustomer number -> " + (i + 1) + ") "
 						+ searchResult.get(i).toString();
@@ -841,23 +840,7 @@ public class LibrarySystem {
 			System.out.println();
 			customerExtraFeatures(customer);
 			break;
-		// TODO: LUCAS decide whether to do this or not 
-		//case "3": //CHANGE HERE TO DISPLAY DEBT BEFORE PAYING TO SEE WHAT U NEED TO
-		// PAY
-		// System.out.print("===================================================\n" +
-		// "Enter payment: ");
-		// double payement = scanner.nextDouble();
-		// scanner.nextLine();
-		// try {
-		// customer.payDebt(payement);
-		// } catch (Exception e) {
-		// System.out.println("~~~~~~~~\n " + e.getMessage() + "\ntry again
-		// later...\n~~~~~~~~");
-		// }
-		// System.out.println();
-		// System.out.println(customer.toString());
-		// customerExtraFeatures(customer);
-		// break;
+		
 		case "0":
 			break;
 		default:
