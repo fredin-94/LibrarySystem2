@@ -441,7 +441,6 @@ public class LibrarySystem {
 			String res = "\n===================================================\nSearch Result\nSize of result: "
 					+ searchResult.size() + "\n===================================================\n";
 
-			/* TODO fix */
 			for (int i = 0; i < searchResult.size(); i++) {
 				res += "\n===================================================\nCustomer number -> " + (i + 1) + ") "
 						+ searchResult.get(i).toString();
@@ -841,23 +840,6 @@ public class LibrarySystem {
 			System.out.println();
 			customerExtraFeatures(customer);
 			break;
-		// TODO: LUCAS decide whether to do this or not 
-		//case "3": //CHANGE HERE TO DISPLAY DEBT BEFORE PAYING TO SEE WHAT U NEED TO
-		// PAY
-		// System.out.print("===================================================\n" +
-		// "Enter payment: ");
-		// double payement = scanner.nextDouble();
-		// scanner.nextLine();
-		// try {
-		// customer.payDebt(payement);
-		// } catch (Exception e) {
-		// System.out.println("~~~~~~~~\n " + e.getMessage() + "\ntry again
-		// later...\n~~~~~~~~");
-		// }
-		// System.out.println();
-		// System.out.println(customer.toString());
-		// customerExtraFeatures(customer);
-		// break;
 		case "0":
 			break;
 		default:
@@ -875,7 +857,11 @@ public class LibrarySystem {
 		System.out.println(
 				"===================================================" + "\n== Enter how many days to increment: ");
 		int day = scanner.nextInt();
-		library.addDays(day);
+		try {
+			library.addDays(day);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**Prompts user to enter number of weeks to increment.
@@ -886,7 +872,11 @@ public class LibrarySystem {
 		System.out.println(
 				"===================================================" + "\n== Enter how many weeks to increment: ");
 		int week = scanner.nextInt();
-		library.addWeeks(week);
+		try {
+			library.addWeeks(week);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**Prompts user to enter number of months to increment.
@@ -897,7 +887,11 @@ public class LibrarySystem {
 		System.out.println(
 				"===================================================" + "\n== Enter how many months to increment: ");
 		int month = scanner.nextInt();
-		library.addMonths(month);
+		try {
+			library.addMonths(month);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**Prompts user to enter number of years to increment.
@@ -908,7 +902,11 @@ public class LibrarySystem {
 		System.out.println(
 				"===================================================" + "\n== Enter how many years to increment: ");
 		int year = scanner.nextInt();
-		library.addyears(year);
+		try {
+			library.addyears(year);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/** <I, the author, am a jackass!>
