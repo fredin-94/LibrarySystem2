@@ -1,4 +1,5 @@
 package library;
+
 import java.io.*;
 import java.security.*;
 import java.util.function.*;
@@ -19,7 +20,7 @@ public class Library {
 	private ArrayList<Customer> customers;
 	private LocalDate date;
 
-	/**<I, the author, am a jackass!>
+	/**This class stores all the functionalities for the library system.  
 	 * 
 	 * @author Oliver Manzi
 	 * @author Fabian Fröding
@@ -82,7 +83,8 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**returns an arrayList of allBooks, all the books in the library 
+	 * whether they are borrowed or not.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -90,7 +92,8 @@ public class Library {
 		return allBooks;
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Returns an arrayList of book objects, all books that have not 
+	 * been borrowed yet.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -98,9 +101,14 @@ public class Library {
 		return books;
 	}
 
-	/**<I, the author, am a jackass!>
+	/**This method returns an arrayList of books objects, all books
+	 * that have been loaned out.
 	 * 
 	 * @author Oliver Manzi
+	 * 
+	 * @version 1.1 Modified: To avoid excess text-files, the "loanedBooks" 
+	 * arrayList was deleted and replaced with a for-loop that goes throughout
+	 * customer objects and acquires all their loaned out books  
 	 * */
 	public ArrayList<Book> getLoanedBooks() {
 		ArrayList<Book> allLoanedBooks = new ArrayList<Book>();
@@ -112,7 +120,7 @@ public class Library {
 		return allLoanedBooks;
 	}
 
-	/**<I, the author, am a jackass!>
+	/**returns an arrayList of book objects, all books that have been delayed.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -126,7 +134,8 @@ public class Library {
 		return allDelayedBooks;
 	}
 
-	/**<I, the author, am a jackass!>
+	/**returns an arrayList of customer objects, 
+	 * all customers registered to the library system.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -134,7 +143,7 @@ public class Library {
 		return customers;
 	}
 
-	/**<I, the author, am a jackass!>
+	/**retruns the current date of the library.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -142,9 +151,10 @@ public class Library {
 		return date;
 	}
 
-	/**<I, the author, am a jackass!>
+	/**increments the days of the library date while checking if a book is delayed.
 	 * 
 	 * @author Oliver Manzi
+	 * @author Lucas Fredin
 	 * */
 	public void addDays(int Days) {
 		this.date = this.getDate().plusDays(Days);
@@ -161,9 +171,10 @@ public class Library {
 
 	}
 
-	/**<I, the author, am a jackass!>
+	/**increments the weeks of the library date while checking if a book is delayed.
 	 * 
 	 * @author Oliver Manzi
+	 * @author Lucas Fredin
 	 * */
 	public void addWeeks(int weeks) {
 		date = date.plusWeeks(weeks);
@@ -179,9 +190,10 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**increments the months of the library date while checking if a book is delayed.
 	 * 
 	 * @author Oliver Manzi
+	 * @author Lucas Fredin
 	 * */
 	public void addMonths(int months) {
 		this.date = this.date.plusMonths(months);
@@ -197,9 +209,10 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**increments the years of the library date while checking if a book is delayed.
 	 * 
 	 * @author Oliver Manzi
+	 * @author Lucas Fredin
 	 * */
 	public void addyears(int years) {
 		this.date = this.date.plusYears(years);
@@ -231,13 +244,14 @@ public class Library {
 		NAME, ADRESS, NUMBER, DEBT, ID, PERSONNUMMER
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Searches for book objects in allBooks arrayList.
 	 * 
 	 * @author Fabian Fröding
 	 * @author Oliver Manzi
 	 * 
-	 * version 1.0 Created by Fabian to read book toString.
-	 * version 1.1 Modified by Oliver to read book object 
+	 * @version 1.0 Created by Fabian to read book toString and 
+	 * compare it to search text from parameter.
+	 * @version 1.1 Modified by Oliver to read book object 
 	 * attributes instead of toString
 	 * */
 	public ArrayList<Book> searchForBook(String searchText) throws NullPointerException {
@@ -261,13 +275,14 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Searches for customers registered to the library system.
 	 * 
 	 * @author Fabian Fröding
 	 * @author Oliver Manzi
 	 * 
-	 * version 1.0 Created by Fabian to read customer toString.
-	 * version 1.1 Modified by Oliver to read customer object 
+	 * @version 1.0 Created by Fabian to read customer toString and
+	 * compare it to searchText from parameters.
+	 * @version 1.1 Modified by Oliver to read customer object 
 	 * attributes instead of toString
 	 * */
 	public ArrayList<Customer> searchForCustomer(String searchText) throws NullPointerException {
@@ -412,7 +427,10 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Adds a book to the books arrayList. Checks whether 
+	 * book being added is already in allBooks arrayList. If it isn't,
+	 * it is added. This method is used for two things, 1. returning a borrowed book
+	 * 2. Add a book to the library system.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -423,7 +441,8 @@ public class Library {
 		books.add(book);
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Removes book object from the books arrayList.
+	 * This method is used to borrow a book. 
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -431,9 +450,14 @@ public class Library {
 		books.remove(book);
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Removes a book from the entire library system. 
 	 * 
 	 * @author Oliver Manzi
+	 * 
+	 * @version 1.1 Modified: checks whether the book has been borrowed by a customer.
+	 * If a customer has loaned the books, it deletes it from their current loans
+	 * and increments any debt related to the book (if there is any).
+	 * Useful when dealing with lost books. 
 	 * */
 	public void deleteBook(Book book) throws Exception {
 		if (this.checkDelay(book) > 0) {
@@ -447,7 +471,7 @@ public class Library {
 		books.remove(book);
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Adds a customer to customers arrayList.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -459,23 +483,35 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Removes a customer from library system
 	 * 
 	 * @author Oliver Manzi
+	 * 
+	 * @version 1.1 Modification: if customer has any loaned books, 
+	 * they cannot be deleted until they return them.
 	 * */
-	public void removeCustomer(Customer customer) {
-		customers.remove(customer);
+	public void removeCustomer(Customer customer) throws Exception {
+		if(!customer.getCurrentLoans().isEmpty()) {
+			throw new Exception ( "Cannot delete "+customer .getName() + " from library system. (Loan Error)");
+		}else {
+			customers.remove(customer);	
+		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Borrows a book to a customer. Sets return date of book (2 weeks from current date).
 	 * 
 	 * @author Oliver Manzi
 	 * */
 	public void borrowBook(String bookTitle, String personnummer) throws Exception {
 
 		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnummer);
+		if (customer == null) {
+			throw new Exception("Customer doesn't exist in directory");
+		}
 		Book book = searchForBook(bookTitle).get(0);
-		
+		if (book == null) {
+			throw new Exception("Book doesn't exist in directory");
+		}
 		book.setReturnDate(this.date.plusWeeks(2));
 
 		book.incrementTimesBorrowed();
@@ -484,14 +520,16 @@ public class Library {
 				//books.incrementTimesBorrowed();// not sure if this increments this book as well
 			}
 		}
+		
 		customer.addToCurrentLoan(book);
 		customer.addToLoanHistory(book);
 		books.remove(book);
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Returns a book to the library. Calculates debt and adds sum total to customer profile.
 	 * 
 	 * @author Oliver Manzi
+	 * 
 	 * */
 	public void returnBook(String bookTitle, String personnummer) throws Exception {
 
@@ -504,31 +542,27 @@ public class Library {
 		if (book == null) {
 			throw new Exception("Book doesn't exist in directory");
 		}
-
 		int debt = this.checkDelay(book) * 2;
-		//customer.setDebt(debt);
-		LocalDate restartDate = LocalDate.of(2017, 10, 31);
-		;
-		book.setReturnDate(restartDate);
-		books.add(book);
-		customer.removeFromCurrentLoan(book);
-
 		if (debt > 0) {
-			System.out.println(customer.getName() + " returned the book " + (debt / 2) + " days after the return date");
-			System.out.println("and was charged the delay fee.");
+			System.out.println(customer.getName() + " returned the book " + (debt / 2) + " days after the return date" 
+			+ "and was charged the delay fee.");
 			customers.clear();
 			customerDirectory();
 			setDebt();
 		} else {
 			System.out.println("** Customer returned the book on time. **");
 		}
-
+		
+		LocalDate restartDate = LocalDate.of(2017, 10, 31);
+		;
+		book.setReturnDate(restartDate);
+		books.add(book);
+		customer.removeFromCurrentLoan(book);
 	}
 
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Oliver Manzi
+	/**Returns top ten most borrowed books.
+	 *
 	 * @author Lucas Fredin
 	 * */
 	public ArrayList<Book> getTopTen() {
@@ -586,7 +620,7 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Returns customers loan history arrayList.
 	 * 
 	 * @author Oliver Manzi
 	 * @author Lucas Fredin
@@ -605,7 +639,7 @@ public class Library {
 		return current;
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Returns customers loan history arrayList.
 	 * 
 	 * @author Oliver Manzi
 	 * @author Lucas Fredin
@@ -739,7 +773,7 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Displays all available books in the library.
 	 * 
 	 * @author Oliver Manzi
 	 * */
