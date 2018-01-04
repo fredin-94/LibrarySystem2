@@ -145,6 +145,7 @@ public class Library {
 	/**<I, the author, am a jackass!>
 	 * 
 	 * @author Oliver Manzi
+	 * @author Majd Hatoum
 	 * */
 	public void addDays(int Days) {
 		this.date = this.getDate().plusDays(Days);
@@ -164,6 +165,7 @@ public class Library {
 	/**<I, the author, am a jackass!>
 	 * 
 	 * @author Oliver Manzi
+	 * @author Majd Hatoum
 	 * */
 	public void addWeeks(int weeks) {
 		date = date.plusWeeks(weeks);
@@ -182,6 +184,7 @@ public class Library {
 	/**<I, the author, am a jackass!>
 	 * 
 	 * @author Oliver Manzi
+	 * @author Majd Hatoum
 	 * */
 	public void addMonths(int months) {
 		this.date = this.date.plusMonths(months);
@@ -200,6 +203,7 @@ public class Library {
 	/**<I, the author, am a jackass!>
 	 * 
 	 * @author Oliver Manzi
+	 * @author Majd Hatoum
 	 * */
 	public void addyears(int years) {
 		this.date = this.date.plusYears(years);
@@ -470,6 +474,7 @@ public class Library {
 	/**<I, the author, am a jackass!>
 	 * 
 	 * @author Oliver Manzi
+	 * @author Majd Hatoum
 	 * */
 	public void borrowBook(String bookTitle, String personnummer) throws Exception {
 
@@ -492,6 +497,7 @@ public class Library {
 	/**<I, the author, am a jackass!>
 	 * 
 	 * @author Oliver Manzi
+	 * @author Majd Hatoum
 	 * */
 	public void returnBook(String bookTitle, String personnummer) throws Exception {
 
@@ -627,6 +633,7 @@ public class Library {
 	/**<I, the author, am a jackass!>
 	 * 
 	 * @author Hanien Kobus
+	 * @author Majd Hatoum
 	 * */
 	public int checkDelay(Book book) {
 		if (this.date.compareTo(book.getReturnDate()) > 0) {
@@ -655,6 +662,7 @@ public class Library {
 	 * 
 	 * @author Lucas Fredin
 	 * @author Hanien Kobus
+	 * @author Majd Hatoum
 	 * */
 	public void bookDirectory(String path) throws FileNotFoundException {
 		File file = new File(path);
@@ -696,6 +704,7 @@ public class Library {
 	 * 
 	 * @author Lucas Fredin
 	 * @author Hanien Kobus
+	 * @author Majd Hatoum
 	 * */
 	public void importBooksFrom(String fileName) throws Exception {
 		try (FileInputStream fis = new FileInputStream(fileName);
