@@ -229,7 +229,7 @@ public class Customer {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Returns a string of customer attribute information.
 	 * 
 	 * @author Majd Hatoum
 	 * @author Oliver Manzi
