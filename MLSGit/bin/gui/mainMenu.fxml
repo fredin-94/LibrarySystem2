@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainMenu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="699.0" prefWidth="1197.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenuController">
+   <children>
+      <Label fx:id="titleLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="360.0" layoutY="33.0" prefHeight="41.0" prefWidth="453.0" text="WELCOME TO THE LIBRARY SYSTEM" textFill="#486bb9">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="booksBtn" layoutX="462.0" layoutY="342.0" mnemonicParsing="false" onAction="#handle" prefHeight="27.0" prefWidth="277.0" style="-fx-background-color: blue;" text="Books" textFill="WHITE" />
+      <Button fx:id="customerBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="462.0" layoutY="388.0" mnemonicParsing="false" onAction="#handle" prefHeight="27.0" prefWidth="280.0" style="-fx-background-color: blue;" text="Customer" textFill="WHITE" />
+      <Label fx:id="currentTime" layoutX="446.0" layoutY="531.0" prefHeight="107.0" prefWidth="649.0" text="Todays date is: 2017-12-12">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="492.0" layoutY="105.0">
+         <image>
+            <Image url="@../libIcon.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

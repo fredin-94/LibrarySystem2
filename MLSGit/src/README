@@ -1,0 +1,25 @@
+README
+
+HOW TO USE:
+Open the project in eclipse
+Find MainLib.java in the library folder (located in the src folder)
+Run the program from MainLib.java
+
+
+------------------------------
+NOTE ABOUT UNFINISHED PROGRAM:
+This is the prototype GUI for the library system.
+Made with code that Team 9 members have created.
+
+Some GUI related code was taken from the internet, for example the code related to searching books/customers, 
+which is not the same code we use for searching in the other library system (the console system).
+
+The project is unfinished and the code has not had any clean up done, and has not been made modularized yet. 
+There was no time to finish it and modularize it, therefore the code is very messy and might be hard to read.
+
+There was not time to implement some of the funtions that exist in the console-run library system, such as removing books, etc.
+
+Many other funtions are working though, but there are still a lot of bugs.
+There was not enough time to fix all the bugs, so please be ware that they exist in the program.
+
+Overall the program runs fine in its unfinished state.
