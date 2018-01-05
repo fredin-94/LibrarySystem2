@@ -9,7 +9,7 @@ import library.Library.bookKey;
 import static library.Library.bookKey.*; // Needed to take enum keys as parameters. //Fabian.
 
 /**
- * <I, the author, am a jackass!>
+ * @author Hanien Kobus and Lucas Fredin
  * 
  * @author Oliver Manzi
  * @author Fabian Fröding
