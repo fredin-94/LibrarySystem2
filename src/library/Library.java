@@ -466,32 +466,10 @@ public class Library {
 		books.remove(book);
 	}
 
-//	public void extendLoanPeriod(String personnumer, String bookTitle) throws Exception {
-//		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnumer);
-//		if (customer == null) {
-//			throw new Exception("Customer is not in System.");
-//		}
-//
-//		ArrayList<Book> temp = customer.getCurrentLoans();
-//		Book book = null;
-//		for (Book theBook : temp) {
-//			if (theBook.getTitle().trim().equalsIgnoreCase(bookTitle.trim())) {
-//				book = theBook;
-//				break;
-//			}
-//		}
-//
-//		if (book == null) {
-//			throw new Exception("Book is not in" + customer.getName() + "'s current loans");
-//		}
-//
-//		if (this.checkDelay(book) > 0) {
-//			throw new Exception("Book cannot be extended because it is delayed");
-//		} else {
-//			book.setReturnDate(book.getReturnDate().plusWeeks(2));
-//		}
-//	}
-
+	/**Returns a book to the library. Calculates debt and adds sum total to customer profile.
+	 * 
+	 * @throws exception
+	 * */
 	public void returnBook(String bookTitle, String personnummer) throws Exception {
 
 		Customer customer = findCustomerBy(customerKey.PERSONNUMMER, personnummer);
@@ -524,8 +502,8 @@ public class Library {
 
 	}
 
-	/* TODO: ---------------- Extra ----------------------- */
-
+	/**Returns top ten most borrowed books.
+	 * */
 	public ArrayList<Book> getTopTen() {
 		sortAllBooksBy(TIMESBORROWED);
 		Set<String> hashSetTitle = new LinkedHashSet<String>();
@@ -556,6 +534,8 @@ public class Library {
 		return topBooks;
 	}
 
+	/**Compliments getTopTen method. Adds books to lists
+	 * */
 	public void addBookToList(String title, ArrayList<Book> list) {
 
 		for (int i = 0; i < allBooks.size(); i++) {
@@ -566,6 +546,8 @@ public class Library {
 		}
 	}
 
+	/**Sorts books in alBooks arrayList by times borrowed.
+	 * */
 	public void sortTimesBorrowed() {
 		try {
 			for (Book book : this.allBooks)
@@ -577,6 +559,8 @@ public class Library {
 		}
 	}
 
+	/**Returns customers loan history arrayList.
+	 * */
 	public String getCustomerLoanHistoryString(Customer customer) {
 		String current = "";
 		String END_OF_LINE = "\n";
@@ -591,6 +575,8 @@ public class Library {
 		return current;
 	}
 
+	/**Returns customers current loan arrayList.
+	 * */
 	public String getCustomerCurrentLoanString(Customer customer) {
 		String currentLoan = "";
 		String END_OF_LINE = "\n";
@@ -605,8 +591,9 @@ public class Library {
 		return currentLoan;
 	}
 
-	/* TODO ------ OTHER METHODS --------- */
-	// returns delay surplus
+	/**Compares the current date of library with the return date 
+	 * of a book object return date.
+	 * */
 	public int checkDelay(Book book) {
 		if (this.date.compareTo(book.getReturnDate()) > 0) {
 			return (int) ChronoUnit.DAYS.between(book.getReturnDate(), this.date);
@@ -615,6 +602,8 @@ public class Library {
 		}
 	}
 
+	/**Returns number of copies of all books.
+	 * */
 	private int getCopiesOfTitle(String title) {
 		int copies = 0;
 		for (int i = 0; i < this.books.size(); i++) {
@@ -625,7 +614,10 @@ public class Library {
 		return copies;
 	}
 
-	// TODO -------------Text Files-----------------------------
+	/**Parses lines in a text file to objects in an arrayList.
+	 * 
+	 * @throws exception
+	 * */
 	public void bookDirectory(String path) throws FileNotFoundException {
 		File file = new File(path);
 		Scanner input = new Scanner(file);
@@ -651,32 +643,17 @@ public class Library {
 			} finally {
 				if (path.contains("bookDirectory")) {
 					books.add(book);
-				} else if (path.contains("delayedBooks")) {
-					// delayedBooks.add(book);
-				} else if (path.contains("LoanedBooks")) {
-					// loanedBooks.add(book);
-				} else if (path.contains("AllBooks")) {
+				}else if (path.contains("AllBooks")) {
 					allBooks.add(book);
 				}
 			}
 		}
 	}
 
-	public void importBooksFrom(String fileName) throws Exception {
-		try (FileInputStream fis = new FileInputStream(fileName);
-				BufferedReader reader = new BufferedReader(new InputStreamReader(fis));) {
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String[] args = line.split("\\/"); // change back to \\- ???
-				addBook(new Book(args[0], args[1], args[2], args[3], args[4]));
-			}
-		} catch (IOException ioe) {
-			System.out.printf("Problems loading " + fileName + ".\n");
-			ioe.printStackTrace();
-		}
-	}
-
-	// Reading a txt file into arraylist (Customers)//
+	/**Parses lines in a text file into customer objects in an arrayList.
+	 * 
+	 * @throws exception
+	 * */
 	public void customerDirectory() throws Exception {
 		Scanner input = new Scanner(new File("res/customer.txt"));
 		input.useDelimiter("/|\n");
@@ -700,6 +677,8 @@ public class Library {
 		}
 	}
 
+	/**Displays all available books in the library.
+	 * */
 	@Override
 	public String toString() {
 		String s = "|======== Books ==========|\n===========================\nBooks Available: " + this.books.size()

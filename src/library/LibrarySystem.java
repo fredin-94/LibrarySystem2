@@ -6,19 +6,31 @@ import java.util.*;
 
 import library.Library.bookKey;
 
-import static library.Library.bookKey.*; // Needed to take enum keys as parameters. //Fabian.
+import static library.Library.bookKey.*; 
 
-public class LibraryTesting {
+
+/**
+ * This class handles user input and connects every other class, to form the user interface.
+ * 
+ * @author Hanien Kobus and Lucas Fredin
+ * @editor Fabian Fröding
+ * @editor Majd Hatoum
+ * @editor Oliver Manzi
+ */
+public class LibrarySystem {
 
     private Menu menu = new Menu();
     private Scanner scanner = new Scanner(System.in);
     private Library library;
-
-    public LibraryTesting() {
+    
+    public LibrarySystem() {
         library = new Library();
     }
 
-    // TODO Retrieving Book Information
+	/**
+	 * Method to search for a certain book or books, using user input. If what the user inputs corresponds to any of the parameters
+	 * of an existing book object, those objects will be displayed
+	 * */
     public void searchBook() {
         System.out.println("===================================================\n" + "== Search for book:\n"
                 + "=================================================== ");
@@ -38,6 +50,9 @@ public class LibraryTesting {
         }
     }
 
+	/**
+	 * Method to request an interger input from the user
+	 */
     public int requestUserInput() {
         int userInput;
         while (!scanner.hasNextInt()) {
@@ -48,6 +63,9 @@ public class LibraryTesting {
         return userInput;
     }
 
+	/**
+	 * Method to request input from the user to enter a title
+	 */
     public String requestTitle() throws Exception {
         System.out.println("===================================================\n" + "Enter title *: "
                 + "\n===================================================");
@@ -58,6 +76,9 @@ public class LibraryTesting {
         return title;
     }
 
+	/**
+	 * Method to request input from the user to enter a author
+	 */
     public String requestAuthor() throws Exception {
         System.out.println("===================================================\n" + "Enter author(s) *: "
                 + "\n===================================================");
@@ -68,6 +89,9 @@ public class LibraryTesting {
         return author;
     }
 
+	/**
+	 * Method to request input from the user to enter a publisher
+	 */
     public String requestPublisher() throws Exception {
         System.out.println("===================================================\n" + "Enter publisher *: "
                 + "\n===================================================");
@@ -78,6 +102,9 @@ public class LibraryTesting {
         return publisher;
     }
 
+	/**
+	 * Method to request input from the user to enter a genre
+	 */
     public String requestGenre() throws Exception {
         System.out.println("===================================================\n" + "Enter genre *: "
                 + "\n===================================================");
@@ -88,6 +115,9 @@ public class LibraryTesting {
         return genre;
     }
 
+	/**
+	 * Method to request input from the user to enter a shelf
+	 */
     public String requestShelf() throws Exception {
         System.out.println("===================================================\n" + "Enter shelf *: "
                 + "\n===================================================");
@@ -98,7 +128,8 @@ public class LibraryTesting {
         return shelf;
     }
 
-    // TODO Retrieve Customer information
+	/**Method that takes user input to display customers with parameters correlated to that user input
+	 * */
     public void searchCustomer() {
         System.out.println("===================================================\n" + "Search for customer: ");
         scanner.nextLine();
@@ -133,6 +164,9 @@ public class LibraryTesting {
 
     }
 
+	/**
+	 * Method to get input from the user for a name
+	 */
     public String requestName() throws Exception {
         System.out.println("===================================================\n" + "Enter customer name *: "
                 + "\n===================================================");
@@ -144,6 +178,9 @@ public class LibraryTesting {
         }
     }
 
+	/**
+	 * Method to get input from the user for an address
+	 */
     public String requestAddress() throws Exception {
         System.out.println("===================================================\n" + "Enter customer address *: "
                 + "\n===================================================");
@@ -155,6 +192,9 @@ public class LibraryTesting {
         }
     }
 
+	/**
+	 * Method to get input from the user for a phone number
+	 */
     public String requestPhoneNumber() throws Exception {
         System.out.println("===================================================\n" + "Enter customer phonenumber: "
                 + "\n===================================================");
@@ -168,6 +208,9 @@ public class LibraryTesting {
         }
     }
 
+	/**
+	 * Method to get input from the user for a social security number
+	 */
     public String requestPsn() throws Exception {
         System.out.println(
                 "===================================================\n" + "Enter customer personal security number *: "
@@ -198,6 +241,9 @@ public class LibraryTesting {
         }
     }
 
+	/**
+	 * Method to get input from the user for a social security number
+	 */
     public String getPsn() throws Exception {
         System.out.println("Enter customer social security number: ");
         String psn = scanner.nextLine().trim();
@@ -209,8 +255,12 @@ public class LibraryTesting {
         return psn;
     }
 
-    // TODO Administration Tools
-
+  
+	/**
+	 * Method to add books by getting user input for all the parameters of a book object, 
+	 * and creating a book object with those parameters. Writing that book object to text files,
+	 * and to arraylists.
+	 */
     public void addBook() {
         String title = "";
         String author = "";
@@ -235,6 +285,9 @@ public class LibraryTesting {
         }
     }
 
+	/**
+	 * Method to remove a book object from text files and arraylists, depending on the user input
+	 */
     public void deleteBook() {
         String searchTextBook = "";
 
@@ -287,10 +340,15 @@ public class LibraryTesting {
              }
 		} catch (NullPointerException e) {
 			//menu.getAdministration(library.getDate());
+			//System.out.println("Null pointer occurred");
 		}
         
     }
 
+	/**
+	 * Creates a new customer object using users input parameters, adds it to customer arraylist and
+	 * customer text file
+	 */
     public void addCustomer() {
         String name = "";
         String address = "";
@@ -307,7 +365,6 @@ public class LibraryTesting {
             createFile(psn + "CurrentLoans");
             writeCustomerToFile(name, address, psn, phoneNumber);
             System.out.println("Added " + name + " to customer database");
-            //System.out.println("bugChecker: No bugs found. Success!");
             library.addCustomer(new Customer(name, address, psn, phoneNumber));
         } catch (Exception e) {
             removeLineFromFile("res/customer.txt", name + "/" + address + "/" + psn + "/" + phoneNumber);
@@ -318,6 +375,9 @@ public class LibraryTesting {
         }
     }
 
+	/**
+	 * Method to remove a customer object from arraylist and text file, using an input string from the user
+	 */
     public void removeCustomer() {
         String ssn = "";
         Customer customer = null;
@@ -334,9 +394,11 @@ public class LibraryTesting {
         library.removeCustomer(customer);
         System.out.println("Removed customer");
     }
-
-    // TODO Loan and Return
-
+   
+	/**Method to let the user "borrow a book", user gets prompted to enter input, if correct input
+	 * is provided, the user can select a book to "borrow", a book that is borrowed will be moved into 
+	 * corresponding user currentloans and loanhistory text files, and removed from the bookDirectory txt file
+	 * */
     public void borrowBook() throws Exception {
         scanner.nextLine();
         // Retrieving custowriteBookToFile("res/" + psn + "CurrentLoans.txt", book);mer
@@ -349,7 +411,7 @@ public class LibraryTesting {
             String res = "\n===================================================\nSearch Result\nSize of result: "
                     + searchResult.size() + "\n===================================================\n";
 
-			/* TODO fix */
+		
             for (int i = 0; i < searchResult.size(); i++) {
                 res += "\n===================================================\nCustomer number -> " + (i + 1) + ") "
                         + searchResult.get(i).toString();
@@ -415,30 +477,32 @@ public class LibraryTesting {
                 + "\n||-----------------------------------------------||\n");
     }
 
+	/**
+	 *  Method used with "borrowBook" method to write books to the customer text files, as well as
+	 *  changing the returndates for books, so that they are written to the txt files with the correct returndates
+	 * */
     public void borrowBookTxtHandling(String psn, Book book) {
-        // ** text file handling for borrow book **//
+    
         incrementTimesBorrowed("res/AllBooks.txt", book);
         incrementTimesBorrowed("res/bookDirectory.txt", book);
 
-        //removeLineFromFile("res/bookDirectory.txt", parseBookToString(book)); //doesnt work here cuz you already changed the parameters of the book, so it will be seen as a different object
         try {
             book.setReturnDate(LocalDate.now().plusDays(14));
             writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
             writeBookToFile("res/" + psn + "LoanHistory.txt", book);
-           // System.out.println("borrowing: " + book.getReturnDate());
-            //book.setReturnDate(LocalDate.of(2017, 10, 31));
-            //writeBookToFile("res/AllBooks.txt", book); //will only add one book, but the remove line from file deles all books, so if we had several books we only get one back
+          
             book.setReturnDate(LocalDate.now().plusDays(14));
-           // System.out.println("borrowing: " + book.getReturnDate());
+          
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         checkCustomerFiles(book);
     }
 
-
-    // This can definitely be prettied up especially because the code is so similar to what's going on in removeLineFromFile
+	/**
+	 * Method to increment the times borrowed in the txt files, by going into the text files and
+	 * rewriting the times borrowed
+	 * */
     public void incrementTimesBorrowed(String path, Book book) {
         String currentTimes = Integer.toString(book.getTimesBorrowed() - 1);
         String incremented = Integer.toString(book.getTimesBorrowed());
@@ -461,22 +525,17 @@ public class LibraryTesting {
             System.gc();
             pw.close();
             br.close();
-            boolean success = dirFile.delete();
-            boolean renameSuccess = tmpFile.renameTo(dirFile);
 
-           // System.out.println("current file: " + path);
-            if (success) {
-                //System.out.println("Old file deleted " + path);
-            }
-            if (renameSuccess) {
-                //System.out.println("file renamed " + path);
-            }
         } catch (Exception e) {
             // e.getMessage();
             System.out.println("In increment times borrowed: Not able to complete method");
         }
     }
 
+	/**
+	 * Method to check in all customer files if a book is present or not, if it is,
+	 * it increments the times borrowed for that book, by writing in the text file
+	 * */
     public void checkCustomerFiles(Book book) {
         File dir = new File("res/");
         File[] dirList = dir.listFiles();
@@ -490,19 +549,13 @@ public class LibraryTesting {
         }
     }
 
-    public boolean titleHasDifferentAuthors(Book book) {
-        for (Book b : library.getBooks()) {
-            if (book.getTitle().equalsIgnoreCase(b.getTitle())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
+	/**
+	 * Method to return a book, by selecting a book from arraylists using user input. Book will be written  
+	 * to the bookDirectory text file, and removed from the customer's currentLoans text files
+	 * */
     public void returnBook() throws Exception {
         scanner.nextLine();
 
-        // Retrieving customer
         System.out.println("===================================================\n" + "== Search for customer:");
         String searchTextCustomer = scanner.nextLine();
         ArrayList<Customer> searchResult = library.searchForCustomer(searchTextCustomer);
@@ -565,70 +618,17 @@ public class LibraryTesting {
             returnBook();
         }
 
-        // return a book
         Book book = theCustomer.getFromCurrentLoan(bookToBorrow.getTitle());
-        // returns a book into library's available books directory
         removeLineFromFile("res/" + theCustomer.getPersonnummer() + "CurrentLoans.txt", parseBookToString(book));
         library.returnBook(bookToBorrow.getTitle(), theCustomer.getPersonnummer());
         book.setReturnDate(LocalDate.of(2017, 10, 31));
         writeBookToFile("res/bookDirectory.txt", book);
-        // removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
         System.out.println("*** Book returned successfully ***");
     }
 
-//    public void extendLoan() {
-//        scanner.nextLine();
-//
-//        // Retrieving customer
-//        System.out.println("\n===================================================\n" + "Search for customer:");
-//        String searchTextCustomer = scanner.nextLine();
-//        ArrayList<Customer> searchResult = library.searchForCustomer(searchTextCustomer);
-//        Customer theCustomer = null;
-//
-//        try {
-//            String res = "\n===================================================\nSearch Result\nSize of result: "
-//                    + searchResult.size() + "\n===================================================\n";
-//            for (int i = 0; i < searchResult.size(); i++) {
-//                res += "\n===================================================\nCustomer number ->" + (i + 1) + ") "
-//                        + searchResult.get(i).toString();
-//            }
-//            System.out.println(res);
-//        } catch (NullPointerException npe) {
-//            System.out.println("~~~~~~~~ No matches with '" + searchTextCustomer + "'.");
-//        }
-//
-//        System.out.println("\n===================================================\n" + "Enter the customer number: ");
-//        int UserInput = scanner.nextInt();
-//        scanner.nextLine();
-//        theCustomer = searchResult.get(UserInput - 1);
-//
-//        System.out.println(theCustomer.getName() + "'s currently loaned books are:");
-//        String customersLoans = "";
-//        Book book = null;
-//        if (theCustomer.getCurrentLoans().isEmpty()) {
-//            System.out.println(theCustomer.getName() + "'s current loans are empty.");
-//        } else {
-//            for (int i = 0; i < theCustomer.getCurrentLoans().size(); i++) {
-//                customersLoans += "Book number ->" + (i + 1) + ") " + theCustomer.getCurrentLoans().get(i).toString()
-//                        + "\n";
-//            }
-//        }
-//        System.out.println(customersLoans);
-//        System.out.println("\n===================================================\n" + "Enter the book number: ");
-//        int UserInp = scanner.nextInt();
-//        scanner.nextLine();
-//        book = theCustomer.getCurrentLoans().get(UserInp - 1);
-//
-//        try {
-//            library.extendLoanPeriod(theCustomer.getPersonnummer(), book.getTitle());
-//            System.out.println("*** " + book.getTitle() + " has been extended until " + book.getReturnDate() + "***");
-//        } catch (Exception e) {
-//            System.out.println("=========================\n" + e.getMessage() + "\n=========================\n");
-//        }
-//    }
-
-    // TODO Showing Statistics
-
+	/**
+	 * Method to sort books depending on user input.
+	 * */
     public void sortBooks() { // this is never called haha
         System.out.println("Show all books: Choose what to sort by");
         System.out.println("1. Sort after title");
@@ -672,10 +672,16 @@ public class LibraryTesting {
         }
     }
 
+	/**
+	 * Method to show all available books to the user
+	 * */
     public void showAvailableBooks() {
         System.out.println(library.toString());
     }
 
+	/**
+	 * Method to display all customers to the user, using the customer toString
+	 * */
     public void showCustomers() {
         System.out.println("|==================== Customers =====================|" + "\n== Search results: "
                 + library.getCustomers().size() + "\n===================================================\n");
@@ -697,7 +703,9 @@ public class LibraryTesting {
         }
     }
 
-    // TODO VG implementations //
+	/**
+	 * Method to display all loaned out books, if there are any, by going through the arraylists of the customers currentLoans
+	 * */
     public void showAllLoanedBooks() {
         if (library.getLoanedBooks().isEmpty()) {
             System.out.println("~~~~~~~~ No books have been lent out... yet");
@@ -708,6 +716,10 @@ public class LibraryTesting {
         }
     }
 
+	/**
+	 * Method to show all delayed books, by going through all the customers currentLoans arraylists 
+	 * and checking the returndates for all books in them
+	 * */
     public void showAllDelayedBooks() {
         if (library.getDelayedBooks().isEmpty()) {
             System.out.println("~~~~~~~~ No delayed books... yet");
@@ -718,6 +730,10 @@ public class LibraryTesting {
         }
     }
 
+	/**
+	 * Method to show most popular books, if there are any, by checking the bookDirectory arraylist, checking each books
+	 * timesBorrowed parameter, and displaying the books with the highest number for timesBorrowed
+	 * */
     public void showMostPopularBook() {
         String res = "";
         if (library.getTopTen().isEmpty() || library.getTopTen().equals(null)) {
@@ -731,6 +747,9 @@ public class LibraryTesting {
         System.out.println(res);
     }
 
+	/**
+	 * Method to show depending on the users input, currentLoans of the customer or loanHistory of the customer, or return to main menu
+	 * */
     public void customerExtraFeatures(Customer customer) {
         menu.getCustomerFeatures();
         String option = scanner.nextLine();
@@ -749,19 +768,6 @@ public class LibraryTesting {
                 System.out.println();
                 customerExtraFeatures(customer);
                 break;
-//            case "3": //CHANGE HERE TO DISPLAY DEBT BEFORE PAYING TO SEE WHAT U NEED TO PAY
-//                System.out.print("===================================================\n" + "Enter payment: ");
-//                double payement = scanner.nextDouble();
-//                scanner.nextLine();
-//                try {
-//                    customer.payDebt(payement);
-//                } catch (Exception e) {
-//                    System.out.println("~~~~~~~~\n " + e.getMessage() + "\ntry again later...\n~~~~~~~~");
-//                }
-//                System.out.println();
-//                System.out.println(customer.toString());
-//                customerExtraFeatures(customer);
-//                break;
             case "0":
                 break;
             default:
@@ -770,7 +776,7 @@ public class LibraryTesting {
 
         }
     }
-    // TODO Simulator
+ 
 
     public void incrementDays() {
         System.out.println(
@@ -799,8 +805,6 @@ public class LibraryTesting {
         int year = scanner.nextInt();
         library.addyears(year);
     }
-
-    // TODO Helpful Methods
 
     public Book retrieveBook(ArrayList<Book> listOfBooks, String title) throws Exception {
         for (Book book : listOfBooks) {
@@ -836,7 +840,7 @@ public class LibraryTesting {
         }
     }
 
-    // TODO Handling Text Files
+ 
 
     public void writeBookToFile(String path, Book book) {
         if (!book.getTitle().equals("") && !book.getAuthors().equals("") && !book.getPublisher().equals("")
@@ -974,7 +978,6 @@ public class LibraryTesting {
         }
     }
 
-    // TODO Menu Handling
     public void run() {
         int userInput;
         menu.getWelcomeScreen(library.getDate());

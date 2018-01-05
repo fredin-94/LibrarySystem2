@@ -5,7 +5,7 @@ public class Run {
 	 * @author Lucas Fredin (made the code inside main() when it was in another class, with Hanien Kobus's logic.)
 	 * */
 	public static void main(String[] args) {
-		LibraryTesting test = new LibraryTesting();
+		LibrarySystem test = new LibrarySystem();
 		test.run();
 	}
 }
