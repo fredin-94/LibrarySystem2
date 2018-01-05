@@ -428,6 +428,7 @@ public class LibrarySystem {
 	 * @author Oliver Manzi
 	 * @author Hanien Kobus
 	 * @author Lucas Fredin
+	 * @author Majd Hatoum
 	 * */
 	public void borrowBook() throws Exception {
 		scanner.nextLine();
@@ -509,6 +510,7 @@ public class LibrarySystem {
 	 * 
 	 * @author Lucas Fredin
 	 * @author Hanien Kobus
+	 * @author Majd Hatoum
 	 * */
 	public void borrowBookTxtHandling(String psn, Book book) {
 		// ** text file handling for borrow book **//
@@ -617,6 +619,7 @@ public class LibrarySystem {
 	 * 
 	 * @author Oliver Manzi
 	 * @author Hanien Kobus
+	 * @author Majd Hatoum
 	 * */
 	public void returnBook() throws Exception {
 		scanner.nextLine();
@@ -853,39 +856,55 @@ public class LibrarySystem {
 	/**Prompts user to enter number of days to increment.
 	 * 
 	 * @author Oliver Manzi
+	 * @author Majd Hatoum
 	 * */
 	public void incrementDays() {
 		System.out.println(
 				"===================================================" + "\n== Enter how many days to increment: ");
 		int day = scanner.nextInt();
-		library.addDays(day);
+		try {
+			library.addDays(day);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**Prompts user to enter number of weeks to increment.
 	 * 
 	 * @author Oliver Manzi
+	 * @author Majd Hatoum
 	 * */
 	public void incrementWeeks() {
 		System.out.println(
 				"===================================================" + "\n== Enter how many weeks to increment: ");
 		int week = scanner.nextInt();
-		library.addWeeks(week);
+		try {
+			library.addWeeks(week);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**Prompts user to enter number of months to increment.
 	 * 
 	 * @author Oliver Manzi
+	 * @author Majd Hatoum
 	 * */
 	public void incrementMonths() {
 		System.out.println(
 				"===================================================" + "\n== Enter how many months to increment: ");
 		int month = scanner.nextInt();
-		library.addMonths(month);
+		try {
+			library.addMonths(month);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**Prompts user to enter number of years to increment.
 	 * 
 	 * @author Oliver Manzi
+	 * @author Majd Hatoum
 	 * */
 	public void incrementYears() {
 		System.out.println(
@@ -945,6 +964,7 @@ public class LibrarySystem {
 	 * 
 	 * @author Lucas Fredin
 	 * @author Hanien Kobus
+	 * @author Majd Hatoum
 	 * */
 	public void writeBookToFile(String path, Book book) {
 		if (!book.getTitle().equals("") && !book.getAuthors().equals("") && !book.getPublisher().equals("")
@@ -968,6 +988,7 @@ public class LibrarySystem {
 	 * 
 	 * @author Lucas Fredin
 	 * @author Hanien Kobus
+	 * @author Majd Hatoum
 	 * */
 	public String parseBookToString(Book book) {
 		return book.getTitle() + "/" + book.getAuthors() + "/" + book.getPublisher() + "/" + book.getGenre() + "/"
@@ -988,6 +1009,7 @@ public class LibrarySystem {
 	 * 
 	 * @author Lucas Fredin
 	 * @author Hanien Kobus
+	 * @author Majd Hatoum
 	 * */
 	public void removeLineFromFile(String path, String lineToRemove) {
 		int count = 0;

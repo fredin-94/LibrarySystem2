@@ -124,6 +124,16 @@ public class Library {
 	}
 
 	/**increments the days of the library date while checking if a book is delayed.
+<<<<<<< HEAD
+=======
+	 * 
+	 * @author Oliver Manzi
+<<<<<<< HEAD
+	 * @author Majd Hatoum
+=======
+	 * @author Lucas Fredin
+>>>>>>> master
+>>>>>>> MajdDoc
 	 * */
 	public void addDays(int Days) {
 		this.date = this.getDate().plusDays(Days);
@@ -141,6 +151,16 @@ public class Library {
 	}
 
 	/**increments the weeks of the library date while checking if a book is delayed.
+<<<<<<< HEAD
+=======
+	 * 
+	 * @author Oliver Manzi
+<<<<<<< HEAD
+	 * @author Majd Hatoum
+=======
+	 * @author Lucas Fredin
+>>>>>>> master
+>>>>>>> MajdDoc
 	 * */
 	public void addWeeks(int weeks) {
 		date = date.plusWeeks(weeks);
@@ -157,6 +177,16 @@ public class Library {
 	}
 
 	/**increments the months of the library date while checking if a book is delayed.
+<<<<<<< HEAD
+=======
+	 * 
+	 * @author Oliver Manzi
+<<<<<<< HEAD
+	 * @author Majd Hatoum
+=======
+	 * @author Lucas Fredin
+>>>>>>> master
+>>>>>>> MajdDoc
 	 * */
 	public void addMonths(int months) {
 		this.date = this.date.plusMonths(months);
@@ -173,6 +203,16 @@ public class Library {
 	}
 
 	/**increments the years of the library date while checking if a book is delayed.
+<<<<<<< HEAD
+=======
+	 * 
+	 * @author Oliver Manzi
+<<<<<<< HEAD
+	 * @author Majd Hatoum
+=======
+	 * @author Lucas Fredin
+>>>>>>> master
+>>>>>>> MajdDoc
 	 * */
 	public void addyears(int years) {
 		this.date = this.date.plusYears(years);
@@ -448,7 +488,12 @@ public class Library {
 
 	/**Borrows a book to a customer. Sets return date of book (2 weeks from current date).
 	 * 
+<<<<<<< HEAD
 	 * @throws exception
+=======
+	 * @author Oliver Manzi
+	 * @author Majd Hatoum
+>>>>>>> MajdDoc
 	 * */
 	public void borrowBook(String bookTitle, String personnummer) throws Exception {
 
@@ -476,7 +521,16 @@ public class Library {
 
 	/**Returns a book to the library. Calculates debt and adds sum total to customer profile.
 	 * 
+<<<<<<< HEAD
 	 * @throws exception
+=======
+	 * @author Oliver Manzi
+<<<<<<< HEAD
+	 * @author Majd Hatoum
+=======
+	 * 
+>>>>>>> master
+>>>>>>> MajdDoc
 	 * */
 	public void returnBook(String bookTitle, String personnummer) throws Exception {
 
@@ -622,7 +676,13 @@ public class Library {
 
 	/**Parses lines in a text file to objects in an arrayList.
 	 * 
+<<<<<<< HEAD
 	 * @throws exception
+=======
+	 * @author Lucas Fredin
+	 * @author Hanien Kobus
+	 * @author Majd Hatoum
+>>>>>>> MajdDoc
 	 * */
 	public void bookDirectory(String path) throws FileNotFoundException {
 		File file = new File(path);
@@ -662,7 +722,32 @@ public class Library {
 
 	/**Parses lines in a text file into customer objects in an arrayList.
 	 * 
+<<<<<<< HEAD
 	 * @throws exception
+=======
+	 * @author Lucas Fredin
+	 * @author Hanien Kobus
+	 * @author Majd Hatoum
+	 * */
+	public void importBooksFrom(String fileName) throws Exception {
+		try (FileInputStream fis = new FileInputStream(fileName);
+				BufferedReader reader = new BufferedReader(new InputStreamReader(fis));) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] args = line.split("\\/"); 
+				addBook(new Book(args[0], args[1], args[2], args[3], args[4]));
+			}
+		} catch (IOException ioe) {
+			System.out.printf("Problems loading " + fileName + ".\n");
+			ioe.printStackTrace();
+		}
+	}
+
+	/**<I, the author, am a jackass!>
+	 * 
+	 * @author Lucas Fredin
+	 * @author Hanien Kobus
+>>>>>>> MajdDoc
 	 * */
 	public void customerDirectory() throws Exception {
 		Scanner input = new Scanner(new File("res/customer.txt"));
