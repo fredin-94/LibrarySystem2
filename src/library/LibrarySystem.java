@@ -374,7 +374,11 @@ public class LibrarySystem {
 		removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
 		deleteFile("res/" + ssn + "CurrentLoans.txt");
 		deleteFile("res/" + ssn + "LoanHistory.txt");
-		library.removeCustomer(customer);
+		try {
+			library.removeCustomer(customer);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		System.out.println("Removed customer");
 	}
 
@@ -394,7 +398,6 @@ public class LibrarySystem {
 			String res = "\n===================================================\nSearch Result\nSize of result: "
 					+ searchResult.size() + "\n===================================================\n";
 
-			/* TODO fix */
 			for (int i = 0; i < searchResult.size(); i++) {
 				res += "\n===================================================\nCustomer number -> " + (i + 1) + ") "
 						+ searchResult.get(i).toString();

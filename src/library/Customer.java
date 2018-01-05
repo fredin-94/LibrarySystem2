@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**
+/**This class is a representation of Customer objects in the library system.
  * @author Majd Hatoum
  * @editor Oliver Manzi
  * */
