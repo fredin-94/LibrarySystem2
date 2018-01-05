@@ -47,18 +47,6 @@ public class Library {
 		}
 
 		try {
-			//bookDirectory("res/LoanedBooks.txt");
-		} catch (Exception e) {
-			System.out.println("Unable to initialize loaned books directory");
-		}
-
-		try {
-			// bookDirectory("res/delayedBooks.txt");
-		} catch (Exception e) {
-			System.out.println("Unable to initialize delayed books directory");
-		}
-
-		try {
 			bookDirectory("res/AllBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize all books directory");
@@ -200,15 +188,13 @@ public class Library {
 		}
 	}
 
-	/**
-	 * @author Fabian Fröding
+	/**Enums for book object
 	 * */
 	public enum bookKey {
 		TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID, TIMESBORROWED
 	}
 
-	/**
-	 * @author Fabian Fröding
+	/**Enums for customer object
 	 * */
 	public enum customerKey {
 		NAME, ADRESS, NUMBER, DEBT, ID, PERSONNUMMER
@@ -220,6 +206,8 @@ public class Library {
 	 * compare it to search text from parameter.
 	 * @version 1.1 Modified by Oliver to read book object 
 	 * attributes instead of toString
+	 * 
+	 * @throws exception
 	 * */
 	public ArrayList<Book> searchForBook(String searchText) throws NullPointerException {
 		searchText.trim().toLowerCase();
@@ -248,6 +236,8 @@ public class Library {
 	 * compare it to searchText from parameters.
 	 * @version 1.1 Modified by Oliver to read customer object 
 	 * attributes instead of toString
+	 * 
+	 * @throws exception
 	 * */
 	public ArrayList<Customer> searchForCustomer(String searchText) throws NullPointerException {
 		searchText.trim().toLowerCase();
@@ -265,8 +255,9 @@ public class Library {
 		return null;
 	}
 
-	/**
-	 * @author Fabian Fröding
+	/**Finds customer objects by a enum value.
+	 * 
+	 * @throws exception
 	 * */
 	public Customer findCustomerBy(customerKey key, String searchValue) throws InvalidKeyException {
 		searchValue.toLowerCase();
@@ -284,8 +275,9 @@ public class Library {
 		}
 	}
 
-	/**
-	 * @author Fabian Fröding
+	/**Finds customer objects by a string value.
+	 * 
+	 * @throws exception
 	 * */
 	private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f)
 			throws NullPointerException {
@@ -305,8 +297,9 @@ public class Library {
 	}
 
 
-	/**
-	 * @author Fabian Fröding
+	/**Sorts book objects in allBooks arrayList by Title, Author, Genre, Publisher or Shelf.
+	 * 
+	 * @throws exception
 	 * */
 	public void sortAllBooksBy(bookKey keyToSort) {
 		try {
@@ -321,8 +314,7 @@ public class Library {
 		}
 	}
 
-	/**
-	 * @author Fabian Fröding
+	/**Sorts book objects in books arrayList by Title, Author, Genre, Publisher or Shelf.
 	 * */
 	public void sortBooksBy(bookKey keyToSort) {
 		try {
@@ -337,8 +329,9 @@ public class Library {
 		}
 	}
 
-	/**
-	 * @author Fabian Fröding
+	/**Compliments enums.
+	 * 
+	 * @throws exception
 	 * */
 	private Function<Book, ? extends Comparable> getBookFunction(bookKey key) throws InvalidKeyException {
 		switch (key) {
@@ -359,8 +352,7 @@ public class Library {
 		}
 	}
 
-	/**
-	 * @author Fabian Fröding
+	/**Sorts customer objects in customers arrayList by Name, Address, Number.
 	 * */
 	public void sortCustomersBy(customerKey keyToSort) {
 		try {
@@ -412,6 +404,8 @@ public class Library {
 	 * If a customer has loaned the books, it deletes it from their current loans
 	 * and increments any debt related to the book (if there is any).
 	 * Useful when dealing with lost books. 
+	 * 
+	 * @throws exception
 	 * */
 	public void deleteBook(Book book) throws Exception {
 		if (this.checkDelay(book) > 0) {
@@ -427,6 +421,7 @@ public class Library {
 
 	/**Adds a customer to customers arrayList.
 	 * 
+	 * @throws exception
 	 * */
 	public void addCustomer(Customer customer) throws Exception {
 		if (customer == null) {
@@ -440,6 +435,8 @@ public class Library {
 	 * 
 	 * @version 1.1 Modification: if customer has any loaned books, 
 	 * they cannot be deleted until they return them.
+	 * 
+	 * @throws exception
 	 * */
 	public void removeCustomer(Customer customer) throws Exception {
 		if(!customer.getCurrentLoans().isEmpty()) {
@@ -450,6 +447,8 @@ public class Library {
 	}
 
 	/**Borrows a book to a customer. Sets return date of book (2 weeks from current date).
+	 * 
+	 * @throws exception
 	 * */
 	public void borrowBook(String bookTitle, String personnummer) throws Exception {
 
@@ -477,6 +476,7 @@ public class Library {
 
 	/**Returns a book to the library. Calculates debt and adds sum total to customer profile.
 	 * 
+	 * @throws exception
 	 * */
 	public void returnBook(String bookTitle, String personnummer) throws Exception {
 
@@ -621,6 +621,8 @@ public class Library {
 	}
 
 	/**Parses lines in a text file to objects in an arrayList.
+	 * 
+	 * @throws exception
 	 * */
 	public void bookDirectory(String path) throws FileNotFoundException {
 		File file = new File(path);
@@ -659,6 +661,8 @@ public class Library {
 	}
 
 	/**Parses lines in a text file into customer objects in an arrayList.
+	 * 
+	 * @throws exception
 	 * */
 	public void customerDirectory() throws Exception {
 		Scanner input = new Scanner(new File("res/customer.txt"));
