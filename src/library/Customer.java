@@ -7,10 +7,9 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**<I, the author, am a jackass!>
- * 
+/**
  * @author Majd Hatoum
- * @author Oliver Manzi
+ * @editor Oliver Manzi
  * */
 public class Customer {
 
@@ -37,25 +36,19 @@ public class Customer {
 		customerBooks("res/" + personnummer + "LoanHistory.txt");
 	}
 	
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**gets name of customer object
 	 * */
 	public String getName() {
 		return this.name;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**gets address of customer
 	 * */
 	public String getAdress() {
 		return this.adress;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**gets customer social security number 
 	 * */
 	public String getPersonnummer() {
 		return this.personnummer;
@@ -229,7 +222,7 @@ public class Customer {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Returns a string of customer attribute information.
 	 * 
 	 * @author Majd Hatoum
 	 * @author Oliver Manzi
