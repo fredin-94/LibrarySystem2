@@ -576,56 +576,56 @@ public class LibraryTesting {
         System.out.println("*** Book returned successfully ***");
     }
 
-    public void extendLoan() {
-        scanner.nextLine();
-
-        // Retrieving customer
-        System.out.println("\n===================================================\n" + "Search for customer:");
-        String searchTextCustomer = scanner.nextLine();
-        ArrayList<Customer> searchResult = library.searchForCustomer(searchTextCustomer);
-        Customer theCustomer = null;
-
-        try {
-            String res = "\n===================================================\nSearch Result\nSize of result: "
-                    + searchResult.size() + "\n===================================================\n";
-            for (int i = 0; i < searchResult.size(); i++) {
-                res += "\n===================================================\nCustomer number ->" + (i + 1) + ") "
-                        + searchResult.get(i).toString();
-            }
-            System.out.println(res);
-        } catch (NullPointerException npe) {
-            System.out.println("~~~~~~~~ No matches with '" + searchTextCustomer + "'.");
-        }
-
-        System.out.println("\n===================================================\n" + "Enter the customer number: ");
-        int UserInput = scanner.nextInt();
-        scanner.nextLine();
-        theCustomer = searchResult.get(UserInput - 1);
-
-        System.out.println(theCustomer.getName() + "'s currently loaned books are:");
-        String customersLoans = "";
-        Book book = null;
-        if (theCustomer.getCurrentLoans().isEmpty()) {
-            System.out.println(theCustomer.getName() + "'s current loans are empty.");
-        } else {
-            for (int i = 0; i < theCustomer.getCurrentLoans().size(); i++) {
-                customersLoans += "Book number ->" + (i + 1) + ") " + theCustomer.getCurrentLoans().get(i).toString()
-                        + "\n";
-            }
-        }
-        System.out.println(customersLoans);
-        System.out.println("\n===================================================\n" + "Enter the book number: ");
-        int UserInp = scanner.nextInt();
-        scanner.nextLine();
-        book = theCustomer.getCurrentLoans().get(UserInp - 1);
-
-        try {
-            library.extendLoanPeriod(theCustomer.getPersonnummer(), book.getTitle());
-            System.out.println("*** " + book.getTitle() + " has been extended until " + book.getReturnDate() + "***");
-        } catch (Exception e) {
-            System.out.println("=========================\n" + e.getMessage() + "\n=========================\n");
-        }
-    }
+//    public void extendLoan() {
+//        scanner.nextLine();
+//
+//        // Retrieving customer
+//        System.out.println("\n===================================================\n" + "Search for customer:");
+//        String searchTextCustomer = scanner.nextLine();
+//        ArrayList<Customer> searchResult = library.searchForCustomer(searchTextCustomer);
+//        Customer theCustomer = null;
+//
+//        try {
+//            String res = "\n===================================================\nSearch Result\nSize of result: "
+//                    + searchResult.size() + "\n===================================================\n";
+//            for (int i = 0; i < searchResult.size(); i++) {
+//                res += "\n===================================================\nCustomer number ->" + (i + 1) + ") "
+//                        + searchResult.get(i).toString();
+//            }
+//            System.out.println(res);
+//        } catch (NullPointerException npe) {
+//            System.out.println("~~~~~~~~ No matches with '" + searchTextCustomer + "'.");
+//        }
+//
+//        System.out.println("\n===================================================\n" + "Enter the customer number: ");
+//        int UserInput = scanner.nextInt();
+//        scanner.nextLine();
+//        theCustomer = searchResult.get(UserInput - 1);
+//
+//        System.out.println(theCustomer.getName() + "'s currently loaned books are:");
+//        String customersLoans = "";
+//        Book book = null;
+//        if (theCustomer.getCurrentLoans().isEmpty()) {
+//            System.out.println(theCustomer.getName() + "'s current loans are empty.");
+//        } else {
+//            for (int i = 0; i < theCustomer.getCurrentLoans().size(); i++) {
+//                customersLoans += "Book number ->" + (i + 1) + ") " + theCustomer.getCurrentLoans().get(i).toString()
+//                        + "\n";
+//            }
+//        }
+//        System.out.println(customersLoans);
+//        System.out.println("\n===================================================\n" + "Enter the book number: ");
+//        int UserInp = scanner.nextInt();
+//        scanner.nextLine();
+//        book = theCustomer.getCurrentLoans().get(UserInp - 1);
+//
+//        try {
+//            library.extendLoanPeriod(theCustomer.getPersonnummer(), book.getTitle());
+//            System.out.println("*** " + book.getTitle() + " has been extended until " + book.getReturnDate() + "***");
+//        } catch (Exception e) {
+//            System.out.println("=========================\n" + e.getMessage() + "\n=========================\n");
+//        }
+//    }
 
     // TODO Showing Statistics
 

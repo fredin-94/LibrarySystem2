@@ -1,6 +1,9 @@
 package library;
 public class Run {
-	// TODO Pass with a VG
+
+	/**This class runs the program.
+	 * @author Lucas Fredin (made the code inside main() when it was in another class, with Hanien Kobus's logic.)
+	 * */
 	public static void main(String[] args) {
 		LibraryTesting test = new LibraryTesting();
 		test.run();

@@ -19,6 +19,14 @@ public class Library {
 	private ArrayList<Customer> customers;
 	private LocalDate date;
 
+	/**This class stores all the functionalities for the library system.  
+	 * 
+	 * @author Oliver Manzi
+	 * @author Fabian Fröding
+	 * @editor Lucas Fredin
+	 * @editor Hanien Kobus
+	 * @editor Majd Hatoum
+	 * */
 	public Library() {
 		allBooks = new ArrayList<Book>();
 		books = new ArrayList<Book>();
@@ -27,10 +35,6 @@ public class Library {
 
 		try {
 			customerDirectory();
-			// bookDirectory("res/bookDirectory.txt");
-			// bookDirectory("res/LoanedBookssd.txt");
-			// bookDirectory("res/delayedBooks.txt");
-			// bookDirectory("res/AllBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize customer directory");
 		}
@@ -42,27 +46,16 @@ public class Library {
 		}
 
 		try {
-			//bookDirectory("res/LoanedBooks.txt");
-		} catch (Exception e) {
-			System.out.println("Unable to initialize loaned books directory");
-		}
-
-		try {
-			// bookDirectory("res/delayedBooks.txt");
-		} catch (Exception e) {
-			System.out.println("Unable to initialize delayed books directory");
-		}
-
-		try {
 			bookDirectory("res/AllBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize all books directory");
 		}
-
 		setDebt();
 	}
 
-	
+	/**
+	 * Method to set the debt of all customers in the customers arraylist
+	 */
 	public void setDebt() {
 		for(int i = 0; i < customers.size(); i++) {
 			customers.get(i).setDebt(0);
@@ -74,16 +67,27 @@ public class Library {
 		}
 	}
 
-	/* TODO ---------------------Basic------------------------------- */
-
+	/**returns an arrayList of allBooks, all the books in the library 
+	 * whether they are borrowed or not.
+	 * */
 	public ArrayList<Book> getAllBooks() {
 		return allBooks;
 	}
 
+	/**Returns an arrayList of book objects, all books that have not 
+	 * been borrowed yet.
+	 * */
 	public ArrayList<Book> getBooks() {
 		return books;
 	}
 
+	/**This method returns an arrayList of books objects, all books
+	 * that have been loaned out.
+	 * 
+	 * @version 1.1 Modified: To avoid excess text-files, the "loanedBooks" 
+	 * arrayList was deleted and replaced with a for-loop that goes throughout
+	 * customer objects and acquires all their loaned out books  
+	 * */
 	public ArrayList<Book> getLoanedBooks() {
 		ArrayList<Book> allLoanedBooks = new ArrayList<Book>();
 		for (Customer customer : customers) {
@@ -94,6 +98,9 @@ public class Library {
 		return allLoanedBooks;
 	}
 
+	/**returns an arrayList of book objects, all books that have been delayed.
+	 *
+	 * */
 	public ArrayList<Book> getDelayedBooks() {
 		ArrayList<Book> allDelayedBooks = new ArrayList<Book>();
 		for (Book book : getLoanedBooks()) {
@@ -104,16 +111,22 @@ public class Library {
 		return allDelayedBooks;
 	}
 
+	/**returns an arrayList of customer objects, 
+	 * all customers registered to the library system.
+	 * */
 	public ArrayList<Customer> getCustomers() {
 		return customers;
 	}
 
-	/* TODO: ---------------- Simulate ------------------------ */
-
+	/**Returns the current date of the library.
+	 * */
 	public LocalDate getDate() {
 		return date;
 	}
 
+	/**increments the days of the library date while checking if a book is delayed.
+	 * 
+	 * */
 	public void addDays(int Days) {
 		this.date = this.getDate().plusDays(Days);
 		for (Book book : getLoanedBooks()) {
@@ -126,9 +139,11 @@ public class Library {
 				}
 			}
 		}
-
 	}
 
+	/**increments the weeks of the library date while checking if a book is delayed.
+	 * 
+	 * */
 	public void addWeeks(int weeks) {
 		date = date.plusWeeks(weeks);
 		for (Book book : getLoanedBooks()) {
@@ -143,6 +158,9 @@ public class Library {
 		}
 	}
 
+	/**increments the months of the library date while checking if a book is delayed.
+	 * 
+	 * */
 	public void addMonths(int months) {
 		this.date = this.date.plusMonths(months);
 		for (Book book : getLoanedBooks()) {
@@ -157,6 +175,9 @@ public class Library {
 		}
 	}
 
+	/**increments the years of the library date while checking if a book is delayed.
+	 * 
+	 * */
 	public void addyears(int years) {
 		this.date = this.date.plusYears(years);
 		for (Book book : getLoanedBooks()) {
@@ -171,16 +192,27 @@ public class Library {
 		}
 	}
 
-	/* TODO---------------------SEARCH------------------------------ */
-	// DON'T CHANGE FORMAT PLEASE.
+	/**Enums for book object
+	 * */
 	public enum bookKey {
 		TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID, TIMESBORROWED
 	}
 
+	/**Enums for customer object
+	 * */
 	public enum customerKey {
 		NAME, ADRESS, NUMBER, DEBT, ID, PERSONNUMMER
 	}
 
+	/**Searches for book objects in allBooks arrayList.
+	 * 
+	 * @version 1.0 Created by Fabian to read book toString and 
+	 * compare it to search text from parameter.
+	 * @version 1.1 Modified by Oliver to read book object 
+	 * attributes instead of toString
+	 * 
+	 * @throws exception
+	 * */
 	public ArrayList<Book> searchForBook(String searchText) throws NullPointerException {
 		searchText.trim().toLowerCase();
 		ArrayList<Book> list = new ArrayList<>();
@@ -202,6 +234,15 @@ public class Library {
 		}
 	}
 
+	/**Searches for customers registered to the library system.
+	 * 
+	 * @version 1.0 Created by Fabian to read customer toString and
+	 * compare it to searchText from parameters.
+	 * @version 1.1 Modified by Oliver to read customer object 
+	 * attributes instead of toString
+	 * 
+	 * @throws exception
+	 * */
 	public ArrayList<Customer> searchForCustomer(String searchText) throws NullPointerException {
 		searchText.trim().toLowerCase();
 		ArrayList<Customer> list = new ArrayList<>();
@@ -218,7 +259,10 @@ public class Library {
 		return null;
 	}
 
-	// ----- Search for customer ----- //
+	/**Finds customer objects by a enum value.
+	 * 
+	 * @throws exception
+	 * */
 	public Customer findCustomerBy(customerKey key, String searchValue) throws InvalidKeyException {
 		searchValue.toLowerCase();
 		switch (key) {
@@ -235,6 +279,10 @@ public class Library {
 		}
 	}
 
+	/**Finds customer objects by a string value.
+	 * 
+	 * @throws exception
+	 * */
 	private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f)
 			throws NullPointerException {
 		try {
@@ -252,8 +300,10 @@ public class Library {
 		throw new NullPointerException("Customer not found.");
 	}
 
-	/* TODO---------------------SORTING------------------------------ */
-
+	/**Sorts book objects in allBooks arrayList by Title, Author, Genre, Publisher or Shelf.
+	 * 
+	 * @throws exception
+	 * */
 	public void sortAllBooksBy(bookKey keyToSort) {
 		try {
 			for (Book book : this.allBooks)
@@ -267,6 +317,9 @@ public class Library {
 		}
 	}
 
+
+	/**Sorts book objects in books arrayList by Title, Author, Genre, Publisher or Shelf.
+	 * */
 	public void sortBooksBy(bookKey keyToSort) {
 		try {
 			for (Book book : this.books)
@@ -280,6 +333,10 @@ public class Library {
 		}
 	}
 
+	/**Compliments enums.
+	 * 
+	 * @throws exception
+	 * */
 	private Function<Book, ? extends Comparable> getBookFunction(bookKey key) throws InvalidKeyException {
 		switch (key) {
 		case TITLE:
@@ -299,6 +356,8 @@ public class Library {
 		}
 	}
 
+	/**Sorts customer objects in customers arrayList by Name, Address, Number.
+	 * */
 	public void sortCustomersBy(customerKey keyToSort) {
 		try {
 			switch (keyToSort) {
@@ -322,9 +381,12 @@ public class Library {
 		}
 	}
 
-	/* TODO -------------------Administration--------------------- */
 
-	/* register books */
+	/**Adds a book to the books arrayList. Checks whether 
+	 * book being added is already in allBooks arrayList. If it isn't,
+	 * it is added. This method is used for two things, 1. returning a borrowed book
+	 * 2. Add a book to the library system.
+	 * */
 	public void addBook(Book book) {
 		if (allBooks.contains(book) == false) {
 			allBooks.add(book);
@@ -332,10 +394,23 @@ public class Library {
 		books.add(book);
 	}
 
+	/**Removes book object from the books arrayList.
+	 * This method is used to borrow a book. 
+	 * 
+	 * */
 	public void removeBook(Book book) {
 		books.remove(book);
 	}
 
+	/**Removes a book from the entire library system. 
+	 * 
+	 * @version 1.1 Modified: checks whether the book has been borrowed by a customer.
+	 * If a customer has loaned the books, it deletes it from their current loans
+	 * and increments any debt related to the book (if there is any).
+	 * Useful when dealing with lost books. 
+	 * 
+	 * @throws exception
+	 * */
 	public void deleteBook(Book book) throws Exception {
 		if (this.checkDelay(book) > 0) {
 			for (Customer theCustomer : customers) {
@@ -348,6 +423,10 @@ public class Library {
 		books.remove(book);
 	}
 
+	/**Adds a customer to customers arrayList.
+	 * 
+	 * @throws exception
+	 * */
 	public void addCustomer(Customer customer) throws Exception {
 		if (customer == null) {
 			throw new Exception("Customer object is null");
@@ -356,24 +435,30 @@ public class Library {
 		}
 	}
 
+	/**Removes a customer from library system
+	 * 
+	 * @version 1.1 Modification: if customer has any loaned books, 
+	 * they cannot be deleted until they return them.
+	 * 
+	 * @throws exception
+	 * */
 	public void removeCustomer(Customer customer) {
 		customers.remove(customer);
 	}
 
-	/* TODO -------------------loan and return--------------------- */
+	/**Borrows a book to a customer. Sets return date of book (2 weeks from current date).
+	 * 
+	 * @throws exception
+	 * */
 	public void borrowBook(String bookTitle, String personnummer) throws Exception {
 
 		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnummer);
 		Book book = searchForBook(bookTitle).get(0);
-		// assumes default loanPeriod
-		//sortBooksBy(TITLE);		*** this line of code was changing the title to have a first letter uppercase even
-		// 								if it was put in by the user as lower case ***
-		book.setReturnDate(this.date.plusWeeks(2)); // 2 weeks //Need to delete this??
-
+		book.setReturnDate(this.date.plusWeeks(2)); 
 		book.incrementTimesBorrowed();
 		for (Book books : allBooks) {
 			if (book.getTitle().trim().equalsIgnoreCase(books.getTitle().trim())) {
-				//books.incrementTimesBorrowed();// not sure if this increments this book as well
+				
 			}
 		}
 		customer.addToCurrentLoan(book);
@@ -381,31 +466,31 @@ public class Library {
 		books.remove(book);
 	}
 
-	public void extendLoanPeriod(String personnumer, String bookTitle) throws Exception {
-		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnumer);
-		if (customer == null) {
-			throw new Exception("Customer is not in System.");
-		}
-
-		ArrayList<Book> temp = customer.getCurrentLoans();
-		Book book = null;
-		for (Book theBook : temp) {
-			if (theBook.getTitle().trim().equalsIgnoreCase(bookTitle.trim())) {
-				book = theBook;
-				break;
-			}
-		}
-
-		if (book == null) {
-			throw new Exception("Book is not in" + customer.getName() + "'s current loans");
-		}
-
-		if (this.checkDelay(book) > 0) {
-			throw new Exception("Book cannot be extended because it is delayed");
-		} else {
-			book.setReturnDate(book.getReturnDate().plusWeeks(2));
-		}
-	}
+//	public void extendLoanPeriod(String personnumer, String bookTitle) throws Exception {
+//		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnumer);
+//		if (customer == null) {
+//			throw new Exception("Customer is not in System.");
+//		}
+//
+//		ArrayList<Book> temp = customer.getCurrentLoans();
+//		Book book = null;
+//		for (Book theBook : temp) {
+//			if (theBook.getTitle().trim().equalsIgnoreCase(bookTitle.trim())) {
+//				book = theBook;
+//				break;
+//			}
+//		}
+//
+//		if (book == null) {
+//			throw new Exception("Book is not in" + customer.getName() + "'s current loans");
+//		}
+//
+//		if (this.checkDelay(book) > 0) {
+//			throw new Exception("Book cannot be extended because it is delayed");
+//		} else {
+//			book.setReturnDate(book.getReturnDate().plusWeeks(2));
+//		}
+//	}
 
 	public void returnBook(String bookTitle, String personnummer) throws Exception {
 
