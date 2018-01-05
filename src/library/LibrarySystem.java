@@ -381,17 +381,19 @@ public class LibrarySystem {
     public void removeCustomer() {
         String ssn = "";
         Customer customer = null;
+        Customer temp = customer;
         try {
             ssn = getPsn();
             customer = retrieveCustomer(ssn);
+            library.removeCustomer(customer);
+            removeLineFromFile("res/customer.txt", parseCustomerToString(temp));
+            deleteFile("res/" + ssn + "CurrentLoans.txt");
+            deleteFile("res/" + ssn + "LoanHistory.txt");
         } catch (Exception e) {
             System.out.println("~~~~~~~~~~~~~~~~\n" + e.getMessage() + "\n~~~~~~~~~~~~~~~~\nTry again..");
-            removeCustomer();
+            menu.getAdministration(library.getDate());
+            handleAdmin(requestUserInput());
         }
-        removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
-        deleteFile("res/" + ssn + "CurrentLoans.txt");
-        deleteFile("res/" + ssn + "LoanHistory.txt");
-        library.removeCustomer(customer);
         System.out.println("Removed customer");
     }
    

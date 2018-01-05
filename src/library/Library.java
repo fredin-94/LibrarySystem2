@@ -442,8 +442,12 @@ public class Library {
 	 * 
 	 * @throws exception
 	 * */
-	public void removeCustomer(Customer customer) {
-		customers.remove(customer);
+	public void removeCustomer(Customer customer) throws Exception {
+		if(!customer.getCurrentLoans().isEmpty()) {
+			throw new Exception("Cannot delete customer until\ncurrent loans have been returned"); 
+		}else {
+			customers.remove(customer);
+		}
 	}
 
 	/**Borrows a book to a customer. Sets return date of book (2 weeks from current date).
