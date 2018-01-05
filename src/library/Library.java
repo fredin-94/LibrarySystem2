@@ -13,6 +13,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+/**This class stores all the functionalities for the library system.  
+ * 
+ * @author Oliver Manzi
+ * @author Fabian Fröding
+ * @editor Lucas Fredin
+ * @editor Hanien Kobus
+ * @editor Majd Hatoum
+ * */
 public class Library {
 
 	private ArrayList<Book> allBooks;
@@ -20,14 +28,6 @@ public class Library {
 	private ArrayList<Customer> customers;
 	private LocalDate date;
 
-	/**This class stores all the functionalities for the library system.  
-	 * 
-	 * @author Oliver Manzi
-	 * @author Fabian Fröding
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
-	 * @author Majd Hatoum
-	 * */
 	public Library() {
 		allBooks = new ArrayList<Book>();
 		books = new ArrayList<Book>();
@@ -63,7 +63,6 @@ public class Library {
 		} catch (Exception e) {
 			System.out.println("Unable to initialize all books directory");
 		}
-
 		setDebt();
 	}
 
@@ -81,8 +80,6 @@ public class Library {
 
 	/**returns an arrayList of allBooks, all the books in the library 
 	 * whether they are borrowed or not.
-	 * 
-	 * @author Oliver Manzi
 	 * */
 	public ArrayList<Book> getAllBooks() {
 		return allBooks;
@@ -90,8 +87,6 @@ public class Library {
 
 	/**Returns an arrayList of book objects, all books that have not 
 	 * been borrowed yet.
-	 * 
-	 * @author Oliver Manzi
 	 * */
 	public ArrayList<Book> getBooks() {
 		return books;
@@ -99,8 +94,6 @@ public class Library {
 
 	/**This method returns an arrayList of books objects, all books
 	 * that have been loaned out.
-	 * 
-	 * @author Oliver Manzi
 	 * 
 	 * @version 1.1 Modified: To avoid excess text-files, the "loanedBooks" 
 	 * arrayList was deleted and replaced with a for-loop that goes throughout
@@ -117,8 +110,7 @@ public class Library {
 	}
 
 	/**returns an arrayList of book objects, all books that have been delayed.
-	 * 
-	 * @author Oliver Manzi
+	 *
 	 * */
 	public ArrayList<Book> getDelayedBooks() {
 		ArrayList<Book> allDelayedBooks = new ArrayList<Book>();
@@ -132,25 +124,18 @@ public class Library {
 
 	/**returns an arrayList of customer objects, 
 	 * all customers registered to the library system.
-	 * 
-	 * @author Oliver Manzi
 	 * */
 	public ArrayList<Customer> getCustomers() {
 		return customers;
 	}
 
-	/**retruns the current date of the library.
-	 * 
-	 * @author Oliver Manzi
+	/**Returns the current date of the library.
 	 * */
 	public LocalDate getDate() {
 		return date;
 	}
 
 	/**increments the days of the library date while checking if a book is delayed.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Lucas Fredin
 	 * */
 	public void addDays(int Days) {
 		this.date = this.getDate().plusDays(Days);
@@ -168,9 +153,6 @@ public class Library {
 	}
 
 	/**increments the weeks of the library date while checking if a book is delayed.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Lucas Fredin
 	 * */
 	public void addWeeks(int weeks) {
 		date = date.plusWeeks(weeks);
@@ -187,9 +169,6 @@ public class Library {
 	}
 
 	/**increments the months of the library date while checking if a book is delayed.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Lucas Fredin
 	 * */
 	public void addMonths(int months) {
 		this.date = this.date.plusMonths(months);
@@ -206,9 +185,6 @@ public class Library {
 	}
 
 	/**increments the years of the library date while checking if a book is delayed.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Lucas Fredin
 	 * */
 	public void addyears(int years) {
 		this.date = this.date.plusYears(years);
@@ -224,16 +200,14 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
+	/**
 	 * @author Fabian Fröding
 	 * */
 	public enum bookKey {
 		TITLE, AUTHOR, GENRE, PUBLISHER, SHELF, ID, TIMESBORROWED
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
+	/**
 	 * @author Fabian Fröding
 	 * */
 	public enum customerKey {
@@ -241,9 +215,6 @@ public class Library {
 	}
 
 	/**Searches for book objects in allBooks arrayList.
-	 * 
-	 * @author Fabian Fröding
-	 * @author Oliver Manzi
 	 * 
 	 * @version 1.0 Created by Fabian to read book toString and 
 	 * compare it to search text from parameter.
@@ -273,9 +244,6 @@ public class Library {
 
 	/**Searches for customers registered to the library system.
 	 * 
-	 * @author Fabian Fröding
-	 * @author Oliver Manzi
-	 * 
 	 * @version 1.0 Created by Fabian to read customer toString and
 	 * compare it to searchText from parameters.
 	 * @version 1.1 Modified by Oliver to read customer object 
@@ -297,8 +265,7 @@ public class Library {
 		return null;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
+	/**
 	 * @author Fabian Fröding
 	 * */
 	public Customer findCustomerBy(customerKey key, String searchValue) throws InvalidKeyException {
@@ -317,8 +284,7 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
+	/**
 	 * @author Fabian Fröding
 	 * */
 	private Customer findCustomerByString(String searchValue, Function<Customer, ? extends Comparable> f)
@@ -339,8 +305,7 @@ public class Library {
 	}
 
 
-	/**<I, the author, am a jackass!>
-	 * 
+	/**
 	 * @author Fabian Fröding
 	 * */
 	public void sortAllBooksBy(bookKey keyToSort) {
@@ -356,8 +321,7 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
+	/**
 	 * @author Fabian Fröding
 	 * */
 	public void sortBooksBy(bookKey keyToSort) {
@@ -373,8 +337,7 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
+	/**
 	 * @author Fabian Fröding
 	 * */
 	private Function<Book, ? extends Comparable> getBookFunction(bookKey key) throws InvalidKeyException {
@@ -396,8 +359,7 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
+	/**
 	 * @author Fabian Fröding
 	 * */
 	public void sortCustomersBy(customerKey keyToSort) {
@@ -428,7 +390,6 @@ public class Library {
 	 * it is added. This method is used for two things, 1. returning a borrowed book
 	 * 2. Add a book to the library system.
 	 * 
-	 * @author Oliver Manzi
 	 * */
 	public void addBook(Book book) {
 		if (allBooks.contains(book) == false) {
@@ -440,15 +401,12 @@ public class Library {
 	/**Removes book object from the books arrayList.
 	 * This method is used to borrow a book. 
 	 * 
-	 * @author Oliver Manzi
 	 * */
 	public void removeBook(Book book) {
 		books.remove(book);
 	}
 
 	/**Removes a book from the entire library system. 
-	 * 
-	 * @author Oliver Manzi
 	 * 
 	 * @version 1.1 Modified: checks whether the book has been borrowed by a customer.
 	 * If a customer has loaned the books, it deletes it from their current loans
@@ -469,7 +427,6 @@ public class Library {
 
 	/**Adds a customer to customers arrayList.
 	 * 
-	 * @author Oliver Manzi
 	 * */
 	public void addCustomer(Customer customer) throws Exception {
 		if (customer == null) {
@@ -480,8 +437,6 @@ public class Library {
 	}
 
 	/**Removes a customer from library system
-	 * 
-	 * @author Oliver Manzi
 	 * 
 	 * @version 1.1 Modification: if customer has any loaned books, 
 	 * they cannot be deleted until they return them.
@@ -495,8 +450,6 @@ public class Library {
 	}
 
 	/**Borrows a book to a customer. Sets return date of book (2 weeks from current date).
-	 * 
-	 * @author Oliver Manzi
 	 * */
 	public void borrowBook(String bookTitle, String personnummer) throws Exception {
 
@@ -523,8 +476,6 @@ public class Library {
 	}
 
 	/**Returns a book to the library. Calculates debt and adds sum total to customer profile.
-	 * 
-	 * @author Oliver Manzi
 	 * 
 	 * */
 	public void returnBook(String bookTitle, String personnummer) throws Exception {
@@ -558,8 +509,6 @@ public class Library {
 
 
 	/**Returns top ten most borrowed books.
-	 *
-	 * @author Lucas Fredin
 	 * */
 	public ArrayList<Book> getTopTen() {
 		sortAllBooksBy(TIMESBORROWED);
@@ -591,6 +540,8 @@ public class Library {
 		return topBooks;
 	}
 
+	/**Compliments getTopTen method.
+	 * */
 	public void addBookToList(String title, ArrayList<Book> list) {
 
 		for (int i = 0; i < allBooks.size(); i++) {
@@ -601,9 +552,7 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Fabian Fröding
+	/**Sorts books in alBooks arrayList by times borrowed.
 	 * */
 	public void sortTimesBorrowed() {
 		try {
@@ -617,9 +566,6 @@ public class Library {
 	}
 
 	/**Returns customers loan history arrayList.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Lucas Fredin
 	 * */
 	public String getCustomerLoanHistoryString(Customer customer) {
 		String current = "";
@@ -636,9 +582,6 @@ public class Library {
 	}
 
 	/**Returns customers loan history arrayList.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Lucas Fredin
 	 * */
 	public String getCustomerCurrentLoanString(Customer customer) {
 		String currentLoan = "";
@@ -654,9 +597,8 @@ public class Library {
 		return currentLoan;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	/**Compares the current date of library with the return date 
+	 * of a book object return date.
 	 * */
 	public int checkDelay(Book book) {
 		if (this.date.compareTo(book.getReturnDate()) > 0) {
@@ -666,10 +608,7 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
+	/**Returns number of copies of all books.
 	 * */
 	private int getCopiesOfTitle(String title) {
 		int copies = 0;
@@ -681,10 +620,7 @@ public class Library {
 		return copies;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
+	/**Parses lines in a text file to objects in an arrayList.
 	 * */
 	public void bookDirectory(String path) throws FileNotFoundException {
 		File file = new File(path);
@@ -722,29 +658,7 @@ public class Library {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
-	 * */
-	public void importBooksFrom(String fileName) throws Exception {
-		try (FileInputStream fis = new FileInputStream(fileName);
-				BufferedReader reader = new BufferedReader(new InputStreamReader(fis));) {
-			String line;
-			while ((line = reader.readLine()) != null) {
-				String[] args = line.split("\\/"); 
-				addBook(new Book(args[0], args[1], args[2], args[3], args[4]));
-			}
-		} catch (IOException ioe) {
-			System.out.printf("Problems loading " + fileName + ".\n");
-			ioe.printStackTrace();
-		}
-	}
-
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
+	/**Parses lines in a text file into customer objects in an arrayList.
 	 * */
 	public void customerDirectory() throws Exception {
 		Scanner input = new Scanner(new File("res/customer.txt"));
@@ -770,8 +684,6 @@ public class Library {
 	}
 
 	/**Displays all available books in the library.
-	 * 
-	 * @author Oliver Manzi
 	 * */
 	@Override
 	public String toString() {
