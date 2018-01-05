@@ -1,17 +1,13 @@
 package library;
-
 import java.time.LocalDate;
+
 import java.util.*;
+
 import static java.time.temporal.ChronoUnit.DAYS;
 
-/**
- * This class is a representation of Book objects in the library system.
- *
- * @author Hanien Kobus
- * @Editor Oliver Manzi
- * */
 public class Book {
 
+	private UUID id;
 	private String title;
 	private String authors;
 	private String genre;
@@ -21,13 +17,23 @@ public class Book {
 	final static int TWO_WEEKS = 2;
 	private LocalDate returnDate;
 
+	
+	/**
+	 * This class is a representation of Book objects in the library system.
+	 *
+	 * @author Hanien Kobus
+	 * @Editor Oliver Manzi
+	 * */
 	public Book(String title, String authors, String publisher, String genre, String shelf) throws Exception {
+
+
 		this.title = title;
 		this.authors = authors;
 		this.genre = genre;
 		this.publisher = publisher;
 		this.shelf = shelf;
-		returnDate = LocalDate.of(2017, 10, 31);
+		returnDate = LocalDate.of(2017, 10, 31);// homage to the first mini-project lecture... before we knew how fucked
+												// this was
 	}
 
 	/**
@@ -149,7 +155,7 @@ public class Book {
 	public String toStringCurrentLoans() {
 		return "\n" + "||----------------------------------------------------------||\n" + "Book Title: " + this.title
 				+ "\n • Authors: " + this.authors + "\n • Genre: " + this.genre + "\n • Publisher: " + this.publisher
-				+ "\n • Shelf: " + this.shelf + "\n • Return date: " + this.returnDate;
+				+ "\n • Shelf: " + this.shelf + "\n • Returndate: " + this.returnDate;
 	}
 
 }

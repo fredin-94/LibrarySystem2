@@ -1,5 +1,4 @@
 package library;
-
 import java.io.*;
 import java.security.*;
 import java.util.function.*;
@@ -13,14 +12,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-/**This class stores all the functionalities for the library system.  
- * 
- * @author Oliver Manzi
- * @author Fabian Fröding
- * @editor Lucas Fredin
- * @editor Hanien Kobus
- * @editor Majd Hatoum
- * */
 public class Library {
 
 	private ArrayList<Book> allBooks;
@@ -28,6 +19,14 @@ public class Library {
 	private ArrayList<Customer> customers;
 	private LocalDate date;
 
+	/**This class stores all the functionalities for the library system.  
+	 * 
+	 * @author Oliver Manzi
+	 * @author Fabian Fröding
+	 * @editor Lucas Fredin
+	 * @editor Hanien Kobus
+	 * @editor Majd Hatoum
+	 * */
 	public Library() {
 		allBooks = new ArrayList<Book>();
 		books = new ArrayList<Book>();
@@ -54,7 +53,9 @@ public class Library {
 		setDebt();
 	}
 
-	
+	/**
+	 * Method to set the debt of all customers in the customers arraylist
+	 */
 	public void setDebt() {
 		for(int i = 0; i < customers.size(); i++) {
 			customers.get(i).setDebt(0);
@@ -138,7 +139,6 @@ public class Library {
 				}
 			}
 		}
-
 	}
 
 	/**increments the weeks of the library date while checking if a book is delayed.
@@ -300,7 +300,6 @@ public class Library {
 		throw new NullPointerException("Customer not found.");
 	}
 
-
 	/**Sorts book objects in allBooks arrayList by Title, Author, Genre, Publisher or Shelf.
 	 * 
 	 * @throws exception
@@ -317,6 +316,7 @@ public class Library {
 			ike.printStackTrace();
 		}
 	}
+
 
 	/**Sorts book objects in books arrayList by Title, Author, Genre, Publisher or Shelf.
 	 * */
@@ -381,11 +381,11 @@ public class Library {
 		}
 	}
 
+
 	/**Adds a book to the books arrayList. Checks whether 
 	 * book being added is already in allBooks arrayList. If it isn't,
 	 * it is added. This method is used for two things, 1. returning a borrowed book
 	 * 2. Add a book to the library system.
-	 * 
 	 * */
 	public void addBook(Book book) {
 		if (allBooks.contains(book) == false) {
@@ -442,12 +442,8 @@ public class Library {
 	 * 
 	 * @throws exception
 	 * */
-	public void removeCustomer(Customer customer) throws Exception {
-		if(!customer.getCurrentLoans().isEmpty()) {
-			throw new Exception ( "Cannot delete "+customer .getName() + " from library system. (Loan Error)");
-		}else {
-			customers.remove(customer);	
-		}
+	public void removeCustomer(Customer customer) {
+		customers.remove(customer);
 	}
 
 	/**Borrows a book to a customer. Sets return date of book (2 weeks from current date).
@@ -457,22 +453,14 @@ public class Library {
 	public void borrowBook(String bookTitle, String personnummer) throws Exception {
 
 		Customer customer = this.findCustomerBy(customerKey.PERSONNUMMER, personnummer);
-		if (customer == null) {
-			throw new Exception("Customer doesn't exist in directory");
-		}
 		Book book = searchForBook(bookTitle).get(0);
-		if (book == null) {
-			throw new Exception("Book doesn't exist in directory");
-		}
-		book.setReturnDate(this.date.plusWeeks(2));
-
+		book.setReturnDate(this.date.plusWeeks(2)); 
 		book.incrementTimesBorrowed();
 		for (Book books : allBooks) {
 			if (book.getTitle().trim().equalsIgnoreCase(books.getTitle().trim())) {
-				//books.incrementTimesBorrowed();// not sure if this increments this book as well
+				
 			}
 		}
-		
 		customer.addToCurrentLoan(book);
 		customer.addToLoanHistory(book);
 		books.remove(book);
@@ -493,24 +481,26 @@ public class Library {
 		if (book == null) {
 			throw new Exception("Book doesn't exist in directory");
 		}
+
 		int debt = this.checkDelay(book) * 2;
+		//customer.setDebt(debt);
+		LocalDate restartDate = LocalDate.of(2017, 10, 31);
+		;
+		book.setReturnDate(restartDate);
+		books.add(book);
+		customer.removeFromCurrentLoan(book);
+
 		if (debt > 0) {
-			System.out.println(customer.getName() + " returned the book " + (debt / 2) + " days after the return date" 
-			+ "and was charged the delay fee.");
+			System.out.println(customer.getName() + " returned the book " + (debt / 2) + " days after the return date");
+			System.out.println("and was charged the delay fee.");
 			customers.clear();
 			customerDirectory();
 			setDebt();
 		} else {
 			System.out.println("** Customer returned the book on time. **");
 		}
-		
-		LocalDate restartDate = LocalDate.of(2017, 10, 31);
-		;
-		book.setReturnDate(restartDate);
-		books.add(book);
-		customer.removeFromCurrentLoan(book);
-	}
 
+	}
 
 	/**Returns top ten most borrowed books.
 	 * */
@@ -544,7 +534,7 @@ public class Library {
 		return topBooks;
 	}
 
-	/**Compliments getTopTen method.
+	/**Compliments getTopTen method. Adds books to lists
 	 * */
 	public void addBookToList(String title, ArrayList<Book> list) {
 
@@ -585,7 +575,7 @@ public class Library {
 		return current;
 	}
 
-	/**Returns customers loan history arrayList.
+	/**Returns customers current loan arrayList.
 	 * */
 	public String getCustomerCurrentLoanString(Customer customer) {
 		String currentLoan = "";
@@ -653,11 +643,7 @@ public class Library {
 			} finally {
 				if (path.contains("bookDirectory")) {
 					books.add(book);
-				} else if (path.contains("delayedBooks")) {
-					// delayedBooks.add(book);
-				} else if (path.contains("LoanedBooks")) {
-					// loanedBooks.add(book);
-				} else if (path.contains("AllBooks")) {
+				}else if (path.contains("AllBooks")) {
 					allBooks.add(book);
 				}
 			}

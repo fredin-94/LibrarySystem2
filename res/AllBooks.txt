@@ -88,18 +88,12 @@ Room on the Broom/Donaldson Julia/Pan Macmillan/Picture Books/5pb/0/2017-10-31
 About a Boy/Hornby Nick/Penguin/Literary Fiction/6LF/0/2017-10-31
 My Booky Wook/Brand Russell/Hodder & Stoughton/Autobiography/1au/0/2017-10-31
 The God Delusion/Dawkins Richard/Transworld/Popular Science/7ps/0/2017-10-31
-When Java Screws You Over/Sadface Iam/Akuin Akka/Autobiography/1au/1/2017-10-31
-White Teeth/Smith Zadie/Penguin/Literary Fiction/6LF/3/2017-10-31
+When Java Screws You Over/Sadface Iam/Akuin Akka/Autobiography/1au/12/2017-10-31
+White Teeth/Smith Zadie/Penguin/Literary Fiction/6LF/2/2017-10-31
 The House at Riverton/Morton Kate/Pan Macmillan/Literary Fiction/6LF/0/2017-10-31
 The Book Thief/Zusak Markus/Transworld/Literary Fiction/6LF/0/2017-10-31
 Nights of Rain and Stars/Binchy Maeve/Orion/Literary Fiction/6LF/0/2017-10-31
 The Ghost/Harris Robert/Random House/Literary Fiction/6LF/0/2017-10-31
 Happy Days with the Naked Chef/Oliver Jamie/Penguin/Food & Drink/9fd/0/2017-10-31
 The Hunger Games/Collins Suzanne/Scholastic Ltd./Young Adult Fiction/4ya/0/2017-10-31
-The Lost Boy:A Foster Child's Search for the Love of a Family/Pelzer Dave/Orion/Biography/2bi/0/2017-10-31
-Java/Daniel Liang/Pearsons/Education/A1/0/2017-10-31
-Probability and Statistics for Engineers/Sheldon M. Ross/Academic Press/Education/A2/0/2017-10-31
-Discrete Mathematics/Keneth H. Rosen/McGraw Hill/Education/A2/0/2017-10-31
-Head First: Java/Bert Bates, Kathy Sierra/O'Rielly/Education/A1/0/2017-10-31
-Misbehaving/Richard Thaler/Econ/Education/A3/0/2017-10-31
-Designing Interfaces/Jenifer Tidwell/O'Reilly/Education/A5/0/2017-10-31
+The Lost Boy:A Foster Child's Search for the Love of a Family/Pelzer Dave/Orion/Biography/2bi/2/2017-10-31

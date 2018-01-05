@@ -5,20 +5,20 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
-/**
- * This class stores all the menu prints and user prompts in order to use the system.
- * 
- * @author Oliver Manzi
- * 
- * @version 1.0 Created: Simple prints that displayed the different menu sections.
- * @version 1.1 Modification: added a localDate parameter in the method signature so 
- * that the current date is visible at each menu print.
- * Additionally, added a date formatter that takes given date and prints it out in 
- * "Weekday-Month-calendar day-year" to facilitate user (less numbers, easier to read)
- * @version 1.2 Modification: Added a "customer extra features" menu
- * */
 public class Menu {
-	
+
+	/**
+	 * This class stores all the menu prints and user prompts in order to use the system.
+	 * 
+	 * @author Oliver Manzi
+	 * 
+	 * @version 1.0 Created: Simple prints that displayed the different menu sections.
+	 * @version 1.1 Modification: added a localDate parameter in the method signature so 
+	 * that the current date is visible at each menu print.
+	 * Additionally, added a date formatter that takes given date and prints it out in 
+	 * "Weekday-Month-calendar day-year" to facilitate user (less numbers, easier to read)
+	 * @version 1.2 Modification: Added a "customer extra features" menu
+	 * */
 	public void getWelcomeScreen(LocalDate date) {
 		SimpleDateFormat theDate = new SimpleDateFormat("EEE MMM dd-yyyy");
 		Date fooBarBat = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());

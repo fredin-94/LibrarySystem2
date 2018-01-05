@@ -1,5 +1,4 @@
 package library;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
@@ -7,13 +6,13 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+
 /**This class is a representation of Customer objects in the library system.
  * @author Majd Hatoum
  * @editor Oliver Manzi
  * */
 public class Customer {
-
-
+	
 	private String name;
 	private String adress;
 	private String number;
@@ -21,7 +20,7 @@ public class Customer {
 	private ArrayList<Book> currentLoans;
 	private ArrayList<Book> loanHistory;
 	private String personnummer;
-	final String END_OF_LINE = System.lineSeparator();
+	final String END_OF_LINE = System.lineSeparator();// Skips A Line
 
 	public Customer(String name, String adress, String personnummer, String number) throws Exception {
 
@@ -35,6 +34,9 @@ public class Customer {
 		customerBooks("res/" + personnummer + "CurrentLoans.txt");
 		customerBooks("res/" + personnummer + "LoanHistory.txt");
 	}
+
+	
+	
 	
 	/**gets name of the customer object
 	 * */
@@ -113,16 +115,6 @@ public class Customer {
 	public void setDebt(double newDebt) {
 		this.debt = newDebt + this.debt;
 	}
-	
-	/**pays the debt of a customer object.
-	 * */
-	public void payDebt(double payement) throws Exception {
-		if((this.debt - payement) >= 0) {
-			this.debt = this.debt - payement;
-		} else {
-			throw new Exception ( payement + " SEK exceeds the required\n amount of " + (this.debt - 0) + " SEK");
-		}
-	}
 
 	/**adds a book to the current loans of a customer object.
 	 * */
@@ -165,6 +157,7 @@ public class Customer {
 		File file = new File(path);
 		Scanner input = new Scanner(file);
 		input.useDelimiter("/|\n");
+		//System.out.println("current customer: " + this.name);
 		while (input.hasNext()) {
 			String title = input.next().trim();
 			String authors = input.next().trim();
@@ -177,7 +170,7 @@ public class Customer {
 			try {
 				book = new Book(title, authors, publisher, genre, shelf);
 				book.setTimesBorrowed(Integer.parseInt(timesBorrowed));
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // need to change this?
 				book.setReturnDate(LocalDate.parse(returnDate, formatter));
 			} catch (Exception e) {
 				e.printStackTrace();
