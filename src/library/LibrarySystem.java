@@ -525,10 +525,20 @@ public class LibrarySystem {
             System.gc();
             pw.close();
             br.close();
+            
+            boolean success = dirFile.delete();
+            boolean renameSuccess = tmpFile.renameTo(dirFile);
+
+            if (success) {
+                //System.out.println("Old file deleted");
+            }
+            if (renameSuccess) {
+                //System.out.println("file renamed");
+            }
 
         } catch (Exception e) {
             // e.getMessage();
-            System.out.println("In increment times borrowed: Not able to complete method");
+            //System.out.println("In increment times borrowed: Not able to complete method");
         }
     }
 
@@ -907,6 +917,16 @@ public class LibrarySystem {
             System.gc();
             pw.close();
             br.close();
+            
+            boolean success = dirFile.delete();
+            boolean renameSuccess = tmpFile.renameTo(dirFile);
+
+            if (success) {
+                //System.out.println("Old file deleted");
+            }
+            if (renameSuccess) {
+                //System.out.println("file renamed");
+            }
            
         } catch (Exception e) {
             // e.getMessage();
