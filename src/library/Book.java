@@ -132,7 +132,10 @@ public class Book {
 	 *
 	 * @throws Exception
 	 * */
-	public void setTimesBorrowed(int timesBorrowed) {
+	public void setTimesBorrowed(int timesBorrowed) throws Exception{
+		if(timesBorrowed < 0){
+			throw new Exception("The number of times borrowed cannot be negative.");
+		}
 		this.timesBorrowed = timesBorrowed;
 	}
 
