@@ -806,7 +806,7 @@ public class LibrarySystem {
 		boolean noBooksHaveBeenLoanedOut = false;
 		for(Customer customer: library.getCustomers()) {
 			if(customer.getLoanHistory().isEmpty()) {
-				noBooksHaveBeenLoanedOut = true;
+				noBooksHaveBeenLoanedOut = false;
 			}
 		}
 			
