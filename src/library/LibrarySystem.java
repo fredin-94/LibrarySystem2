@@ -777,7 +777,9 @@ public class LibrarySystem {
         }
     }
  
-
+	/**
+	 * Method to increment days, using the number inputted by the user
+	 * */
     public void incrementDays() {
         System.out.println(
                 "===================================================" + "\n== Enter how many days to increment: ");
@@ -785,6 +787,9 @@ public class LibrarySystem {
         library.addDays(day);
     }
 
+	/**
+	 * Method to increment weeks, using the number inputted by the user
+	 * */
     public void incrementWeeks() {
         System.out.println(
                 "===================================================" + "\n== Enter how many weeks to increment: ");
@@ -792,6 +797,9 @@ public class LibrarySystem {
         library.addWeeks(week);
     }
 
+	/**
+	 * Method to increment months, using the number inputted by the user
+	 * */
     public void incrementMonths() {
         System.out.println(
                 "===================================================" + "\n== Enter how many months to increment: ");
@@ -799,6 +807,9 @@ public class LibrarySystem {
         library.addMonths(month);
     }
 
+	/**
+	 * Method to increment years, using the number inputted by the user
+	 * */
     public void incrementYears() {
         System.out.println(
                 "===================================================" + "\n== Enter how many years to increment: ");
@@ -806,16 +817,9 @@ public class LibrarySystem {
         library.addyears(year);
     }
 
-    public Book retrieveBook(ArrayList<Book> listOfBooks, String title) throws Exception {
-        for (Book book : listOfBooks) {
-            if (book.getTitle().equalsIgnoreCase(title)) {
-                return book;
-            }
-        }
-        throw new Exception("~~~~~~~~ The book is not in that directory.");
-
-    }
-
+	/**
+	 * Method to see if a book is in a certain arraylist, if it is, method returns true
+	 * */
     public boolean isInList(ArrayList<Book> listOfBooks, Book book) {
         for (Book b : listOfBooks) {
             if (b.getTitle().equals(book.getTitle())) {
@@ -825,6 +829,9 @@ public class LibrarySystem {
         return false;
     }
 
+	/**
+	 * Method to retrieve a customer object using the customers social security number (psn), in the parameters
+	 * */
     public Customer retrieveCustomer(String psn) throws Exception {
         Customer somePerson = null;
         for (Customer customer : library.getCustomers()) {
@@ -840,8 +847,9 @@ public class LibrarySystem {
         }
     }
 
- 
-
+	/**
+	 * Method to write a book object to a text file
+	 * */
     public void writeBookToFile(String path, Book book) {
         if (!book.getTitle().equals("") && !book.getAuthors().equals("") && !book.getPublisher().equals("")
                 && !book.getGenre().equals("") && !book.getShelf().equals("")) {
@@ -859,17 +867,25 @@ public class LibrarySystem {
         }
     }
 
-    // changes objects into a format appropriate for the txt files
+	/**
+	 * Method to make a book obejct a string, that can be used in text files
+	 * */
     public String parseBookToString(Book book) {
         return book.getTitle() + "/" + book.getAuthors() + "/" + book.getPublisher() + "/" + book.getGenre() + "/"
                 + book.getShelf() + "/" + book.getTimesBorrowed() + "/" + book.getReturnDate();
     }
 
+	/**
+	 * Method to make a customer object a string, that can be used in text files
+	 * */
     public String parseCustomerToString(Customer customer) {
         return customer.getName() + "/" + customer.getAdress() + "/" + customer.getPersonnummer() + "/"
                 + customer.getNumber();
     }
 
+	/**
+	 * Method to remove a line from a text file, by entering the path to the text file and the line you want to remove
+	 * */
     public void removeLineFromFile(String path, String lineToRemove) {
         int count = 0;
         try {
@@ -891,54 +907,16 @@ public class LibrarySystem {
             System.gc();
             pw.close();
             br.close();
-            boolean success = dirFile.delete();
-            boolean renameSuccess = tmpFile.renameTo(dirFile);
-
-            if (success) {
-                //System.out.println("Old file deleted");
-            }
-            if (renameSuccess) {
-                //System.out.println("file renamed");
-            }
+           
         } catch (Exception e) {
             // e.getMessage();
             System.out.println("In remove line from file: Not able to complete method");
         }
     }
 
-//	public void removeLineFromFile(String path, String lineToRemove) {
-//		try {
-//			File dirFile = new File(path);
-//			File tmpFile = new File(dirFile.getAbsolutePath() + ".tmp");
-//			BufferedReader br = new BufferedReader(new FileReader(path));
-//			PrintWriter pw = new PrintWriter(new FileWriter(tmpFile));
-//			String line;
-//			while ((line = br.readLine()) != null) {
-//				if (!line.equals(lineToRemove.trim())) {
-//					// GONNA DELETE ALL BOOKS WITH THAT TITLE, FIX PLS
-//					pw.println(line);
-//					pw.flush();
-//					break;
-//				}
-//			}
-//			System.gc();
-//			pw.close();
-//			br.close();
-//			boolean success = dirFile.delete();
-//			boolean renameSuccess = tmpFile.renameTo(dirFile);
-//
-//			if (success) {
-//				// System.out.println("Old file deleted");
-//			}
-//			if (renameSuccess) {
-//				// System.out.println("file renamed");
-//			}
-//		} catch (Exception e) {
-//			// e.getMessage();
-//			System.out.println("In remove line from file: Not able to complete method");
-//		}
-//	}
-
+	/**
+	 * Method to write parameters of a customer object to a text file
+	 * */
     public void writeCustomerToFile(String name, String address, String psn, String phoneNumber) {
         // should allow a customer to be added to txt without entering phonenumber
         if (!name.equals("") && !address.equals("") && !psn.equals("")) {
@@ -954,7 +932,9 @@ public class LibrarySystem {
         }
     }
 
-    // -- Customer handling methods --//
+	/**
+	 * Method to create txt files
+	 * */
     public void createFile(String fileName) {
         //System.out.println("in createFIle");
         try {
@@ -969,6 +949,9 @@ public class LibrarySystem {
         }
     }
 
+	/**
+	 * Method to delete a txt file
+	 * */
     public void deleteFile(String path) {
         File f = new File(path);
         if (f.delete()) {
@@ -978,6 +961,9 @@ public class LibrarySystem {
         }
     }
 
+	/**
+	 * Method to display the main menu to the user, and allow user to enter an integer between 0 to 5 for corresponding functionality
+	 * */
     public void run() {
         int userInput;
         menu.getWelcomeScreen(library.getDate());
@@ -1017,6 +1003,9 @@ public class LibrarySystem {
         } while (userInput != 0);
     }
 
+	/**
+	 * Method to display the search menu to users, and allowing them to enter an input
+	 * */
     public void handleSearchMenu(int option) {
         switch (option) {
             case 1:
@@ -1065,6 +1054,9 @@ public class LibrarySystem {
         }
     }
 
+	/**
+	 * Method to show the user the options to borrow or return a book
+	 * */
     public void handleBookMenu(int option) {
         switch (option) {
             case 1:
@@ -1081,13 +1073,6 @@ public class LibrarySystem {
                     e.getMessage();
                 }
                 break;
-//            case 3:
-//                try {
-//                   // extendLoan();
-//                } catch (Exception e) {
-//                    e.getMessage();
-//                }
-//                break;
             case 0:
                 run();
                 break;
@@ -1097,6 +1082,9 @@ public class LibrarySystem {
         }
     }
 
+	/**
+	 * Method to show the user the admin menu, and all the options they can choose with a number they input
+	 * */
     public void handleAdmin(int option) {
         scanner.nextLine();
         switch (option) {
@@ -1121,6 +1109,9 @@ public class LibrarySystem {
         }
     }
 
+	/**
+	 * Method to to show the extra menu, and allow the user to enter input to enter any of the options in the menu
+	 * */
     public void handleExtra(int option) {
         switch (option) {
             case 1:
@@ -1141,6 +1132,9 @@ public class LibrarySystem {
         }
     }
 
+	/**
+	 * Method to handle the time simulation menu, and allow the user to enter input to use any of the options displayed
+	 * */
     public void handleTimeSimMenu(int option) {
         switch (option) {
             case 1:
