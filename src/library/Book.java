@@ -17,6 +17,13 @@ public class Book {
 	final static int TWO_WEEKS = 2;
 	private LocalDate returnDate;
 
+	
+	/**
+	 * This class is a representation of Book objects in the library system.
+	 *
+	 * @author Hanien Kobus
+	 * @Editor Oliver Manzi
+	 * */
 	public Book(String title, String authors, String publisher, String genre, String shelf) throws Exception {
 
 
@@ -29,47 +36,61 @@ public class Book {
 												// this was
 	}
 
-	public UUID getId() {
-		return this.id;
-	}
-
+	/**
+	 * Returns the title of this book object
+	 * */
 	public String getTitle() {
 		return this.title;
 	}
 
 
+	/**
+	 * Returns the author(s) of this book object
+	 * */
 	public String getAuthors() {
 		return authors;
 	}
 
+	/**
+	 * Return the genre of this book object
+	 * */
 	public String getGenre() {
 		return this.genre;
 	}
 
+	/**
+	 * Returns the publisher of this book object
+	 * */
 	public String getPublisher() {
 		return this.publisher;
 	}
 
+	/**
+	 * Returns the shelf of this book object
+	 * */
 	public String getShelf() {
 		return this.shelf;
 	}
 
-	public void setShelf(String shelf) throws Exception {
-		if (shelf.equals("")) {
-			throw new Exception("A shelf must be chosen in order to move the book.");
-		} else {
-			this.shelf = shelf;
-		}
-	}
-
+	/**
+	 * Returns the number of times this book objects has been borrowed
+	 * */
 	public int getTimesBorrowed() {
 		return this.timesBorrowed;
 	}
 
+	/**
+	 * Returns the return date of this book object
+	 * */
 	public LocalDate getReturnDate() {
 		return this.returnDate;
 	}
 
+	/**
+	 * Sets the return date of this book object
+	 *
+	 * @throws Exception
+	 * */
 	public void setReturnDate(LocalDate returnDate) throws Exception {
 		if (returnDate.equals(null)) {
 			throw new Exception("Date can't be empty.");
@@ -78,6 +99,9 @@ public class Book {
 		}
 	}
 
+	/**
+	 * Capitalizes the first letters of the attributes of this book object
+	 * */
 	public void firstLettersToUpperCase() {
 		this.title = firstLetterInStringToUpperCase(this.title);
 		this.authors = firstLetterInStringToUpperCase(this.authors);
@@ -86,6 +110,9 @@ public class Book {
 		this.shelf = firstLetterInStringToUpperCase(this.shelf);
 	}
 
+	/**
+	 * Capitalizes the first letter in a string.
+	 * */
 	private String firstLetterInStringToUpperCase(String whichString) {
 		String s = (whichString.charAt(0) + "").toUpperCase();
 		for (int i = 1; i < whichString.length(); i++)
@@ -93,14 +120,25 @@ public class Book {
 		return s;
 	}
 
+	/**
+	 * Increments the number of times borrowed for this book object
+	 * */
 	public void incrementTimesBorrowed() {
 		this.timesBorrowed++;
 	}
 
+	/**
+	 * Sets the number of times borrowed for this book object
+	 *
+	 * @throws Exception
+	 * */
 	public void setTimesBorrowed(int timesBorrowed) {
 		this.timesBorrowed = timesBorrowed;
 	}
 
+	/**
+	 * Displays this object's information in string format
+	 * */
 	@Override
 	public String toString() {
 		return "\n" + "||----------------------------------------------------------||\n" + "Book Title: " + this.title
@@ -108,6 +146,9 @@ public class Book {
 				+ "\n • Shelf: " + this.shelf + "\n • Times Borrowed: " + this.timesBorrowed;
 	}
 	
+	/**
+	 * Displays this object's information including return date in string format
+	 * */
 	public String toStringCurrentLoans() {
 		return "\n" + "||----------------------------------------------------------||\n" + "Book Title: " + this.title
 				+ "\n • Authors: " + this.authors + "\n • Genre: " + this.genre + "\n • Publisher: " + this.publisher

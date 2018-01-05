@@ -6,9 +6,13 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+
+/**This class is a representation of Customer objects in the library system.
+ * @author Majd Hatoum
+ * @editor Oliver Manzi
+ * */
 public class Customer {
-
-
+	
 	private String name;
 	private String adress;
 	private String number;
@@ -34,36 +38,50 @@ public class Customer {
 	
 	
 	
-	// TODO Getters and Setters
-
+	/**gets name of the customer object
+	 * */
 	public String getName() {
 		return this.name;
 	}
 
+	/**gets address of the customer object
+	 * */
 	public String getAdress() {
 		return this.adress;
 	}
 
+	/**gets customer object's social security number 
+	 * */
 	public String getPersonnummer() {
 		return this.personnummer;
 	}
 
+	/**gets the phone number of the customer object (if it exists).
+	 * */
 	public String getNumber() {
 		return this.number;
 	}
 
+	/**gets the debt of the customer object.
+	 * */
 	public double getDebt() {
 		return this.debt;
 	}
 
+	/**gets the book objects that are loaned by the customer object.
+	 * */
 	public ArrayList<Book> getCurrentLoans() {
 		return this.currentLoans;
 	}
 
+	/**gets the book objects from the loan history of the customer object.
+	 * */
 	public ArrayList<Book> getRealLoanHistory() {
 		return this.loanHistory;
 	}
 
+	/**sets the name of the customer object.
+	 * */
 	public void setName(String newName) throws Exception {
 		if (newName.equals("")) {
 			throw new Exception("Name can not be empty");
@@ -72,6 +90,8 @@ public class Customer {
 		}
 	}
 
+	/**sets the adress of the customer object.
+	 * */
 	public void setAdress(String newAdress) throws Exception {
 		if (newAdress.equals("")) {
 			throw new Exception("Adress can not be empty");
@@ -80,6 +100,8 @@ public class Customer {
 		}
 	}
 
+	/**sets the phone number of the customer object.
+	 * */
 	public void setNumber(String newNumber) throws Exception {
 		if (newNumber.trim().matches("[0-9]+") && newNumber.trim().length() == 10) {
 			this.number = newNumber;
@@ -88,34 +110,38 @@ public class Customer {
 		}
 	}
 
+	/**sets the debt of the customer object. 
+	 * */
 	public void setDebt(double newDebt) {
 		this.debt = newDebt + this.debt;
 	}
-	
-	public void payDebt(double payement) throws Exception {
-		if((this.debt - payement) >= 0) {
-			this.debt = this.debt - payement;
-		} else {
-			throw new Exception ( payement + " SEK exceeds the required\n amount of " + (this.debt - 0) + " SEK");
-		}
-	}
 
+	/**adds a book to the current loans of a customer object.
+	 * */
 	public void addToCurrentLoan(Book book) {
 		currentLoans.add(book);
 	}
 
+	/**adds a book to the loan history of the customer object.
+	 * */
 	public void addToLoanHistory(Book book) {
 		loanHistory.add(book);
 	}
 
+	/**gets the book loan history of the customer object.
+	 * */
 	public ArrayList<Book> getLoanHistory() {
 		return loanHistory;
 	}
 
+	/**removes a book from the current book loans of the customer object.
+	 * */
 	public void removeFromCurrentLoan(Book book) {
 		currentLoans.remove(book);
 	}
 
+	/**gets a book object from the current book loans of the customer object.
+	 * */
 	public Book getFromCurrentLoan(String bookTitle) {
 		for (Book book : currentLoans) {
 			if (book.getTitle().equalsIgnoreCase(bookTitle)) {
@@ -125,6 +151,8 @@ public class Customer {
 		return null;
 	}
 
+	/**reads the customer books (current loans and loan history) information from the text file when inserting the path of it.
+	 * */
 	public void customerBooks(String path) throws FileNotFoundException {
 		File file = new File(path);
 		Scanner input = new Scanner(file);
@@ -156,6 +184,13 @@ public class Customer {
 		}
 	}
 
+	/**Returns a string of customer attribute information.
+	 * 
+	 * @version 1.0 Created by Majd: Displays customer information.
+	 * @version 1.1 Modified by Oliver: Distinguishes "prints" from attributes"
+	 * */
+	/**displays the customer object with its properties as strings.
+	 * */
 	@Override
 	public String toString() {
 		String customerToString = " " + END_OF_LINE;
