@@ -27,7 +27,7 @@ public class LibrarySystem {
 		library = new Library();
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Prompts user to enter a book title. Then searches for book in the available books.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -140,9 +140,12 @@ public class LibrarySystem {
 		return shelf;
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Searches for customer in library system. 
 	 * 
 	 * @author Oliver Manzi
+	 * 
+	 * @version 1.1 Modification: Displays search 
+	 * result and allows user to view more detail by picking a customer from results.
 	 * */
 	public void searchCustomer() {
 		System.out.println("===================================================\n" + "Search for customer: ");
@@ -232,6 +235,10 @@ public class LibrarySystem {
 	 * <I, the author, am a jackass!>
 	 * 
 	 * @author Hanien Kobus
+	 * @author Oliver Manzi
+	 * 
+	 * @version 1.1 Modification: Made social security handling more robust 
+	 * by comparing two formats, "yyyy-mm-dd-xxxx" and"yy-mm-dd-xxxx", with existing customers.   
 	 */
 	public String requestPsn() throws Exception {
 		System.out.println(
@@ -264,7 +271,8 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * <I, the author, am a jackass!>
+	 * Prompts user to enter attributes for a book. Once all attributes have been required, 
+	 * book is added to library system. 
 	 * 
 	 * @author Oliver Manzi
 	 * @author Hanien Kobus
@@ -294,10 +302,11 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * <I, the author, am a jackass!>
+	 * Prompts user to delete a book.
 	 * 
 	 * @author Oliver Manzi
 	 * @author Hanien Kobus
+	 * 
 	 */
 	public void deleteBook() {
 		String searchTextBook = "";
@@ -352,11 +361,12 @@ public class LibrarySystem {
 
 	}
 
-	/**
-	 * <I, the author, am a jackass!>
+	/** Prompts user to add all necessary attributes. Once attributes are required,
+	 * customer object is added to library system.
 	 * 
 	 * @author Oliver Manzi
 	 * @author Hanien Kobus
+	 *  
 	 */
 	public void addCustomer() {
 		String name = "";
@@ -404,11 +414,16 @@ public class LibrarySystem {
 		removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
 		deleteFile("res/" + ssn + "CurrentLoans.txt");
 		deleteFile("res/" + ssn + "LoanHistory.txt");
-		library.removeCustomer(customer);
+		try {
+			library.removeCustomer(customer);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		System.out.println("Removed customer");
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Prompts user to search for a customer and book to borrow.
+	 * Once both elements have been attained, book is borrowed.
 	 * 
 	 * @author Oliver Manzi
 	 * @author Hanien Kobus
@@ -426,7 +441,6 @@ public class LibrarySystem {
 			String res = "\n===================================================\nSearch Result\nSize of result: "
 					+ searchResult.size() + "\n===================================================\n";
 
-			/* TODO fix */
 			for (int i = 0; i < searchResult.size(); i++) {
 				res += "\n===================================================\nCustomer number -> " + (i + 1) + ") "
 						+ searchResult.get(i).toString();
@@ -598,7 +612,8 @@ public class LibrarySystem {
 		return false;
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Prompts user to search for a customer and book to return.
+	 * Once both elements have been attained, book is returned.
 	 * 
 	 * @author Oliver Manzi
 	 * @author Hanien Kobus
@@ -718,7 +733,7 @@ public class LibrarySystem {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Shows all available books in library system.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -726,7 +741,7 @@ public class LibrarySystem {
 		System.out.println(library.toString());
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Shows all customers registered to library system.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -751,7 +766,7 @@ public class LibrarySystem {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Shows all loaned out books.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -765,7 +780,7 @@ public class LibrarySystem {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Shows all delayed books.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -779,7 +794,7 @@ public class LibrarySystem {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Shows all delayed books.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -803,7 +818,7 @@ public class LibrarySystem {
 		System.out.println(res);
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Shows <customer object>'s currently loaned books and loan history. 
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -825,24 +840,9 @@ public class LibrarySystem {
 			System.out.println();
 			customerExtraFeatures(customer);
 			break;
-		// TODO: LUCAS decide whether to do this or not 
-		//case "3": //CHANGE HERE TO DISPLAY DEBT BEFORE PAYING TO SEE WHAT U NEED TO
-		// PAY
-		// System.out.print("===================================================\n" +
-		// "Enter payment: ");
-		// double payement = scanner.nextDouble();
-		// scanner.nextLine();
-		// try {
-		// customer.payDebt(payement);
-		// } catch (Exception e) {
-		// System.out.println("~~~~~~~~\n " + e.getMessage() + "\ntry again
-		// later...\n~~~~~~~~");
-		// }
-		// System.out.println();
-		// System.out.println(customer.toString());
-		// customerExtraFeatures(customer);
-		// break;
 		case "0":
+			menu.getSearch(library.getDate());
+			handleSearchMenu(requestUserInput());
 			break;
 		default:
 			System.out.println("~~~~~~~~ Not a valid option");
@@ -851,7 +851,7 @@ public class LibrarySystem {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Prompts user to enter number of days to increment.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -859,10 +859,14 @@ public class LibrarySystem {
 		System.out.println(
 				"===================================================" + "\n== Enter how many days to increment: ");
 		int day = scanner.nextInt();
-		library.addDays(day);
+		try {
+			library.addDays(day);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Prompts user to enter number of weeks to increment.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -870,10 +874,14 @@ public class LibrarySystem {
 		System.out.println(
 				"===================================================" + "\n== Enter how many weeks to increment: ");
 		int week = scanner.nextInt();
-		library.addWeeks(week);
+		try {
+			library.addWeeks(week);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Prompts user to enter number of months to increment.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -881,10 +889,14 @@ public class LibrarySystem {
 		System.out.println(
 				"===================================================" + "\n== Enter how many months to increment: ");
 		int month = scanner.nextInt();
-		library.addMonths(month);
+		try {
+			library.addMonths(month);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
-	/**<I, the author, am a jackass!>
+	/**Prompts user to enter number of years to increment.
 	 * 
 	 * @author Oliver Manzi
 	 * */
@@ -892,7 +904,11 @@ public class LibrarySystem {
 		System.out.println(
 				"===================================================" + "\n== Enter how many years to increment: ");
 		int year = scanner.nextInt();
-		library.addyears(year);
+		try {
+			library.addyears(year);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/** <I, the author, am a jackass!>

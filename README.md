@@ -1,6 +1,5 @@
 # LibrarySystem2
 
-
 This is a system for: Libraries
 The system is to be used by: Librarians
 Unauthorized users should not be allowed access to the system
@@ -11,11 +10,11 @@ Viewing all books and their information, both books in the library and currently
 Viewing information about customers
 etc
 
-
-HOW TO RUN:
-1. Download and install Eclipse (Skip if you already have a recent copy of Eclipse installed)
-2. Run Eclipse
-3. Import the program folder by going to File → Open projects from file system...
+HOW TO RUN
+How to start the program:
+1. Download and install an IDE for Java (Skip if you already have a recent copy of an IDE installed)
+2. Run your IDE
+3. Import the program folder by going to File → Open projects from file system... (May vary depending on your IDE)
 4. In the window that pops up, press ”Directory”
 5. Navigate to the program folder and select it
 6. In the bottom right corner, press ”Finish”
@@ -27,5 +26,4 @@ HOW TO RUN:
 
 
 Needed pre-requisites:
-A computer strong enough to run Eclipse
-Latest version of Eclipse installed
+A computer capable of running an IDE for Java
