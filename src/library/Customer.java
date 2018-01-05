@@ -36,59 +36,49 @@ public class Customer {
 		customerBooks("res/" + personnummer + "LoanHistory.txt");
 	}
 	
-	/**gets name of customer object
+	/**gets name of the customer object
 	 * */
 	public String getName() {
 		return this.name;
 	}
 
-	/**gets address of customer
+	/**gets address of the customer object
 	 * */
 	public String getAdress() {
 		return this.adress;
 	}
 
-	/**gets customer social security number 
+	/**gets customer object's social security number 
 	 * */
 	public String getPersonnummer() {
 		return this.personnummer;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**gets the phone number of the customer object (if it exists).
 	 * */
 	public String getNumber() {
 		return this.number;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**gets the debt of the customer object.
 	 * */
 	public double getDebt() {
 		return this.debt;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**gets the book objects that are loaned by the customer object.
 	 * */
 	public ArrayList<Book> getCurrentLoans() {
 		return this.currentLoans;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**gets the book objects from the loan history of the customer object.
 	 * */
 	public ArrayList<Book> getRealLoanHistory() {
 		return this.loanHistory;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**sets the name of the customer object.
 	 * */
 	public void setName(String newName) throws Exception {
 		if (newName.equals("")) {
@@ -98,9 +88,7 @@ public class Customer {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**sets the adress of the customer object.
 	 * */
 	public void setAdress(String newAdress) throws Exception {
 		if (newAdress.equals("")) {
@@ -110,9 +98,7 @@ public class Customer {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**sets the phone number of the customer object.
 	 * */
 	public void setNumber(String newNumber) throws Exception {
 		if (newNumber.trim().matches("[0-9]+") && newNumber.trim().length() == 10) {
@@ -122,17 +108,13 @@ public class Customer {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**sets the debt of the customer object. 
 	 * */
 	public void setDebt(double newDebt) {
 		this.debt = newDebt + this.debt;
 	}
 	
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**pays the debt of a customer object.
 	 * */
 	public void payDebt(double payement) throws Exception {
 		if((this.debt - payement) >= 0) {
@@ -142,41 +124,31 @@ public class Customer {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**adds a book to the current loans of a customer object.
 	 * */
 	public void addToCurrentLoan(Book book) {
 		currentLoans.add(book);
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**adds a book to the loan history of the customer object.
 	 * */
 	public void addToLoanHistory(Book book) {
 		loanHistory.add(book);
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**gets the book loan history of the customer object.
 	 * */
 	public ArrayList<Book> getLoanHistory() {
 		return loanHistory;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**removes a book from the current book loans of the customer object.
 	 * */
 	public void removeFromCurrentLoan(Book book) {
 		currentLoans.remove(book);
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**gets a book object from the current book loans of the customer object.
 	 * */
 	public Book getFromCurrentLoan(String bookTitle) {
 		for (Book book : currentLoans) {
@@ -187,15 +159,12 @@ public class Customer {
 		return null;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Majd Hatoum
+	/**reads the customer books (current loans and loan history) information from the text file when inserting the path of it.
 	 * */
 	public void customerBooks(String path) throws FileNotFoundException {
 		File file = new File(path);
 		Scanner input = new Scanner(file);
 		input.useDelimiter("/|\n");
-		//System.out.println("current customer: " + this.name);
 		while (input.hasNext()) {
 			String title = input.next().trim();
 			String authors = input.next().trim();
@@ -208,7 +177,7 @@ public class Customer {
 			try {
 				book = new Book(title, authors, publisher, genre, shelf);
 				book.setTimesBorrowed(Integer.parseInt(timesBorrowed));
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // need to change this?
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
 				book.setReturnDate(LocalDate.parse(returnDate, formatter));
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -225,10 +194,12 @@ public class Customer {
 	/**Returns a string of customer attribute information.
 	 * 
 	 * @author Majd Hatoum
-	 * @author Oliver Manzi
+	 * @editor Oliver Manzi
 	 * 
 	 * @version 1.0 Created by Majd: Displays customer information.
 	 * @version 1.1 Modified by Oliver: Distinguishes "prints" from attributes"
+	 * */
+	/**displays the customer object with its properties as strings.
 	 * */
 	@Override
 	public String toString() {
