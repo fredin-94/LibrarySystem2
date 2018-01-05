@@ -193,9 +193,6 @@ public class Customer {
 
 	/**Returns a string of customer attribute information.
 	 * 
-	 * @author Majd Hatoum
-	 * @editor Oliver Manzi
-	 * 
 	 * @version 1.0 Created by Majd: Displays customer information.
 	 * @version 1.1 Modified by Oliver: Distinguishes "prints" from attributes"
 	 * */
