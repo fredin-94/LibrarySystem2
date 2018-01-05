@@ -5,10 +5,11 @@ import java.util.*;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
-/**<I, the author, am a jackass!>
- * 
+/**
+ * This class is a representation of Book objects in the library system.
+ *
  * @author Hanien Kobus
- * @author Oliver Manzi
+ * @Editor Oliver Manzi
  * */
 public class Book {
 
@@ -22,8 +23,6 @@ public class Book {
 	private LocalDate returnDate;
 
 	public Book(String title, String authors, String publisher, String genre, String shelf) throws Exception {
-
-
 		this.title = title;
 		this.authors = authors;
 		this.genre = genre;
@@ -32,78 +31,60 @@ public class Book {
 		returnDate = LocalDate.of(2017, 10, 31);
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	/**
+	 * Returns the title of this book object
 	 * */
 	public String getTitle() {
 		return this.title;
 	}
 
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	/**
+	 * Returns the author(s) of this book object
 	 * */
 	public String getAuthors() {
 		return authors;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	/**
+	 * Return the genre of this book object
 	 * */
 	public String getGenre() {
 		return this.genre;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	/**
+	 * Returns the publisher of this book object
 	 * */
 	public String getPublisher() {
 		return this.publisher;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	/**
+	 * Returns the shelf of this book object
 	 * */
 	public String getShelf() {
 		return this.shelf;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
-	 * */
-	public void setShelf(String shelf) throws Exception {
-		if (shelf.equals("")) {
-			throw new Exception("A shelf must be chosen in order to move the book.");
-		} else {
-			this.shelf = shelf;
-		}
-	}
-
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	/**
+	 * Returns the number of times this book objects has been borrowed
 	 * */
 	public int getTimesBorrowed() {
 		return this.timesBorrowed;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	/**
+	 * Returns the return date of this book object
 	 * */
 	public LocalDate getReturnDate() {
 		return this.returnDate;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	/**
+	 * Sets the return date of this book object
+	 *
+	 * @throws Exception
 	 * */
 	public void setReturnDate(LocalDate returnDate) throws Exception {
 		if (returnDate.equals(null)) {
@@ -113,9 +94,8 @@ public class Book {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Fabian Fröding
+	/**
+	 * Capitalizes the first letters of the attributes of this book object
 	 * */
 	public void firstLettersToUpperCase() {
 		this.title = firstLetterInStringToUpperCase(this.title);
@@ -125,6 +105,9 @@ public class Book {
 		this.shelf = firstLetterInStringToUpperCase(this.shelf);
 	}
 
+	/**
+	 * Capitalizes the first letter in a string.
+	 * */
 	private String firstLetterInStringToUpperCase(String whichString) {
 		String s = (whichString.charAt(0) + "").toUpperCase();
 		for (int i = 1; i < whichString.length(); i++)
@@ -132,29 +115,27 @@ public class Book {
 		return s;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	/**
+	 * Increments the number of times borrowed for this book object
 	 * */
 	public void incrementTimesBorrowed() {
 		this.timesBorrowed++;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	/**
+	 * Sets the number of times borrowed for this book object
+	 *
+	 * @throws Exception
 	 * */
-	public void setTimesBorrowed(int timesBorrowed) {
+	public void setTimesBorrowed(int timesBorrowed) throws Exception{
+		if(timesBorrowed < 0){
+			throw new Exception("The number of times borrowed cannot be negative.");
+		}
 		this.timesBorrowed = timesBorrowed;
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
-	 * @author Oliver Manzi
-	 * 
-	 * @version 1.0 Created by Hanien: Displays customer information.
-	 * @version 1.1 Modified by Oliver: Distinguishes "prints" from attributes"
+	/**
+	 * Displays this object's information in string format
 	 * */
 	@Override
 	public String toString() {
@@ -163,14 +144,13 @@ public class Book {
 				+ "\n • Shelf: " + this.shelf + "\n • Times Borrowed: " + this.timesBorrowed;
 	}
 	
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
+	/**
+	 * Displays this object's information including return date in string format
 	 * */
 	public String toStringCurrentLoans() {
 		return "\n" + "||----------------------------------------------------------||\n" + "Book Title: " + this.title
 				+ "\n • Authors: " + this.authors + "\n • Genre: " + this.genre + "\n • Publisher: " + this.publisher
-				+ "\n • Shelf: " + this.shelf + "\n • Returndate: " + this.returnDate;
+				+ "\n • Shelf: " + this.shelf + "\n • Return date: " + this.returnDate;
 	}
 
 }
