@@ -496,7 +496,7 @@ public class Library {
 
 		if (debt > 0) {
 			System.out.println(customer.getName() + " returned the book " + (debt / 2) + " days after the return date");
-			System.out.println("and was charged the delay fee.");
+			System.out.println("and was charged a delay fee of " + debt);
 			customers.clear();
 			customerDirectory();
 			setDebt();

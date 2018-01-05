@@ -578,7 +578,7 @@ public class LibrarySystem {
                     + searchResult.size() + "\n===================================================\n";
             for (int i = 0; i < searchResult.size(); i++) {
                 res += "\n===================================================\nCustomer number ->" + (i + 1) + ") "
-                        + searchResult.get(i).toString() + "\n" + library.getCustomerCurrentLoanString(searchResult.get(i));
+                        + searchResult.get(i).toString();
             }
             System.out.println(res);
         } catch (NullPointerException npe) {
