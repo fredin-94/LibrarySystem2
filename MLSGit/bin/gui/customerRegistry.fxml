@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="699.0" prefWidth="1197.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustomerController">
+   <children>
+      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="699.0" prefWidth="160.0" style="-fx-background-color: #b1e6f9;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="58.0" />
+         </padding>
+         <children>
+            <Button fx:id="showCustomerBtn" mnemonicParsing="false" onAction="#handleShow" text="Show all customers" textOverrun="CLIP">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+            <Label text="Find customer">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin></Label>
+            <TextField fx:id="searchCustomerTxt" promptText="customer info" />
+            <Button fx:id="returnToMainBtn" mnemonicParsing="false" onAction="#handle" text="Return to main">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin></Button>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </VBox>
+      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="558.0" style="-fx-background-color: #d7eff7;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="119.0" text="Customers" textAlignment="JUSTIFY" textFill="#5c65a1">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="556.0">
+              <columns>
+                <TableColumn fx:id="nameCol" prefWidth="154.0" text="Name" />
+                <TableColumn fx:id="addressCol" prefWidth="128.0" text="Address" />
+                  <TableColumn fx:id="phoneCol" minWidth="9.176116943359375" prefWidth="110.0" text="Phone number" />
+                  <TableColumn fx:id="psnCol" minWidth="6.48944091796875" prefWidth="165.0" text="PSN" />
+              </columns>
+            </TableView>
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="152.0" prefWidth="558.0">
+               <children>
+                  <Label layoutX="21.0" layoutY="9.0" text="Add customer" />
+                  <Button fx:id="addCustomerBtn" layoutX="433.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleCustomers" prefHeight="27.0" prefWidth="113.0" text="Add customer" />
+                  <TextField fx:id="nameTxt" layoutX="14.0" layoutY="31.0" prefHeight="27.0" prefWidth="99.0" promptText="name" />
+                  <TextField fx:id="addressTxt" layoutX="117.0" layoutY="31.0" prefHeight="27.0" prefWidth="99.0" promptText="adress" />
+                  <TextField fx:id="phoneTxt" layoutX="324.0" layoutY="31.0" prefHeight="27.0" prefWidth="99.0" promptText="phone number" />
+                  <Label fx:id="addedCustomerLbl" layoutX="305.0" layoutY="67.0" prefHeight="17.0" prefWidth="238.0" />
+                  <Label layoutX="17.0" layoutY="80.0" text="Remove customer - Not implemented" />
+                  <TextField fx:id="removeCustomerTxt" layoutX="17.0" layoutY="104.0" prefHeight="27.0" prefWidth="113.0" promptText="customer info" />
+                  <Button fx:id="removeCustomerBtn" layoutX="139.0" layoutY="104.0" mnemonicParsing="false" text="Remove" />
+                  <TextField fx:id="psnTxt1" layoutX="220.0" layoutY="31.0" prefHeight="27.0" prefWidth="99.0" promptText="psn" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <AnchorPane prefHeight="699.0" prefWidth="485.0" style="-fx-background-color: #b1e6f9;">
+         <children>
+            <TableView fx:id="currentLoansTableView" layoutX="12.0" layoutY="47.0" prefHeight="203.0" prefWidth="460.0">
+              <columns>
+                <TableColumn fx:id="CurrentBTitleCol" prefWidth="110.53094482421875" text="Title" />
+                <TableColumn fx:id="CurrentBAuthorCol" minWidth="4.34759521484375" prefWidth="78.468994140625" text="Author" />
+                  <TableColumn fx:id="CurrentBGenreCol" prefWidth="84.611328125" text="Genre" />
+                  <TableColumn fx:id="CurrentBPublisherCol" prefWidth="63.3887939453125" text="Publisher" />
+                  <TableColumn fx:id="CurrentBReturnDateCol" prefWidth="121.3446044921875" text="Return date" />
+              </columns>
+            </TableView>
+            <Label layoutX="12.0" layoutY="24.0" text="Current loans">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label layoutX="14.0" layoutY="446.0" text="Loan history">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <TableView fx:id="loanHistoryTableView" layoutX="11.0" layoutY="473.0" prefHeight="189.0" prefWidth="460.0">
+               <columns>
+                  <TableColumn fx:id="loanHistoryTitleCol" prefWidth="117.41900634765625" text="Title" />
+                  <TableColumn fx:id="loanHistoryAuthorCol" prefWidth="94.5673828125" text="Author" />
+                  <TableColumn fx:id="loanHistoryGenreCol" prefWidth="76.0877685546875" text="Genre" />
+                  <TableColumn fx:id="loanHistoryPublisherCol" prefWidth="61.9122314453125" text="Publisher" />
+                  <TableColumn fx:id="loanHistoryReturnDateCol" prefWidth="110.9530029296875" text="Return date" />
+               </columns>
+            </TableView>
+            <TextField fx:id="psnTxt" editable="false" layoutX="14.0" layoutY="257.0" prefHeight="27.0" prefWidth="248.0" promptText="personal security number" />
+            <Button fx:id="returnBooksBtn" layoutX="15.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleBooks" text="Return selected books" />
+            <Label layoutX="14.0" layoutY="366.0" text="Delay fee - Total debt:">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label fx:id="totalDebtLbl" layoutX="17.0" layoutY="394.0" text="THE DEBT">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label fx:id="paidDebtPrompt" layoutX="17.0" layoutY="308.0" prefHeight="55.0" prefWidth="450.0" text="*If customer has delayed books, they have to pay delay fee upon return*" textFill="#900000" />
+            <Label fx:id="returnBooksPrompt" layoutX="222.0" layoutY="296.0" prefHeight="17.0" prefWidth="243.0" text=" " />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

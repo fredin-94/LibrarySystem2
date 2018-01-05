@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<HBox fx:id="wholeWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="699.0" prefWidth="1197.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SortShowBorrowController">
+   <children>
+      <VBox fx:id="leftSideBox" prefHeight="800.0" prefWidth="174.0" style="-fx-background-color: #b1e6f9;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="58.0" />
+         </padding>
+         <children>
+            <MenuButton fx:id="showBooksBtn" mnemonicParsing="false" style="-fx-background-color: #80bee5;" text="Show books" textFill="WHITE">
+              <items>
+                <MenuItem fx:id="showAllAvailableBooks" mnemonicParsing="false" onAction="#handleShow" text="All available books" />
+                <MenuItem fx:id="showAllBooks" mnemonicParsing="false" onAction="#handleShow" text="All books" />
+                  <MenuItem fx:id="showCurrLentBooks" mnemonicParsing="false" onAction="#handleShow" text="Currently lent out books" />
+                  <MenuItem fx:id="showDelayedBooks" mnemonicParsing="false" onAction="#handleShow" text="Delayed books" />
+              </items>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </MenuButton>
+            <Label fx:id="searchBookLbl" style="-fx-font-weight: bold;" text="Search book" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="searchBookTextField" promptText="search book" style="-fx-background-color: white;">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Button fx:id="returnToMainBtn" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#handle" style="-fx-background-color: #80bee5;" text="Return to main" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </VBox>
+      <VBox fx:id="rightSideBox" prefHeight="400.0" prefWidth="472.0" style="-fx-background-color: #d7eff7;">
+         <children>
+            <Label fx:id="topLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="623.0" text="All Books" textAlignment="JUSTIFY" textFill="#5c65a1">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableView" minWidth="-Infinity" prefHeight="636.0" prefWidth="653.0">
+              <columns>
+                <TableColumn fx:id="titleCol" minWidth="74.66140747070312" prefWidth="74.66140747070312" text="Title" />
+                <TableColumn fx:id="authorCol" minWidth="88.96408081054688" prefWidth="88.96408081054688" text="Author" />
+                  <TableColumn fx:id="publisherCol" minWidth="99.0" prefWidth="106.5308837890625" text="Publisher" />
+                  <TableColumn fx:id="genreCol" minWidth="79.059326171875" prefWidth="95.41751098632812" text="Genre" />
+                  <TableColumn fx:id="shelfCol" prefWidth="91.17230224609375" text="Shelf" />
+                  <TableColumn fx:id="numOfCopiesCol" prefWidth="101.70013427734375" text="Copies" />
+                  <TableColumn fx:id="timesBorrowedCol" prefWidth="100.0" text="Times borrowed" />
+              </columns>
+            </TableView>
+            <AnchorPane prefHeight="100.0" prefWidth="653.0" style="-fx-background-color: #d7eff7;">
+               <children>
+                  <Label layoutX="15.0" layoutY="48.0" text="Add Book to library" />
+                  <TextField fx:id="addTitleTxt" layoutX="14.0" layoutY="70.0" prefHeight="27.0" prefWidth="103.0" promptText="title" />
+                  <TextField fx:id="addAuthorTxt" layoutX="120.0" layoutY="70.0" prefHeight="27.0" prefWidth="103.0" promptText="author" />
+                  <TextField fx:id="addPublisherTxt" layoutX="226.0" layoutY="70.0" prefHeight="27.0" prefWidth="103.0" promptText="publisher" />
+                  <TextField fx:id="addGenreTxt" layoutX="332.0" layoutY="70.0" prefHeight="27.0" prefWidth="103.0" promptText="genre" />
+                  <TextField fx:id="addShelfTxt" layoutX="438.0" layoutY="70.0" prefHeight="27.0" prefWidth="103.0" promptText="shelf" />
+                  <Button fx:id="addBookBtn" layoutX="547.0" layoutY="72.0" mnemonicParsing="false" onAction="#handleBooks" style="-fx-background-color: #80bee5; -fx-text-fill: white;" text="Add book">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="addedBookPrompt" layoutX="426.0" layoutY="111.0" prefHeight="32.0" prefWidth="196.0" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <VBox prefHeight="800.0" prefWidth="412.0" style="-fx-background-color: #b1e6f9;">
+         <children>
+            <Label alignment="BOTTOM_LEFT" prefHeight="21.0" prefWidth="347.0" text="BORROW BOOKS">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <TableView fx:id="borrowTableView" prefHeight="224.0" prefWidth="351.0">
+              <columns>
+                <TableColumn fx:id="borrowTblTitleCol" prefWidth="76.898193359375" text="Title" />
+                  <TableColumn fx:id="borrowTblAuthorCol" prefWidth="75.0" text="Author" />
+                  <TableColumn fx:id="borrowTblPublisherCol" prefWidth="75.0" text="Publisher" />
+                  <TableColumn fx:id="borrowTblGenreCol" prefWidth="75.0" text="Genre" />
+                  <TableColumn fx:id="borrowTblShelfCol" prefWidth="75.0" text="Shelf" />
+              </columns>
+            </TableView>
+            <TextField fx:id="psnTextField" promptText="Enter personal security number" />
+            <Button fx:id="borrowBookBtn" mnemonicParsing="false" onAction="#handleBooks" style="-fx-background-color: #80bee5; -fx-text-fill: white;" text="Borrow books">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Label fx:id="borrowBookLbl" prefHeight="46.0" prefWidth="346.0" text="   " />
+            <Label prefHeight="30.0" prefWidth="319.0" text="NOTE: You cannot borrow more than 1 copy" />
+            <Label prefHeight="32.0" prefWidth="253.0" text=" of the same book for the same customer" />
+            <Label alignment="BOTTOM_LEFT" prefHeight="0.0" prefWidth="345.0" text="REMOVE BOOKS - Not implemented!">
+               <padding>
+                  <Insets bottom="10.0" right="20.0" />
+               </padding>
+            </Label>
+            <TableView fx:id="removeTableView" prefHeight="123.0" prefWidth="347.0">
+              <columns>
+                <TableColumn fx:id="removeTblTitleCol" prefWidth="85.7796630859375" text="Title" />
+                  <TableColumn fx:id="removeTblAuthorCol" prefWidth="74.99993896484375" text="Author" />
+                  <TableColumn fx:id="removeTblPublisherCol" prefWidth="74.99993896484375" text="Publisher" />
+                  <TableColumn fx:id="removeTblGenreCol" prefWidth="75.0" text="Genre" />
+                  <TableColumn fx:id="removeTblShelfCol" prefWidth="75.0" text="Shelf" />
+              </columns>
+            </TableView>
+            <Button fx:id="removeBookBtn" mnemonicParsing="false" onAction="#handleBooks" style="-fx-background-color: #ff5b5b; -fx-text-fill: white;" text="Remove book">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</HBox>
