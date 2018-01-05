@@ -9,14 +9,14 @@ import library.Library.bookKey;
 import static library.Library.bookKey.*; // Needed to take enum keys as parameters. //Fabian.
 
 /**
- * <I, the author, am a jackass!>
+ * This class handles user input and connects every other class, to form the user interface.
  * 
- * @author Oliver Manzi
- * @author Fabian Fröding
- * @author Lucas Fredin
- * @author Hanien Kobus
- * @author Majd Hatoum
+ * @author Hanien Kobus and Lucas Fredin
+ * @editor Fabian Fröding
+ * @editor Majd Hatoum
+ * @editor Oliver Manzi
  */
+
 public class LibrarySystem {
 
 	private Menu menu = new Menu();
@@ -27,9 +27,9 @@ public class LibrarySystem {
 		library = new Library();
 	}
 
-	/**Prompts user to enter a book title. Then searches for book in the available books.
-	 * 
-	 * @author Oliver Manzi
+	/**
+	 * Method to search for a certain book or books, using user input. If what the user inputs corresponds to any of the parameters
+	 * of an existing book object, those objects will be displayed
 	 * */
 	public void searchBook() {
 		System.out.println("===================================================\n" + "== Search for book:\n"
@@ -51,9 +51,7 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * <I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	 * Method to request an interger input from the user
 	 */
 	public int requestUserInput() {
 		int userInput;
@@ -66,9 +64,7 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * <I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	 * Method to request input from the user to enter a title
 	 */
 	public String requestTitle() throws Exception {
 		System.out.println("===================================================\n" + "Enter title *: "
@@ -81,9 +77,7 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * <I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	 * Method to request input from the user to enter a author
 	 */
 	public String requestAuthor() throws Exception {
 		System.out.println("===================================================\n" + "Enter author(s) *: "
@@ -96,9 +90,7 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * <I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	 * Method to request input from the user to enter a publisher
 	 */
 	public String requestPublisher() throws Exception {
 		System.out.println("===================================================\n" + "Enter publisher *: "
@@ -111,9 +103,7 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * <I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	 * Method to request input from the user to enter a genre
 	 */
 	public String requestGenre() throws Exception {
 		System.out.println("===================================================\n" + "Enter genre *: "
@@ -126,9 +116,7 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * <I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	 * Method to request input from the user to enter a shelf
 	 */
 	public String requestShelf() throws Exception {
 		System.out.println("===================================================\n" + "Enter shelf *: "
@@ -140,12 +128,7 @@ public class LibrarySystem {
 		return shelf;
 	}
 
-	/**Searches for customer in library system. 
-	 * 
-	 * @author Oliver Manzi
-	 * 
-	 * @version 1.1 Modification: Displays search 
-	 * result and allows user to view more detail by picking a customer from results.
+	/**Method that takes user input to display customers with parameters correlated to that user input
 	 * */
 	public void searchCustomer() {
 		System.out.println("===================================================\n" + "Search for customer: ");
@@ -182,9 +165,7 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * <I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	 * Method to get input from the user for a name
 	 */
 	public String requestName() throws Exception {
 		System.out.println("===================================================\n" + "Enter customer name *: "
@@ -198,9 +179,7 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * <I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	 * Method to get input from the user for an address
 	 */
 	public String requestAddress() throws Exception {
 		System.out.println("===================================================\n" + "Enter customer address *: "
@@ -214,9 +193,7 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * <I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
+	 * Method to get input from the user for a phone number
 	 */
 	public String requestPhoneNumber() throws Exception {
 		System.out.println("===================================================\n" + "Enter customer phonenumber: "
@@ -232,13 +209,7 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * <I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
-	 * @author Oliver Manzi
-	 * 
-	 * @version 1.1 Modification: Made social security handling more robust 
-	 * by comparing two formats, "yyyy-mm-dd-xxxx" and"yy-mm-dd-xxxx", with existing customers.   
+	 * Method to get input from the user for a social security number
 	 */
 	public String requestPsn() throws Exception {
 		System.out.println(
@@ -271,11 +242,9 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * Prompts user to enter attributes for a book. Once all attributes have been required, 
-	 * book is added to library system. 
-	 * 
-	 * @author Oliver Manzi
-	 * @author Hanien Kobus
+	 * Method to add books by getting user input for all the parameters of a book object, 
+	 * and creating a book object with those parameters. Writing that book object to text files,
+	 * and to arraylists.
 	 */
 	public void addBook() {
 		String title = "";
@@ -302,11 +271,7 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * Prompts user to delete a book.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Hanien Kobus
-	 * 
+	 * Method to remove a book object from text files and arraylists, depending on the user input
 	 */
 	public void deleteBook() {
 		String searchTextBook = "";
@@ -357,16 +322,14 @@ public class LibrarySystem {
 			}
 		} catch (NullPointerException e) {
 			// menu.getAdministration(library.getDate());
+			//System.out.println("Null pointer occurred");
 		}
 
 	}
 
-	/** Prompts user to add all necessary attributes. Once attributes are required,
-	 * customer object is added to library system.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Hanien Kobus
-	 *  
+	/**
+	 * Creates a new customer object using users input parameters, adds it to customer arraylist and
+	 * customer text file
 	 */
 	public void addCustomer() {
 		String name = "";
@@ -396,10 +359,7 @@ public class LibrarySystem {
 	}
 
 	/**
-	 * <I, the author, am a jackass!>
-	 * 
-	 * @author Oliver Manzi
-	 * @author Hanien Kobus
+	 * Method to remove a customer object from arraylist and text file, using an input string from the user
 	 */
 	public void removeCustomer() {
 		String ssn = "";
@@ -414,21 +374,13 @@ public class LibrarySystem {
 		removeLineFromFile("res/customer.txt", parseCustomerToString(customer));
 		deleteFile("res/" + ssn + "CurrentLoans.txt");
 		deleteFile("res/" + ssn + "LoanHistory.txt");
-		try {
-			library.removeCustomer(customer);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		library.removeCustomer(customer);
 		System.out.println("Removed customer");
 	}
 
-	/**Prompts user to search for a customer and book to borrow.
-	 * Once both elements have been attained, book is borrowed.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Hanien Kobus
-	 * @author Lucas Fredin
-	 * @author Majd Hatoum
+	/**Method to let the user "borrow a book", user gets prompted to enter input, if correct input
+	 * is provided, the user can select a book to "borrow", a book that is borrowed will be moved into 
+	 * corresponding user currentloans and loanhistory text files, and removed from the bookDirectory txt file
 	 * */
 	public void borrowBook() throws Exception {
 		scanner.nextLine();
@@ -442,6 +394,7 @@ public class LibrarySystem {
 			String res = "\n===================================================\nSearch Result\nSize of result: "
 					+ searchResult.size() + "\n===================================================\n";
 
+			/* TODO fix */
 			for (int i = 0; i < searchResult.size(); i++) {
 				res += "\n===================================================\nCustomer number -> " + (i + 1) + ") "
 						+ searchResult.get(i).toString();
@@ -484,7 +437,6 @@ public class LibrarySystem {
 			int userInp = scanner.nextInt();
 			scanner.nextLine();
 			bookToBorrow = searchResults.get(userInp - 1);
-			// bookToBorrow.setReturnDate(LocalDate.now().plusDays(14));
 			// System.out.println("borrowing: " + bookToBorrow.getReturnDate());
 			System.out.println("== " + bookToBorrow.getTitle() + " by: " + bookToBorrow.getAuthors()
 					+ " has been chosen\n--------\n");
@@ -493,8 +445,6 @@ public class LibrarySystem {
 			System.out.println("\nNo matches with '" + searchTextBook + "'. Try again. \n");
 			borrowBook();
 		}
-
-		// borrowing book
 		System.out.println("Borrowing " + bookToBorrow.getTitle() + " ...");
 		removeLineFromFile("res/bookDirectory.txt", parseBookToString(bookToBorrow));
 		library.borrowBook(bookToBorrow.getTitle(), theCustomer.getPersonnummer());
@@ -506,29 +456,19 @@ public class LibrarySystem {
 				+ "\n||-----------------------------------------------||\n");
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
-	 * @author Majd Hatoum
+	/**
+	 *  Method used with "borrowBook" method to write books to the customer text files, as well as
+	 *  changing the returndates for books, so that they are written to the txt files with the correct returndates
 	 * */
 	public void borrowBookTxtHandling(String psn, Book book) {
 		// ** text file handling for borrow book **//
 		incrementTimesBorrowed("res/AllBooks.txt", book);
 		incrementTimesBorrowed("res/bookDirectory.txt", book);
 
-		// removeLineFromFile("res/bookDirectory.txt", parseBookToString(book));
-		// //doesnt work here cuz you already changed the parameters of the book, so it
-		// will be seen as a different object
 		try {
 			book.setReturnDate(LocalDate.now().plusDays(14));
 			writeBookToFile("res/" + psn + "CurrentLoans.txt", book);
 			writeBookToFile("res/" + psn + "LoanHistory.txt", book);
-			// System.out.println("borrowing: " + book.getReturnDate());
-			// book.setReturnDate(LocalDate.of(2017, 10, 31));
-			// writeBookToFile("res/AllBooks.txt", book); //will only add one book, but the
-			// remove line from file deles all books, so if we had several books we only get
-			// one back
 			book.setReturnDate(LocalDate.now().plusDays(14));
 			// System.out.println("borrowing: " + book.getReturnDate());
 		} catch (Exception e) {
@@ -538,12 +478,9 @@ public class LibrarySystem {
 		checkCustomerFiles(book);
 	}
 
-	// This can definitely be prettied up especially because the code is so similar
-	// to what's going on in removeLineFromFile
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
+	/**
+	 * Method to increment the times borrowed in the txt files, by going into the text files and
+	 * rewriting the times borrowed
 	 * */
 	public void incrementTimesBorrowed(String path, Book book) {
 		String currentTimes = Integer.toString(book.getTimesBorrowed() - 1);
@@ -567,26 +504,16 @@ public class LibrarySystem {
 			System.gc();
 			pw.close();
 			br.close();
-			boolean success = dirFile.delete();
-			boolean renameSuccess = tmpFile.renameTo(dirFile);
-
-			// System.out.println("current file: " + path);
-			if (success) {
-				// System.out.println("Old file deleted " + path);
-			}
-			if (renameSuccess) {
-				// System.out.println("file renamed " + path);
-			}
+	
 		} catch (Exception e) {
 			// e.getMessage();
 			System.out.println("In increment times borrowed: Not able to complete method");
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
+	/**
+	 * Method to check in all customer files if a book is present or not, if it is,
+	 * it increments the times borrowed for that book, by writing in the text file
 	 * */
 	public void checkCustomerFiles(Book book) {
 		File dir = new File("res/");
@@ -601,25 +528,9 @@ public class LibrarySystem {
 		}
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Hanien Kobus
-	 * */
-	public boolean titleHasDifferentAuthors(Book book) {
-		for (Book b : library.getBooks()) {
-			if (book.getTitle().equalsIgnoreCase(b.getTitle())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**Prompts user to search for a customer and book to return.
-	 * Once both elements have been attained, book is returned.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Hanien Kobus
-	 * @author Majd Hatoum
+	/**
+	 * Method to return a book, by selecting a book from arraylists using user input. Book will be written  
+	 * to the bookDirectory text file, and removed from the customer's currentLoans text files
 	 * */
 	public void returnBook() throws Exception {
 		scanner.nextLine();
@@ -687,20 +598,16 @@ public class LibrarySystem {
 			returnBook();
 		}
 
-		// return a book
 		Book book = theCustomer.getFromCurrentLoan(bookToBorrow.getTitle());
-		// returns a book into library's available books directory
 		removeLineFromFile("res/" + theCustomer.getPersonnummer() + "CurrentLoans.txt", parseBookToString(book));
 		library.returnBook(bookToBorrow.getTitle(), theCustomer.getPersonnummer());
 		book.setReturnDate(LocalDate.of(2017, 10, 31));
 		writeBookToFile("res/bookDirectory.txt", book);
-		// removeLineFromFile("res/LoanedBooks.txt", parseBookToString(book));
 		System.out.println("*** Book returned successfully ***");
 	}
 
-	/**<I, the author, am a jackass!>
-	 * 
-	 * @author Fabian Fröding
+	/**
+	 * Method to sort books depending on user input.
 	 * */
 	public void sortBooks() { 
 		System.out.println("Show all books by:"
@@ -736,17 +643,15 @@ public class LibrarySystem {
 		}
 	}
 
-	/**Shows all available books in library system.
-	 * 
-	 * @author Oliver Manzi
+	/**
+	 * Method to show all available books to the user
 	 * */
 	public void showAvailableBooks() {
 		System.out.println(library.toString());
 	}
 
-	/**Shows all customers registered to library system.
-	 * 
-	 * @author Oliver Manzi
+	/**
+	 * Method to display all customers to the user, using the customer toString
 	 * */
 	public void showCustomers() {
 		System.out.println("|==================== Customers =====================|" + "\n== Search results: "
@@ -769,9 +674,8 @@ public class LibrarySystem {
 		}
 	}
 
-	/**Shows all loaned out books.
-	 * 
-	 * @author Oliver Manzi
+	/**
+	 * Method to display all loaned out books, if there are any, by going through the arraylists of the customers currentLoans
 	 * */
 	public void showAllLoanedBooks() {
 		if (library.getLoanedBooks().isEmpty()) {
@@ -783,9 +687,9 @@ public class LibrarySystem {
 		}
 	}
 
-	/**Shows all delayed books.
-	 * 
-	 * @author Oliver Manzi
+	/**
+	 * Method to show all delayed books, by going through all the customers currentLoans arraylists 
+	 * and checking the returndates for all books in them
 	 * */
 	public void showAllDelayedBooks() {
 		if (library.getDelayedBooks().isEmpty()) {
@@ -797,9 +701,9 @@ public class LibrarySystem {
 		}
 	}
 
-	/**Shows all delayed books.
-	 * 
-	 * @author Oliver Manzi
+	/**
+	 * Method to show most popular books, if there are any, by checking the bookDirectory arraylist, checking each books
+	 * timesBorrowed parameter, and displaying the books with the highest number for timesBorrowed
 	 * */
 	public void showMostPopularBook() {
 		String res = "";
@@ -821,9 +725,8 @@ public class LibrarySystem {
 		System.out.println(res);
 	}
 
-	/**Shows <customer object>'s currently loaned books and loan history. 
-	 * 
-	 * @author Oliver Manzi
+	/**
+	 * Method to show depending on the users input, currentLoans of the customer or loanHistory of the customer, or return to main menu
 	 * */
 	public void customerExtraFeatures(Customer customer) {
 		menu.getCustomerFeatures();
@@ -843,7 +746,6 @@ public class LibrarySystem {
 			System.out.println();
 			customerExtraFeatures(customer);
 			break;
-		
 		case "0":
 			break;
 		default:
@@ -853,58 +755,38 @@ public class LibrarySystem {
 		}
 	}
 
-	/**Prompts user to enter number of days to increment.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Majd Hatoum
+	/**
+	 * Method to increment days, using the number inputted by the user
 	 * */
 	public void incrementDays() {
 		System.out.println(
 				"===================================================" + "\n== Enter how many days to increment: ");
 		int day = scanner.nextInt();
-		try {
-			library.addDays(day);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		library.addDays(day);
 	}
 
-	/**Prompts user to enter number of weeks to increment.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Majd Hatoum
+	/**
+	 * Method to increment weeks, using the number inputted by the user
 	 * */
 	public void incrementWeeks() {
 		System.out.println(
 				"===================================================" + "\n== Enter how many weeks to increment: ");
 		int week = scanner.nextInt();
-		try {
-			library.addWeeks(week);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		library.addWeeks(week);
 	}
 
-	/**Prompts user to enter number of months to increment.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Majd Hatoum
+	/**
+	 * Method to increment months, using the number inputted by the user
 	 * */
 	public void incrementMonths() {
 		System.out.println(
 				"===================================================" + "\n== Enter how many months to increment: ");
 		int month = scanner.nextInt();
-		try {
-			library.addMonths(month);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		library.addMonths(month);
 	}
 
-	/**Prompts user to enter number of years to increment.
-	 * 
-	 * @author Oliver Manzi
-	 * @author Majd Hatoum
+	/**
+	 * Method to increment years, using the number inputted by the user
 	 * */
 	public void incrementYears() {
 		System.out.println(
@@ -913,24 +795,8 @@ public class LibrarySystem {
 		library.addyears(year);
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Fabian Fröding
-	 * */
-	public Book retrieveBook(ArrayList<Book> listOfBooks, String title) throws Exception {
-		for (Book book : listOfBooks) {
-			if (book.getTitle().equalsIgnoreCase(title)) {
-				return book;
-			}
-		}
-		throw new Exception("~~~~~~~~ The book is not in that directory.");
-
-	}
-
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
+	/**
+	 * Method to see if a book is in a certain arraylist, if it is, method returns true
 	 * */
 	public boolean isInList(ArrayList<Book> listOfBooks, Book book) {
 		for (Book b : listOfBooks) {
@@ -941,9 +807,8 @@ public class LibrarySystem {
 		return false;
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Fabian Fröding
+	/**
+	 * Method to retrieve a customer object using the customers social security number (psn), in the parameters
 	 * */
 	public Customer retrieveCustomer(String psn) throws Exception {
 		Customer somePerson = null;
@@ -960,11 +825,8 @@ public class LibrarySystem {
 		}
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
-	 * @author Majd Hatoum
+	/**
+	 * Method to write a book object to a text file
 	 * */
 	public void writeBookToFile(String path, Book book) {
 		if (!book.getTitle().equals("") && !book.getAuthors().equals("") && !book.getPublisher().equals("")
@@ -984,32 +846,24 @@ public class LibrarySystem {
 		}
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
-	 * @author Majd Hatoum
+	/**
+	 * Method to make a book obejct a string, that can be used in text files
 	 * */
 	public String parseBookToString(Book book) {
 		return book.getTitle() + "/" + book.getAuthors() + "/" + book.getPublisher() + "/" + book.getGenre() + "/"
 				+ book.getShelf() + "/" + book.getTimesBorrowed() + "/" + book.getReturnDate();
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
+	/**
+	 * Method to make a customer object a string, that can be used in text files
 	 * */
 	public String parseCustomerToString(Customer customer) {
 		return customer.getName() + "/" + customer.getAdress() + "/" + customer.getPersonnummer() + "/"
 				+ customer.getNumber();
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
-	 * @author Majd Hatoum
+	/**
+	 * Method to remove a line from a text file, by entering the path to the text file and the line you want to remove
 	 * */
 	public void removeLineFromFile(String path, String lineToRemove) {
 		int count = 0;
@@ -1032,25 +886,15 @@ public class LibrarySystem {
 			System.gc();
 			pw.close();
 			br.close();
-			boolean success = dirFile.delete();
-			boolean renameSuccess = tmpFile.renameTo(dirFile);
-
-			if (success) {
-				// System.out.println("Old file deleted");
-			}
-			if (renameSuccess) {
-				// System.out.println("file renamed");
-			}
+	
 		} catch (Exception e) {
 			// e.getMessage();
 			System.out.println("In remove line from file: Not able to complete method");
 		}
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
+	/**
+	 * Method to write parameters of a customer object to a text file
 	 * */
 	public void writeCustomerToFile(String name, String address, String psn, String phoneNumber) {
 		if (!name.equals("") && !address.equals("") && !psn.equals("")) {
@@ -1066,10 +910,8 @@ public class LibrarySystem {
 		}
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
+	/**
+	 * Method to create txt files
 	 * */
 	public void createFile(String fileName) {
 		// System.out.println("in createFIle");
@@ -1085,10 +927,8 @@ public class LibrarySystem {
 		}
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
-	 * @author Hanien Kobus
+	/**
+	 * Method to delete a txt file
 	 * */
 	public void deleteFile(String path) {
 		File f = new File(path);
@@ -1099,9 +939,8 @@ public class LibrarySystem {
 		}
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
+	/**
+	 * Method to display the main menu to the user, and allow user to enter an integer between 0 to 5 for corresponding functionality
 	 * */
 	public void run() {
 		int userInput;
@@ -1142,9 +981,8 @@ public class LibrarySystem {
 		} while (userInput != 0);
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
+	/**
+	 * Method to display the search menu to users, and allowing them to enter an input
 	 * */
 	public void handleSearchMenu(int option) {
 		switch (option) {
@@ -1170,9 +1008,8 @@ public class LibrarySystem {
 		}
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
+	/**
+	 * Method to show the user the options to borrow or return a book
 	 * */
 	public void handleBookMenu(int option) {
 		switch (option) {
@@ -1199,9 +1036,8 @@ public class LibrarySystem {
 		}
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
+	/**
+	 * Method to show the user the admin menu, and all the options they can choose with a number they input
 	 * */
 	public void handleAdmin(int option) {
 		scanner.nextLine();
@@ -1227,9 +1063,8 @@ public class LibrarySystem {
 		}
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
+	/**
+	 * Method to to show the extra menu, and allow the user to enter input to enter any of the options in the menu
 	 * */
 	public void handleExtra(int option) {
 		switch (option) {
@@ -1251,9 +1086,8 @@ public class LibrarySystem {
 		}
 	}
 
-	/** <I, the author, am a jackass!>
-	 * 
-	 * @author Lucas Fredin
+	/**
+	 * Method to handle the time simulation menu, and allow the user to enter input to use any of the options displayed
 	 * */
 	public void handleTimeSimMenu(int option) {
 		switch (option) {
