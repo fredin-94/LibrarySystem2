@@ -841,6 +841,8 @@ public class LibrarySystem {
 			customerExtraFeatures(customer);
 			break;
 		case "0":
+			menu.getSearch(library.getDate());
+			handleSearchMenu(requestUserInput());
 			break;
 		default:
 			System.out.println("~~~~~~~~ Not a valid option");

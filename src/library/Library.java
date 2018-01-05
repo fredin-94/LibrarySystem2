@@ -37,10 +37,6 @@ public class Library {
 
 		try {
 			customerDirectory();
-			// bookDirectory("res/bookDirectory.txt");
-			// bookDirectory("res/LoanedBookssd.txt");
-			// bookDirectory("res/delayedBooks.txt");
-			// bookDirectory("res/AllBooks.txt");
 		} catch (Exception e) {
 			System.out.println("Unable to initialize customer directory");
 		}
