@@ -1,7 +1,7 @@
 # LibrarySystem2
 
 This is a system for: Libraries
-The system is to be used by: Librarians
+<b>The system is to be used by: Librarians
 Unauthorized users should not be allowed access to the system
 
 The purpose of this library system is to allow librarians to be able to easily and effectively conduct the running of a library, by allowing them to lend and return books through the system on behalf their customers, as well as do things such as:
