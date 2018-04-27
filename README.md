@@ -1,8 +1,9 @@
 # LibrarySystem2
 
-This is a system for: Libraries
-<b>The system is to be used by: Librarians
-Unauthorized users should not be allowed access to the system
+## This is a system for: Libraries
+## The system is to be used by: Librarians
+
+### Unauthorized users should not be allowed access to the system
 
 The purpose of this library system is to allow librarians to be able to easily and effectively conduct the running of a library, by allowing them to lend and return books through the system on behalf their customers, as well as do things such as:
 Adding and removing customers and books
@@ -10,7 +11,7 @@ Viewing all books and their information, both books in the library and currently
 Viewing information about customers
 etc
 
-HOW TO RUN
+**HOW TO RUN**
 How to start the program:
 1. Download and install an IDE for Java (Skip if you already have a recent copy of an IDE installed)
 2. Run your IDE
@@ -25,5 +26,5 @@ How to start the program:
 11. Click the ”Run button” in Eclipse to run the program (a round green button with a white play symbol on it, located in the top bar of the program) 
 
 
-Needed pre-requisites:
+**_Needed_ pre-requisites**:
 A computer capable of running an IDE for Java
